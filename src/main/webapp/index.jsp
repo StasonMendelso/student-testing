@@ -40,11 +40,8 @@
     </style>
 </head>
 <body>
-  <h1><%= "Hello World!" %></h1>
-  <br/>
   <p>${sessionScope.lang}.</p>
   <fmt:message key="label.welcome"/><br/>
-
 
     <a class="c-button" href="?lang=en"><fmt:message key="label.lang.en" /></a>
     <a class="c-button" href="?lang=ua"><fmt:message key="label.lang.ua" /></a>
@@ -54,22 +51,6 @@
     <h2>Text УКР РУС</h2>
 
 
-      <p> <a href="hello-servlet">Hello Servlet</a> </p>
-      <p> <a href="welcome1.jsp">Welcome1.jsp</a> </p>
-      <p> <a href="welcome2.jsp">Welcome2.jsp</a> </p>
-      <p> <a href="changeLocale.jsp">ChangeLocale.jsp</a> </p>
-      <p> <a href="sessionLocale.jsp">SessionLocale.jsp</a> </p>
-<%--  <c:set var="lang" scope="session" value="en"/>--%>
-
-<%--  <select id="lang" name="lang" onchange="submit()">--%>
-<%--      <option value="en" ${sessionScope.lang="en"}>English</option>--%>
-<%--      <option value="fr" ${sessionScope.lang="fr"}>France</option>--%>
-<%--  </select>--%>
-<%--  <button onclick="<c:set var="lang" scope="session" value="en"/>">English</button>--%>
-<%--  <button onclick="${sessionScope.lang="fr"}">France</button>--%>
-
-<%--  <c:set var="lang" scope="session" value="${language}"/>--%>
-<%--    <jsp:include page="welcome1.jsp"/>--%>
 
 </body>
 </html>
