@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 public class Text extends ResourceBundle {
 
     private static final String TEXT_ATTRIBUTE_NAME = "text";
-    private static final String TEXT_BASE_NAME = "com.example.i18n.text";
+    private static final String TEXT_BASE_NAME = "messages";
 
     private Text(Locale locale) {
         setLocale(locale);
@@ -17,6 +17,7 @@ public class Text extends ResourceBundle {
 
     public static void setFor(HttpServletRequest request) {
         if (request.getSession().getAttribute(TEXT_ATTRIBUTE_NAME) == null) {
+
             request.getSession().setAttribute(TEXT_ATTRIBUTE_NAME, new Text(request.getLocale()));
         }
     }

@@ -8,12 +8,14 @@ import java.io.IOException;
 
 @WebFilter(filterName = "EncodingFilter")
 public class EncodingFilter implements Filter {
-    String encoding;
-    public void init(FilterConfig config) throws ServletException {
-        encoding = config.getServletContext().getInitParameter("encoding");
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
     }
 
+    @Override
     public void destroy() {
+
     }
 
     @Override
@@ -25,7 +27,9 @@ public class EncodingFilter implements Filter {
 //        System.out.println(request.getCharacterEncoding());
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-
+        req.setCharacterEncoding("UTF-8");
+        res.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html");
 
 
 //        System.out.println(request.getContentType());

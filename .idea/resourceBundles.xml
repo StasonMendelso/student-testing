@@ -7,6 +7,19 @@
     <custom-resource-bundle>
       <file value="file://$PROJECT_DIR$/src/main/resources/messages_en.properties" />
       <file value="file://$PROJECT_DIR$/src/main/resources/messages_ru.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages_ru_RU.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages_ua.properties" />
+      <base-name>messages</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages_ru.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages_ua.properties" />
+      <base-name>messages</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages_ru.properties" />
       <file value="file://$PROJECT_DIR$/src/main/resources/messages_ua.properties" />
       <base-name>messages</base-name>
     </custom-resource-bundle>

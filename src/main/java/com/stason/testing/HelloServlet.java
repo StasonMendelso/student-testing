@@ -1,6 +1,7 @@
 package com.stason.testing;
 
 import java.io.*;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -10,6 +11,14 @@ public class HelloServlet extends HttpServlet {
 
     public void init() {
         message = "Hello World!";
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(req.getParameter("lang"));
+        System.out.println(req.getParameterMap());
+        System.out.println(req.getParameterNames());
+        System.out.println();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

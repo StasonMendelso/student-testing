@@ -1,5 +1,7 @@
 package com.stason.testing.controller.filters;
 
+import com.stason.testing.Text;
+
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +12,15 @@ import java.io.IOException;
 @WebFilter(filterName = "LocaleFilter")
 public class LocaleFilter implements Filter {
     static int count =1;
-    public void init(FilterConfig config) throws ServletException {
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
     }
 
+    @Override
     public void destroy() {
+
     }
 
     @Override
@@ -40,11 +47,14 @@ public class LocaleFilter implements Filter {
             System.out.println("Lang is NULL.Set Lang by default");
             req.getSession().setAttribute("lang", "ua");
         }
+
+
+
 //        if (req.getParameter("sessionLocale") != null) {
 //            req.getSession().setAttribute("lang", req.getParameter("sessionLocale"));
 //            System.out.println("It is IF-Statement");
 //        }
-
+        Text.setFor((HttpServletRequest) request);
         chain.doFilter(request, response);
     }
     
