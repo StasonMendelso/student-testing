@@ -3,7 +3,11 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/guest/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/guest" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/quest/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/quest" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/quest/navbar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/quest" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/changeLocale.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/footer.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/welcome2.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
