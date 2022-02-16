@@ -23,7 +23,6 @@
 
     <servlet>
         <servlet-name>student-info</servlet-name>
-
         <jsp-file>/WEB-INF/view/student/info.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
@@ -77,4 +76,16 @@
         <filter-name>AccessingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>BackArrowFilter</filter-name>
+        <filter-class>com.stason.testing.controller.filters.BackArrowFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BackArrowFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+        <url-pattern>/student/*</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
 </web-app>

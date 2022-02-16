@@ -20,19 +20,20 @@ public class AccessingFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         String role = (String) req.getSession().getAttribute("role");
-        String URL = ((HttpServletRequest) request).getRequestURI();
-        System.out.println(URL);
+        String URI = req.getRequestURI();
+        System.out.println(URI);
         System.out.println(role);
-        if(URL.contains("controller")){
+
+        if(URI.contains("controller")){
             chain.doFilter(request,response);
 
-        }else if(URL.contains("/student") && role.equals("student")){
+        }else if(URI.contains("/student") && role.equals("student")){
             chain.doFilter(request, response);
-        }else if(URL.contains("/admin") && role.equals("admin")){
+        }else if(URI.contains("/admin") && role.equals("admin")){
             chain.doFilter(request, response);
 
-        }else if(role.equals("guest") && (URL.contains("/admin") || URL.contains("/student"))){
-            req.getRequestDispatcher("/testing").forward(request,response);
+        }else if(role.equals("guest") && (URI.contains("/admin") || URI.contains("/student"))){
+            if(!URI.contains("/login")) res.sendRedirect("/testing/login");
         }else  if(role.equals("guest")){
            chain.doFilter(request,response);
 

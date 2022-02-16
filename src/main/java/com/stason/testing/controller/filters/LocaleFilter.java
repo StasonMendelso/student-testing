@@ -4,13 +4,13 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.stream.events.Attribute;
+
 import java.io.IOException;
 
 @WebFilter(filterName = "LocaleFilter")
 public class LocaleFilter implements Filter {
     static int count =1;
-    public void init(FilterConfig config) throws ServletException {
+    public void init(FilterConfig config) {
     }
 
     public void destroy() {
@@ -40,10 +40,7 @@ public class LocaleFilter implements Filter {
             System.out.println("Lang is NULL.Set Lang by default");
             req.getSession().setAttribute("lang", "ua");
         }
-//        if (req.getParameter("sessionLocale") != null) {
-//            req.getSession().setAttribute("lang", req.getParameter("sessionLocale"));
-//            System.out.println("It is IF-Statement");
-//        }
+
 
         chain.doFilter(request, response);
     }
