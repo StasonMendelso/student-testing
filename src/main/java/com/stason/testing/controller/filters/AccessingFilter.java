@@ -21,10 +21,13 @@ public class AccessingFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         String role = (String) req.getSession().getAttribute("role");
         String URI = req.getRequestURI();
+
+        String param = req.getQueryString();
+        System.out.println(param);
         System.out.println(URI);
         System.out.println(role);
 
-        if(URI.contains("controller")){
+        if(role.equals("quest") && URI.contains("controller") && (URI.contains("login") || URI.contains("register"))){
             chain.doFilter(request,response);
 
         }else if(URI.contains("/student") && role.equals("student")){
@@ -38,6 +41,7 @@ public class AccessingFilter implements Filter {
            chain.doFilter(request,response);
 
         }else {
+            System.out.println("Error accesing");
             chain.doFilter(request, response);
         }
 

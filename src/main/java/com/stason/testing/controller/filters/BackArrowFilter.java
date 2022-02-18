@@ -31,6 +31,7 @@ public class BackArrowFilter implements Filter {
         String URI = req.getRequestURI();
         System.out.println(URI);
         //ToDo Добавить стрелочку назад для админа
+        //ToDo Соединить два фильтра в один, потому что оба отвечают за доступ
         if(role.equals("student")){
             if(URI.contains("student")){
 

@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands;
 
 import javax.servlet.http.HttpServletRequest;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,10 +9,10 @@ import java.util.List;
 public class LoginCommand implements Command{
     @Override
     public String execute(HttpServletRequest request) {
-
+        System.out.println(request.getCharacterEncoding());
         String url = "redirect:student/info";
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        String login = new String (request.getParameter("login").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        String password = new String (request.getParameter("password").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
         HashSet<String> loggedUsers = new HashSet<>();
         if(request.getServletContext().getAttribute("loggedUsers")!=null){

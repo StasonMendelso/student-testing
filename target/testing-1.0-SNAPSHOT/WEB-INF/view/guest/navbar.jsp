@@ -17,12 +17,24 @@
         @Testing
      </div>
         <div class="right vertical-center">
-
+    <div style="float: left">
             <button onclick="location.href='login'"><fmt:message key="label.login"/></button>
-            <button onclick="location.href='controller?action=register'"><fmt:message key="label.register"/></button>
-            <button onclick="location.href='?lang=en'"><fmt:message key="label.lang.en" /></button>
-            <button onclick="location.href='?lang=ua'"><fmt:message key="label.lang.ua" /></button>
-            <button onclick="location.href='?lang=ru'"><fmt:message key="label.lang.ru" /></button>
+            <button onclick="location.href='register'"><fmt:message key="label.register"/></button>
+    </div>
+            <div style="float: right; margin-left: 5px;">
+                <form >
+
+                <select id="language" name="lang" onchange="submit()">
+                    <option value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="label.lang.en" /></option>
+                    <option value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="label.lang.ua" /></option>
+                    <option value="ru" ${sessionScope.lang == 'ru' ? 'selected' : ''}><fmt:message key="label.lang.ru" /></option>
+                </select>
+            </form>
+            </div>
+
+<%--            <button onclick="location.href='?lang=en'"><fmt:message key="label.lang.en" /></button>--%>
+<%--            <button onclick="location.href='?lang=ua'"><fmt:message key="label.lang.ua" /></button>--%>
+<%--            <button onclick="location.href='?lang=ru'"><fmt:message key="label.lang.ru" /></button>--%>
         </div>
 
 </nav>
