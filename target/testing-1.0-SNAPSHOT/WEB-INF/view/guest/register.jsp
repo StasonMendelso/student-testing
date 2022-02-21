@@ -5,15 +5,13 @@
   Time: 23:10
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType ="text/html; charset=utf-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
-<fmt:requestEncoding value="UTF-8" />
-<%request.setCharacterEncoding("UTF-8");
-    response.setContentType("text/html;charset=utf-8");
-    response.setCharacterEncoding("UTF-8");%>
+
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,9 +25,17 @@
 <body class="body">
 <jsp:include page="/WEB-INF/view/guest/navbar.jsp"/>
 <div class="content">
+    <c:set var="list" value="${requestScope.errorsList}"/>
+    <c:if var="result" test="${!empty list}">
+        <div class="form" style="margin: 0 auto;margin-top: 10px; ">
+            <c:forEach items="${requestScope.errorsList}" var="er">
+                <c:out value="${er}"/><br>
+            </c:forEach>
+        </div>
+    </c:if>
 
-    <form action="controller" accept-charset="UTF-8" method="post" accept-charset="UTF-8" class="form" style="margin: 0 auto;margin-top: 100px; ">
-        <input name="action" value="register" type="hidden">
+    <form action=""  accept-charset="UTF-8" method="post" accept-charset="UTF-8" class="form" style="margin: 0 auto;margin-top: 15px; ">
+
         <h1 class="form_title"><fmt:message key="label.register"/></h1>
         <div class="form_grup">
             <label for="login" class="form_label"></label>
@@ -53,9 +59,11 @@
         </div>
         <fmt:message key="register.button.submit" var="buttonValue" />
         <input type="submit" name="submit" value="${buttonValue}" class="form_button">
+
+
     </form>
-    <c:set var="errors" value="${not empty requestScope}"/>
+
 </div>
-<jsp:include page="/footer.jsp"/>
+
 </body>
 </html>

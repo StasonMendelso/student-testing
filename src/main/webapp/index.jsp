@@ -1,12 +1,9 @@
 
-<%@ page contentType="text/html;text/css;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
-
-
+<%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${sessionScope.lang}"/> <!--Какая-то связь со всеми языками???-->
 <fmt:setBundle basename="messages"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
@@ -20,18 +17,18 @@
     <meta charset="UTF-8"/>
 
 </head>
-<body class="body">
+  <body class="body">
+
+    <%@include file="WEB-INF/view/guest/navbar.jsp"%>
+      <div class="content">
+
+        <p>Укр Eng Рус</p>
+        <h2>Text УКР РУС</h2>
+        <fmt:message key="label.txt"/>
 
 
-<jsp:include page="WEB-INF/view/guest/navbar.jsp"/>
-  <div class="content">
-
-    <p>Укр Eng Рус</p>
-    <h2>Text УКР РУС</h2>
-    <fmt:message key="label.txt"/>
+      </div>
 
 
-  </div>
-<jsp:include page="footer.jsp"/>
-</body>
+  </body>
 </html>

@@ -3,7 +3,7 @@ package com.stason.testing.controller.services;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ValidatorService {
+public abstract class ValidatorService {
     public static boolean validateEmail(String email){
         String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(regexPattern);
@@ -11,13 +11,13 @@ public class ValidatorService {
         return matcher.matches();
     }
     public static boolean validateUsername(String username){
-        String regexPattern = "^[A-ZА-Я][a-zа-я]{1,29}$";
+        String regexPattern = "^[A-ZА-ЯЁ][a-zа-яіїёъ']{1,29}$";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(username);
         return matcher.matches();
     }
     public static boolean validateSurname(String surname){
-        String regexPattern = "^[A-ZА-Я][a-zа-я]{1,29}$";
+        String regexPattern = "^[A-ZА-ЯЁ][a-zа-яіїёъ']{1,29}$";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(surname);
         return matcher.matches();
@@ -36,7 +36,7 @@ public class ValidatorService {
      * $ represents the end of the string.
      * **/
     public static boolean validatePassword(String password){
-        String regexPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\\\S+$).{8,20}$";
+        String regexPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!\\-+=%*?&])[A-Za-z\\d@\\-$!%*?=+&]{8,20}$";
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();

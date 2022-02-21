@@ -26,7 +26,7 @@ public class LocaleFilter implements Filter {
             req.getSession().setAttribute("lang", req.getParameter("lang"));
             String referrer = req.getHeader("referer");
             System.out.println("Referrer is "+referrer);
-            res.sendRedirect(referrer);
+         //   res.sendRedirect(referrer);
 
         }
         if(req.getSession().getAttribute("lang")!=null){

@@ -13,14 +13,22 @@
 <nav class="navbar">
     <section></section>
     <div class = "left  vertical-center">
-        @Testing
+        @Testing  Role:${sessionScope.role}
+
     </div>
     <div class="right vertical-center">
 
-        <button onclick="location.href='/testing/controller?action=logout'"><fmt:message key="label.unlogin"/></button>
-        <button onclick="location.href='?lang=en'"><fmt:message key="label.lang.en" /></button>
-        <button onclick="location.href='?lang=ua'"><fmt:message key="label.lang.ua" /></button>
-        <button onclick="location.href='?lang=ru'"><fmt:message key="label.lang.ru" /></button>
+        <button onclick="location.href='/web-application/testing/logout'"><fmt:message key="label.unlogin"/></button>
+        <div style="float: right; margin-left: 5px;">
+            <form method="post">
+
+                <select id="language" name="lang" onchange="submit()">
+                    <option value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="label.lang.en" /></option>
+                    <option value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="label.lang.ua" /></option>
+                    <option value="ru" ${sessionScope.lang == 'ru' ? 'selected' : ''}><fmt:message key="label.lang.ru" /></option>
+                </select>
+            </form>
+        </div>
     </div>
 
 </nav>

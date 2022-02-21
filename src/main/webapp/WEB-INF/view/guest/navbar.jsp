@@ -7,22 +7,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="messages"/>
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
+<%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">--%>
 <nav class="navbar">
  <section></section>
     <div class = "left  vertical-center">
-        @Testing
+        @Testing  Role:${sessionScope.role}
      </div>
         <div class="right vertical-center">
     <div style="float: left">
-            <button onclick="location.href='login'"><fmt:message key="label.login"/></button>
-            <button onclick="location.href='register'"><fmt:message key="label.register"/></button>
+            <button onclick="location.href='/web-application/testing/login'"><fmt:message key="label.login"/></button>
+            <button onclick="location.href='/web-application/testing/registration'"><fmt:message key="label.register"/></button>
     </div>
             <div style="float: right; margin-left: 5px;">
-                <form >
+                <form method="post">
 
                 <select id="language" name="lang" onchange="submit()">
                     <option value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="label.lang.en" /></option>

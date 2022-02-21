@@ -1,5 +1,7 @@
 package com.stason.testing.controller.commands;
 
+import com.stason.testing.model.entity.Role;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 
@@ -13,12 +15,13 @@ public class LogoutCommand implements Command{
         loggedUsers.remove(login);
         System.out.println(loggedUsers);
         request.getSession().getServletContext().setAttribute("loggedUsers",loggedUsers);
-        request.getSession().setAttribute("role","guest");
+
         //Сохраняем язык чтобы не сменился когда сессия станет невалидной.
         String lang = (String) request.getSession().getAttribute("lang");
         request.getSession().invalidate();
+        request.getSession().setAttribute("role", Role.GUEST.name());
         request.getSession().setAttribute("lang",lang);
 
-        return "redirect:/testing";
+        return "redirect:/web-application/testing/login";
     }
 }

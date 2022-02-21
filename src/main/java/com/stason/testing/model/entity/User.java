@@ -1,17 +1,17 @@
 package com.stason.testing.model.entity;
 
-public class Student {
+public class User {
     private int id;
     private String login;
     private String password;
     private String name;
     private String surname;
-    private String role;
+    private Role role;
     private boolean blocked;
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
@@ -63,15 +63,18 @@ public class Student {
     }
 
     public String getRole() {
-        return role;
+        return role.name();
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
     public boolean isBlocked() {
         return blocked;
+    }
+    public String getStringIntBlocked(){
+        return blocked ? "1":"0";
     }
 
     public void setBlocked(boolean blocked) {

@@ -1,25 +1,35 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
-<%request.setCharacterEncoding("UTF-8");%>
-<%response.setCharacterEncoding("UTF-8");%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Testing</title>
-
+<%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">--%>
+    <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body class="body">
-    <jsp:include page="/WEB-INF/view/guest/navbar.jsp"/>
+<%--    <jsp:include page="/WEB-INF/view/guest/navbar.jsp"/>--%>
+    <%@include file="navbar.jsp"%>
         <div class="content">
+            <c:set var="list" value="${requestScope.errorsList}"/>
+            <c:if var="result" test="${!empty list}">
+                <div class="form" style="margin: 0 auto;margin-top: 10px; ">
+                    <c:forEach items="${requestScope.errorsList}" var="er">
+                        <c:out value="${er}"/><br>
+                    </c:forEach>
+                </div>
+            </c:if>
 
-            <form action="controller" method="post" accept-charset="UTF-8" class="form" style="margin: 0 auto;margin-top: 100px; ">
+            <form name="loginform" action="" method="post" accept-charset="UTF-8" class="form" style="margin: 0 auto;margin-top: 100px; ">
                 <input name="action" value="login" type="hidden">
                 <h1 class="form_title"><fmt:message key="label.login"/></h1>
                 <div class="form_grup">
@@ -34,6 +44,6 @@
                 <input type="submit" name="submit" value="${buttonValue}" class="form_button">
             </form>
         </div>
-    <jsp:include page="/footer.jsp"/>
+
 </body>
 </html>

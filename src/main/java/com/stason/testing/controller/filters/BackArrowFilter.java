@@ -1,6 +1,7 @@
 package com.stason.testing.controller.filters;
 
 import com.stason.testing.controller.commands.LogoutCommand;
+import com.stason.testing.model.entity.Role;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -29,11 +30,18 @@ public class BackArrowFilter implements Filter {
 
         String role = (String) req.getSession().getAttribute("role");
         String URI = req.getRequestURI();
-        System.out.println(URI);
+
         //ToDo Добавить стрелочку назад для админа
         //ToDo Соединить два фильтра в один, потому что оба отвечают за доступ
-        if(role.equals("student")){
+        if(role.equals(Role.STUDENT.name())){
             if(URI.contains("student")){
+
+            }else{
+                new LogoutCommand().execute(req);
+            }
+        }
+        if(role.equals(Role.ADMIN.name())){
+            if(URI.contains("admin")){
 
             }else{
                 new LogoutCommand().execute(req);
