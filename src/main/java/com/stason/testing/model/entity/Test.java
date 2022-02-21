@@ -1,16 +1,22 @@
 package com.stason.testing.model.entity;
 
+
+
+import java.util.LinkedList;
 import java.util.List;
 
 public class Test {
     private int id;
     private String name;
     private String nameOfDiscipline;
-    private int difficulty;
-    private int timeSeconds;
+    private String difficulty;
+    private int timeMinutes;
     private int countOfQuestions;
-    private List<Question> questions;
+    private List<Question> questions = new LinkedList<>();
 
+    public void addQuestion(Question question){
+        questions.add(question);
+    }
     @Override
     public String toString() {
         return "Test{" +
@@ -18,7 +24,7 @@ public class Test {
                 ", name='" + name + '\'' +
                 ", nameOfDiscipline='" + nameOfDiscipline + '\'' +
                 ", difficulty=" + difficulty +
-                ", timeSeconds=" + timeSeconds +
+                ", timeMinutes=" + timeMinutes +
                 ", countOfQuestions=" + countOfQuestions +
                 ", questions=" + questions +
                 '}';
@@ -48,20 +54,20 @@ public class Test {
         this.nameOfDiscipline = nameOfDiscipline;
     }
 
-    public int getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(int difficulty) {
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 
-    public int getTimeSeconds() {
-        return timeSeconds;
+    public int getTimeMinutes() {
+        return timeMinutes;
     }
 
-    public void setTimeSeconds(int timeSeconds) {
-        this.timeSeconds = timeSeconds;
+    public void setTimeMinutes(int timeSeconds) {
+        this.timeMinutes = timeSeconds;
     }
 
     public int getCountOfQuestions() {

@@ -1,6 +1,7 @@
 package com.stason.testing.model.dao.implement;
 
 import com.stason.testing.model.dao.DaoFactory;
+import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.dao.UserDao;
 
 
@@ -22,6 +23,9 @@ public class JDBCDaoFactory extends DaoFactory {
     @Override
     public UserDao createUserDao() {
         return new JDBCUserDao(this.getConnection());
+    }
+    public TestDao createTestDao() {
+        return new JDBCTestDao(this.getConnection());
     }
     private Connection getConnection(){
         return connection;

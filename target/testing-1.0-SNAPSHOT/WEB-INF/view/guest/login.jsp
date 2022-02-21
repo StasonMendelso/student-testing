@@ -29,8 +29,8 @@
                 </div>
             </c:if>
 
-            <form name="loginform" action="" method="post" accept-charset="UTF-8" class="form" style="margin: 0 auto;margin-top: 100px; ">
-                <input name="action" value="login" type="hidden">
+            <form name="loginform" action="${pageContext.request.contextPath}/testing/login" method="post" accept-charset="UTF-8" class="form" style="margin: 0 auto;margin-top: 100px; ">
+
                 <h1 class="form_title"><fmt:message key="label.login"/></h1>
                 <div class="form_grup">
                     <label for="login" class="form_label"></label>

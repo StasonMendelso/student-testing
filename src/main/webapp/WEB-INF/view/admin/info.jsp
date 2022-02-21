@@ -17,7 +17,7 @@
 
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
 <div class="content">
-    <h1>IT is showUsers.jsp</h1>
+    <h1>IT is info.jsp</h1>
     <p>It is admin's page<p>
     <p>Your Name is: ${sessionScope.name}</p>
     <p>Your Surname is: ${sessionScope.surname}</p>

@@ -1,5 +1,6 @@
 package com.stason.testing.model.entity;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Question {
@@ -7,7 +8,11 @@ public class Question {
     private int testId;
     private int nomerQuestion;
     private String textQuestion;
-    private List<Answer> answers;
+    private List<Answer> answers = new LinkedList<>();
+
+    public void addAnswer(Answer answer){
+        answers.add(answer);
+    }
 
     @Override
     public String toString() {

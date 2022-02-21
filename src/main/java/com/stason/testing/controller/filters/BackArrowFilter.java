@@ -1,6 +1,6 @@
 package com.stason.testing.controller.filters;
 
-import com.stason.testing.controller.commands.LogoutCommand;
+import com.stason.testing.controller.commands.implementent.guest.LogoutCommand;
 import com.stason.testing.model.entity.Role;
 
 import javax.servlet.*;

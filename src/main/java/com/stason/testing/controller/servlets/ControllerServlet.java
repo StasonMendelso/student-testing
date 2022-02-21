@@ -2,6 +2,10 @@ package com.stason.testing.controller.servlets;
 
 import com.stason.testing.controller.commands.*;
 import com.stason.testing.controller.commands.implementent.DefaultCommand;
+import com.stason.testing.controller.commands.implementent.admin.*;
+import com.stason.testing.controller.commands.implementent.student.*;
+import com.stason.testing.controller.commands.implementent.guest.*;
+
 
 
 import java.io.*;
@@ -13,7 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 public class ControllerServlet extends HttpServlet {
-    private Map<String, Command> commands = new HashMap<>() ;
+    private final Map<String, Command> commands = new HashMap<>() ;
 
     public void init() {
         commands.put("/",new DefaultCommand());
@@ -23,6 +27,9 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/registration", new RegistrationCommand());
         commands.put("/admin/info",new AdminInfoCommand());
         commands.put("/admin/showUsers", new ShowUsersCommand());
+        commands.put("/admin/showTests", new ShowTestsCommand());
+        commands.put("/admin/createTest", new CreateTestCommand());
+        commands.put("/admin/createQuestion", new CreateQuestionCommand());
         commands.put("/student/info", new StudentInfoCommand());
     }
 
