@@ -3,10 +3,7 @@ package com.stason.testing.model.dao.implement;
 import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Test;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,8 +17,37 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public void create(Test entity) {
+    public int findIdByName(String testName) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.tests where name=?");
+            preparedStatement.setString(1,testName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getInt("id");
+            }else{
+                throw new SQLException("Result set  is NULL");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
+    @Override
+    public void create(Test test) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.tests (name, nameOfDiscipline, difficulty, time_minutes, countOfQuestions) VALUES (?,?,?,?,?)");
+            preparedStatement.setString(1,test.getName());
+            preparedStatement.setString(2,test.getNameOfDiscipline());
+            preparedStatement.setString(3,test.getDifficulty());
+            preparedStatement.setInt(4,test.getTimeMinutes());
+            preparedStatement.setInt(5,test.getCountOfQuestions());
+
+            if(preparedStatement.execute()) System.out.println("Test was added to DB");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

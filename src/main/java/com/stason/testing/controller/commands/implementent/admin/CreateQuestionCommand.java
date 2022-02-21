@@ -2,6 +2,10 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.EncodingConverter;
+import com.stason.testing.model.dao.AnswerDao;
+import com.stason.testing.model.dao.DaoFactory;
+import com.stason.testing.model.dao.QuestionDao;
+import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
@@ -19,7 +23,32 @@ public class CreateQuestionCommand implements Command {
             String url = saveQuestion(request);
             if(url.contains("createQuestion.jsp")){
                 // беремо з сесії тест і зберігаємо в БД
+                DaoFactory factory = DaoFactory.getInstance();
+                TestDao testDao = factory.createTestDao();
+                QuestionDao questionDao = factory.createQuestionDao();
+                AnswerDao answerDao = factory.createAnswerDao();
 
+                Test test = (Test) request.getSession().getAttribute("test");
+
+                // добавляємо тест в БД
+                testDao.create (test);
+                // добавляємо вопросы в БД
+                int testId = testDao.findIdByName(test.getName());
+                int i =1;
+                for(Question question : test.getQuestions()){
+                    question.setTestId(testId);
+                    question.setNomerQuestion(i++);
+                    questionDao.create(question);
+                    //добавляємо до кожного вопроса відповіді в БД
+                    int questionId = questionDao.findId(question);
+
+                    for(Answer answer: question.getAnswers()){
+                        answer.setQuestionId(questionId);
+                        answerDao.create(answer);
+                    }
+                }
+                //видаляємо з сесії
+                request.getSession().removeAttribute("test");
                 //переходимо на сторінку, що тест успішно зберігся
                 return "/WEB-INF/view/admin/successful_creatingTest.jsp";
             }else{

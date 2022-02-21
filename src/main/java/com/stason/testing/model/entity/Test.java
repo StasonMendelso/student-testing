@@ -16,6 +16,7 @@ public class Test {
 
     public void addQuestion(Question question){
         questions.add(question);
+        this.setCountOfQuestions(questions.size());
     }
     @Override
     public String toString() {
