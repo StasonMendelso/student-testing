@@ -18,18 +18,29 @@
 
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
 <div class="content">
-    <h1>IT is showTest.jsp</h1>
     <c:set var="list" value="${requestScope.testList}"/>
     <c:if var="result" test="${!empty list}">
-        <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
-            <c:forEach items="${requestScope.testList}" var="test">
-                <c:out value="${test}"/><br>
-            </c:forEach>
-        </div>
+        <table style="width: 90%; margin: 5%; margin-top: 2%"  >
+            <tr><th>Id</th><th>Name</th><th>Discipline</th><th>Difficulty</th><th>Duration (Minutes)</th><th>Questions</th><th colspan="2">Действия Админа</th></tr>
+            <c:if var="result" test="${!empty list}">
+                <c:forEach items="${requestScope.testList}" var="test">
+                    <tr>
+                        <td>${test.id}</td>
+                        <td>${test.name}</td>
+                        <td>${test.nameOfDiscipline}</td>
+                        <td>${test.difficulty}</td>
+                        <td>${test.timeMinutes}</td>
+                        <td>${test.countOfQuestions}</td>
+
+                        <td><button class="td-center button-edit" type="button" onclick="location.href='/web-application/testing/admin/editTest?id=${test.id}'">Edit</button></td>
+                        <td><button class="td-center button-delete" type="button" onclick="location.href='/web-application/testing/admin/deleteTest?id=${test.id}'">Delete</button></td>
+                    </tr>
+                </c:forEach>
+            </c:if>
+
+        </table>
     </c:if>
-    <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
-        ${list}
-    </div>
+
     <c:if test="${empty list}">
         <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
             No tests have been found :(

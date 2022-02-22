@@ -155,7 +155,17 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public void update(User entity) {
+    public void update(User user) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE onlinetesting.users SET name=?, surname=? WHERE id=?");
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getSurname());
+            preparedStatement.setInt(3, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.EncodingConverter;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.User;
@@ -14,7 +15,23 @@ public class EditUserCommand implements Command {
         if(request.getParameter("id")!=null){
             request.getSession().setAttribute("idUser",request.getParameter("id"));
         }
+        if(request.getParameter("surname")!=null && request.getParameter("name")!=null) {
+            if (request.getRequestURI().contains("/admin/editUser") && (!request.getParameter("surname").isEmpty() || !request.getParameter("name").isEmpty())) {
+                DaoFactory factory = DaoFactory.getInstance();
+                UserDao userDao = factory.createUserDao();
+                User user = userDao.findById(Integer.parseInt(request.getParameter("id")));
+                if (!request.getParameter("surname").isEmpty()) {
+                    String surname = EncodingConverter.convertFromISOtoUTF8(request.getParameter("surname"));
+                    user.setSurname(surname);
+                }
+                if (!request.getParameter("name").isEmpty()) {
+                    String name = EncodingConverter.convertFromISOtoUTF8(request.getParameter("name"));
+                    user.setName(name);
+                }
 
+                userDao.update(user);
+            }
+        }
         if(request.getRequestURI().contains("/admin/editUser") && !request.getRequestURI().contains("?")){
             DaoFactory factory = DaoFactory.getInstance();
             UserDao userDao = factory.createUserDao();
