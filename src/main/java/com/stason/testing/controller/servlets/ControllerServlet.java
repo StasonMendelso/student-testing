@@ -30,6 +30,10 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/admin/showTests", new ShowTestsCommand());
         commands.put("/admin/createTest", new CreateTestCommand());
         commands.put("/admin/createQuestion", new CreateQuestionCommand());
+        commands.put("/admin/blockUser", new BlockUserCommand());
+        commands.put("/admin/unblockUser", new UnblockUserCommand());
+        commands.put("/admin/deleteUser", new DeleteUserCommand());
+        commands.put("/admin/editUser", new EditUserCommand());
         commands.put("/student/info", new StudentInfoCommand());
     }
 
@@ -53,6 +57,8 @@ public class ControllerServlet extends HttpServlet {
 
             String uri = request.getRequestURI();
             uri = uri.replaceAll(".*/testing", "");
+            uri = uri.replaceAll("\\?.*","");
+
             Command command = commands.get(uri);
             if(command!=null) {
                 String newUrl = command.execute(request);

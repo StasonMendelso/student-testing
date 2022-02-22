@@ -3,7 +3,9 @@ package com.stason.testing.model.dao;
 import com.stason.testing.model.entity.User;
 
 public interface UserDao extends GenericDao<User> {
-    public boolean checkUser(User user);
-    public boolean checkLogin(User user);
-    public User findByLogin(String login);
+    boolean checkUser(User user);
+    boolean checkLogin(User user);
+    User findByLogin(String login);
+    boolean block(int id);
+    boolean unblock(int id);
 }

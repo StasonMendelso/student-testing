@@ -85,7 +85,50 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
+    public boolean block(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE onlinetesting.users set blocked=1 WHERE id=?");
+            preparedStatement.setInt(1,id);
+            return preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    @Override
+    public boolean unblock(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE onlinetesting.users set blocked=0 WHERE id=?");
+            preparedStatement.setInt(1,id);
+            return preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    @Override
     public User findById(int id) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.users WHERE id=?");
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                User user = new User();
+                user.setLogin(resultSet.getString("login"));
+                user.setName(resultSet.getString("name"));
+                user.setSurname(resultSet.getString("surname"));
+                user.setRole(Role.valueOf(resultSet.getString("role")));
+                user.setId(resultSet.getInt("id"));
+                user.setBlocked(resultSet.getBoolean("blocked"));
+                return user;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -118,7 +161,13 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public void delete(int id) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.users WHERE id=?");
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

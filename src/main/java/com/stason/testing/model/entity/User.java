@@ -76,7 +76,7 @@ public class User {
     public String getStringIntBlocked(){
         return blocked ? "1":"0";
     }
-
+    public String getStringBlocked(){return blocked? "Так":"Ні";}
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
