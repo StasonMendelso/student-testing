@@ -19,20 +19,20 @@
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
 <div class="content">
     <h1>IT is editUser.jsp</h1>
-    <c:set var="test" value="${requestScope.user}"/>
+    <c:set var="user" value="${requestScope.user}"/>
     <p>${test}</p>
 
     <div class="form" style="margin: 0 auto;margin-top: 10px;width: 30%">
         <table>
             <tr><th style="-moz-text-align-last: center" colspan="2">User information</th></tr>
-            <tr><td>Id</td><td>${test.id}</td></tr>
-            <tr><td>Login</td><td>${test.login}</td></tr>
-            <tr><td>Surname</td><td>${test.surname}</td></tr>
-            <tr><td>Name</td><td>${test.name}</td></tr>
+            <tr><td>Id</td><td>${user.id}</td></tr>
+            <tr><td>Login</td><td>${user.login}</td></tr>
+            <tr><td>Surname</td><td>${user.surname}</td></tr>
+            <tr><td>Name</td><td>${user.name}</td></tr>
         </table>
         <br>
         <form>
-            <input hidden name="id" value="${test.id}">
+            <input hidden name="id" value="${user.id}">
             <table>
                 <tr><th style="-moz-text-align-last: center" colspan="2">Edit user information</th></tr>
                 <tr><td><label for="surname">Surname</label></td><td> <input type="text" id="surname" name="surname" class="form_input"></td></tr>

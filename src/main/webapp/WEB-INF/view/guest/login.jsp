@@ -20,8 +20,8 @@
 <%--    <jsp:include page="/WEB-INF/view/guest/navbar.jsp"/>--%>
     <%@include file="navbar.jsp"%>
         <div class="content">
-            <c:set var="list" value="${requestScope.errorsList}"/>
-            <c:if var="result" test="${!empty list}">
+            <c:set var="test" value="${requestScope.errorsList}"/>
+            <c:if var="result" test="${!empty test}">
                 <div class="form" style="margin: 0 auto;margin-top: 10px; ">
                     <c:forEach items="${requestScope.errorsList}" var="er">
                         <c:out value="${er}"/><br>

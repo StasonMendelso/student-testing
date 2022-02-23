@@ -82,7 +82,7 @@ public class LoginCommand implements Command {
 
                 return "/WEB-INF/view/guest/login.jsp";
             }
-            return "redirect:/testing";
+            return "redirect:/web-application/testing";
         }else{
             return "/WEB-INF/view/guest/login.jsp";
         }

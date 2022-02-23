@@ -52,7 +52,31 @@ public class JDBCTestDao implements TestDao {
 
     @Override
     public Test findById(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.tests WHERE id=?");
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                Test test = builtTest(resultSet);
+
+                return test;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
+    }
+
+    private Test builtTest(ResultSet resultSet) throws SQLException {
+        Test test = new Test();
+        test.setId(resultSet.getInt("id"));
+        test.setName(resultSet.getString("name"));
+        test.setNameOfDiscipline(resultSet.getString("nameOfDiscipline"));
+        test.setDifficulty(resultSet.getString("difficulty"));
+        test.setTimeMinutes(resultSet.getInt("time_minutes"));
+        test.setCountOfQuestions(resultSet.getInt("countOfQuestions"));
+        return test;
     }
 
     @Override
@@ -62,13 +86,7 @@ public class JDBCTestDao implements TestDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQLfindAllTests);
             while(resultSet.next()){
-                Test test = new Test();
-                test.setId(resultSet.getInt("id"));
-                test.setName(resultSet.getString("name"));
-                test.setNameOfDiscipline(resultSet.getString("nameOfDiscipline"));
-                test.setDifficulty(resultSet.getString("difficulty"));
-                test.setTimeMinutes(resultSet.getInt("time_minutes"));
-                test.setCountOfQuestions(resultSet.getInt("countOfQuestions"));
+                Test test = builtTest(resultSet);
 
                 list.add(test);
             }

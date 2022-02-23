@@ -1,4 +1,4 @@
-package com.stason.testing.controller.commands.implementent;
+package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.DaoFactory;

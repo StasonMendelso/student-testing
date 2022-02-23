@@ -15,6 +15,7 @@ public class EditUserCommand implements Command {
         if(request.getParameter("id")!=null){
             request.getSession().setAttribute("idUser",request.getParameter("id"));
         }
+
         if(request.getParameter("surname")!=null && request.getParameter("name")!=null) {
             if (request.getRequestURI().contains("/admin/editUser") && (!request.getParameter("surname").isEmpty() || !request.getParameter("name").isEmpty())) {
                 DaoFactory factory = DaoFactory.getInstance();
@@ -28,8 +29,8 @@ public class EditUserCommand implements Command {
                     String name = EncodingConverter.convertFromISOtoUTF8(request.getParameter("name"));
                     user.setName(name);
                 }
-
                 userDao.update(user);
+                return "redirect:/web-application/testing/admin/showUsers";
             }
         }
         if(request.getRequestURI().contains("/admin/editUser") && !request.getRequestURI().contains("?")){
@@ -40,7 +41,7 @@ public class EditUserCommand implements Command {
 
             request.setAttribute("user",user);
 
-            return "/WEB-INF/view/admin/editUser.jsp";
+            return "/WEB-INF/view/admin/editUserInfo.jsp";
         }else{
             return "redirect:/web-application/testing/admin/editUser";
         }

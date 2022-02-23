@@ -18,11 +18,11 @@
 
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
 <div class="content">
-    <c:set var="list" value="${requestScope.testList}"/>
-    <c:if var="result" test="${!empty list}">
+    <c:set var="tests" value="${requestScope.testList}"/>
+    <c:if var="result" test="${!empty tests}">
         <table style="width: 90%; margin: 5%; margin-top: 2%"  >
             <tr><th>Id</th><th>Name</th><th>Discipline</th><th>Difficulty</th><th>Duration (Minutes)</th><th>Questions</th><th colspan="2">Действия Админа</th></tr>
-            <c:if var="result" test="${!empty list}">
+            <c:if var="result" test="${!empty tests}">
                 <c:forEach items="${requestScope.testList}" var="test">
                     <tr>
                         <td>${test.id}</td>
@@ -41,7 +41,7 @@
         </table>
     </c:if>
 
-    <c:if test="${empty list}">
+    <c:if test="${empty tests}">
         <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
             No tests have been found :(
         </div>

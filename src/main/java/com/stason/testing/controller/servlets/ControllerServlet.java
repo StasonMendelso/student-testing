@@ -2,8 +2,8 @@ package com.stason.testing.controller.servlets;
 
 import com.stason.testing.controller.commands.*;
 import com.stason.testing.controller.commands.implementent.DefaultCommand;
-import com.stason.testing.controller.commands.implementent.DeleteTestCommand;
-import com.stason.testing.controller.commands.implementent.EditTestCommand;
+import com.stason.testing.controller.commands.implementent.admin.DeleteTestCommand;
+import com.stason.testing.controller.commands.implementent.admin.EditTestCommand;
 import com.stason.testing.controller.commands.implementent.admin.*;
 import com.stason.testing.controller.commands.implementent.student.*;
 import com.stason.testing.controller.commands.implementent.guest.*;
@@ -32,6 +32,7 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/admin/showTests", new ShowTestsCommand());
         commands.put("/admin/deleteTest", new DeleteTestCommand());
         commands.put("/admin/editTest", new EditTestCommand());
+        commands.put("/admin/editTestInfo", new EditTestInfoCommand());
         commands.put("/admin/createTest", new CreateTestCommand());
         commands.put("/admin/createQuestion", new CreateQuestionCommand());
         commands.put("/admin/blockUser", new BlockUserCommand());
