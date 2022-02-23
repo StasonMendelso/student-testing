@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCQuestionDao implements QuestionDao {
@@ -49,6 +50,26 @@ public class JDBCQuestionDao implements QuestionDao {
             e.printStackTrace();
         }
     }
+    @Override
+    public List<Question> findAllByTestId(int id){
+        List<Question> list = new LinkedList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.questions WHERE tests_id=?");
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Question question = new Question();
+                question.setId(resultSet.getInt("id"));
+                question.setTestId(resultSet.getInt("tests_id"));
+                question.setTextQuestion(resultSet.getString("question"));
+                list.add(question);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 
     @Override
     public Question findById(int id) {
@@ -67,7 +88,14 @@ public class JDBCQuestionDao implements QuestionDao {
 
     @Override
     public void delete(int id) {
-
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.questions WHERE id=?");
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

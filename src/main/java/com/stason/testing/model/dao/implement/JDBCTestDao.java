@@ -85,7 +85,19 @@ public class JDBCTestDao implements TestDao {
 
     @Override
     public void delete(int id) {
+        try {
 
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE test_id=?");
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.tests WHERE id=?");
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

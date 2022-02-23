@@ -18,7 +18,7 @@
 
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
 <div class="content">
-    <h1>IT is createTest.jsp</h1>
+
     <form action="${pageContext.request.contextPath}/testing/admin/createTest" class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
         <h1>Create Test</h1>
 
@@ -34,9 +34,9 @@
 
         <label for="difficulty">Select Difficulty</label>
         <select id="difficulty" name="difficulty">
-            <option value="easy" >Easy</option>
-            <option value="medium" >Medium</option>
-            <option value="hard" >Hard</option>
+            <option value="Easy" >Easy</option>
+            <option value="Medium" >Medium</option>
+            <option value="Hard" >Hard</option>
         </select>
         <br>
         <br>

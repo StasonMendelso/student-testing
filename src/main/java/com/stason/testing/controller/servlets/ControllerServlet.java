@@ -2,6 +2,8 @@ package com.stason.testing.controller.servlets;
 
 import com.stason.testing.controller.commands.*;
 import com.stason.testing.controller.commands.implementent.DefaultCommand;
+import com.stason.testing.controller.commands.implementent.DeleteTestCommand;
+import com.stason.testing.controller.commands.implementent.EditTestCommand;
 import com.stason.testing.controller.commands.implementent.admin.*;
 import com.stason.testing.controller.commands.implementent.student.*;
 import com.stason.testing.controller.commands.implementent.guest.*;
@@ -28,6 +30,8 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/admin/info",new AdminInfoCommand());
         commands.put("/admin/showUsers", new ShowUsersCommand());
         commands.put("/admin/showTests", new ShowTestsCommand());
+        commands.put("/admin/deleteTest", new DeleteTestCommand());
+        commands.put("/admin/editTest", new EditTestCommand());
         commands.put("/admin/createTest", new CreateTestCommand());
         commands.put("/admin/createQuestion", new CreateQuestionCommand());
         commands.put("/admin/blockUser", new BlockUserCommand());
@@ -38,7 +42,6 @@ public class ControllerServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println("doGet");
         process(request,response);
 
 
@@ -47,7 +50,7 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("doPost");
+
         process(req,resp);
     }
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

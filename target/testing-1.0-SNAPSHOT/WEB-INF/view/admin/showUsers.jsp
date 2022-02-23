@@ -19,7 +19,7 @@
     <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
     <div class="content">
         <c:set var="list" value="${requestScope.userList}"/>
-        <div class="form" style="margin: 0 auto;margin-top: 10px; width: 90%">
+
             <table>
                 <tr><th>Id</th><th>Login</th><th>Name</th><th>Surname</th><th>Role</th><th>Blocked</th><th colspan="3">Действия Админа</th></tr>
                 <c:if var="result" test="${!empty list}">
@@ -41,7 +41,7 @@
                 </c:if>
 
             </table>
-        </div>
+
         <c:if test="${empty list}">
             <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
                 No users have been found :(

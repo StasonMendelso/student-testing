@@ -21,7 +21,7 @@ public class CreateQuestionCommand implements Command {
         if (request.getParameter("SaveTest")!=null){
 
             String url = saveQuestion(request);
-            if(url.contains("createQuestion.jsp")){
+            if(url.contains("createQuestion")){
                 // беремо з сесії тест і зберігаємо в БД
                 DaoFactory factory = DaoFactory.getInstance();
                 TestDao testDao = factory.createTestDao();
@@ -63,16 +63,10 @@ public class CreateQuestionCommand implements Command {
         if(request.getParameter("SaveQuestion")!=null){
             if(request.getSession().getAttribute("test")!=null){
                 return saveQuestion(request);
-
-
-
             }else{
                 return "redirect:/web-application/testing/admin/createTest";
             }
-
-
         }
-
         if(request.getRequestURI().contains("/createQuestion")){
             return "/WEB-INF/view/admin/createQuestion.jsp";
         }else {
@@ -119,7 +113,8 @@ public class CreateQuestionCommand implements Command {
             Test test = (Test) request.getSession().getAttribute("test");
             test.addQuestion(question);
             request.getSession().setAttribute("test",test);
-            return "/WEB-INF/view/admin/createQuestion.jsp";
+            return "redirect:/web-application/testing/admin/createQuestion";
+            //  return "/WEB-INF/view/admin/createQuestion.jsp";
         }
     }
 

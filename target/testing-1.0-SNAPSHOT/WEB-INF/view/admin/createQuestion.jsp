@@ -21,7 +21,7 @@
 
     <p>${sessionScope.test}</p>
 
-    <h1>IT is createTest.jsp</h1>
+
     <form  class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
         <h1>Create Test</h1>
 
