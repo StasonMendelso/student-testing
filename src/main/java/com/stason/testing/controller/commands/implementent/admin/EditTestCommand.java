@@ -37,7 +37,6 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
             if(request.getSession().getAttribute("editedTest")==null) {
                 request.getSession().setAttribute("editedTest", test);
             }else{
-                ////Attention
                 if(((Test)request.getSession().getAttribute("editedTest")).getId()!=id){
                     request.getSession().setAttribute("editedTest", test);
                 }
