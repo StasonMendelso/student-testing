@@ -262,7 +262,8 @@ button:disabled {
   border: 1px solid rgba(68, 68, 68, 0.5);
   background-color: rgba(22, 90, 154, 0.9);
   color: white;
-}.button-edit{
+}
+.button-edit{
    transition: all 0.2s;
    border: 1px solid rgba(68, 68, 68, 0.5);
    background-color: rgba(81, 255, 0, 0.7);
@@ -273,7 +274,8 @@ button:disabled {
   border: 1px solid rgba(68, 68, 68, 0.5);
   background-color: rgb(43, 143, 0, 0.9);
   color: white;
-}.button-delete{
+}
+.button-delete{
    transition: all 0.2s;
    border: 1px solid rgba(68, 68, 68, 0.5);
    background-color: rgba(255, 18, 0, 0.7);
@@ -283,6 +285,18 @@ button:disabled {
   transition: all 0.2s;
   border: 1px solid rgba(68, 68, 68, 0.5);
   background-color: rgba(129, 0, 0, 0.9);
+  color: white;
+}
+.button-add{
+  transition: all 0.2s;
+  border: 1px solid rgba(68, 68, 68, 0.5);
+  background-color: rgba(0, 237, 255, 0.7);
+  color: white;
+}
+.button-add:hover{
+  transition: all 0.2s;
+  border: 1px solid rgba(68, 68, 68, 0.5);
+  background-color: rgb(0, 154, 170);
   color: white;
 }
 .input-submit {

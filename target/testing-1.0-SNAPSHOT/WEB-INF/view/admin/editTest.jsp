@@ -53,10 +53,12 @@
 
                 </c:forEach>
                 </ul>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button class="button-edit" type="button" onclick="location.href='/web-application/testing/admin/editQuestionInfo?id=${question.id}'">Edit</button>
+                <button class="button-delete" type="button" onclick="location.href='/web-application/testing/admin/editTestDeleteQuestion?id=${question.id}'" <c:if test="${test.countOfQuestions==1}">disabled</c:if>>Delete</button>
                 <hr>
             </c:forEach>
+            <button class="td-center button-add" type="button" onclick="location.href='/web-application/testing/admin/addQuestion'" >Add question</button>
+            <hr>
             <button class="center">Save Edited test</button>
 
         </div>

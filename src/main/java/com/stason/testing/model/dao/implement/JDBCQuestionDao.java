@@ -73,6 +73,20 @@ public class JDBCQuestionDao implements QuestionDao {
 
     @Override
     public Question findById(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.questions WHERE id=?");
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                Question question = new Question();
+                question.setId(resultSet.getInt("id"));
+                question.setTestId(resultSet.getInt("tests_id"));
+                question.setTextQuestion(resultSet.getString("question"));
+                return question;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

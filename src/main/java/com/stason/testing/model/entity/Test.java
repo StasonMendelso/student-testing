@@ -83,6 +83,18 @@ public class Test {
         return questions;
     }
 
+    public void deleteQuestion(int id){
+        int i =0;
+        for(Question question:questions){
+            if(question.getId()==id){
+                questions.remove(i);
+                countOfQuestions--;
+            }
+            i++;
+        }
+
+    }
+
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }

@@ -21,7 +21,7 @@ public class Question {
                 ", testId=" + testId +
                 ", nomerQuestion=" + nomerQuestion +
                 ", textQuestion='" + textQuestion + '\'' +
-                ", answers=" + answers +
+                ", answers=\n\t" + answers +
                 '}';
     }
 
