@@ -25,9 +25,9 @@ public class AccessingFilter implements Filter {
         String URI = req.getRequestURI();
         String action = req.getParameter("action");
         String param = req.getQueryString();
-        System.out.println(param);
-        System.out.println(URI);
-        System.out.println(role);
+//        System.out.println(param);
+//        System.out.println(URI);
+//        System.out.println(role);
 //
         if (role.equals(Role.GUEST.name()) && (URI.contains("login") || URI.contains("register"))) {
             chain.doFilter(request, response);

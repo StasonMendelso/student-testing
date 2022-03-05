@@ -38,6 +38,7 @@ public class AddQuestionCommand implements Command {
             //Вы не выбрали правильный ответ!
             return "redirect:/web-application/testing/admin/addQuestion";
         }else{
+
             System.out.println(Arrays.toString(request.getParameterValues("opt")));
             String rightOptions = Arrays.toString(request.getParameterValues("opt"));
             // проверка, валидация тд тп
@@ -68,6 +69,7 @@ public class AddQuestionCommand implements Command {
                     }else{
                         answer.setRightAnswer(false);
                     }
+                    answer.setQuestionId(lastAnswer.getQuestionId());
                     answer.setId(++lastAnswerId);
                     question.addAnswer(answer);
                 }

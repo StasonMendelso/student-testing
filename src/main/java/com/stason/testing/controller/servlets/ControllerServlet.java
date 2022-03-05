@@ -34,6 +34,8 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/admin/editTest", new EditTestCommand());
         commands.put("/admin/editTestInfo", new EditTestInfoCommand());
         commands.put("/admin/editTestDeleteQuestion", new DeleteQuestionCommand());
+        commands.put("/admin/editQuestionInfo", new EditQuestionCommand());
+        commands.put("/admin/deleteAnswer", new DeleteAnswerCommand());
         commands.put("/admin/addQuestion", new AddQuestionCommand());
         commands.put("/admin/createTest", new CreateTestCommand());
         commands.put("/admin/createQuestion", new CreateQuestionCommand());
@@ -64,7 +66,7 @@ public class ControllerServlet extends HttpServlet {
             String uri = request.getRequestURI();
             uri = uri.replaceAll(".*/testing", "");
             uri = uri.replaceAll("\\?.*","");
-
+        System.out.println("COMMAND IS "+uri);
             Command command = commands.get(uri);
             if(command!=null) {
                 String newUrl = command.execute(request);

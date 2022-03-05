@@ -2,6 +2,7 @@ package com.stason.testing.model.entity;
 
 
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -97,5 +98,25 @@ public class Test {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+    public Question getQuestionById(int id){
+        for(Question question:questions){
+            if(question.getId()==id) return question;
+        }
+        return null;
+    }
+    public void setQuestionById(Question newQuestion,int id){
+        Iterator<Question> iterator = questions.iterator();
+        int i=0;
+        while(iterator.hasNext()){
+            Question question = iterator.next();
+            if(question.getId()==id){
+                questions.remove(i);
+                questions.add(i,newQuestion);
+                break;
+            }
+            i++;
+        }
+
     }
 }

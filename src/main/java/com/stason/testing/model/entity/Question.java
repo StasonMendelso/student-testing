@@ -1,9 +1,11 @@
 package com.stason.testing.model.entity;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Question {
+public class Question implements Cloneable{
     private int id;
     private int testId;
     private int nomerQuestion;
@@ -11,7 +13,7 @@ public class Question {
     private List<Answer> answers = new LinkedList<>();
 
     public void addAnswer(Answer answer){
-        answers.add(answer);
+        this.answers.add(answer);
     }
 
     @Override
@@ -63,5 +65,32 @@ public class Question {
 
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
+    }
+    public Answer getLastAnswer(){
+        return answers.get(answers.size()-1);
+    }
+    public void deleteAnswerById(int id){
+        Iterator<Answer> iterator = answers.iterator();
+        while(iterator.hasNext()){
+            Answer answer =iterator.next();
+            if(answer.getId()==id){
+                iterator.remove();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public Question clone() throws CloneNotSupportedException {
+        Question question = new Question();
+        question.setId(this.getId());
+        question.setTextQuestion(this.textQuestion);
+        question.setTestId(this.testId);
+        ArrayList<Answer> list = new ArrayList<>();
+        for(Answer answer:this.answers){
+            list.add(answer);
+        }
+        question.setAnswers(list);
+        return question;
     }
 }

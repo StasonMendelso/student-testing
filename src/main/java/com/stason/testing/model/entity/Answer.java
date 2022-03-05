@@ -1,6 +1,6 @@
 package com.stason.testing.model.entity;
 
-public class Answer {
+public class Answer{
     private int id;
     private String answer;
     private boolean isRightAnswer;
@@ -47,4 +47,6 @@ public class Answer {
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
+
+
 }

@@ -32,7 +32,7 @@
                                 <td>${user.role}</td>
                                 <td>${user.getStringBlocked()}</td>
 
-                                <c:if test="${!user.blocked}"> <td class="td-center"><button <c:if test="${user.role=='ADMIN'}">disabled</c:if> class="button-block" type="button" onclick="location.href='/web-application/testing/admin/blockUser?id=${test.id}'">Block</button></td></c:if>
+                                <c:if test="${!user.blocked}"> <td class="td-center"><button <c:if test="${user.role=='ADMIN'}">disabled</c:if> class="button-block" type="button" onclick="location.href='/web-application/testing/admin/blockUser?id=${user.id}'">Block</button></td></c:if>
                                 <c:if test="${user.blocked}"> <td><button class="td-center button-unblock" type="button" onclick="location.href='/web-application/testing/admin/unblockUser?id=${user.id}'">UnBlock</button></td></c:if>
                                 <td><button class="td-center button-edit" type="button" onclick="location.href='/web-application/testing/admin/editUser?id=${user.id}'">Edit</button></td>
                                 <td><button class="td-center button-delete" type="button" onclick="location.href='/web-application/testing/admin/deleteUser?id=${user.id}'">Delete</button></td>
