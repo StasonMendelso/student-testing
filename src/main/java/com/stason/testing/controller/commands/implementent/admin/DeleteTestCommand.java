@@ -14,7 +14,14 @@ import java.util.List;
 public class DeleteTestCommand implements com.stason.testing.controller.commands.Command {
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id=-1;
+        if(request.getParameter("id")!=null) {
+            id = Integer.parseInt(request.getParameter("id"));
+        }
+        //TODO Временно
+        if(request.getAttribute("id")!=null) {
+            id= (int) request.getAttribute("id");
+        }
         deleteTest(id);
 
         return "redirect:/web-application/testing/admin/showTests";

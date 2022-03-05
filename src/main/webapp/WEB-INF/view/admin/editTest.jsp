@@ -59,7 +59,9 @@
             </c:forEach>
             <button class="td-center button-add" type="button" onclick="location.href='/web-application/testing/admin/addQuestion'" >Add question</button>
             <hr>
-            <button class="center">Save Edited test</button>
+            <form>
+                <button type="submit" class="center" name="Save" value="Save">Save Edited test</button>
+            </form>
 
         </div>
     </c:if>

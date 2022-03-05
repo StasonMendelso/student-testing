@@ -16,7 +16,34 @@ import java.util.List;
 public class EditTestCommand implements com.stason.testing.controller.commands.Command {
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+        if(request.getParameter("Save")!=null){
+            DaoFactory factory = DaoFactory.getInstance();
+            TestDao testDao = factory.createTestDao();
+            QuestionDao questionDao = factory.createQuestionDao();
+            AnswerDao answerDao = factory.createAnswerDao();
+            Test test = (Test) request.getSession().getAttribute("editedTest");
+            //Удаляєм тест повністю
+            request.setAttribute("id",test.getId());
+            new DeleteTestCommand().execute(request);
+            //Добавляємо тест заново
+            testDao.create(test);
+            List<Question> questionList = test.getQuestions();
+            int testId = testDao.findIdByName(test.getName());
+            int i =1;
+            System.out.println("!!!!!!!!!!ADD TO BD QUESTION!!!!!!!!!!!!!");
+            for(Question question:questionList){
+                question.setTestId(testId);
+                question.setNomerQuestion(i++);
+                questionDao.create(question);
+                List<Answer> answerList = question.getAnswers();
 
+                int questionId = questionDao.findId(question);
+                for(Answer answer:answerList){
+                    answer.setQuestionId(questionId);
+                    answerDao.create(answer);
+                }
+            }
+        }
         if(request.getParameter("id")!=null && !request.getParameter("id").isEmpty()){
             int id = Integer.parseInt(request.getParameter("id"));
             DaoFactory factory = DaoFactory.getInstance();
