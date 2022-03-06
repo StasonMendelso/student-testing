@@ -33,11 +33,13 @@
         <input type="text" required id="duration" name="duration" class="form_input" placeholder="Minutes">
 
         <label for="difficulty">Select Difficulty</label>
+        <span class="custom-dropdown" style="border: 1px solid black;">
         <select id="difficulty" name="difficulty">
             <option value="Easy" >Easy</option>
             <option value="Medium" >Medium</option>
             <option value="Hard" >Hard</option>
         </select>
+        </span>
         <br>
         <br>
         <input type="submit" name="submit" value="Створити тест" class="form_button">

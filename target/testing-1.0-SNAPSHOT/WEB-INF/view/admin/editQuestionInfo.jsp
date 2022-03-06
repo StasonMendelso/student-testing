@@ -21,8 +21,6 @@
     <c:set var="test" value="${sessionScope.editedTest}"/>
     <c:set var="i" value="${1}" scope="page"/>
     <c:set var="question" value="${sessionScope.editedQuestion}"/>
-    <p>${test}</p>
-    <p>${question}</p>
 
     <table>
         <form>

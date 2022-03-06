@@ -19,9 +19,6 @@
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
 <div class="content">
 
-    <p>${sessionScope.test}</p>
-
-
     <form  class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
         <h1>Create Test</h1>
 

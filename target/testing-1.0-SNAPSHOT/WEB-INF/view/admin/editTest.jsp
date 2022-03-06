@@ -27,7 +27,7 @@
 <div class="content">
     <c:set var="test" value="${sessionScope.editedTest}"/>
     <c:if var="result" test="${!empty test}">
-        ${test}
+
         <div  class="form" style="margin: 0 auto;margin-top: 10px; width: 90%">
             Id:${test.id}<br>
             Test:${test.name}<br>
@@ -59,7 +59,9 @@
             </c:forEach>
             <button class="td-center button-add" type="button" onclick="location.href='/web-application/testing/admin/addQuestion'" >Add question</button>
             <hr>
-            <button class="center">Save Edited test</button>
+            <form>
+                <button type="submit" class="center" name="Save" value="Save">Save Edited test</button>
+            </form>
 
         </div>
     </c:if>

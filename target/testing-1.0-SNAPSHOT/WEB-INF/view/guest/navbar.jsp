@@ -23,13 +23,14 @@
             <button onclick="location.href='/web-application/testing/registration'"><fmt:message key="label.register"/></button>
     </div>
             <div style="float: right; margin-left: 5px;">
-                <form method="post">
-
-                <select id="language" name="lang" onchange="submit()">
+                <form  method="post">
+                <span class="custom-dropdown">
+                <select  id="language" name="lang" onchange="submit()">
                     <option value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="label.lang.en" /></option>
                     <option value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="label.lang.ua" /></option>
                     <option value="ru" ${sessionScope.lang == 'ru' ? 'selected' : ''}><fmt:message key="label.lang.ru" /></option>
                 </select>
+                </span>
             </form>
             </div>
 

@@ -20,7 +20,7 @@
 <div class="content">
     <h1>IT is editUser.jsp</h1>
     <c:set var="user" value="${requestScope.user}"/>
-    <p>${test}</p>
+
 
     <div class="form" style="margin: 0 auto;margin-top: 10px;width: 30%">
         <table>
