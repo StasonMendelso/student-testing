@@ -51,6 +51,24 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
+    public List<Test> findPassedTests(int userId) {
+        List<Test> list = new LinkedList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.`tests`, (SELECT mark, test_id FROM onlinetesting.`passedtests` WHERE user_id=?) as `passedtests` WHERE `tests`.id = `passedtests`.test_id;");
+            preparedStatement.setInt(1,userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Test test = builtTest(resultSet);
+                test.setMark(resultSet.getDouble("mark"));
+                list.add(test);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
     public void create(Test test) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.tests (name, nameOfDiscipline, difficulty, time_minutes, countOfQuestions) VALUES (?,?,?,?,?)");

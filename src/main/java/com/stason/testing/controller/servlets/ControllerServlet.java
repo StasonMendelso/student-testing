@@ -45,6 +45,7 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/admin/editUser", new EditUserCommand());
         commands.put("/student/info", new InfoCommand());
         commands.put("/student/tests", new ShowTestsCommand());
+        commands.put("/student/passedTests", new ShowPassedTestsCommand());
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

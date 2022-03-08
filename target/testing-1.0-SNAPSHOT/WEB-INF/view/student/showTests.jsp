@@ -24,7 +24,7 @@
     <c:set var="tests" value="${requestScope.testList}"/>
     <c:if var="result" test="${!empty tests}">
         <table style="width: 90%; margin: 5%; margin-top: 2%"  >
-            <tr><th>Id</th><th>Name</th><th>Discipline</th><th>Difficulty</th><th>Duration (Minutes)</th><th>Questions</th><th colspan="2">Действия Админа</th></tr>
+            <tr><th>Id</th><th>Name</th><th>Discipline</th><th>Difficulty</th><th>Duration (Minutes)</th><th>Questions</th><th colspan="2"></th></tr>
             <c:if var="result" test="${!empty tests}">
                 <c:forEach items="${requestScope.testList}" var="test">
                     <tr>
@@ -45,7 +45,7 @@
 
     <c:if test="${empty tests}">
         <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
-            No tests have been found :(
+            You have passed all available tests
         </div>
     </c:if>
 </div>

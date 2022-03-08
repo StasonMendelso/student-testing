@@ -13,6 +13,7 @@ public class Test {
     private String difficulty;
     private int timeMinutes;
     private int countOfQuestions;
+    private double mark;
     private List<Question> questions = new LinkedList<>();
 
     public void addQuestion(Question question){
@@ -82,6 +83,14 @@ public class Test {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    public double getMark() {
+        return mark;
+    }
+
+    public void setMark(double mark) {
+        this.mark = mark;
     }
 
     public void deleteQuestion(int id){
