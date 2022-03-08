@@ -14,12 +14,15 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
+
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
 <head>
     <title>Testing</title>
+    <style>
+        <%@include file="/styles/styles.css"%>
+    </style>
 </head>
 <body class="body">
 

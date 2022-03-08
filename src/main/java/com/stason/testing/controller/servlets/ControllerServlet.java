@@ -7,7 +7,7 @@ import com.stason.testing.controller.commands.implementent.admin.EditTestCommand
 import com.stason.testing.controller.commands.implementent.admin.*;
 import com.stason.testing.controller.commands.implementent.student.*;
 import com.stason.testing.controller.commands.implementent.guest.*;
-
+import com.stason.testing.controller.commands.implementent.student.ShowTestsCommand;
 
 
 import java.io.*;
@@ -43,7 +43,8 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/admin/unblockUser", new UnblockUserCommand());
         commands.put("/admin/deleteUser", new DeleteUserCommand());
         commands.put("/admin/editUser", new EditUserCommand());
-        commands.put("/student/info", new StudentInfoCommand());
+        commands.put("/student/info", new InfoCommand());
+        commands.put("/student/tests", new ShowTestsCommand());
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

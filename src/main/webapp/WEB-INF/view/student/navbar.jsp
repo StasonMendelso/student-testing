@@ -17,9 +17,8 @@
 
             <div class = "left vertical-center">
                 <button onclick="location.href='/web-application/testing/student/info'"><fmt:message key="student.label.info"/></button>
-                <button onclick="location.href='/web-application/testing/admin/showTests'"><fmt:message key="admin.label.showTests"/></button>
-                <button onclick="location.href='/web-application/testing/admin/createTest'"><fmt:message key="admin.label.createTest"/></button>
-                <button onclick="location.href='/web-application/testing/admin/showUsers'"><fmt:message key="admin.label.showUsers"/></button>
+                <button onclick="location.href='/web-application/testing/student/tests'"><fmt:message key="student.label.showTests"/></button>
+                <button onclick="location.href='/web-application/testing/student/passedTests'"><fmt:message key="student.label.passedTests"/></button>
             </div>
 
             <div class="right vertical-center">

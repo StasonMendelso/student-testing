@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: STASON
-  Date: 19.02.2022
-  Time: 13:02
+  Date: 08.03.2022
+  Time: 12:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -19,7 +19,7 @@
 </head>
 <body class="body">
 
-<jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
+<jsp:include page="/WEB-INF/view/student/navbar.jsp"/>
 <div class="content">
     <c:set var="tests" value="${requestScope.testList}"/>
     <c:if var="result" test="${!empty tests}">
@@ -35,8 +35,7 @@
                         <td>${test.timeMinutes}</td>
                         <td>${test.countOfQuestions}</td>
 
-                        <td><button class="td-center button-edit" type="button" onclick="location.href='/web-application/testing/admin/editTest?id=${test.id}'">Edit</button></td>
-                        <td><button class="td-center button-delete" type="button" onclick="location.href='/web-application/testing/admin/deleteTest?id=${test.id}'">Delete</button></td>
+                        <td><button class="td-center button-edit" type="button" onclick="location.href='/web-application/testing/student/test?id=${test.id}'">Start</button></td>
                     </tr>
                 </c:forEach>
             </c:if>

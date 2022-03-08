@@ -5,7 +5,7 @@ import com.stason.testing.controller.commands.Command;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
-public class StudentInfoCommand implements Command {
+public class InfoCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
        if(request.getRequestURI().contains("/student/info")){

@@ -4,7 +4,7 @@
 
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
+
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <!DOCTYPE html>
@@ -13,6 +13,9 @@
 <head>
     <title>Testing</title>
 <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">--%>
+    <style>
+        <%@include file="/styles/styles.css"%>
+    </style>
     <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>

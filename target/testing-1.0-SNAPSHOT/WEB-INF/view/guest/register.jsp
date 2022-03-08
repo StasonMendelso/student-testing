@@ -12,7 +12,7 @@
 <fmt:setBundle basename="messages" />
 
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
+
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!DOCTYPE html>
@@ -20,6 +20,9 @@
 
 <head>
     <title>Testing</title>
+    <style>
+        <%@include file="/styles/styles.css"%>
+    </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body class="body">
