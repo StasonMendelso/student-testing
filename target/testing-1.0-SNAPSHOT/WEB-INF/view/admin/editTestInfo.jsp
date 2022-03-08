@@ -37,11 +37,11 @@
             <tr><th style="-moz-text-align-last: center" colspan="2">Edit Test information</th></tr>
             <tr><td><label for="testName">Test</label></td><td> <input type="text" id="testName" name="testName" class="form_input"></td></tr>
             <tr><td><label for="disciplineName">Discipline</label></td><td> <input type="text" id="disciplineName" name="disciplineName" class="form_input"></td></tr>
-            <tr><td colspan="2"><label for="difficulty">Difficulty</label> <select id="difficulty" name="difficulty">
+            <tr><td colspan="2"><label for="difficulty">Difficulty</label> <span class="custom-dropdown" style="border: 1px solid black;"><select id="difficulty" name="difficulty">
                 <option value="Easy" >Easy</option>
                 <option value="Medium" >Medium</option>
                 <option value="Hard" >Hard</option>
-            </select>
+            </select></span>
             </td></tr>
             <tr><td> <label for="duration">Duration(Minutes)</label></td><td> <input type="text" id="duration" name="duration" class="form_input"></td></tr>
             <tr><td colspan="2"><input type="submit" class="button-edit input-submit center" style="width: 25%" value="Save"></td></tr>

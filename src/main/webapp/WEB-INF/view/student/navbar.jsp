@@ -17,19 +17,30 @@
 
     </div>
     <div class="right vertical-center">
+        <div class = "left vertical-center">
+            <button onclick="location.href='/web-application/testing/admin/info'"><fmt:message key="admin.label.info"/></button>
+            <button onclick="location.href='/web-application/testing/admin/showTests'"><fmt:message key="admin.label.showTests"/></button>
+            <button onclick="location.href='/web-application/testing/admin/createTest'"><fmt:message key="admin.label.createTest"/></button>
+            <button onclick="location.href='/web-application/testing/admin/showUsers'"><fmt:message key="admin.label.showUsers"/></button>
+        </div>
+        <div class="right vertical-center">
 
-        <button onclick="location.href='/web-application/testing/logout'"><fmt:message key="label.unlogin"/></button>
-        <div style="float: right; margin-left: 5px;">
-            <form  method="post">
-                <span class="custom-dropdown" style="border: 2px solid red;">
+
+            <button onclick="location.href='/web-application/testing/logout'"><fmt:message key="label.unlogin"/></button>
+            <div style="float: right; margin-left: 5px; ">
+                <form  method="post">
+                <span class="custom-dropdown">
                 <select  id="language" name="lang" onchange="submit()">
                     <option value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="label.lang.en" /></option>
                     <option value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="label.lang.ua" /></option>
                     <option value="ru" ${sessionScope.lang == 'ru' ? 'selected' : ''}><fmt:message key="label.lang.ru" /></option>
                 </select>
                 </span>
-            </form>
+                </form>
+            </div>
         </div>
+
+
     </div>
 
 </nav>
