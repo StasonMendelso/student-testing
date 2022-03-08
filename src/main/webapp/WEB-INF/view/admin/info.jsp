@@ -6,12 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
+
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
 <head>
     <title>Testing</title>
+    <style>
+        <%@include file="/styles/styles.css"%>
+    </style>
 </head>
 <body class="body">
 

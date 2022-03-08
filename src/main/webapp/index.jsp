@@ -6,7 +6,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${sessionScope.lang}"/> <!--Какая-то связь со всеми языками???-->
 <fmt:setBundle basename="messages"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">
+
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <!DOCTYPE html>
@@ -15,7 +15,9 @@
 
   <title>Testing</title>
     <meta charset="UTF-8"/>
-
+  <style>
+    <%@include file="styles/styles.css"%>
+  </style>
 </head>
   <body class="body">
 

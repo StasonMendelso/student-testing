@@ -48,9 +48,10 @@ public class LoginCommand implements Command {
 
             if (userDao.checkLogin(user)) {
                 HashSet<String> loggedUsers = new HashSet<>();
-                boolean flag = true;
+
                 if (request.getServletContext().getAttribute("loggedUsers") != null) {
                     loggedUsers = (HashSet<String>) request.getServletContext().getAttribute("loggedUsers");
+                    System.out.println(loggedUsers);
                     if (loggedUsers.stream().anyMatch(login::equals)) {
                         errors.add("Хтось інший вже увійшов під цим записом");//Todo сделать локализацию
 
@@ -58,11 +59,19 @@ public class LoginCommand implements Command {
                         return "/WEB-INF/view/guest/login.jsp";
                     }
                 }
-                if (flag) {
-                    loggedUsers.add(login);
-                    request.getSession().getServletContext().setAttribute("loggedUsers", loggedUsers);
+
                     //беремо з базы юзера та встановлюємо відповідні атрибути
                     user = userDao.findByLogin(login);
+
+                if(user.isBlocked()){
+                    errors.add("Ти заблокований! Звернися до адміністрації");//Todo сделать локализацию
+
+                    request.setAttribute("errorsList", errors);
+                    return "/WEB-INF/view/guest/login.jsp";
+                }
+
+                loggedUsers.add(login);
+                request.getServletContext().setAttribute("loggedUsers", loggedUsers);
 
                     request.getSession().setAttribute("role", user.getRole());
                     request.getSession().setAttribute("login", user.getLogin());
@@ -74,7 +83,7 @@ public class LoginCommand implements Command {
 
                     if (user.getRole().equals(Role.ADMIN.name())) return adminUrl;
                     if (user.getRole().equals(Role.STUDENT.name())) return studentUrl;
-                }
+
 
             } else {
                 errors.add("Користувача не знайдено. Перевірте логін та пароль");//Todo сделать локализацию

@@ -58,6 +58,7 @@ public class JDBCUserDao implements UserDao {
                 user.setSurname(resultSet.getString("surname"));
                 user.setRole(Role.valueOf(resultSet.getString("role")));
                 user.setId(resultSet.getInt("id"));
+                user.setBlocked(resultSet.getBoolean("blocked"));
                 return user;
             }
         } catch (SQLException e) {
