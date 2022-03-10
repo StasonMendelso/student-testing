@@ -18,9 +18,10 @@ public class ShowTestsCommand implements Command {
             DaoFactory factory = DaoFactory.getInstance();
             TestDao testDao = factory.createTestDao();
 
-            List<Test> list = testDao.findUnsurpassedTests(userId);
-
-            request.setAttribute("testList", list);
+            List<Test> unsurpassedTests = testDao.findUnsurpassedTests(userId);
+            List<Test> testList = testDao.findAll();
+            request.setAttribute("unsurpassedTestList", unsurpassedTests);
+            request.setAttribute("allTestList", testList);
             return "/WEB-INF/view/student/showTests.jsp";
         }else{
             return "redirect:/web-application/testing/student/tests";

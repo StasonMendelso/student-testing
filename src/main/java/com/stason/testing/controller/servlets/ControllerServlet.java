@@ -30,7 +30,7 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/registration", new RegistrationCommand());
         commands.put("/admin/info",new AdminInfoCommand());
         commands.put("/admin/showUsers", new ShowUsersCommand());
-        commands.put("/admin/showTests", new ShowTestsCommand());
+        commands.put("/admin/showTests", new com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand());
         commands.put("/admin/deleteTest", new DeleteTestCommand());
         commands.put("/admin/editTest", new EditTestCommand());
         commands.put("/admin/editTestInfo", new EditTestInfoCommand());
