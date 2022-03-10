@@ -21,9 +21,9 @@ public class JDBCQuestionDao implements QuestionDao {
     public int findId(Question question) {
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=? AND nomerQuestion=?");
+            preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=? AND questionNumber=?");
             preparedStatement.setInt(1,question.getTestId());
-            preparedStatement.setInt(2,question.getNomerQuestion());
+            preparedStatement.setInt(2,question.getQuestionNumber());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
@@ -40,12 +40,12 @@ public class JDBCQuestionDao implements QuestionDao {
     @Override
     public void create(Question question) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.questions (tests_id, nomerQuestion, question) VALUES (?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)");
             preparedStatement.setInt(1,question.getTestId());
-            preparedStatement.setInt(2,question.getNomerQuestion());
+            preparedStatement.setInt(2,question.getQuestionNumber());
             preparedStatement.setString(3,question.getTextQuestion());
 
-            if(preparedStatement.execute()) System.out.println("Question #"+question.getNomerQuestion()+"was added in DB");
+            if(preparedStatement.execute()) System.out.println("Question #"+question.getQuestionNumber()+"was added in DB");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,6 +62,7 @@ public class JDBCQuestionDao implements QuestionDao {
                 question.setId(resultSet.getInt("id"));
                 question.setTestId(resultSet.getInt("tests_id"));
                 question.setTextQuestion(resultSet.getString("question"));
+                question.setQuestionNumber(resultSet.getInt("questionNumber"));
                 list.add(question);
             }
         } catch (SQLException e) {
@@ -82,6 +83,7 @@ public class JDBCQuestionDao implements QuestionDao {
                 question.setId(resultSet.getInt("id"));
                 question.setTestId(resultSet.getInt("tests_id"));
                 question.setTextQuestion(resultSet.getString("question"));
+                question.setQuestionNumber(resultSet.getInt("questionNumber"));
                 return question;
             }
         } catch (SQLException e) {

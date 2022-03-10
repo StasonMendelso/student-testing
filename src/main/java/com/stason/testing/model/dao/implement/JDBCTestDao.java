@@ -17,6 +17,20 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
+    public void addPassedTest(int userId, int testId, double mark) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.passedtests (user_id, test_id, mark) VALUES (?,?,?)");
+            preparedStatement.setInt(1,userId);
+            preparedStatement.setInt(2,testId);
+            preparedStatement.setDouble(3,mark);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     public int findIdByName(String testName) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.tests where name=?");

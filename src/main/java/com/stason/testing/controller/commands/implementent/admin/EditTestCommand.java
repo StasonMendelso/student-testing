@@ -33,7 +33,7 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
             System.out.println("!!!!!!!!!!ADD TO BD QUESTION!!!!!!!!!!!!!");
             for(Question question:questionList){
                 question.setTestId(testId);
-                question.setNomerQuestion(i++);
+                question.setQuestionNumber(i++);
                 questionDao.create(question);
                 List<Answer> answerList = question.getAnswers();
 

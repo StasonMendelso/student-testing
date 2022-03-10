@@ -16,6 +16,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.*;
 
 public class ControllerServlet extends HttpServlet {
@@ -46,6 +47,8 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/student/info", new InfoCommand());
         commands.put("/student/tests", new ShowTestsCommand());
         commands.put("/student/passedTests", new ShowPassedTestsCommand());
+        commands.put("/student/test", new DoTestCommand());
+        commands.put("/student/result", new ShowTestResultCommand());
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -66,10 +69,11 @@ public class ControllerServlet extends HttpServlet {
 
 
             String uri = request.getRequestURI();
+        System.out.println("IT IS OLD URI"+uri);
             uri = uri.replaceAll(".*/testing", "");
             uri = uri.replaceAll("\\?.*","");
         System.out.println("COMMAND IS "+uri);
-            Command command = commands.get(uri);
+            Command command = commands.getOrDefault(uri, new DefaultCommand());
             if(command!=null) {
                 String newUrl = command.execute(request);
                 System.out.println("NewUrl is "+newUrl);

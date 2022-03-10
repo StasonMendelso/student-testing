@@ -37,7 +37,7 @@ public class CreateQuestionCommand implements Command {
                 int i =1;
                 for(Question question : test.getQuestions()){
                     question.setTestId(testId);
-                    question.setNomerQuestion(i++);
+                    question.setQuestionNumber(i++);
                     questionDao.create(question);
                     //добавляємо до кожного вопроса відповіді в БД
                     int questionId = questionDao.findId(question);

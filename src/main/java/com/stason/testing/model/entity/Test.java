@@ -16,6 +16,23 @@ public class Test {
     private double mark;
     private List<Question> questions = new LinkedList<>();
 
+    public Question getQuestion(int questionNumber){
+        for(Question question:questions){
+            if(question.getQuestionNumber()==questionNumber) return question;
+        }
+        return null;
+    }
+    public void setQuestion(Question question, int questionNumber){
+        Iterator<Question> iterator = questions.iterator();
+        while(iterator.hasNext()){
+            Question oldQuestion = iterator.next();
+            if(oldQuestion.getQuestionNumber()==questionNumber){
+                oldQuestion = question;
+                return;
+            }
+        }
+    }
+
     public void addQuestion(Question question){
         questions.add(question);
         this.setCountOfQuestions(questions.size());

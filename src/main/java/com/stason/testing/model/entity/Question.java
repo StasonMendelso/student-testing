@@ -8,10 +8,10 @@ import java.util.List;
 public class Question implements Cloneable{
     private int id;
     private int testId;
-    private int nomerQuestion;
+    private int questionNumber;
     private String textQuestion;
     private List<Answer> answers = new LinkedList<>();
-
+    private List<Boolean> userOptions = new LinkedList<>();
     public void addAnswer(Answer answer){
         this.answers.add(answer);
     }
@@ -21,10 +21,19 @@ public class Question implements Cloneable{
         return "Question{" +
                 "id=" + id +
                 ", testId=" + testId +
-                ", nomerQuestion=" + nomerQuestion +
+                ", nomerQuestion=" + questionNumber +
                 ", textQuestion='" + textQuestion + '\'' +
                 ", answers=\n\t" + answers +
+                ", userOptions=" + userOptions +
                 '}';
+    }
+
+    public List<Boolean> getUserOptions() {
+        return userOptions;
+    }
+
+    public void setUserOptions(List<Boolean> userOptions) {
+        this.userOptions = userOptions;
     }
 
     public int getId() {
@@ -43,12 +52,12 @@ public class Question implements Cloneable{
         this.testId = testId;
     }
 
-    public int getNomerQuestion() {
-        return nomerQuestion;
+    public int getQuestionNumber() {
+        return questionNumber;
     }
 
-    public void setNomerQuestion(int nomerQuestion) {
-        this.nomerQuestion = nomerQuestion;
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
     }
 
     public String getTextQuestion() {
