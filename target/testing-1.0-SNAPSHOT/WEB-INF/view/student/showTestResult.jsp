@@ -23,7 +23,7 @@
 <div class="content">
     <div>
         <c:set var="test" value="${sessionScope.test}"/>
-        <div class="form">
+        <div class="form"  style="margin: 0 auto">
             <p>Your Result</p>
             <p>${requestScope.mark} %</p>
         </div>

@@ -17,7 +17,6 @@
         <url-pattern>/testing/*</url-pattern>
     </servlet-mapping>
 
-<!--Admin Zone-->
   
 <!--FILTERS-->
 
@@ -81,7 +80,7 @@
 
             <url-pattern>*.jsp</url-pattern>
 
-            <url-pattern>*.jspf</url-pattern>
+            <url-pattern>*.jspx</url-pattern>
 
             <page-encoding>UTF-8</page-encoding>
 

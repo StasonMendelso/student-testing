@@ -1,4 +1,4 @@
-package com.stason.testing.controller.services;
+package com.stason.testing.controller.utils;
 
 import java.nio.charset.StandardCharsets;
 

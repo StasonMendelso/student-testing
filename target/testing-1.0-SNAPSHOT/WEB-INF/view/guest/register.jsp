@@ -21,52 +21,67 @@
 <head>
     <title>Testing</title>
     <style>
-        <%@include file="/styles/styles.css"%>
+        <%@include file="../../../css/style.css"%>
     </style>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/262/262825.png" type="image/x-icon"/>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="body">
-<jsp:include page="/WEB-INF/view/guest/navbar.jsp"/>
-<div class="content">
-    <c:set var="test" value="${requestScope.errorsList}"/>
-    <c:if var="result" test="${!empty test}">
-        <div class="form" style="margin: 0 auto;margin-top: 10px; ">
-            <c:forEach items="${requestScope.errorsList}" var="er">
-                <c:out value="${er}"/><br>
-            </c:forEach>
-        </div>
-    </c:if>
+<body >
+<%@include file="navbar.jsp"%>
+<main class="container-fluid bg-dark bg-opacity-25">
+    <div class="row d-flex justify-content-center ">
 
-    <form action=""  accept-charset="UTF-8" method="post" accept-charset="UTF-8" class="form" style="margin: 0 auto;margin-top: 15px; ">
+        <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
+            <div class="text-center mt-2">
+                <h2 class="text-white-50">Registration</h2>
 
-        <h1 class="form_title"><fmt:message key="label.register"/></h1>
-        <div class="form_grup">
-            <label for="login" class="form_label"></label>
-            <input type="text" id="login" name="login" class="form_input" placeholder="<fmt:message key="register.label.login"/>">
-        </div>
-        <div class="form_grup">
-            <label for="name" class="form_label"></label>
-            <input type="text" id="name" name="name" class="form_input" placeholder="<fmt:message key="register.label.name"/>">
-        </div>
-        <div class="form_grup">
-            <label for="surname" class="form_label"></label>
-            <input type="text" id="surname" name="surname" class="form_input" placeholder="<fmt:message key="register.label.surname"/>">
-        </div>
-        <div class="form_grup">
-            <label for="password" class="form_label" ></label>
-            <input type="password" id="password" name="password"  class="form_input" placeholder="<fmt:message key="register.label.password"/>">
-        </div>
-        <div class="form_grup">
-            <label for="repeated-password" class="form_label" ></label>
-            <input type="password" id="repeated-password" name="repeated-password"  class="form_input" placeholder="<fmt:message key="register.label.repeat_password"/>">
-        </div>
-        <fmt:message key="register.button.submit" var="buttonValue" />
-        <input type="submit" name="submit" value="${buttonValue}" class="form_button">
+            </div>
+            <div class="text-white-50">
+                <c:set var="test" value="${requestScope.errorsList}"/>
+                <c:if var="result" test="${!empty test}">
+                    <div class="form" style="margin: 0 auto;margin-top: 10px; ">
+                        <c:forEach items="${requestScope.errorsList}" var="er">
+                            <c:out value="${er}"/><br>
+                        </c:forEach>
+                    </div>
+                </c:if>
+            </div>
+            <form method="post" action="" accept-charset="UTF-8">
+                <div class="mb-3 mt-3 justify-content-center form-floating">
+                    <input type="text" class="form-control" id="name" name="name"  placeholder="name@example.com">
+                    <label for="name">First name</label>
+                </div>
+                <div class="mb-3 mt-3 justify-content-center form-floating">
+                    <input type="text" class="form-control"id="surname" name="surname"  placeholder="name@example.com">
+                    <label for="surname">Last name</label>
+                </div>
+                <div class="mb-3 mt-3 justify-content-center form-floating">
+                    <input type="email" class="form-control" id="login" name="login" placeholder="name@example.com">
+                    <label for="surname">Email</label>
+                </div>
+                <div class="mb-3 justify-content-center form-floating">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="pass">
+                    <label for="password" >Password</label>
+                </div>
+                <div class="mb-3 justify-content-center form-floating">
+                    <input type="password" class="form-control" id="repeated-password" name="repeated-password" placeholder="pass">
+                    <label for="repeated-password" >Repeated Password</label>
+                </div>
 
+                <div class="mb-3 text-center">
+                    <fmt:message key="register.button.submit" var="buttonValue" />
+                    <button type="submit" name="submit"  class="btn btn-primary" >${buttonValue}</button>
+                </div>
 
-    </form>
+            </form>
+        </div>
 
-</div>
+    </div>
+</main>
+
 
 </body>
 </html>

@@ -1,8 +1,8 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.services.EncodingConverter;
-import com.stason.testing.controller.services.ValidatorService;
+import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.ValidatorService;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;

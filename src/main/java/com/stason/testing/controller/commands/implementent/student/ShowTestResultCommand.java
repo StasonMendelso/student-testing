@@ -34,7 +34,7 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
                 }
 
                 double mark = ((double)countOfRightAnswers/countOfQuestions) * 100;
-
+                mark = (double)((int) (mark * 100)) / 100;
                 int userId = (int) request.getSession().getAttribute("id");
                 DaoFactory factory = DaoFactory.getInstance();
                 TestDao testDao = factory.createTestDao();

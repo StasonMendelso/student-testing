@@ -1,24 +1,25 @@
-package com.stason.testing.controller.services;
+package com.stason.testing.controller.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class ValidatorService {
+    private static final String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+    private static final String usernamePattern = "^[A-ZА-ЯЁ][a-zа-яіїёъ']{1,29}$";
+    private static final String surnamePattern = "^[A-ZА-ЯЁ][a-zа-яіїёъ']{1,29}$";
+    private static final String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!\\-+=%*?&])[A-Za-z\\d@\\-$!%*?=+&]{8,20}$";
     public static boolean validateEmail(String email){
-        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(regexPattern);
+        Pattern pattern = Pattern.compile(emailPattern);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
     public static boolean validateUsername(String username){
-        String regexPattern = "^[A-ZА-ЯЁ][a-zа-яіїёъ']{1,29}$";
-        Pattern pattern = Pattern.compile(regexPattern);
+        Pattern pattern = Pattern.compile(usernamePattern);
         Matcher matcher = pattern.matcher(username);
         return matcher.matches();
     }
     public static boolean validateSurname(String surname){
-        String regexPattern = "^[A-ZА-ЯЁ][a-zа-яіїёъ']{1,29}$";
-        Pattern pattern = Pattern.compile(regexPattern);
+        Pattern pattern = Pattern.compile(surnamePattern);
         Matcher matcher = pattern.matcher(surname);
         return matcher.matches();
     }
@@ -36,8 +37,7 @@ public abstract class ValidatorService {
      * $ represents the end of the string.
      * **/
     public static boolean validatePassword(String password){
-        String regexPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!\\-+=%*?&])[A-Za-z\\d@\\-$!%*?=+&]{8,20}$";
-        Pattern pattern = Pattern.compile(regexPattern);
+        Pattern pattern = Pattern.compile(passwordPattern);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }

@@ -1,6 +1,6 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
-import com.stason.testing.controller.services.EncodingConverter;
+import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;

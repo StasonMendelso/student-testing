@@ -1,7 +1,7 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.services.EncodingConverter;
+import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.QuestionDao;

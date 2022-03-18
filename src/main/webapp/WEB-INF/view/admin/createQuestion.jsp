@@ -23,7 +23,7 @@
 <div class="content">
 
 
-
+    ${sessionScope.test}
     <form  class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
         <h1>Create Test</h1>
 
