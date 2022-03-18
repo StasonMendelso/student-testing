@@ -12,32 +12,43 @@
 <fmt:setBundle basename="messages"/>
 
 <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">--%>
-<nav class="navbar">
- <section></section>
-    <div class = "left  vertical-center">
-        @Testing  Role:${sessionScope.role}
-     </div>
-        <div class="right vertical-center">
-    <div style="float: left">
-            <button onclick="location.href='/web-application/testing/login'"><fmt:message key="label.login"/></button>
-            <button onclick="location.href='/web-application/testing/registration'"><fmt:message key="label.register"/></button>
-    </div>
-            <div style="float: right; margin-left: 5px;">
-                <form  method="post">
-                <span class="custom-dropdown">
-                <select  id="language" name="lang" onchange="submit()">
-                    <option value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="label.lang.en" /></option>
-                    <option value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="label.lang.ua" /></option>
-                    <option value="ru" ${sessionScope.lang == 'ru' ? 'selected' : ''}><fmt:message key="label.lang.ru" /></option>
-                </select>
-                </span>
-            </form>
-            </div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="box-shadow: 0 4px 16px #4c3c3c; ">
+    <div class="container-fluid row align-middle">
+        <div class="col-1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/262/262825.png" alt="Avatar Logo" style="width:50px;" class="rounded-pill">
+                    <span class="text-white-50">Testing</span>
 
-<%--            <button onclick="location.href='?lang=en'"><fmt:message key="label.lang.en" /></button>--%>
-<%--            <button onclick="location.href='?lang=ua'"><fmt:message key="label.lang.ua" /></button>--%>
-<%--            <button onclick="location.href='?lang=ru'"><fmt:message key="label.lang.ru" /></button>--%>
+                </li>
+            </ul>
         </div>
-
+        <div class="col-9">
+            <span class="text-white-50">Role</span>
+        </div>
+        <div class="col-1">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/web-application/testing/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/web-application/testing/registration">Register</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-1">
+            <ul class="navbar-nav">
+                <li class="dropdown nav-item">
+                    <form method="post">
+                        <select class="form-select bg-secondary bg-opacity-100 text-white-50" style="border: none" id="language" name="lang" onchange="submit()">
+                            <option class="dropdown-item text-white-50" value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="label.lang.en" /></option>
+                            <option class="dropdown-item text-white-50" value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="label.lang.ua" /></option>
+                            <option class="dropdown-item text-white-50" value="ru" ${sessionScope.lang == 'ru' ? 'selected' : ''}><fmt:message key="label.lang.ru" /></option>
+                        </select>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
