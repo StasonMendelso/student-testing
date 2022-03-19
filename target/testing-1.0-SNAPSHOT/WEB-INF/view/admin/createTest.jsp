@@ -8,46 +8,62 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
 <head>
     <title>Testing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        <%@include file="/styles/styles.css"%>
+        <%@include file="../../../css/style.css"%>
     </style>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/262/262825.png" type="image/x-icon"/>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="body">
 
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
-<div class="content">
 
-    <form action="${pageContext.request.contextPath}/testing/admin/createTest" class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
-        <h1>Create Test</h1>
+<main class="container-fluid bg-dark bg-opacity-25">
+    <div class="row d-flex justify-content-center ">
 
-        <label for="testName">Name of test</label>
-        <input type="text" required id="testName" name="testName" class="form_input" placeholder="testName">
+        <div class="w-50 bg-question  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
+            <div class="text-left mt-2 pb-3">
+                <h1 class="text-center t-5">Create a new Test</h1>
+                <form method="post" >
+                    <div class="mb-3 mt-3 justify-content-center form-floating">
+                        <textarea class="form-control"  required id="testName" name="testName" placeholder="nameExample" style="min-height: 99px" ></textarea>
+                        <label for="testName">Name</label>
+                    </div>
+                    <div class="mb-3 mt-3 justify-content-center form-floating">
+                        <textarea class="form-control" required id="disciplineName" name="disciplineName"  placeholder="nameExample" style="min-height: 85px"></textarea>
+                        <label for="disciplineName">Discipline</label>
+                    </div>
+                    <div class="mb-3 mt-3 justify-content-center form-floating">
+                        <input type="number" class="form-control" required id="duration" name="duration"  placeholder="nameExample" inputmode="numeric" style="min-height: 85px">
+                        <label for="duration">Duration of the test (in minutes)</label>
+                    </div>
+                    <div class="mb-3 mt-3 d-flex ">
+                        <label class="ms-auto align-self-center" for="difficulty" >Difficulty</label>
+                        <select id="difficulty" name="difficulty" class="ms-2 form-select flex-grow-1" aria-label="Default select example">
+                            <option value="Easy" selected>Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="mb-1 mt-3 text-center">
+                        <input type="submit" name="submit" value="Створити тест" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
 
-        <label for="disciplineName">Name of the Discipline</label>
-        <input type="text" required id="disciplineName" name="disciplineName" class="form_input" placeholder="Discipline">
+        </div>
 
+    </div>
+</main>
 
-        <label for="duration">Duration of the test (in Minutes)</label>
-        <input type="text" required id="duration" name="duration" class="form_input" placeholder="Minutes">
-
-        <label for="difficulty">Select Difficulty</label>
-        <span class="custom-dropdown" style="border: 1px solid black;">
-        <select id="difficulty" name="difficulty">
-            <option value="Easy" >Easy</option>
-            <option value="Medium" >Medium</option>
-            <option value="Hard" >Hard</option>
-        </select>
-        </span>
-        <br>
-        <br>
-        <input type="submit" name="submit" value="Створити тест" class="form_button">
-    </form>
-</div>
-
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

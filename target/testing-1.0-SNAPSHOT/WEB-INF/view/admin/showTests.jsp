@@ -7,26 +7,86 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
+<fmt:setLocale value="${sessionScope.lang}" />
+<fmt:setBundle basename="messages" />
 
 <html>
 <head>
     <title>Testing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        <%@include file="/styles/styles.css"%>
+        <%@include file="../../../css/style.css"%>
     </style>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/262/262825.png" type="image/x-icon"/>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body class="body">
 
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
-<div class="content">
-    <c:set var="tests" value="${requestScope.testList}"/>
-    <c:if var="result" test="${!empty tests}">
-        <table style="width: 90%; margin: 5%; margin-top: 2%"  >
-            <tr><th>Id</th><th>Name</th><th>Discipline</th><th>Difficulty</th><th>Duration (Minutes)</th><th>Questions</th><th colspan="2">Действия Админа</th></tr>
+
+<main class="container-fluid bg-dark bg-opacity-25">
+    <div class="row d-flex left-padding ">
+
+        <div class="w-50 bg-dark  mb-1" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px">
+            <div class="text-left mt-2 pb-3 text-btn-primary">
+                <h1 class="center">Sorting Tests</h1>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="orderBy">Сортувати за</label>
+                        <select id="orderBy" class="form-select" >
+                            <option value="1">Назвою</option>
+                            <option value="2">Складністю</option>
+                            <option value="3">Кількістю запитань</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <label for="order">Порядок</label>
+                        <select id="order" class="form-select" >
+                            <option value="1">Зростання</option>
+                            <option value="2">Спадання</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="discipline">Вибір предмета</label>
+                        <select id="discipline" class="form-select" >
+                            <option value="0" selected>Усі</option>
+                            <option value="1">Математика</option>
+                            <option value="2">Англійська</option>
+                        </select>
+                    </div>
+                    <div class="col-2 text-center">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Застосувати</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive-md">
+        <c:set var="tests" value="${requestScope.testList}"/>
+        <c:if var="result" test="${!empty tests}">
+        <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
+            <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;"><span style="padding-left: 25px">Tests</span></caption>
+            <thead class="table-dark text-center">
+
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Discipline</th>
+                <th>Difficulty</th>
+                <th>Duration (Minutes)</th>
+                <th>Questions</th>
+                <th colspan="2">Действия Админа</th>
+            </tr>
+            </thead>
             <c:if var="result" test="${!empty tests}">
-                <c:forEach items="${requestScope.testList}" var="test">
+
+                    <tbody class="bg-light">
+                    <c:forEach items="${requestScope.testList}" var="test">
                     <tr>
                         <td>${test.id}</td>
                         <td>${test.name}</td>
@@ -35,21 +95,27 @@
                         <td>${test.timeMinutes}</td>
                         <td>${test.countOfQuestions}</td>
 
-                        <td><button class="td-center button-edit" type="button" onclick="location.href='/web-application/testing/admin/editTest?id=${test.id}'">Edit</button></td>
-                        <td><button class="td-center button-delete" type="button" onclick="location.href='/web-application/testing/admin/deleteTest?id=${test.id}'">Delete</button></td>
+                        <td class="text-center"><button  class="btn btn-success" type="button" onclick="location.href='/web-application/testing/admin/editTest?id=${test.id}'">Edit</button></td>
+                        <td class="text-center"><button class="btn btn-danger" type="button" onclick="location.href='/web-application/testing/admin/deleteTest?id=${test.id}'">Delete</button></td>
                     </tr>
                 </c:forEach>
+                    </tbody>
+
             </c:if>
-
+            <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0px 0px 30px 30px;"></caption>
         </table>
-    </c:if>
+        </c:if>
 
+
+
+    </div>
     <c:if test="${empty tests}">
-        <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
-            No tests have been found :(
+        <div class="w-50 bg-dark  mb-1 d-flex align-items-center " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px; height: 5%">
+            <span class="text-white ms-3  ">No tests have been found :(</span>
         </div>
     </c:if>
-</div>
+</main>
 
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>
