@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="col-9">
-            <span class="text-white-50">Role</span>
+            <span class="text-white-50">Role:${sessionScope.role}</span>
         </div>
         <div class="col-1">
             <ul class="navbar-nav">

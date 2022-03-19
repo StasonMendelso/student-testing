@@ -92,6 +92,7 @@ public class Question implements Cloneable{
     @Override
     public Question clone() throws CloneNotSupportedException {
         Question question = new Question();
+        question.setQuestionNumber(this.getQuestionNumber());
         question.setId(this.getId());
         question.setTextQuestion(this.textQuestion);
         question.setTestId(this.testId);

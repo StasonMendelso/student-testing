@@ -24,6 +24,7 @@ public class DeleteQuestionCommand implements Command {
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
             test.deleteQuestion(id);
+            System.out.println(test);
             request.getSession().setAttribute("editedTest",test);
             
         }

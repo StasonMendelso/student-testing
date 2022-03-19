@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div class="col-1">
-            <span class="text-white-50">Role:Student</span>
+            <span class="text-white-50">Role:${sessionScope.role}</span>
         </div>
         <div class="col-8">
             <ul class="navbar-nav">

@@ -43,9 +43,11 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
                     answerDao.create(answer);
                 }
             }
+            return "redirect:/web-application/testing/admin/showTests";
         }
         if(request.getParameter("id")!=null && !request.getParameter("id").isEmpty()){
             int id = Integer.parseInt(request.getParameter("id"));
+            System.out.println(id);
             DaoFactory factory = DaoFactory.getInstance();
             TestDao testDao = factory.createTestDao();
             QuestionDao questionDao = factory.createQuestionDao();

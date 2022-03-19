@@ -79,7 +79,7 @@ public class AddQuestionCommand implements Command {
             System.out.println("=====================================");
 
 
-
+            question.setQuestionNumber(questionSize+1);
             question.setId(questionList.get(questionSize-1).getId()+1);
             test.addQuestion(question);
             request.getSession().setAttribute("editedTest",test);
