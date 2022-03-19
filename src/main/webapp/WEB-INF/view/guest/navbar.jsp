@@ -11,7 +11,6 @@
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="messages"/>
 
-<%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/styles.css">--%>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="box-shadow: 0 4px 16px #4c3c3c; ">
     <div class="container-fluid row align-middle">
         <div class="col-1">

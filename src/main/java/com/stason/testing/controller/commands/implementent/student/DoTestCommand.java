@@ -18,6 +18,10 @@ import java.util.List;
 public class DoTestCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+        System.out.println("-------------------");
+        System.out.println(request.getParameter("leftTime"));
+        System.out.println(request.getSession().getAttribute("timeLeft"));
+        System.out.println("-------------------");
         String uri = request.getRequestURI();
         int testId = 0;
 
@@ -48,12 +52,19 @@ public class DoTestCommand implements Command {
             }
             test.setQuestions(questionList);
             request.getSession().setAttribute("test",test);
+            request.getSession().setAttribute("timeLeft",test.getTimeSeconds());
             return "redirect:/web-application/testing/student/test?question=1";
         }
         if(request.getSession().getAttribute("test")==null){
             return "redirect:/web-application/testing/student/tests";
         }
         //Для сохранения ответов пользователя
+        if(request.getParameter("leftTime")!=null && request.getParameter("save")!=null && request.getParameter("questionNumber")!=null){
+        if(Integer.parseInt(request.getParameter("leftTime"))==0) {
+            saveAnswers(request);
+            return new ShowTestResultCommand().execute(request);
+        }
+        }
         if(request.getParameter("save")!=null && request.getParameter("questionNumber")!=null && request.getParameter("finish")!=null){
             saveAnswers(request);
             return new ShowTestResultCommand().execute(request);
@@ -113,7 +124,7 @@ public class DoTestCommand implements Command {
             question.setUserOptions(userOptions);
             test.setQuestion(question,questionNumber);
             request.getSession().setAttribute("test",test);
-
+            request.getSession().setAttribute("timeLeft",request.getParameter("leftTime"));
             return "redirect:/web-application/testing/student/test?question=" + request.getParameter("nextQuestion");
         }
     }

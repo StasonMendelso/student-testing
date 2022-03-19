@@ -46,7 +46,6 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/admin/editUser", new EditUserCommand());
         commands.put("/student/info", new InfoCommand());
         commands.put("/student/tests", new ShowTestsCommand());
-        commands.put("/student/passedTests", new ShowPassedTestsCommand());
         commands.put("/student/test", new DoTestCommand());
         commands.put("/student/result", new ShowTestResultCommand());
     }

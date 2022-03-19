@@ -39,7 +39,7 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
                 DaoFactory factory = DaoFactory.getInstance();
                 TestDao testDao = factory.createTestDao();
                 testDao.addPassedTest(userId, test.getId(), mark);
-
+                request.setAttribute("countOfRightAnswers",countOfRightAnswers);
                 request.setAttribute("mark",mark);
                 request.setAttribute("test",test);
                 request.getSession().removeAttribute("test");

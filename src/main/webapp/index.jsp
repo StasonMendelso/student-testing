@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang = ${sessionScope.lang} >
 <head>
-  <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
+
   <title>Testing</title>
     <meta charset="UTF-8"/>
   <!-- Настройка viewport -->

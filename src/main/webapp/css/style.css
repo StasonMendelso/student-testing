@@ -17,6 +17,10 @@ body {
     --bs-gutter-x: 1.5rem;
     padding-left: calc(var(--bs-gutter-x) * .5);
 }
+.right-padding{
+    --bs-gutter-x: 1.5rem;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+}
 .text-btn-primary{
     color: #0d6efd;
 }

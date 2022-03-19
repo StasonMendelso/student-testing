@@ -12,6 +12,7 @@ public class Test {
     private String nameOfDiscipline;
     private String difficulty;
     private int timeMinutes;
+    private int timeSeconds;
     private int countOfQuestions;
     private double mark;
     private List<Question> questions = new LinkedList<>();
@@ -50,6 +51,14 @@ public class Test {
                 '}';
     }
 
+    public int getTimeSeconds() {
+        return timeSeconds;
+    }
+
+    public void setTimeSeconds(int timeSeconds) {
+        this.timeSeconds = timeSeconds;
+    }
+
     public int getId() {
         return id;
     }
@@ -86,8 +95,9 @@ public class Test {
         return timeMinutes;
     }
 
-    public void setTimeMinutes(int timeSeconds) {
-        this.timeMinutes = timeSeconds;
+    public void setTimeMinutes(int timeMinutes) {
+        this.timeMinutes = timeMinutes;
+        this.timeSeconds = timeMinutes*60;
     }
 
     public int getCountOfQuestions() {
