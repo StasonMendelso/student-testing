@@ -11,6 +11,7 @@ import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +22,9 @@ public class DoTestCommand implements Command {
         System.out.println("-------------------");
         System.out.println(request.getParameter("leftTime"));
         System.out.println(request.getSession().getAttribute("timeLeft"));
+        System.out.println(request.getParameter("currentClientTime"));
         System.out.println("-------------------");
+
         String uri = request.getRequestURI();
         int testId = 0;
 
@@ -30,7 +33,7 @@ public class DoTestCommand implements Command {
             testId = Integer.parseInt(request.getParameter("id"));
         }
         //Для инициализации
-        if(request.getSession().getAttribute("test")==null && request.getParameter("id")!=null){
+        if(request.getSession().getAttribute("test")==null && request.getParameter("id")!=null  && request.getParameter("currentClientTime")!=null){
             DaoFactory factory = DaoFactory.getInstance();
             TestDao testDao = factory.createTestDao();
             QuestionDao questionDao = factory.createQuestionDao();
@@ -51,20 +54,20 @@ public class DoTestCommand implements Command {
                 question.setAnswers(answerList);
             }
             test.setQuestions(questionList);
+            Date date = new Date(Long.parseLong(request.getParameter("currentClientTime")));
+            long outDateMilliseconds = Long.parseLong(request.getParameter("currentClientTime"))+test.getTimeSeconds()*1000L;
+            Date outDate = new Date(outDateMilliseconds);
+            System.out.println("Дата клієнта: "+date);
+            System.out.println("Дата здачі тесту для цього клієнта: "+outDate);
             request.getSession().setAttribute("test",test);
-            request.getSession().setAttribute("timeLeft",test.getTimeSeconds());
+            request.getSession().setAttribute("outDateMilliseconds",outDateMilliseconds);
             return "redirect:/web-application/testing/student/test?question=1";
         }
-        if(request.getSession().getAttribute("test")==null){
+        if(request.getSession().getAttribute("test")==null ){
             return "redirect:/web-application/testing/student/tests";
         }
         //Для сохранения ответов пользователя
-        if(request.getParameter("leftTime")!=null && request.getParameter("save")!=null && request.getParameter("questionNumber")!=null){
-        if(Integer.parseInt(request.getParameter("leftTime"))==0) {
-            saveAnswers(request);
-            return new ShowTestResultCommand().execute(request);
-        }
-        }
+
         if(request.getParameter("save")!=null && request.getParameter("questionNumber")!=null && request.getParameter("finish")!=null){
             saveAnswers(request);
             return new ShowTestResultCommand().execute(request);
@@ -91,6 +94,7 @@ public class DoTestCommand implements Command {
         }else{
             return "redirect:/web-application/testing/student/test";
         }
+
     }
 
     private String saveAnswers(HttpServletRequest request) {

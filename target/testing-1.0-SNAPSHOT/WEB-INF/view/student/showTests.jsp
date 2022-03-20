@@ -23,6 +23,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<%--    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sendTime.js"></script>--%>
+    <script type=”text/javascript” src="${pageContext.request.contextPath}/js/sendTime.js"></script>
+    <script><%@include file="../../../js/sendTime.js"%></script>
 
 </head>
 <body>
@@ -33,7 +36,7 @@
 
         <div class="w-50 bg-dark  mb-1" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px">
             <div class="text-left mt-2 pb-3 text-btn-primary">
-                <h1 class="center">Sorting Available Tests</h1>
+                <h1 class="center">Sorting Tests</h1>
                 <div class="row">
                     <div class="col-4">
                         <label for="orderBy">Сортувати за</label>
@@ -97,7 +100,8 @@
                             <td>${test.difficulty}</td>
                             <td>${test.timeMinutes}</td>
                             <td>${test.countOfQuestions}</td>
-                            <td class="text-center"><button class="btn btn-success" onclick="location.href='/web-application/testing/student/test?id=${test.id}'">Start</button></td>
+
+                            <td class="text-center"><a class="btn btn-success" onclick="sendClientTime(${test.id})" href="#">Start</a></td>
                         </tr>
 
                     </c:forEach>
@@ -115,43 +119,7 @@
         </c:if>
 
     </div>
-    <div class="row d-flex left-padding">
 
-        <div class="w-50 bg-dark  mb-1 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px">
-            <div class="text-left mt-2 pb-3 text-info">
-                <h1 class="center">Sorting All Tests</h1>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="orderBy">Сортувати за</label>
-                        <select id="orderBy" class="form-select" >
-                            <option value="1">Назвою</option>
-                            <option value="2">Складністю</option>
-                            <option value="3">Кількістю запитань</option>
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <label for="order">Порядок</label>
-                        <select id="order" class="form-select" >
-                            <option value="1">Зростання</option>
-                            <option value="2">Спадання</option>
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <label for="discipline">Вибір предмета</label>
-                        <select id="discipline" class="form-select" >
-                            <option value="0" selected>Усі</option>
-                            <option value="1">Математика</option>
-                            <option value="2">Англійська</option>
-                        </select>
-                    </div>
-                    <div class="col-2 text-center">
-                        <br>
-                        <button class="btn btn-primary">Застосувати</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row d-flex justify-content-center table-responsive left-padding right-padding">
         <!--        <div class=" bg-light mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px; width:95%">-->
         <c:set var="tests" value="${requestScope.allTestList}"/>

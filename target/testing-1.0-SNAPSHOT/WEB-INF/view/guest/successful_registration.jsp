@@ -48,14 +48,7 @@
 
     </div>
 </main>
-<footer class="bg-dark bg-opacity-75 text-center p-3 text-light " style="box-shadow: 0px -6px 25px -6px rgba(0,0,0,0.4)">
-    <!-- Copyright -->
-    <div class="text-center ">
-        © 2022 Copyright:
-        <a class="text-light" href="#" style="text-decoration: none">Stas Hlova</a>
-    </div>
-    <!-- Copyright -->
-</footer>
+<jsp:include page="../footer.jsp"/>
 
 
 </body>

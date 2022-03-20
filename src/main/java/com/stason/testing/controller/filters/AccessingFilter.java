@@ -23,7 +23,7 @@ public class AccessingFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         String role = (String) req.getSession().getAttribute("role");
         String URI = req.getRequestURI();
-
+        System.out.println(((HttpServletRequest) request).getRequestURL());
         if(URI.contains("/student") && role.equals(Role.STUDENT.name())) {
             chain.doFilter(request, response);
         }else if(URI.contains("/admin") && role.equals(Role.ADMIN.name())) {

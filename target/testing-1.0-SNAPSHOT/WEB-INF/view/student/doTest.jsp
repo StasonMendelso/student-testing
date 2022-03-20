@@ -22,8 +22,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type=”text/javascript” src="${pageContext.request.contextPath}/js/newRemainingTime.js"></script>
-    <script><%@include file="../../../js/newRemainingTime.js"%></script>
+    <script type=”text/javascript” src="${pageContext.request.contextPath}/js/timer2.js"></script>
+    <script><%@include file="../../../js/timer2.js"%></script>
 </head>
 <body>
 
@@ -50,7 +50,10 @@
                           <span >Залишилося
                           <div class="timer" id="timer"></div>
                           </span>
+                            <script>
+                                startTimer(${sessionScope.outDateMilliseconds});
 
+                            </script>
 
                         </div>
                     </div>
@@ -73,7 +76,6 @@
                             </c:forEach>
                             <input hidden name="questionNumber" value="${question.questionNumber}">
                             <input hidden name="save" value="save"/>
-                            <input hidden name="leftTime" id="leftTime" value="1" />
                         </div>
 
                         <div class="row mt-3">
@@ -98,10 +100,7 @@
 
                     </div>
 
-                <script>
-                    startTimer2(${sessionScope.timeLeft});
 
-                </script>
             </div>
 
         </div>
