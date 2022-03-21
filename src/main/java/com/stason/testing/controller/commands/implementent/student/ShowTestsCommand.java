@@ -30,7 +30,7 @@ public class ShowTestsCommand implements Command {
             List<Test> unsurpassedTests = testDao.findUnsurpassedTests(userId);
             List<Test> testList = testDao.findAll();
             List<String> disciplinesList = testDao.findAllDisciplines();
-            if(request.getParameter("orderBy")!=null && request.getParameter("order")!=null && request.getParameter("discipline")!=null){
+            if(request.getParameter("orderBy")!=null && request.getParameter("order")!=null && request.getParameter("discipline")!=null && request.getParameter("clear")==null){
                 String orderBy = request.getParameter("orderBy");
                 String order = request.getParameter("order");
                 String discipline = EncodingConverter.convertFromISOtoUTF8(request.getParameter("discipline"));

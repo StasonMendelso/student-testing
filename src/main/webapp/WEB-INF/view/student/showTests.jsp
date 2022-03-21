@@ -37,7 +37,7 @@
         <div class="w-50 bg-dark  mb-1" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px">
             <div class="text-left mt-2 pb-3 text-btn-primary">
                 <h1 class="center">Sorting Tests</h1>
-                <form name="sorting" method="post">
+                <form name="sorting" method="get">
                 <div class="row">
                     <div class="col-4">
                         <label for="orderBy">Сортувати за</label>
@@ -71,12 +71,11 @@
                         <button type="submit" class="btn btn-primary">Застосувати</button>
                     </div>
                 </div>
-                </form>
-                <form>
+
                     <div class="row mt-2">
 
                         <div class="col-10">
-                            <button type="submit" class="btn btn-primary w-100" >Очистити сортування</button>
+                            <button type="submit" class="btn btn-primary w-100" name="clear" value="clear">Очистити сортування</button>
                         </div>
                         <div class="col-2"></div>
                     </div>

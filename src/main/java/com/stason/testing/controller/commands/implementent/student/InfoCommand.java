@@ -19,6 +19,7 @@ public class InfoCommand implements Command {
            TestDao testDao = factory.createTestDao();
 
            List<Test> list = testDao.findPassedTests(userId);
+           //pagination
            int paginationParameter;
             if(request.getParameter("paginationParameter")!=null){
                 paginationParameter = Integer.parseInt(request.getParameter("paginationParameter"));
@@ -43,6 +44,7 @@ public class InfoCommand implements Command {
            }
 
             list = pagination(paginationParameter,pageNumber,list);
+           //end pagination
            request.setAttribute("testList", list);
            request.setAttribute("countOfPageNumberButtons",countOfPageNumberButtons);
            request.setAttribute("paginationParameter",paginationParameter);
