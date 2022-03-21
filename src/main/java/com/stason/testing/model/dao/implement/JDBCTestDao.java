@@ -4,6 +4,7 @@ import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Test;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +15,40 @@ public class JDBCTestDao implements TestDao {
 
     public JDBCTestDao(Connection connection) {
         this.connection = connection;
+    }
+
+    @Override
+    public int countPassedTestByUser(int userId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(1) FROM onlinetesting.`passedtests` WHERE user_id=?");
+            preparedStatement.setInt(1,userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("COUNT(1)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Test> findAndPaginatePassedTests(int userId, int index, int paginationParameter) {
+        List<Test> list = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.`tests`, (SELECT mark, test_id FROM onlinetesting.`passedtests` WHERE user_id=?) as `passedtests` WHERE `tests`.id = `passedtests`.test_id limit ?,?;");
+            preparedStatement.setInt(1,userId);
+            preparedStatement.setInt(2,index);
+            preparedStatement.setInt(3,paginationParameter);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Test test = builtTest(resultSet);
+                list.add(test);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override

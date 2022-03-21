@@ -11,4 +11,6 @@ public interface TestDao extends GenericDao<Test>{
     List<Test> findUnsurpassedTests(int userId);
 
     List<Test> findPassedTests(int userId);
+    List<Test> findAndPaginatePassedTests(int userId, int index,int paginationParameter);
+    int countPassedTestByUser(int userId);
 }

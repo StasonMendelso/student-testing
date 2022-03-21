@@ -33,7 +33,7 @@
 <main class="container-fluid bg-dark bg-opacity-25">
     <div class="row d-flex justify-content-center ">
 
-        <div class="w-25 bg-dark  mb-3 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 45px">
+        <div class="w-25 bg-dark  mb-2 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 35px">
             <div class="text-left mt-2 pb-3 text-info">
                 <h1 class="text-center t-5">Student info</h1>
                 <p>Login: ${sessionScope.login}</p>
@@ -46,9 +46,28 @@
         <!--        <div class=" bg-light mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px; width:95%">-->
         <c:set var="tests" value="${requestScope.testList}"/>
         <c:if var="result" test="${!empty tests}">
-
+        <form id="pagination_form" method="post">
             <table class="table table-bordered table-hover table-striped mt-3 rounded-top caption-top" >
-                <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;"><span style="padding-left: 25px">Passed Tests</span></caption>
+                <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
+                    <div class="row align-items-center">
+                        <span class="col-1" >Passed Tests</span>
+                        <span class="col-10"></span>
+                        <span class="col-1" style="padding-right: 25px">
+                        <select class="form-select" name="paginationParameter" id="pagination">
+                            <option value="5" <c:if test="${paginationParameter==5}">selected</c:if> >5</option>
+                            <option value="10" <c:if test="${paginationParameter==10}">selected</c:if> >10</option>
+                            <option value="15" <c:if test="${paginationParameter==15}">selected</c:if> >15</option>
+                        </select>
+                    </span>
+
+                    </div>
+
+                    <script>
+                        document.getElementById("pagination").onchange= function () {
+                            document.getElementById("pagination_form").submit();
+                        }
+                    </script>
+                </caption>
 
                 <thead class="table-dark text-center" >
                 <tr>
@@ -84,12 +103,30 @@
                 </c:if>
 
             </table>
-        </c:if>
+            </c:if>
 
+            <nav >
+                <ul class="pagination pagination-lg justify-content-center">
+                    <c:forEach var="i" begin="1" end="${requestScope.countOfPageNumberButtons}">
+                        <c:if test="${requestScope.pageNumber==i}">
+                            <li class="page-item active" >
+                                <span class="page-link bg-light border-light text-black">${i}</span>
+                            </li>
+                        </c:if>
+                        <c:if test="${requestScope.pageNumber!=i}">
+                            <li class="page-item "><button class="page-link1 bg-dark border-dark text-white" type="submit" name="pageNumber" value="${i}">${i}</button></li>
+                        </c:if>
+
+                    </c:forEach>
+
+
+                </ul>
+            </nav>
+        </form>
         <c:if test="${empty tests}">
             <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 45px">
                 <div class="text-left mt-2 pb-3 text-info">
-                You haven't passed any tests yet
+                    You haven't passed any tests yet
                 </div>
             </div>
         </c:if>
