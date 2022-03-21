@@ -37,28 +37,33 @@
         <div class="w-50 bg-dark  mb-1" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px">
             <div class="text-left mt-2 pb-3 text-btn-primary">
                 <h1 class="center">Sorting Tests</h1>
+                <form name="sorting" method="post">
                 <div class="row">
                     <div class="col-4">
                         <label for="orderBy">Сортувати за</label>
-                        <select id="orderBy" class="form-select" >
-                            <option value="1">Назвою</option>
-                            <option value="2">Складністю</option>
-                            <option value="3">Кількістю запитань</option>
+
+                        <select id="orderBy" name="orderBy" class="form-select"  >
+                            <option value="name" <c:if test="${requestScope.sortingOptions.orderBy=='name'}"> selected</c:if> >Назвою</option>
+                            <option value="difficulty" <c:if test="${requestScope.sortingOptions.orderBy=='difficulty'}"> selected</c:if> >Складністю</option>
+                            <option value="countOfQuestions" <c:if test="${requestScope.sortingOptions.orderBy=='countOfQuestions'}"> selected</c:if> >Кількістю запитань</option>
                         </select>
                     </div>
                     <div class="col-2">
                         <label for="order">Порядок</label>
-                        <select id="order" class="form-select" >
-                            <option value="1">Зростання</option>
-                            <option value="2">Спадання</option>
+                        <select id="order" name="order" class="form-select" >
+                            <option value="ascending"<c:if test="${requestScope.sortingOptions.order=='ascending'}"> selected</c:if> >Зростання</option>
+                            <option value="descending"<c:if test="${requestScope.sortingOptions.order=='descending'}"> selected</c:if>  >Спадання</option>
                         </select>
                     </div>
                     <div class="col-4">
                         <label for="discipline">Вибір предмета</label>
-                        <select id="discipline" class="form-select" >
-                            <option value="0" selected>Усі</option>
-                            <option value="1">Математика</option>
-                            <option value="2">Англійська</option>
+                        <select id="discipline" name="discipline" class="form-select" >
+                            <option value="all" selected>Усі</option>
+                            <c:forEach var="discipline" items="${requestScope.disciplinesList}">
+                                <option value="${discipline}" <c:if test="${requestScope.sortingOptions.discipline==discipline}"> selected</c:if>  >${discipline}</option>
+                            </c:forEach>
+
+
                         </select>
                     </div>
                     <div class="col-2 text-center">
@@ -66,6 +71,18 @@
                         <button type="submit" class="btn btn-primary">Застосувати</button>
                     </div>
                 </div>
+                </form>
+                <form>
+                    <div class="row mt-2">
+
+                        <div class="col-10">
+                            <button type="submit" class="btn btn-primary w-100" >Очистити сортування</button>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </form>
+
+
             </div>
         </div>
     </div>
@@ -112,13 +129,14 @@
             </table>
         </c:if>
 
-        <c:if test="${empty tests}">
-            <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
-                You haven't passed any tests yet
-            </div>
-        </c:if>
+
 
     </div>
+    <c:if test="${empty tests}">
+        <div class="w-50 bg-dark " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.5); margin-top: 10px">
+            <span class="text-white ms-3 fs-3">You don't have any available tests</span>
+        </div>
+    </c:if>
 
     <div class="row d-flex justify-content-center table-responsive left-padding right-padding">
         <!--        <div class=" bg-light mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px; width:95%">-->
@@ -160,13 +178,14 @@
             </table>
         </c:if>
 
-        <c:if test="${empty tests}">
-            <div class="form" style="margin: 0 auto;margin-top: 10px; width: 80%">
-                You haven't passed any tests yet
-            </div>
-        </c:if>
+
 
     </div>
+    <c:if test="${empty tests}">
+        <div class="w-50 bg-dark " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.5); margin-top: 10px">
+            <span class="text-white ms-3 fs-3">You don't have any available tests</span>
+        </div>
+    </c:if>
 </main>
 <jsp:include page="../footer.jsp"/>
 </body>

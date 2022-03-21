@@ -4,16 +4,31 @@ import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Test;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCTestDao implements TestDao {
 
     private final Connection connection;
-    private String SQLfindAllTests = "SELECT * FROM onlinetesting.tests";
+    private final String SQLfindAllTests = "SELECT * FROM onlinetesting.tests";
 
     public JDBCTestDao(Connection connection) {
         this.connection = connection;
+    }
+
+    public List<String> findAllDisciplines(){
+        List<String> disciplinesList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT DISTINCT onlinetesting.tests.nameOfDiscipline FROM onlinetesting.tests;");
+            while(resultSet.next()){
+                disciplinesList.add(resultSet.getString("nameOfDiscipline"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return disciplinesList;
     }
 
     @Override
