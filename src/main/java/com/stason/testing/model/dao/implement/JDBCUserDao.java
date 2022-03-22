@@ -16,6 +16,45 @@ public class JDBCUserDao implements UserDao {
     public JDBCUserDao(Connection connection) {
         this.connection = connection;
     }
+
+    @Override
+    public List<User> findAndPaginateAllUsers(int index, int paginationParameter) {
+        List<User> list = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.users limit ?,?");
+            preparedStatement.setInt(1,index);
+            preparedStatement.setInt(2,paginationParameter);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                User user = new User();
+                user.setLogin(resultSet.getString("login"));
+                user.setName(resultSet.getString("name"));
+                user.setSurname(resultSet.getString("surname"));
+                user.setRole(Role.valueOf(resultSet.getString("role")));
+                user.setId(resultSet.getInt("id"));
+                user.setBlocked(resultSet.getBoolean("blocked"));
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public int countAllUsers() {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(1) FROM onlinetesting.users");
+            if(resultSet.next()){
+                return resultSet.getInt("COUNT(1)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public boolean checkUser(User user){
         PreparedStatement preparedStatement = null;
         try {

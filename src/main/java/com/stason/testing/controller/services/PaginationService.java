@@ -2,7 +2,9 @@ package com.stason.testing.controller.services;
 
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.TestDao;
+import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Test;
+import com.stason.testing.model.entity.User;
 
 import java.util.List;
 
@@ -69,4 +71,25 @@ public class PaginationService {
 
         return testDao.findAndPaginateAllTests(index,paginationParameter);
     }
+    public static List<User> paginateAllUsers(int paginationParameter, int pageNumber) {
+
+        DaoFactory factory = DaoFactory.getInstance();
+        UserDao userDao = factory.createUserDao();
+        int index = paginationParameter*(pageNumber-1);
+
+        return userDao.findAndPaginateAllUsers(index,paginationParameter);
+    }
+    public static int countButtonsForPaginationAllUsers( int paginationParameter) {
+        DaoFactory factory = DaoFactory.getInstance();
+        UserDao userDao = factory.createUserDao();
+        int countPassedTest = userDao.countAllUsers();
+        double countOfPageNumberButtons=(double)countPassedTest/paginationParameter;
+        if(countOfPageNumberButtons<=1){
+            countOfPageNumberButtons=0;
+        }else {
+            countOfPageNumberButtons=Math.ceil(countOfPageNumberButtons);
+        }
+        return (int) countOfPageNumberButtons;
+    }
+
 }
