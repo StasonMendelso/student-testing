@@ -29,48 +29,75 @@
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
 
 <main class="container-fluid bg-dark bg-opacity-25">
-    <div class="row d-flex left-padding ">
+    <form method="get">
+        <input hidden name="paginationParameter" value="${requestScope.paginationParameter}">
+        <div class="row d-flex left-padding ">
 
-        <div class="w-50 bg-dark  mb-1" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px">
-            <div class="text-left mt-2 pb-3 text-btn-primary">
-                <h1 class="center">Sorting Tests</h1>
-                <div class="row">
-                    <div class="col-4">
-                        <label for="orderBy">Сортувати за</label>
-                        <select id="orderBy" class="form-select" >
-                            <option value="1">Назвою</option>
-                            <option value="2">Складністю</option>
-                            <option value="3">Кількістю запитань</option>
-                        </select>
+            <div class="w-50 bg-dark  mb-1" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px">
+                <div class="text-left mt-2 pb-3 text-btn-primary">
+                    <h1 class="center">Sorting Tests</h1>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="orderBy">Сортувати за</label>
+                            <select id="orderBy" name="orderBy" class="form-select" >
+                                <option value="name" <c:if test="${requestScope.sortingOptions.orderBy=='name'}"> selected</c:if> >Назвою</option>
+                                <option value="difficulty" <c:if test="${requestScope.sortingOptions.orderBy=='difficulty'}"> selected</c:if> >Складністю</option>
+                                <option value="countOfQuestions" <c:if test="${requestScope.sortingOptions.orderBy=='countOfQuestions'}"> selected</c:if> >Кількістю запитань</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label for="order">Порядок</label>
+                            <select id="order" name="order" class="form-select" >
+                                <option value="ASC"<c:if test="${requestScope.sortingOptions.order=='ASC'}"> selected</c:if> >Зростання</option>
+                                <option value="DESC"<c:if test="${requestScope.sortingOptions.order=='DESC'}"> selected</c:if>  >Спадання</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label for="discipline">Вибір предмета</label>
+                            <select id="discipline" name="discipline" class="form-select" >
+                                <option value="all" selected>Усі</option>
+                                <c:forEach var="discipline" items="${requestScope.disciplinesList}">
+                                    <option value="${discipline}" <c:if test="${requestScope.sortingOptions.discipline==discipline}"> selected</c:if>  >${discipline}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-2 text-center">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Застосувати</button>
+                        </div>
                     </div>
-                    <div class="col-2">
-                        <label for="order">Порядок</label>
-                        <select id="order" class="form-select" >
-                            <option value="1">Зростання</option>
-                            <option value="2">Спадання</option>
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <label for="discipline">Вибір предмета</label>
-                        <select id="discipline" class="form-select" >
-                            <option value="0" selected>Усі</option>
-                            <option value="1">Математика</option>
-                            <option value="2">Англійська</option>
-                        </select>
-                    </div>
-                    <div class="col-2 text-center">
-                        <br>
-                        <button type="submit" class="btn btn-primary">Застосувати</button>
+                    <div class="row mt-2">
+                        <div class="col-10">
+                            <button class="btn btn-primary w-100" type="submit" name="clear" value="clear">Очистити сортування</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
+    <form method="get" id="pagination_form">
     <div class="table-responsive-md">
         <c:set var="tests" value="${requestScope.testList}"/>
         <c:if var="result" test="${!empty tests}">
         <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
-            <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;"><span style="padding-left: 25px">Tests</span></caption>
+            <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
+                <div class="row align-items-center">
+                    <span class="col-2" style="padding-left: 25px" >Tests</span>
+                    <span class="col-9"></span>
+                    <span class="col-1" style="padding-right: 25px">
+                            <select class="form-select" name="paginationParameter" id="pagination">
+                                <option value="5" <c:if test="${requestScope.paginationParameter==5}">selected</c:if> >5</option>
+                                <option value="10" <c:if test="${requestScope.paginationParameter==10}">selected</c:if> >10</option>
+                                <option value="15" <c:if test="${requestScope.paginationParameter==15}">selected</c:if> >15</option>
+                            </select>
+                                     <script>
+                                document.getElementById("pagination").onchange= function () {
+                                    let form = document.getElementById("pagination_form").submit();
+                                }
+                            </script>
+                        </span>
+
+                </div>
             <thead class="table-dark text-center">
 
             <tr>
@@ -104,8 +131,29 @@
             </c:if>
             <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0px 0px 30px 30px;"></caption>
         </table>
-        </c:if>
 
+            <input hidden name="orderBy" value="${requestScope.sortingOptions.orderBy}">
+            <input hidden name="order" value="${requestScope.sortingOptions.order}">
+            <input hidden name="discipline" value="${requestScope.sortingOptions.discipline}">
+
+            <nav >
+                <ul class="pagination pagination-lg justify-content-center">
+                    <c:forEach var="i" begin="1" end="${requestScope.countOfPageNumberButtons}">
+                        <c:if test="${requestScope.pageNumber==i}">
+                            <li class="page-item active" >
+                                <span class="page-link bg-light border-light text-black">${i}</span>
+                            </li>
+                        </c:if>
+                        <c:if test="${requestScope.pageNumber!=i}">
+                            <li class="page-item "><button class="page-link1 bg-dark border-dark text-white" type="submit" name="pageNumber" value="${i}">${i}</button></li>
+                        </c:if>
+
+                    </c:forEach>
+
+                </ul>
+            </nav>
+        </c:if>
+    </form>
 
 
     </div>

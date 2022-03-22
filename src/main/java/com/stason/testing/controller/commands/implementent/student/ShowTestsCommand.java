@@ -21,8 +21,7 @@ public class ShowTestsCommand implements Command {
         String uri = request.getRequestURI();
         if(uri.contains("/student/tests")){
             int userId = (int) request.getSession().getAttribute("id");
-            DaoFactory factory = DaoFactory.getInstance();
-            TestDao testDao = factory.createTestDao();
+
 
             int countOfPageNumberButtons1 =0;
             int countOfPageNumberButtons2 =0;
@@ -40,8 +39,7 @@ public class ShowTestsCommand implements Command {
                 countOfPageNumberButtons2 = PaginationService.countButtonsForPaginationAllTests( paginationParameter2);
                 testList = PaginationService.paginateAllTests(paginationParameter2, pageNumber2);
 
-            }else
-            if(request.getParameter("orderBy")!=null &&
+            }else if(request.getParameter("orderBy")!=null &&
                     request.getParameter("order")!=null &&
                     request.getParameter("discipline")!=null &&
                     request.getParameter("clear")==null
@@ -125,17 +123,10 @@ public class ShowTestsCommand implements Command {
                     countOfPageNumberButtons2 = PaginationService.countButtonsForPaginationAllTests( paginationParameter2);
                 }
             }
-
-
-
-
-
-
-
-
+            DaoFactory factory = DaoFactory.getInstance();
+            TestDao testDao = factory.createTestDao();
             List<String> disciplinesList = testDao.findAllDisciplines();
             request.setAttribute("disciplinesList", disciplinesList);
-
 
             request.setAttribute("unsurpassedTestList", unsurpassedTests);
             request.setAttribute("countOfPageNumberButtons1",countOfPageNumberButtons1);
