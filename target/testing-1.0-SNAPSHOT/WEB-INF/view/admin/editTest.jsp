@@ -42,8 +42,8 @@
         <div class="row d-flex justify-content-center ">
 
             <div class="w-75 bg-question bg-dark bg-opacity-50 mb-3" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 40px">
-                <div class="text-left mt-2  table-responsive">
-                    <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
+                <div class="text-left mt-1  table-responsive">
+                    <table class="table table-bordered table-hover table-striped mt-2  rounded-top caption-top">
                         <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                             <span style="padding-left: 25px" >Test information
                                 <button class="ms-2 btn btn-primary" type="button" onclick="location.href='/web-application/testing/admin/editTestInfo'">Edit</button>
@@ -74,55 +74,79 @@
                     </table>
                 </div>
 
-                <div class="text-left mt-2 pb-3 table-responsive">
-                    <table class="table table-bordered   mt-3  rounded-top caption-top">
+                <nav >
+                    <form method="post">
+                        <input hidden name="id" value="${sessionScope.editedTest.id}">
+                    <ul class="pagination pagination-lg justify-content-center">
+                        <c:forEach var="i" begin="1" end="${sessionScope.editedTest.questions.size()}">
+                            <c:if test="${requestScope.questionPageNumber==i}">
+                                <li class="page-item active" >
+                                    <span class="page-link bg-light border-light text-black">${i}</span>
+                                </li>
+                            </c:if>
+                            <c:if test="${requestScope.questionPageNumber!=i}">
+                                <li class="page-item "><button class="page-link1 bg-dark border-dark text-white" type="submit" name="questionNumber" value="${i}">${i}</button></li>
+                            </c:if>
+
+                        </c:forEach>
+                    </ul>
+                    </form>
+                </nav>
+                <div class="text-left mt-1 pb-3 table-responsive">
+                    <table class="table table-bordered   mt-1  rounded-top caption-top">
                         <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                             <span style="padding-left: 25px" >Questions information</span>
                         </caption>
                         <tbody class="bg-light">
-                        <c:forEach var="question" items="${sessionScope.editedTest.questions}">
-                        <tr>
-                            <td>
+                            <tr>
+                                <td>
 
-                                <div>
+                                    <div>
+                                        <c:set var="question" value="${requestScope.currentQuestion}"/>
+                                        <div class="input-group mb-1">
+                                            <span class="input-group-text fs-5" id="basic-addon1">Question ${question.questionNumber}</span>
+                                            <textarea type="text" class="form-control" disabled required id="questionName" name="questionName" placeholder="What...">${question.textQuestion}</textarea>
+                                        </div>
 
-                                    <div class="input-group mb-1">
-                                        <span class="input-group-text fs-5" id="basic-addon1">Question ${question.questionNumber}</span>
-                                        <textarea type="text" class="form-control" disabled required id="questionName" name="questionName" placeholder="What...">${question.textQuestion}</textarea>
-                                    </div>
+                                        <h4>Answers</h4>
 
-                                    <h4>Answers</h4>
-
-                                    <c:forEach var="answer" items="${question.answers}">
-                                        <c:if test="${answer.isRightAnswer()}">
-                                            <div class="input-group  mb-1">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input mt-0" checked disabled type="checkbox" name="opt" value="2" aria-label="Checkbox for following text input">
+                                        <c:forEach var="answer" items="${question.answers}">
+                                            <c:if test="${answer.isRightAnswer()}">
+                                                <div class="input-group  mb-1">
+                                                    <div class="input-group-text">
+                                                        <input class="form-check-input mt-0" checked disabled type="checkbox" name="opt" value="2" aria-label="Checkbox for following text input">
+                                                    </div>
+                                                    <input type="text" class="form-control"  disabled id="answer 1" aria-label="Text input with checkbox" placeholder="${answer.answer}">
                                                 </div>
-                                                <input type="text" class="form-control"  disabled id="answer 1" aria-label="Text input with checkbox" placeholder="${answer.answer}">
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${!answer.isRightAnswer()}">
-                                            <div class="input-group mb-1">
-                                                <div class="input-group-text">
-                                                    <input class="form-check-input mt-0" disabled type="checkbox" name="opt" value="2" aria-label="Checkbox for following text input">
+                                            </c:if>
+                                            <c:if test="${!answer.isRightAnswer()}">
+                                                <div class="input-group mb-1">
+                                                    <div class="input-group-text">
+                                                        <input class="form-check-input mt-0" disabled type="checkbox" name="opt" value="2" aria-label="Checkbox for following text input">
+                                                    </div>
+                                                    <input type="text" class="form-control"  disabled id="answer2" aria-label="Text input with checkbox" placeholder="${answer.answer}">
                                                 </div>
-                                                <input type="text" class="form-control"  disabled id="answer2" aria-label="Text input with checkbox" placeholder="${answer.answer}">
+                                            </c:if>
+
+                                        </c:forEach>
+                                        <div style="margin: 3px">
+                                            <div class="row">
+                                                <div class="mt-3 text-start col-6">
+                                                    <button class="btn btn-outline-primary" type="button" onclick="location.href='/web-application/testing/admin/editQuestionInfo?id=${question.id}'">Edit</button>
+                                                </div>
+                                                <div class="mt-3 text-end col-6">
+                                                    <button class="btn btn-outline-danger" type="button" onclick="location.href='/web-application/testing/admin/editTestDeleteQuestion?id=${question.id}'" <c:if test="${test.countOfQuestions==1}">disabled</c:if>>Delete</button>
+                                                </div>
                                             </div>
-                                        </c:if>
+                                        </div>
 
-                                    </c:forEach>
 
-                                    <div class="mt-3">
-                                        <button class="btn btn-outline-primary" type="button" onclick="location.href='/web-application/testing/admin/editQuestionInfo?id=${question.id}'">Edit</button>
-                                        <button class="btn btn-outline-danger" type="button" onclick="location.href='/web-application/testing/admin/editTestDeleteQuestion?id=${question.id}'" <c:if test="${test.countOfQuestions==1}">disabled</c:if>>Delete</button>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
 
-                        </tr>
+                            </tr>
 
-                        </c:forEach>
+
                         <tr>
                             <td class="text-center">
                                 <form method="post">
@@ -144,6 +168,7 @@
 
                     </table>
                 </div>
+
             </div>
         </div>
     </c:if>

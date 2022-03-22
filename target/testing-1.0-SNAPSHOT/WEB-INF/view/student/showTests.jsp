@@ -32,7 +32,7 @@
 
 <jsp:include page="/WEB-INF/view/student/navbar.jsp"/>
 <main class="container-fluid bg-dark bg-opacity-25">
-    <form method="get">
+    <form method="post">
         <input hidden name="paginationParameter1" value="${requestScope.paginationParameter1}">
         <input hidden name="paginationParameter2" value="${requestScope.paginationParameter2}">
 
@@ -81,7 +81,7 @@
 
         </div>
     </form>
-    <form method="get" id="pagination_form1">
+    <form method="post" id="pagination_form1">
         <div class="row d-flex justify-content-center table-responsive left-padding right-padding">
             <!--        <div class=" bg-light mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px; width:95%">-->
             <c:set var="tests" value="${requestScope.unsurpassedTestList}"/>

@@ -29,7 +29,7 @@
 <jsp:include page="/WEB-INF/view/admin/navbar.jsp"/>
 
 <main class="container-fluid bg-dark bg-opacity-25">
-    <form method="get">
+    <form method="post">
         <input hidden name="paginationParameter" value="${requestScope.paginationParameter}">
         <div class="row d-flex left-padding ">
 
@@ -75,7 +75,7 @@
             </div>
         </div>
     </form>
-    <form method="get" id="pagination_form">
+    <form method="post" id="pagination_form">
     <div class="table-responsive-md">
         <c:set var="tests" value="${requestScope.testList}"/>
         <c:if var="result" test="${!empty tests}">

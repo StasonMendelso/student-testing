@@ -13,6 +13,8 @@ public class DeleteUserCommand implements Command {
         DaoFactory factory = DaoFactory.getInstance();
         UserDao userDao = factory.createUserDao();
         userDao.delete(Integer.parseInt(request.getParameter("id")));
+        request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
+        request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
         return "redirect:/web-application/testing/admin/showUsers";
     }
 }

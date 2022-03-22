@@ -35,6 +35,12 @@ public class ShowUsersCommand implements Command {
     }
     private int getPageNumber(HttpServletRequest request, String parameterName) {
         int pageNumber;
+        if(request.getSession().getAttribute(parameterName)!=null){
+            pageNumber = Integer.parseInt((String) request.getSession().getAttribute(parameterName));
+            request.getSession().removeAttribute(parameterName);
+            return pageNumber;
+
+        }
         if(request.getParameter(parameterName)!=null){
             if(Integer.parseInt(request.getParameter(parameterName))<=0) {
                 pageNumber=1;
@@ -49,6 +55,12 @@ public class ShowUsersCommand implements Command {
 
     private int getPaginationParameter(HttpServletRequest request, String parameterName) {
         int paginationParameter;
+        if(request.getSession().getAttribute(parameterName)!=null){
+            paginationParameter = Integer.parseInt((String) request.getSession().getAttribute(parameterName));
+            request.getSession().removeAttribute(parameterName);
+            return paginationParameter;
+
+        }
         if(request.getParameter(parameterName)!=null){
             paginationParameter = Integer.parseInt(request.getParameter(parameterName));
         }else{

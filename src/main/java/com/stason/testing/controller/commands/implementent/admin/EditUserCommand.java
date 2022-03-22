@@ -30,6 +30,7 @@ public class EditUserCommand implements Command {
                     user.setName(name);
                 }
                 userDao.update(user);
+
                 return "redirect:/web-application/testing/admin/showUsers";
             }
         }
@@ -40,7 +41,8 @@ public class EditUserCommand implements Command {
             request.getSession().removeAttribute("idUser");
 
             request.setAttribute("user",user);
-
+            request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
+            request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
             return "/WEB-INF/view/admin/editUserInfo.jsp";
         }else{
             return "redirect:/web-application/testing/admin/editUser";

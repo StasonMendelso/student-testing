@@ -45,7 +45,7 @@
                                 </select>
                                          <script>
                                     document.getElementById("pagination").onchange= function () {
-                                        let form = document.getElementById("pagination_form").submit();
+                                        document.getElementById("pagination_form").submit();
                                     }
                                 </script>
                             </span>
@@ -74,10 +74,10 @@
                                 <td>${user.role}</td>
                                 <td>${user.getStringBlocked()}</td>
 
-                                <c:if test="${!user.blocked}"> <td class="text-center align-middle"><button class="btn btn-warning" <c:if test="${user.role=='ADMIN'}">disabled</c:if> class="button-block" type="button" onclick="location.href='/web-application/testing/admin/blockUser?id=${user.id}'">Block</button></td></c:if>
-                                <c:if test="${user.blocked}"> <td class="text-center align-middle"><button class="btn btn-info" type="button" onclick="location.href='/web-application/testing/admin/unblockUser?id=${user.id}'">UnBlock</button></td></c:if>
-                                <td class="text-center align-middle"><button class="btn btn-success"type="button" onclick="location.href='/web-application/testing/admin/editUser?id=${user.id}'">Edit</button></td>
-                                <td class="text-center align-middle"><button class="btn btn-danger" type="button" onclick="location.href='/web-application/testing/admin/deleteUser?id=${user.id}'">Delete</button></td>
+                                <c:if test="${!user.blocked}"> <td class="text-center align-middle"><button class="btn btn-warning" <c:if test="${user.role=='ADMIN'}">disabled</c:if> class="button-block" type="button" onclick="location.href='/web-application/testing/admin/blockUser?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'">Block</button></td></c:if>
+                                <c:if test="${user.blocked}"> <td class="text-center align-middle"><button class="btn btn-info" type="button" onclick="location.href='/web-application/testing/admin/unblockUser?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'">UnBlock</button></td></c:if>
+                                <td class="text-center align-middle"><button class="btn btn-success"type="button" onclick="location.href='/web-application/testing/admin/editUser?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'">Edit</button></td>
+                                <td class="text-center align-middle"><button class="btn btn-danger" type="button" onclick="location.href='/web-application/testing/admin/deleteUser?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'">Delete</button></td>
                             </tr>
 
                         </c:forEach>

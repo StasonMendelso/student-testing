@@ -87,6 +87,12 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
     }
 
     private int getQuestionNumber(HttpServletRequest request) {
+        if(request.getSession().getAttribute("questionNumber")!=null){
+            int questionNumber = (int)request.getSession().getAttribute("questionNumber");
+            request.getSession().removeAttribute("questionNumber");
+            return questionNumber;
+
+        }
         if(request.getParameter("questionNumber")!=null){
             return Integer.parseInt(request.getParameter("questionNumber"));
         }else{

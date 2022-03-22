@@ -66,7 +66,6 @@ public class ControllerServlet extends HttpServlet {
         System.out.println("It is servlet");
         System.out.println(request.getRequestURI());
 
-
             String uri = request.getRequestURI();
         System.out.println("IT IS OLD URI"+uri);
             uri = uri.replaceAll(".*/testing", "");
