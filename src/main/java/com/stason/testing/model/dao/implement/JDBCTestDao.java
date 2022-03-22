@@ -18,6 +18,152 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
+    public int countTestByDiscipline(String discipline) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(1) FROM onlinetesting.tests WHERE tests.nameOfDiscipline=?");
+            preparedStatement.setString(1,discipline);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("COUNT(1)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Test> findAndPaginateAndSortUnpassedTests(int index, int paginationParameter, String orderBy, String order) {
+        List<Test> list = new LinkedList<>();
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests ORDER BY " + orderBy + " " + order + " limit ?,?;");
+            preparedStatement.setInt(1,index);
+            preparedStatement.setInt(2,paginationParameter);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Test test = builtTest(resultSet);
+                list.add(test);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Test> findAndPaginateAndSortUnpassedTests(int index, int paginationParameter, String orderBy, String order, String discipline) {
+        List<Test> list = new LinkedList<>();
+        try {
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests WHERE tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;");
+            preparedStatement.setString(1,discipline);
+            preparedStatement.setInt(2,index);
+            preparedStatement.setInt(3,paginationParameter);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Test test = builtTest(resultSet);
+                list.add(test);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public int countAllTest() {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(1) FROM onlinetesting.tests");
+            if(resultSet.next()){
+                return resultSet.getInt("COUNT(1)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Test> findAndPaginateAllTests(int index, int paginationParameter) {
+        List<Test> list = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.`tests` limit ?,?;");
+            preparedStatement.setInt(1,index);
+            preparedStatement.setInt(2,paginationParameter);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Test test = builtTest(resultSet);
+                list.add(test);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public int countPaginateAndSortUnpassedTests(int userId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(" SELECT COUNT(1) FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL;");
+            preparedStatement.setInt(1,userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("COUNT(1)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int countPaginateAndSortUnpassedTests(int userId, String discipline) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(" SELECT COUNT(1) FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id AND tests.nameOfDiscipline=? IS NULL;");
+            preparedStatement.setInt(1,userId);
+            preparedStatement.setString(2,discipline);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("COUNT(1)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<String> findAllDisciplines(){
+        List<String> disciplinesList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT DISTINCT onlinetesting.tests.nameOfDiscipline FROM onlinetesting.tests;");
+            while(resultSet.next()){
+                disciplinesList.add(resultSet.getString("nameOfDiscipline"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return disciplinesList;
+    }
+
+    @Override
+    public int countUnpassedTestByUser(int userId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(" SELECT COUNT(1) FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL;");
+            preparedStatement.setInt(1,userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("COUNT(1)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
     public int countPassedTestByUser(int userId) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(1) FROM onlinetesting.`passedtests` WHERE user_id=?");
@@ -30,6 +176,50 @@ public class JDBCTestDao implements TestDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public List<Test> findAndPaginateAndSortUnpassedTests(int userId, int index, int paginationParameter, String orderBy, String order) {
+        List<Test> list = new LinkedList<>();
+        try {
+            PreparedStatement preparedStatement;
+
+                preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL ORDER BY " + orderBy + " " + order + " limit ?,?;");
+
+            preparedStatement.setInt(1,userId);
+
+            preparedStatement.setInt(2,index);
+            preparedStatement.setInt(3,paginationParameter);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Test test = builtTest(resultSet);
+                list.add(test);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Test> findAndPaginateAndSortUnpassedTests(int userId, int index, int paginationParameter, String orderBy, String order, String discipline) {
+        List<Test> list = new LinkedList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id  IS NULL AND tests.nameOfDiscipline=? ORDER BY " + orderBy +" " + order + " limit ?,?;");
+
+            preparedStatement.setInt(1,userId);
+            preparedStatement.setString(2,discipline);
+            preparedStatement.setInt(3,index);
+            preparedStatement.setInt(4,paginationParameter);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Test test = builtTest(resultSet);
+                list.add(test);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override
@@ -50,7 +240,24 @@ public class JDBCTestDao implements TestDao {
         }
         return list;
     }
-
+    @Override
+    public List<Test> findAndPaginateUnsurpassedTests(int userId, int index, int paginationParameter) {
+        List<Test> list = new LinkedList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL limit ?,?;");
+            preparedStatement.setInt(1,userId);
+            preparedStatement.setInt(2,index);
+            preparedStatement.setInt(3,paginationParameter);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Test test = builtTest(resultSet);
+                list.add(test);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     @Override
     public void addPassedTest(int userId, int testId, double mark) {
         try {
@@ -82,8 +289,10 @@ public class JDBCTestDao implements TestDao {
         return 0;
     }
 
+
+
     @Override
-    public List<Test> findUnsurpassedTests(int userId) {
+    public List<Test> findUnPassedTests(int userId) {
         List<Test> list = new LinkedList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL");

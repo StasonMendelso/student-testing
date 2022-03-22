@@ -54,9 +54,9 @@
                         <span class="col-10"></span>
                         <span class="col-1" style="padding-right: 25px">
                         <select class="form-select" name="paginationParameter" id="pagination">
-                            <option value="5" <c:if test="${paginationParameter==5}">selected</c:if> >5</option>
-                            <option value="10" <c:if test="${paginationParameter==10}">selected</c:if> >10</option>
-                            <option value="15" <c:if test="${paginationParameter==15}">selected</c:if> >15</option>
+                            <option value="5" <c:if test="${requestScope.paginationParameter==5}">selected</c:if> >5</option>
+                            <option value="10" <c:if test="${requestScope.paginationParameter==10}">selected</c:if> >10</option>
+                            <option value="15" <c:if test="${requestScope.paginationParameter==15}">selected</c:if> >15</option>
                         </select>
                     </span>
 
