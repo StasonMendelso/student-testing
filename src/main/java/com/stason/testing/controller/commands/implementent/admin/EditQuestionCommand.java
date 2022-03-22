@@ -59,7 +59,7 @@ public class EditQuestionCommand implements Command {
                 test.setQuestionById(question, question.getId());
                 request.getSession().removeAttribute("editedQuestion");
                 request.getSession().setAttribute("editedTest", test);
-                return "redirect:/web-application/testing/admin/editTest?id=" + test.getId();
+                return "redirect:/web-application/testing/admin/editTest?id=" + test.getId() + "&questionNumber="+question.getQuestionNumber();
             }
         }
         //Видалити відповідь

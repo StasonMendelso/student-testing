@@ -31,7 +31,7 @@
         <c:if var="result" test="${!empty userList}">
         <div class="pt-3 table-responsive-md">
             <c:set var="userList" value="${requestScope.userList}"/>
-            <form method="get" id="pagination_form">
+            <form method="post" id="pagination_form">
                 <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
                     <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                         <div class="row align-items-center">

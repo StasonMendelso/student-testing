@@ -68,8 +68,14 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
             }else{
                 if(((Test)request.getSession().getAttribute("editedTest")).getId()!=id){
                     request.getSession().setAttribute("editedTest", test);
+
                 }
             }
+        }
+        int currentQuestionNumber = getQuestionNumber(request);
+        if(request.getSession().getAttribute("editedTest")!=null){
+            request.setAttribute("currentQuestion", ((Test) request.getSession().getAttribute("editedTest")).getQuestion(currentQuestionNumber));
+            request.setAttribute("questionPageNumber", currentQuestionNumber);
         }
 
         if(request.getRequestURI().contains("admin/editTest")){
@@ -77,6 +83,14 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
             return "/WEB-INF/view/admin/editTest.jsp";
         }else {
             return "redirect:/web-application/testing/admin/editTest";
+        }
+    }
+
+    private int getQuestionNumber(HttpServletRequest request) {
+        if(request.getParameter("questionNumber")!=null){
+            return Integer.parseInt(request.getParameter("questionNumber"));
+        }else{
+            return 1;
         }
     }
 }
