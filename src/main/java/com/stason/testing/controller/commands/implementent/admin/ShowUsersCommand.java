@@ -28,6 +28,12 @@ public class ShowUsersCommand implements Command {
             request.setAttribute("paginationParameter",paginationParameter);
             request.setAttribute("pageNumber",pageNumber);
             request.setAttribute("userList", list);
+
+            if(request.getSession().getAttribute("error")!=null){
+                request.setAttribute("error",request.getSession().getAttribute("error"));
+                request.getSession().removeAttribute("error");
+            }
+
             return "/WEB-INF/view/admin/showUsers.jsp";
         }else{
             return showUsersUrl;

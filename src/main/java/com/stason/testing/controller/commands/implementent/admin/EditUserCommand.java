@@ -18,20 +18,39 @@ public class EditUserCommand implements Command {
 
         if(request.getParameter("surname")!=null && request.getParameter("name")!=null) {
             if (request.getRequestURI().contains("/admin/editUser") && (!request.getParameter("surname").isEmpty() || !request.getParameter("name").isEmpty())) {
+                boolean flag = false;
+
+                if(request.getParameter("secretPassword")==null){
+                    return "/WEB-INF/view/admin/editUserInfo.jsp";
+                }else{
+                    String secretPassword =request.getParameter("secretPassword");
+                    if(secretPassword.equals("save")){ // todo добавити константний клас з паролями
+                        flag=true;
+                    }
+                }
                 DaoFactory factory = DaoFactory.getInstance();
                 UserDao userDao = factory.createUserDao();
-                User user = userDao.findById(Integer.parseInt(request.getParameter("id")));
-                if (!request.getParameter("surname").isEmpty()) {
-                    String surname = EncodingConverter.convertFromISOtoUTF8(request.getParameter("surname"));
-                    user.setSurname(surname);
-                }
-                if (!request.getParameter("name").isEmpty()) {
-                    String name = EncodingConverter.convertFromISOtoUTF8(request.getParameter("name"));
-                    user.setName(name);
-                }
-                userDao.update(user);
+                if(flag) {
 
-                return "redirect:/web-application/testing/admin/showUsers";
+                    User user = userDao.findById(Integer.parseInt(request.getParameter("id")));
+                    if (!request.getParameter("surname").isEmpty()) {
+                        String surname = EncodingConverter.convertFromISOtoUTF8(request.getParameter("surname"));
+                        user.setSurname(surname);
+                    }
+                    if (!request.getParameter("name").isEmpty()) {
+                        String name = EncodingConverter.convertFromISOtoUTF8(request.getParameter("name"));
+                        user.setName(name);
+                    }
+
+                    userDao.update(user);
+
+                    return "redirect:/web-application/testing/admin/showUsers";
+                }else{
+                    User user = userDao.findById(Integer.parseInt(request.getParameter("id")));
+                    request.setAttribute("user",user);
+                    request.setAttribute("error", "Секретний код не співпадає");
+                    return "/WEB-INF/view/admin/editUserInfo.jsp";
+                }
             }
         }
         if(request.getRequestURI().contains("/admin/editUser") && !request.getRequestURI().contains("?")){
@@ -41,7 +60,9 @@ public class EditUserCommand implements Command {
             request.getSession().removeAttribute("idUser");
 
             request.setAttribute("user",user);
+            if(request.getParameter("pageNumber")!=null)
             request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
+            if(request.getParameter("paginationParameter")!=null)
             request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
             return "/WEB-INF/view/admin/editUserInfo.jsp";
         }else{
