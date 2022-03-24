@@ -14,4 +14,9 @@ public interface UserDao extends GenericDao<User> {
     List<User> findAndPaginateAllUsers(int index, int paginationParameter);
 
     int countAllUsers();
+
+    List<Integer> findIdPassedTestsByUserId(int id);
+
+    List<Integer> findIdBlockedUsers();
+    void deletePassedTestByUserId(int id);
 }

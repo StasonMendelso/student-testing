@@ -1,5 +1,7 @@
 package com.stason.testing.model.entity;
 
+import java.util.List;
+
 public class User {
     private int id;
     private String login;
@@ -8,7 +10,7 @@ public class User {
     private String surname;
     private Role role;
     private boolean blocked;
-
+    private List<Integer> idPassedTestList;
     @Override
     public String toString() {
         return "User{" +
@@ -79,5 +81,13 @@ public class User {
     public String getStringBlocked(){return blocked? "Так":"Ні";}
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
+    }
+
+    public List<Integer> getIdPassedTestList() {
+        return idPassedTestList;
+    }
+
+    public void setIdPassedTestList(List<Integer> idPassedTestList) {
+        this.idPassedTestList = idPassedTestList;
     }
 }

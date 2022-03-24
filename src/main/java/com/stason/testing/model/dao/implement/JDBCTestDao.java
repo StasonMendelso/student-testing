@@ -72,6 +72,20 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
+    public void updatePassedTest(int userId, int testId, double mark) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("update onlinetesting.passedtests SET mark=? WHERE user_id=? AND test_id=?;");
+            preparedStatement.setDouble(1,mark);
+            preparedStatement.setInt(2,userId);
+            preparedStatement.setInt(3,testId);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public int countAllTest() {
         try {
             Statement statement = connection.createStatement();
@@ -233,6 +247,7 @@ public class JDBCTestDao implements TestDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 Test test = builtTest(resultSet);
+                test.setMark(resultSet.getDouble("mark"));
                 list.add(test);
             }
         } catch (SQLException e) {

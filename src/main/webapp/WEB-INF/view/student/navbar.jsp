@@ -5,9 +5,15 @@
   Time: 13:12
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="messages"/>
+<c:if test="${not empty sessionScope.test}">
+    <script><%@include file="../../../js/timerForNavbar.js"%></script>
+    </c:if>
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="box-shadow: 0 4px 16px #4c3c3c; ">
     <div class="container-fluid row">
         <div class="col-1">
@@ -22,7 +28,7 @@
         <div class="col-1">
             <span class="text-white-50">Role:${sessionScope.role}</span>
         </div>
-        <div class="col-8">
+        <div class="col-3">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/web-application/testing/student/info">Info</a>
@@ -32,10 +38,29 @@
                 </li>
             </ul>
         </div>
+        <div class="col-2">
+            <c:set var="url" value="${(fn:replace(pageContext.request.requestURL, 0, pageContext.request.contextPath))}"/>
+            <c:if test="${!url.contains('doTest')}">
+                <c:if test="${not empty sessionScope.test}">
+                    <ul class="navbar-nav">
+                        <li class="nav-item bg-success w-100 text-center btn p-1">
+                            <a class="nav-link text-warning bold font-monospace fs-5" href="/web-application/testing/student/test?id=${sessionScope.test.id}">BACK TO TEST  <span class="timer" id="timer"></span></a>
+                        </li>
+                    </ul>
+                    <script>
+                        startTimerForNavbar(${sessionScope.outDateMilliseconds},${sessionScope.test.id});
+                    </script>
+                </c:if>
+            </c:if>
+        </div>
+        <div class="col-3">
+
+        </div>
+
         <div class="col-1">
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link" href="/web-application/testing/logout">Log out</a>
+                    <a class="nav-link <c:if test="${not empty sessionScope.test}">disabled</c:if>" href="/web-application/testing/logout">Log out</a>
                 </li>
             </ul>
         </div>

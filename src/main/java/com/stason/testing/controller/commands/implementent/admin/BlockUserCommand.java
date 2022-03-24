@@ -6,6 +6,7 @@ import com.stason.testing.model.dao.UserDao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 public class BlockUserCommand implements Command {
     @Override
@@ -15,7 +16,10 @@ public class BlockUserCommand implements Command {
         userDao.block(Integer.parseInt(request.getParameter("id")));
         request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
         request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
-
+        List<Integer> blockedList = (List<Integer>)request.getServletContext().getAttribute("blockedUsers");
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        blockedList.add(id);
+        request.getServletContext().setAttribute("blockedUsers",blockedList);
         return "redirect:/web-application/testing/admin/showUsers";
     }
 }

@@ -18,6 +18,50 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
+    public List<Integer> findIdBlockedUsers() {
+        List<Integer> list = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT id FROM onlinetesting.users WHERE blocked=true");
+            while(resultSet.next()){
+                list.add(resultSet.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public void deletePassedTestByUserId(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE user_id=?");
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public List<Integer> findIdPassedTestsByUserId(int id) {
+        List<Integer> list = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT onlinetesting.passedtests.test_id FROM onlinetesting.passedtests WHERE user_id=?;");
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                list.add(resultSet.getInt("test_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
     public List<User> findAndPaginateAllUsers(int index, int paginationParameter) {
         List<User> list = new ArrayList<>();
         try {

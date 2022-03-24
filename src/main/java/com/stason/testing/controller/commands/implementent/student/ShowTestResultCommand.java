@@ -17,6 +17,7 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
         if(request.getRequestURI().contains("/student/result")) {
             if(request.getSession().getAttribute("test")!=null){
                 Test test = (Test) request.getSession().getAttribute("test");
+                System.out.println(test);
                 int countOfQuestions = test.getCountOfQuestions();
                 int countOfRightAnswers = 0;
 
@@ -38,7 +39,8 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
                 int userId = (int) request.getSession().getAttribute("id");
                 DaoFactory factory = DaoFactory.getInstance();
                 TestDao testDao = factory.createTestDao();
-                testDao.addPassedTest(userId, test.getId(), mark);
+//                testDao.addPassedTest(userId, test.getId(), mark);
+                testDao.updatePassedTest(userId,test.getId(),mark);
                 request.setAttribute("countOfRightAnswers",countOfRightAnswers);
                 request.setAttribute("mark",mark);
                 request.setAttribute("test",test);

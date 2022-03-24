@@ -1,5 +1,6 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
+import com.mysql.cj.Session;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.ValidatorService;
@@ -9,11 +10,14 @@ import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class LoginCommand implements Command {
+
+
     @Override
     public String execute(HttpServletRequest request) {
 
@@ -73,13 +77,17 @@ public class LoginCommand implements Command {
                 loggedUsers.add(login);
                 request.getServletContext().setAttribute("loggedUsers", loggedUsers);
 
-                    request.getSession().setAttribute("role", user.getRole());
-                    request.getSession().setAttribute("login", user.getLogin());
-                    request.getSession().setAttribute("name", user.getName());
-                    request.getSession().setAttribute("surname", user.getSurname());
-                    request.getSession().setAttribute("id", user.getId());
-                    //Временно
-                    request.getSession().setAttribute("password", password);
+                 HttpSession session=request.getSession();
+                    session.setAttribute("role", user.getRole());
+                    session.setAttribute("login", user.getLogin());
+                    session.setAttribute("name", user.getName());
+                    session.setAttribute("surname", user.getSurname());
+                    session.setAttribute("id", user.getId());
+                    List<Integer> idPassedTestsList = userDao.findIdPassedTestsByUserId(user.getId());
+                    user.setIdPassedTestList(idPassedTestsList);
+                    session.setAttribute("idOfPassedTests", user.getIdPassedTestList());
+
+
 
                     if (user.getRole().equals(Role.ADMIN.name())) return adminUrl;
                     if (user.getRole().equals(Role.STUDENT.name())) return studentUrl;

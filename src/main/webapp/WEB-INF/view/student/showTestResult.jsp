@@ -46,7 +46,7 @@
 
                 <div class="col-12">
                     <c:set var="test" value="${requestScope.test}"/>
-                    <p>Назва теста: <<${test.name}>></p>
+                    <p>Назва теста: ${test.name}</p>
                     <p>Дисципліна: ${test.nameOfDiscipline}</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated fw-bold fs-6" role="progressbar" aria-valuenow="${requestScope.mark}" aria-valuemin="0" aria-valuemax="100" style="width: ${requestScope.mark}%">${requestScope.mark}%</div>

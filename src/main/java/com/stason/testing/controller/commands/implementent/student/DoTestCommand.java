@@ -20,8 +20,6 @@ public class DoTestCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         System.out.println("-------------------");
-        System.out.println(request.getParameter("leftTime"));
-        System.out.println(request.getSession().getAttribute("timeLeft"));
         System.out.println(request.getParameter("currentClientTime"));
         System.out.println("-------------------");
 
@@ -30,12 +28,33 @@ public class DoTestCommand implements Command {
 
         //Для инициализации
         if(request.getParameter("id")!=null){
+
             testId = Integer.parseInt(request.getParameter("id"));
+        }
+        //якщо тест не налл і айді зійшлось, то продовжуємо проходження теста
+        if(request.getSession().getAttribute("test")!=null && request.getParameter("id")!=null){
+            Test currentTest = (Test) request.getSession().getAttribute("test");
+            if(testId==currentTest.getId()){
+                return "redirect:/web-application/testing/student/test?question=1";
+            }else {
+                return "redirect:/web-application/testing/student/tests";
+            }
         }
         //Для инициализации
         if(request.getSession().getAttribute("test")==null && request.getParameter("id")!=null  && request.getParameter("currentClientTime")!=null){
+            //start-> занести в бд що тест пройдено на 0%, занести в сесію, що тест вже пройден.
+            List<Integer> idPassedTestsList = (List<Integer>) request.getSession().getAttribute("idOfPassedTests");
+            for(Integer id : idPassedTestsList){
+                if(id == testId){
+                    return "redirect:/web-application/testing/student/tests";
+                }
+            }
+            int userId = (int) request.getSession().getAttribute("id");
             DaoFactory factory = DaoFactory.getInstance();
             TestDao testDao = factory.createTestDao();
+            testDao.addPassedTest(userId,testId,0);
+            idPassedTestsList.add(testId);
+            request.getSession().setAttribute("idOfPassedTests",idPassedTestsList);
             QuestionDao questionDao = factory.createQuestionDao();
             AnswerDao answerDao = factory.createAnswerDao();
             Test test = testDao.findById(testId);

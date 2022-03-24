@@ -6,6 +6,7 @@ import com.stason.testing.controller.services.PaginationService;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.TestDao;
+import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
@@ -125,7 +126,9 @@ public class ShowTestsCommand implements Command {
             }
             DaoFactory factory = DaoFactory.getInstance();
             TestDao testDao = factory.createTestDao();
+            UserDao userDao = factory.createUserDao();
             List<String> disciplinesList = testDao.findAllDisciplines();
+            request.getSession().setAttribute("idOfPassedTests",userDao.findIdPassedTestsByUserId(userId));
             request.setAttribute("disciplinesList", disciplinesList);
 
             request.setAttribute("unsurpassedTestList", unsurpassedTests);

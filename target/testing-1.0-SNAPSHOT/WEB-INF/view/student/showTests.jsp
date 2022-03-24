@@ -140,7 +140,7 @@
                                     <td>${test.timeMinutes}</td>
                                     <td>${test.countOfQuestions}</td>
 
-                                    <td class="text-center"><a class="btn btn-success" onclick="sendClientTime(${test.id})" href="#">Start</a></td>
+                                    <td class="text-center"><a class="btn btn-success  <c:if test="${not empty sessionScope.test}">disabled</c:if>" onclick="sendClientTime(${test.id})" href="#">Start</a></td>
                                 </tr>
 
                             </c:forEach>

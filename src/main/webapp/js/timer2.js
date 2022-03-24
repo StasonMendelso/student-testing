@@ -44,7 +44,7 @@ function timer(outDate){
    if(deltaTime<=1000) {
       clearInterval(intervalId);
       let form = document.getElementById("UserAnswers");
-      form.action="";
+      form.action="/web-application/testing/student/test";
       let finishInput = document.createElement("input");
       finishInput.setAttribute("name","finish");
       finishInput.setAttribute("value","finish");

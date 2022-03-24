@@ -7,6 +7,7 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebFilter(filterName = "AccessingFilter")
 public class AccessingFilter implements Filter {
@@ -25,6 +26,23 @@ public class AccessingFilter implements Filter {
         String URI = req.getRequestURI();
         System.out.println(((HttpServletRequest) request).getRequestURL());
         if(URI.contains("/student") && role.equals(Role.STUDENT.name())) {
+            List<Integer> blockedList = (List<Integer>)req.getServletContext().getAttribute("blockedUsers");
+            int userId = (int) req.getSession().getAttribute("id");
+            for(int blockedId : blockedList){
+                if(blockedId==userId) {
+                    res.sendRedirect("/web-application/testing/login");
+                    return;
+                }
+            }
+            List<Integer> logoutUsersId = (List<Integer>) req.getServletContext().getAttribute("logoutUsersId");
+            for(int logoutId : logoutUsersId){
+                if(logoutId==userId) {
+                    logoutUsersId.remove((Integer)logoutId);
+                    req.getServletContext().setAttribute("logoutUsersId",logoutUsersId);
+                    res.sendRedirect("/web-application/testing/login");
+                    return;
+                }
+            }
             chain.doFilter(request, response);
         }else if(URI.contains("/admin") && role.equals(Role.ADMIN.name())) {
             chain.doFilter(request, response);

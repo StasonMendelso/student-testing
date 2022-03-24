@@ -34,4 +34,6 @@ public interface TestDao extends GenericDao<Test>{
     List<Test> findAndPaginateAndSortUnpassedTests(int index, int paginationParameter, String orderBy, String order,String discipline);
 
     int countTestByDiscipline(String discipline);
+
+    void updatePassedTest(int userId, int id, double mark);
 }
