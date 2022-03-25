@@ -48,9 +48,9 @@
                     <div class="mb-3 mt-3 d-flex ">
                         <label class="ms-auto align-self-center" for="difficulty" >Difficulty</label>
                         <select id="difficulty" name="difficulty" class="ms-2 form-select flex-grow-1" aria-label="Default select example">
-                            <option value="Easy" selected>Easy</option>
-                            <option value="Medium">Medium</option>
-                            <option value="Hard">Hard</option>
+                            <option value="1" selected>Easy</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Hard</option>
                         </select>
                     </div>
                     <div class="mb-1 mt-3 text-center">

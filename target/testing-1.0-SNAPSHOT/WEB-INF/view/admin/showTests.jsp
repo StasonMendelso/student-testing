@@ -195,9 +195,12 @@
 
     </div>
     <c:if test="${empty tests}">
-        <div class="w-50 bg-dark  mb-1 d-flex align-items-center " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px; height: 5%">
-            <span class="text-white ms-3  ">No tests have been found :(</span>
-        </div>
+
+       <div class="w-50 m-auto bg-dark  mt-3 d-flex align-items-center" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px; height: 5%">
+           <span class="text-white ms-3  ">No tests have been found :(</span>
+       </div>
+
+
     </c:if>
 </main>
 

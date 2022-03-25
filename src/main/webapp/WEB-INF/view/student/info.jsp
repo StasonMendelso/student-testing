@@ -77,7 +77,7 @@
                     <th>Difficulty</th>
                     <th>Duration (Minutes)</th>
                     <th>Questions</th>
-                    <th colspan="2">Mark</th>
+                    <th>Mark</th>
 
                 </tr>
                 </thead>

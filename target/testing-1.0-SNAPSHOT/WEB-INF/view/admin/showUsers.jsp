@@ -66,7 +66,7 @@
                         <th>Surname</th>
                         <th>Role</th>
                         <th>Blocked</th>
-                        <th colspan="3">Действия Админа</th>
+                        <th colspan="4">Действия Админа</th>
                     </tr>
                     </thead>
                     <tbody class="bg-light ">
@@ -80,10 +80,10 @@
                                 <td>${user.role}</td>
                                 <td>${user.getStringBlocked()}</td>
 
-                                <c:if test="${!user.blocked}"> <td class="text-center align-middle"><button class="btn btn-warning" <c:if test="${user.role=='ADMIN'}">disabled</c:if> class="button-block" data-bs-toggle="modal" data-bs-target="#blockModal${i}" type="button" >Block</button></td></c:if>
-
-                                <c:if test="${user.blocked}"> <td class="text-center align-middle"><button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#unblockModal${i}">UnBlock</button></td></c:if>
+                                <td class="text-center align-middle"><button class="btn btn-primary"type="button" <c:if test="${user.role=='ADMIN'}">disabled</c:if> onclick="location.href='/web-application/testing/admin/userTests?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'">Tests</button></td>
                                 <td class="text-center align-middle"><button class="btn btn-success"type="button" onclick="location.href='/web-application/testing/admin/editUser?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'">Edit</button></td>
+                                <c:if test="${!user.blocked}"> <td class="text-center align-middle"><button class="btn btn-warning" <c:if test="${user.role=='ADMIN'}">disabled</c:if> class="button-block" data-bs-toggle="modal" data-bs-target="#blockModal${i}" type="button" >Block</button></td></c:if>
+                                <c:if test="${user.blocked}"> <td class="text-center align-middle"><button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#unblockModal${i}">UnBlock</button></td></c:if>
                                 <td class="text-center align-middle"><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal${i}">Delete</button></td>
 
                                 <!-- Block Modal -->

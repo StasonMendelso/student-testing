@@ -34,7 +34,7 @@ public class DeleteUserCommand implements Command {
                     }
 
                 }
-                userDao.deletePassedTestByUserId(id);
+                userDao.deletePassedTestsByUserId(id);
                 userDao.delete(id);
                 request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
                 request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));

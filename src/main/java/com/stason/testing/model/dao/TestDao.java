@@ -36,4 +36,5 @@ public interface TestDao extends GenericDao<Test>{
     int countTestByDiscipline(String discipline);
 
     void updatePassedTest(int userId, int id, double mark);
+    void deletePassedTestById(int testId);
 }

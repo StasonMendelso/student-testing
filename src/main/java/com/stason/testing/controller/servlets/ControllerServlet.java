@@ -40,6 +40,8 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/admin/addQuestion", new AddQuestionCommand());
         commands.put("/admin/createTest", new CreateTestCommand());
         commands.put("/admin/createQuestion", new CreateQuestionCommand());
+        commands.put("/admin/userTests", new ShowUsersTestsCommand());
+        commands.put("/admin/deletePassedTest", new DeletePassedTestByUserCommand());
         commands.put("/admin/blockUser", new BlockUserCommand());
         commands.put("/admin/unblockUser", new UnblockUserCommand());
         commands.put("/admin/deleteUser", new DeleteUserCommand());

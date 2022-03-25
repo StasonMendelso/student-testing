@@ -33,7 +33,7 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public void deletePassedTestByUserId(int id) {
+    public void deletePassedTestsByUserId(int id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE user_id=?");
             preparedStatement.setInt(1,id);

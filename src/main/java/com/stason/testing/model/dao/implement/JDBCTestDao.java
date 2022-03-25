@@ -18,6 +18,17 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
+    public void deletePassedTestById(int testId) {
+        try {
+            PreparedStatement preparedStatement =connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE test_id=?");
+            preparedStatement.setInt(1,testId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public int countTestByDiscipline(String discipline) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(1) FROM onlinetesting.tests WHERE tests.nameOfDiscipline=?");

@@ -79,7 +79,7 @@
 
                             </tr>
                             <tr class="text-center">
-                                <td colspan="2"><input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" style="width: 25%" value="Save"></td>
+                                <td colspan="2"><input type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" style="width: 25%" value="Save"></td>
                             </tr>
                             </tbody>
                             <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0 0 30px 30px;">${requestScope.error}</caption>
@@ -87,7 +87,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete user</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Save edited information</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <form method="post" action="/web-application/testing/admin/editUser">
@@ -98,7 +98,7 @@
                                             <div class="modal-footer">
 
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button  class="btn btn-primary" >Save</button>
+                                                <button  class="btn btn-outline-success" >Save</button>
                                             </div>
                                         </form>
                                     </div>
