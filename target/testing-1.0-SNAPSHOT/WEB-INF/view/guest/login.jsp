@@ -1,4 +1,4 @@
-
+<%@ page import="com.stason.testing.controller.utils.Constants" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -21,6 +21,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- reCAPTCHA with Auto language -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body >
 <%@include file="navbar.jsp"%>
@@ -43,6 +45,7 @@
                 </c:if>
 
             </div>
+
             <form name="loginform" action="${pageContext.request.contextPath}/testing/login" method="post" accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="email" class="form-control" id="login" name="login" placeholder="name@example.com">
@@ -52,14 +55,28 @@
                     <input type="password" class="form-control"  id="password" name="password" placeholder="pass">
                     <label for="password" >Password</label>
                 </div>
-                <div class="mb-3 text-center">
+                <div class="mb-1 text-center">
                     <a class="nav-link" href="#">Forgot password?</a>
                 </div>
-                <div class="mb-3 text-center">
-                    <fmt:message key="login.button.submit" var="buttonValue" />
-                    <button type="submit" name="submit" value="${buttonValue}" class="btn btn-primary">Log in</button>
+                <!-- reCAPTCHA -->
+                <div class="mb-2 d-flex justify-content-center">
+                    <div class="g-recaptcha"
+                         data-sitekey="<%=Constants.SITE_KEY%>"
+                         data-callback="callback">
+                    </div>
                 </div>
 
+                <div class="mb-2 text-center">
+                    <fmt:message key="login.button.submit" var="buttonValue" />
+
+                    <input id="submit-button" disabled type="submit" name="submit" value="${buttonValue}" class="btn btn-primary"/>
+                </div>
+                <script type="text/javascript">
+                    function callback() {
+                        const submitButton = document.getElementById("submit-button");
+                        submitButton.removeAttribute("disabled");
+                    }
+                </script>
             </form>
         </div>
 

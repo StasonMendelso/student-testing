@@ -4,6 +4,8 @@ import com.mysql.cj.Session;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.ValidatorService;
+import com.stason.testing.controller.utils.VerifyRecaptcha;
+
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;
@@ -11,6 +13,7 @@ import com.stason.testing.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -37,6 +40,21 @@ public class LoginCommand implements Command {
             }
             if (!ValidatorService.validatePassword(password)) {
                 errors.add("Невалідний пароль");//Todo сделать локализацию
+            }
+            //CAPTCHA
+            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+
+            System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
+
+            // Verify CAPTCHA.
+            boolean valid = false;
+            try {
+                valid = VerifyRecaptcha.verify(gRecaptchaResponse);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (!valid) {
+                errors.add("Captcha invalid!");
             }
             if (errors.size() > 0) {
                 request.setAttribute("errorsList", errors);

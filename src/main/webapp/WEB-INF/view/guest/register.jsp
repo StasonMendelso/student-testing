@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.stason.testing.controller.utils.Constants" %><%--
   Created by IntelliJ IDEA.
   User: STASON
   Date: 16.02.2022
@@ -28,6 +28,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- reCAPTCHA with Auto language -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body >
 <%@include file="navbar.jsp"%>
@@ -70,12 +72,22 @@
                     <input type="password" class="form-control" id="repeated-password" name="repeated-password" placeholder="pass">
                     <label for="repeated-password" >Repeated Password</label>
                 </div>
-
+                <div class="mb-2 d-flex justify-content-center">
+                    <div class="g-recaptcha"
+                         data-sitekey="<%=Constants.SITE_KEY%>"
+                         data-callback="callback">
+                    </div>
+                </div>
                 <div class="mb-3 text-center">
                     <fmt:message key="register.button.submit" var="buttonValue" />
-                    <button type="submit" name="submit"  class="btn btn-primary" >${buttonValue}</button>
+                    <button type="submit" name="submit" disabled id="submit-button" class="btn btn-primary" >${buttonValue}</button>
                 </div>
-
+                <script type="text/javascript">
+                    function callback() {
+                        const submitButton = document.getElementById("submit-button");
+                        submitButton.removeAttribute("disabled");
+                    }
+                </script>
             </form>
         </div>
 

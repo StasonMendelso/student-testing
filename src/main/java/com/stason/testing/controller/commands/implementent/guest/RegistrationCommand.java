@@ -3,12 +3,14 @@ package com.stason.testing.controller.commands.implementent.guest;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.ValidatorService;
+import com.stason.testing.controller.utils.VerifyRecaptcha;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,21 @@ public class RegistrationCommand implements Command {
         if(!ValidatorService.isPasswordRepeated(password,repeatedPassword)){
             errors.add("Паролі не співпадають");
         }
+            //CAPTCHA
+            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+
+            System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
+
+            // Verify CAPTCHA.
+            boolean valid = false;
+            try {
+                valid = VerifyRecaptcha.verify(gRecaptchaResponse);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (!valid) {
+                errors.add("Captcha invalid!");
+            }
         if(errors.size()!=0){
             System.out.println(errors);
             request.setAttribute("errorsList", errors);
