@@ -24,6 +24,11 @@ public class ShowUsersCommand implements Command {
             List<User> list = PaginationService.paginateAllUsers(paginationParameter,pageNumber);
             countOfPageNumberButtons = PaginationService.countButtonsForPaginationAllUsers(paginationParameter);
 
+            if(list.isEmpty() && pageNumber>1){
+                pageNumber--;
+                list = PaginationService.paginateAllUsers(paginationParameter,pageNumber);
+            }
+
             request.setAttribute("countOfPageNumberButtons",countOfPageNumberButtons);
             request.setAttribute("paginationParameter",paginationParameter);
             request.setAttribute("pageNumber",pageNumber);

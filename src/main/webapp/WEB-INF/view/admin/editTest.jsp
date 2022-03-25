@@ -157,9 +157,9 @@
                         </tr>
                         <tr>
                             <td class="text-center">
-                                <form method="post">
-                                    <button type="submit" class="btn btn-success" name="Save" value="Save">Save Edited test</button>
-                                </form>
+
+                                    <button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#saveModal">Save Edited test</button>
+                                <c:if test="${not empty error}"><br><span class="mt-1">${error}</span>  </c:if>
                             </td>
                         </tr>
 
@@ -167,6 +167,32 @@
                         <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0px 0px 30px 30px;"></caption>
 
                     </table>
+                    <!-- Delete Modal -->
+                    <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Save edited Test</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form method="post" action="/web-application/testing/admin/editTest">
+                                    <div class="modal-body">
+                                        <label for="secretPassword" class="form-label">Уведіть ключ безпеки:</label>
+                                        <input required id="secretPassword" type="password" name="secretPassword" class="form-control">
+                                        <input hidden type="text" name="pageNumber" value="${requestScope.pageNumber}">
+                                        <input hidden type="text" name="paginationParameter" value="${requestScope.paginationParameter}">
+                                        <input hidden name="id" value="${test.id}">
+                                        <input hidden name="Save" value="Save">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button  class="btn btn-outline-danger" >Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                        <%-- Delete modal--%>
                 </div>
 
             </div>

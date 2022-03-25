@@ -40,6 +40,8 @@ public class DeleteUserCommand implements Command {
                 request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
                 return "redirect:/web-application/testing/admin/showUsers";
             }else{
+                request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
+                request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
                 request.getSession().setAttribute("error", "Секретний код не співпадає");
                 return "redirect:/web-application/testing/admin/showUsers";
             }

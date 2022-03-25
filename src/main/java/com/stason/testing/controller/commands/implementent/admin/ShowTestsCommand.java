@@ -32,20 +32,29 @@ public class ShowTestsCommand implements Command {
                 countOfPageNumberButtons = PaginationService.countButtonsForPaginationAllTests( paginationParameter);
                 testList = PaginationService.paginateAllTests(paginationParameter, pageNumber);
 
-            }else if(request.getParameter("orderBy")!=null &&
-                    request.getParameter("order")!=null &&
-                    request.getParameter("discipline")!=null &&
+            }else if((request.getParameter("orderBy")!=null || request.getSession().getAttribute("orderBy")!=null) &&
+                    (request.getParameter("order")!=null || request.getSession().getAttribute("order")!=null) &&
+                    (request.getParameter("discipline")!=null || request.getSession().getAttribute("discipline")!=null)&&
                     request.getParameter("clear")==null
             ){
-                String orderBy = request.getParameter("orderBy"); //
-                String order = request.getParameter("order"); // ASC DESC
-                String discipline = EncodingConverter.convertFromISOtoUTF8(request.getParameter("discipline")); // ALL another
+
+                String orderBy = getParameterFromRequestOrSession(request,"orderBy"); //
+                String order =  getParameterFromRequestOrSession(request,"order"); // ASC DESC
+                String discipline = EncodingConverter.convertFromISOtoUTF8( getParameterFromRequestOrSession(request,"discipline")); // ALL another
                 if(orderBy.isEmpty()){
                     testList = PaginationService.paginateAllTests(paginationParameter,pageNumber);
                     countOfPageNumberButtons=PaginationService.countButtonsForPaginationAllTests(paginationParameter);
+                    if(testList.isEmpty() && pageNumber>1){
+                        pageNumber--;
+                        testList= PaginationService.paginateAllTests(paginationParameter,pageNumber);
+                    }
                 }else {
                     testList = PaginationAndSortingService.paginateAndSortAllTests(paginationParameter, pageNumber, orderBy, order, discipline);
                     countOfPageNumberButtons = PaginationAndSortingService.countButtonsForPaginatedAndSortedAllTests(paginationParameter, discipline);
+                    if(testList.isEmpty() && pageNumber>1){
+                        pageNumber--;
+                        testList= PaginationAndSortingService.paginateAndSortAllTests(paginationParameter, pageNumber, orderBy, order, discipline);
+                    }
                 }
                 Map<String,String> sortingOptions = new HashMap<>();
                 sortingOptions.put("orderBy",orderBy);
@@ -55,6 +64,10 @@ public class ShowTestsCommand implements Command {
             }else{
                 testList = PaginationService.paginateAllTests(paginationParameter,pageNumber);
                 countOfPageNumberButtons=PaginationService.countButtonsForPaginationAllTests(paginationParameter);
+                if(testList.isEmpty() && pageNumber>1){
+                    pageNumber--;
+                    testList= PaginationService.paginateAllTests(paginationParameter,pageNumber);
+                }
             }
 
             DaoFactory factory = DaoFactory.getInstance();
@@ -66,6 +79,11 @@ public class ShowTestsCommand implements Command {
             request.setAttribute("paginationParameter",paginationParameter);
             request.setAttribute("pageNumber",pageNumber);
             request.setAttribute("testList", testList);
+
+            if(request.getSession().getAttribute("error")!=null){
+                request.setAttribute("error",request.getSession().getAttribute("error"));
+                request.getSession().removeAttribute("error");
+            }
             return "/WEB-INF/view/admin/showTests.jsp";
         }else{
             return showUsersUrl;
@@ -73,6 +91,15 @@ public class ShowTestsCommand implements Command {
     }
     private int getPageNumber(HttpServletRequest request, String parameterName) {
         int pageNumber;
+        if(request.getSession().getAttribute(parameterName)!=null){
+            if((Integer.parseInt((String)request.getSession().getAttribute(parameterName)))<=0) {
+                pageNumber = 1;
+            }else{
+               pageNumber = (Integer.parseInt((String) request.getSession().getAttribute(parameterName)));
+            }
+            request.getSession().removeAttribute(parameterName);
+            return pageNumber;
+        }
         if(request.getParameter(parameterName)!=null){
             if(Integer.parseInt(request.getParameter(parameterName))<=0) {
                 pageNumber=1;
@@ -87,11 +114,28 @@ public class ShowTestsCommand implements Command {
 
     private int getPaginationParameter(HttpServletRequest request, String parameterName) {
         int paginationParameter;
+        if(request.getSession().getAttribute(parameterName)!=null){
+                paginationParameter = (Integer.parseInt((String) request.getSession().getAttribute(parameterName)));
+
+            request.getSession().removeAttribute(parameterName);
+            return paginationParameter;
+        }
         if(request.getParameter(parameterName)!=null){
             paginationParameter = Integer.parseInt(request.getParameter(parameterName));
         }else{
             paginationParameter = 5;
         }
         return paginationParameter;
+    }
+    private String getParameterFromRequestOrSession(HttpServletRequest request,String parameterName){
+        if(request.getParameter(parameterName)!=null){
+            return request.getParameter(parameterName);
+        }
+        if(request.getSession().getAttribute(parameterName)!=null){
+            String result = (String) request.getSession().getAttribute(parameterName);
+            request.getSession().removeAttribute(parameterName);
+            return result;
+        }
+        return "";
     }
 }

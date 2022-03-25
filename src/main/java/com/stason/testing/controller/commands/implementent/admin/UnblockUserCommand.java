@@ -27,6 +27,8 @@ public class UnblockUserCommand implements Command {
                 request.getServletContext().setAttribute("blockedUsers",blockedList);
                 return "redirect:/web-application/testing/admin/showUsers";
             }else{
+                request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
+                request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
                 request.getSession().setAttribute("error", "Секретний код не співпадає");
                 return "redirect:/web-application/testing/admin/showUsers";
             }

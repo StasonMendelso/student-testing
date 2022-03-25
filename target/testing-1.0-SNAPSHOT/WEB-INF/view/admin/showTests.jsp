@@ -75,16 +75,22 @@
             </div>
         </div>
     </form>
-    <form method="post" id="pagination_form">
-    <div class="table-responsive-md">
+
+
+        <div class="table-responsive-md">
         <c:set var="tests" value="${requestScope.testList}"/>
         <c:if var="result" test="${!empty tests}">
         <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
             <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                 <div class="row align-items-center">
                     <span class="col-2" style="padding-left: 25px" >Tests</span>
-                    <span class="col-9"></span>
+                    <span class="col-8 text-center">${error}</span>
+                    <span class="col-1"></span>
                     <span class="col-1" style="padding-right: 25px">
+                        <form method="post" id="pagination_form">
+                        <input hidden name="orderBy" value="${requestScope.sortingOptions.orderBy}">
+                        <input hidden name="order" value="${requestScope.sortingOptions.order}">
+                        <input hidden name="discipline" value="${requestScope.sortingOptions.discipline}">
                             <select class="form-select" name="paginationParameter" id="pagination">
                                 <option value="5" <c:if test="${requestScope.paginationParameter==5}">selected</c:if> >5</option>
                                 <option value="10" <c:if test="${requestScope.paginationParameter==10}">selected</c:if> >10</option>
@@ -95,6 +101,7 @@
                                     let form = document.getElementById("pagination_form").submit();
                                 }
                             </script>
+                               </form>
                         </span>
 
                 </div>
@@ -113,6 +120,7 @@
             <c:if var="result" test="${!empty tests}">
 
                     <tbody class="bg-light">
+                    <c:set var="i" value="${1}"></c:set>
                     <c:forEach items="${requestScope.testList}" var="test">
                     <tr>
                         <td>${test.id}</td>
@@ -123,18 +131,46 @@
                         <td>${test.countOfQuestions}</td>
 
                         <td class="text-center"><button  class="btn btn-success" type="button" onclick="location.href='/web-application/testing/admin/editTest?id=${test.id}'">Edit</button></td>
-                        <td class="text-center"><button class="btn btn-danger" type="button" onclick="location.href='/web-application/testing/admin/deleteTest?id=${test.id}'">Delete</button></td>
+                        <td class="text-center"><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal${i}">Delete</button></td>
                     </tr>
-                </c:forEach>
+                        <!-- Delete Modal -->
+                        <div class="modal fade" id="deleteModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete user</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="post" action="/web-application/testing/admin/deleteTest">
+                                        <div class="modal-body">
+                                            <label for="secretPassword" class="form-label">Уведіть ключ безпеки:</label>
+                                            <input required id="secretPassword" type="password" name="secretPassword" class="form-control">
+                                            <input hidden type="text" name="pageNumber" value="${requestScope.pageNumber}">
+                                            <input hidden type="text" name="paginationParameter" value="${requestScope.paginationParameter}">
+                                            <input hidden type="text" name="id" value="${test.id}"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button  class="btn btn-outline-danger" >Delete</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <%-- Delete modal--%>
+                        <c:set var="i" value="${i+1}"></c:set>
+
+                    </c:forEach>
                     </tbody>
 
             </c:if>
             <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0px 0px 30px 30px;"></caption>
         </table>
-
+            <form method="post">
             <input hidden name="orderBy" value="${requestScope.sortingOptions.orderBy}">
             <input hidden name="order" value="${requestScope.sortingOptions.order}">
             <input hidden name="discipline" value="${requestScope.sortingOptions.discipline}">
+            <input hidden name="paginationParameter" value="${requestScope.paginationParameter}">
 
             <nav >
                 <ul class="pagination pagination-lg justify-content-center">
@@ -152,8 +188,9 @@
 
                 </ul>
             </nav>
+            </form>
         </c:if>
-    </form>
+
 
 
     </div>

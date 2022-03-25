@@ -64,8 +64,8 @@
         <filter-name>BackArrowFilter</filter-name>
         <url-pattern>/testing/login</url-pattern>
 
-        <url-pattern>/testing/student/*</url-pattern>
-        <url-pattern>/testing/admin/*</url-pattern>
+        <url-pattern>/testing/student/info</url-pattern>
+        <url-pattern>/testing/admin/info</url-pattern>
     </filter-mapping>
 
 

@@ -17,33 +17,50 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getParameter("Save")!=null){
-            DaoFactory factory = DaoFactory.getInstance();
-            TestDao testDao = factory.createTestDao();
-            QuestionDao questionDao = factory.createQuestionDao();
-            AnswerDao answerDao = factory.createAnswerDao();
-            Test test = (Test) request.getSession().getAttribute("editedTest");
-            //Удаляєм тест повністю
-            request.setAttribute("id",test.getId());
-            new DeleteTestCommand().execute(request);
-            //Добавляємо тест заново
-            testDao.create(test);
-            List<Question> questionList = test.getQuestions();
-            int testId = testDao.findIdByName(test.getName());
-            int i =1;
-            System.out.println("!!!!!!!!!!ADD TO BD QUESTION!!!!!!!!!!!!!");
-            for(Question question:questionList){
-                question.setTestId(testId);
-                question.setQuestionNumber(i++);
-                questionDao.create(question);
-                List<Answer> answerList = question.getAnswers();
 
-                int questionId = questionDao.findId(question);
-                for(Answer answer:answerList){
-                    answer.setQuestionId(questionId);
-                    answerDao.create(answer);
+            if(request.getParameter("secretPassword")==null){
+                return "/WEB-INF/view/admin/editTest.jsp";
+            }else{
+                String secretPassword =request.getParameter("secretPassword");
+                if(secretPassword.equals("save")){ // todo добавити константний клас з паролями
+                    DaoFactory factory = DaoFactory.getInstance();
+                    TestDao testDao = factory.createTestDao();
+                    QuestionDao questionDao = factory.createQuestionDao();
+                    AnswerDao answerDao = factory.createAnswerDao();
+                    Test test = (Test) request.getSession().getAttribute("editedTest");
+                    //Удаляєм тест повністю
+
+                    deleteTest(test.getId());
+                    //Добавляємо тест заново
+                    testDao.create(test);
+                    List<Question> questionList = test.getQuestions();
+                    int testId = testDao.findIdByName(test.getName());
+                    int i =1;
+                    System.out.println("!!!!!!!!!!ADD TO BD QUESTION!!!!!!!!!!!!!");
+                    for(Question question:questionList){
+                        question.setTestId(testId);
+                        question.setQuestionNumber(i++);
+                        questionDao.create(question);
+                        List<Answer> answerList = question.getAnswers();
+
+                        int questionId = questionDao.findId(question);
+                        for(Answer answer:answerList){
+                            answer.setQuestionId(questionId);
+                            answerDao.create(answer);
+                        }
+                    }
+                    return "redirect:/web-application/testing/admin/showTests";
+                }else{
+                    request.setAttribute("error","Секретний код не співпадає");
+                    int currentQuestionNumber = getQuestionNumber(request);
+                    if(request.getSession().getAttribute("editedTest")!=null){
+                        request.setAttribute("currentQuestion", ((Test) request.getSession().getAttribute("editedTest")).getQuestion(currentQuestionNumber));
+                        request.setAttribute("questionPageNumber", currentQuestionNumber);
+                    }
+                    return "/WEB-INF/view/admin/editTest.jsp";
                 }
             }
-            return "redirect:/web-application/testing/admin/showTests";
+
         }
         if(request.getParameter("id")!=null && !request.getParameter("id").isEmpty()){
             int id = Integer.parseInt(request.getParameter("id"));
@@ -98,5 +115,21 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
         }else{
             return 1;
         }
+    }
+    private  void deleteTest(int id){
+        DaoFactory factory = DaoFactory.getInstance();
+        TestDao testDao = factory.createTestDao();
+        QuestionDao questionDao = factory.createQuestionDao();
+        AnswerDao answerDao = factory.createAnswerDao();
+        List<Question> questionList = questionDao.findAllByTestId(id);
+        for(Question question :questionList){
+            int questionId = question.getId();
+            List<Answer> answerList = answerDao.findAllByQuestionId(questionId);
+            for(Answer answer:answerList){
+                answerDao.delete(answer.getId());
+            }
+            questionDao.delete(questionId);
+        }
+        testDao.delete(id);
     }
 }

@@ -79,11 +79,31 @@
 
                             </tr>
                             <tr class="text-center">
-                                <td colspan="2"><input type="submit" class="btn btn-primary" style="width: 25%" value="Save"></td>
+                                <td colspan="2"><input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" style="width: 25%" value="Save"></td>
                             </tr>
                             </tbody>
-                            <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0 0 30px 30px;"></caption>
+                            <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0 0 30px 30px;">${requestScope.error}</caption>
+                            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete user</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form method="post" action="/web-application/testing/admin/editUser">
+                                            <div class="modal-body">
+                                                <label for="secretPassword" class="form-label">Уведіть ключ безпеки:</label>
+                                                <input required id="secretPassword" type="password" name="secretPassword" class="form-control">
+                                            </div>
+                                            <div class="modal-footer">
 
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button  class="btn btn-primary" >Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </table>
                     </form>
                 </div>

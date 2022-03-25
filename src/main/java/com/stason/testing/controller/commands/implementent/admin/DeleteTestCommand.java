@@ -14,15 +14,32 @@ import java.util.List;
 public class DeleteTestCommand implements com.stason.testing.controller.commands.Command {
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
-        int id=-1;
-        if(request.getParameter("id")!=null) {
-            id = Integer.parseInt(request.getParameter("id"));
+        if(request.getParameter("secretPassword")==null){
+            return "redirect:/web-application/testing/admin/showUsers";
+        }else {
+            String secretPassword = request.getParameter("secretPassword");
+            if (secretPassword.equals("delete")) { // todo добавити константний клас з паролями{
+                int id = -1;
+                if (request.getParameter("id") != null) {
+                    id = Integer.parseInt(request.getParameter("id"));
+                }
+                deleteTest(id);
+                request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
+                request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
+                request.getSession().setAttribute("orderBy",request.getParameter("orderBy"));
+                request.getSession().setAttribute("order",request.getParameter("order"));
+                request.getSession().setAttribute("discipline",request.getParameter("discipline"));
+            }else{
+                request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
+                request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
+                request.getSession().setAttribute("orderBy",request.getParameter("orderBy"));
+                request.getSession().setAttribute("order",request.getParameter("order"));
+                request.getSession().setAttribute("discipline",request.getParameter("discipline"));
+                request.getSession().setAttribute("error", "Секретний код не співпадає");
+                return "redirect:/web-application/testing/admin/showTests";
+            }
         }
-        //TODO Временно
-        if(request.getAttribute("id")!=null) {
-            id= (int) request.getAttribute("id");
-        }
-        deleteTest(id);
+
 
         return "redirect:/web-application/testing/admin/showTests";
     }
