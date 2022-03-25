@@ -3,6 +3,7 @@ package com.stason.testing.controller.commands.implementent.guest;
 import com.mysql.cj.Session;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.EncryptionPassword;
 import com.stason.testing.controller.utils.ValidatorService;
 import com.stason.testing.controller.utils.VerifyRecaptcha;
 
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 public class LoginCommand implements Command {
 
@@ -63,7 +65,6 @@ public class LoginCommand implements Command {
 
             User user = new User();
             user.setLogin(login);
-            user.setPassword(password);
 
             DaoFactory factory = DaoFactory.getInstance();
             UserDao userDao = factory.createUserDao();
@@ -92,10 +93,16 @@ public class LoginCommand implements Command {
                     return "/WEB-INF/view/guest/login.jsp";
                 }
 
-                loggedUsers.add(login);
-                request.getServletContext().setAttribute("loggedUsers", loggedUsers);
+                String salt = user.getSalt();
+                System.out.println(salt);
+                System.out.println(EncryptionPassword.hash(password, salt));
+                System.out.println(user.getPassword());
+                if(Objects.equals(EncryptionPassword.hash(password, salt), user.getPassword())) {
 
-                 HttpSession session=request.getSession();
+                    loggedUsers.add(login);
+                    request.getServletContext().setAttribute("loggedUsers", loggedUsers);
+
+                    HttpSession session = request.getSession();
                     session.setAttribute("role", user.getRole());
                     session.setAttribute("login", user.getLogin());
                     session.setAttribute("name", user.getName());
@@ -106,10 +113,14 @@ public class LoginCommand implements Command {
                     session.setAttribute("idOfPassedTests", user.getIdPassedTestList());
 
 
-
                     if (user.getRole().equals(Role.ADMIN.name())) return adminUrl;
                     if (user.getRole().equals(Role.STUDENT.name())) return studentUrl;
+                }else{
+                    errors.add("Користувача не знайдено. Перевірте логін та пароль");//Todo сделать локализацию
+                    request.setAttribute("errorsList", errors);
 
+                    return "/WEB-INF/view/guest/login.jsp";
+                }
 
             } else {
                 errors.add("Користувача не знайдено. Перевірте логін та пароль");//Todo сделать локализацию

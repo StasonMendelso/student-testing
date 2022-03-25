@@ -115,9 +115,8 @@ public class JDBCUserDao implements UserDao {
     public boolean checkLogin(User user){
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.users WHERE login=? and password=?;");
+            preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.users WHERE login=?;");
             preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getPassword());
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) return true;
         } catch (SQLException e) {
@@ -142,6 +141,8 @@ public class JDBCUserDao implements UserDao {
                 user.setRole(Role.valueOf(resultSet.getString("role")));
                 user.setId(resultSet.getInt("id"));
                 user.setBlocked(resultSet.getBoolean("blocked"));
+                user.setPassword(resultSet.getString("password"));
+                user.setSalt(resultSet.getString("salt"));
                 return user;
             }
         } catch (SQLException e) {
@@ -154,13 +155,14 @@ public class JDBCUserDao implements UserDao {
     public void create(User user) {
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.users (login,password,name,surname,role,blocked)values(?,?,?,?,?,?);");
+            preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.users (login,password,salt,name,surname,role,blocked)values(?,?,?,?,?,?,?);");
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getName());
-            preparedStatement.setString(4, user.getSurname());
-            preparedStatement.setString(5, user.getRole());
-            preparedStatement.setString(6, user.getStringIntBlocked());
+            preparedStatement.setString(3, user.getSalt());
+            preparedStatement.setString(4, user.getName());
+            preparedStatement.setString(5, user.getSurname());
+            preparedStatement.setString(6, user.getRole());
+            preparedStatement.setString(7, user.getStringIntBlocked());
             preparedStatement.execute();
 
         } catch (SQLException e) {

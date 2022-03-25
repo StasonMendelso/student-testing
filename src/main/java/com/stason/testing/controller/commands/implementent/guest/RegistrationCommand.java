@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.EncryptionPassword;
 import com.stason.testing.controller.utils.ValidatorService;
 import com.stason.testing.controller.utils.VerifyRecaptcha;
 import com.stason.testing.model.dao.DaoFactory;
@@ -77,10 +78,15 @@ public class RegistrationCommand implements Command {
         user.setLogin(email);
         user.setName(username);
         user.setSurname(surname);
-        user.setPassword(password);
         user.setRole(Role.STUDENT);
         user.setBlocked(false);
 
+        //Encrypting password
+            String salt = EncryptionPassword.generateSalt();
+            String hashedPassword = EncryptionPassword.hash(password,salt);
+
+        user.setPassword(hashedPassword);
+        user.setSalt(salt);
         //Создаем подключение
         DaoFactory factory = DaoFactory.getInstance();
         UserDao userDao = factory.createUserDao();

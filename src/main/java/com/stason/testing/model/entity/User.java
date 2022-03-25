@@ -6,6 +6,7 @@ public class User {
     private int id;
     private String login;
     private String password;
+    private String salt;
     private String name;
     private String surname;
     private Role role;
@@ -89,5 +90,13 @@ public class User {
 
     public void setIdPassedTestList(List<Integer> idPassedTestList) {
         this.idPassedTestList = idPassedTestList;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }
