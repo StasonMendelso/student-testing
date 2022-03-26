@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.student;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.QuestionDao;
@@ -35,9 +36,9 @@ public class DoTestCommand implements Command {
         if(request.getSession().getAttribute("test")!=null && request.getParameter("id")!=null){
             Test currentTest = (Test) request.getSession().getAttribute("test");
             if(testId==currentTest.getId()){
-                return "redirect:/web-application/testing/student/test?question=1";
+                return Path.REDIRECT_STUDENT_TEST+"?question=1";
             }else {
-                return "redirect:/web-application/testing/student/tests";
+                return Path.REDIRECT_STUDENT_TESTS;
             }
         }
         //Для инициализации
@@ -46,7 +47,7 @@ public class DoTestCommand implements Command {
             List<Integer> idPassedTestsList = (List<Integer>) request.getSession().getAttribute("idOfPassedTests");
             for(Integer id : idPassedTestsList){
                 if(id == testId){
-                    return "redirect:/web-application/testing/student/tests";
+                    return Path.REDIRECT_STUDENT_TESTS;
                 }
             }
             int userId = (int) request.getSession().getAttribute("id");
@@ -80,10 +81,10 @@ public class DoTestCommand implements Command {
             System.out.println("Дата здачі тесту для цього клієнта: "+outDate);
             request.getSession().setAttribute("test",test);
             request.getSession().setAttribute("outDateMilliseconds",outDateMilliseconds);
-            return "redirect:/web-application/testing/student/test?question=1";
+            return Path.REDIRECT_STUDENT_TEST+"?question=1";
         }
         if(request.getSession().getAttribute("test")==null ){
-            return "redirect:/web-application/testing/student/tests";
+            return Path.REDIRECT_STUDENT_TESTS;
         }
         //Для сохранения ответов пользователя
 
@@ -104,14 +105,14 @@ public class DoTestCommand implements Command {
             Question question = test.getQuestion(questionNumber);
             System.out.println(question);
             request.setAttribute("question", question);
-            return "/WEB-INF/view/student/doTest.jsp";
+            return Path.STUDENT_TEST;
         }
 
 
         if(uri.contains("/student/test")){
-            return "/WEB-INF/view/student/doTest.jsp";
+            return Path.STUDENT_TEST;
         }else{
-            return "redirect:/web-application/testing/student/test";
+            return Path.REDIRECT_STUDENT_TEST;
         }
 
     }
@@ -134,7 +135,7 @@ public class DoTestCommand implements Command {
 
             request.getSession().setAttribute("test",test);
 
-            return "redirect:/web-application/testing/student/test?question=" + request.getParameter("nextQuestion");
+            return Path.REDIRECT_STUDENT_TEST + "?question=" + request.getParameter("nextQuestion");
         }else{
             Test test = (Test) request.getSession().getAttribute("test");
             Question question = test.getQuestion(questionNumber);
@@ -148,7 +149,7 @@ public class DoTestCommand implements Command {
             test.setQuestion(question,questionNumber);
             request.getSession().setAttribute("test",test);
             request.getSession().setAttribute("timeLeft",request.getParameter("leftTime"));
-            return "redirect:/web-application/testing/student/test?question=" + request.getParameter("nextQuestion");
+            return Path.REDIRECT_STUDENT_TEST + "?question=" + request.getParameter("nextQuestion");
         }
     }
 }

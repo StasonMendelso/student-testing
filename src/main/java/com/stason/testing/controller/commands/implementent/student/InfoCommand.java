@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.student;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.PaginationService;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +27,10 @@ public class InfoCommand implements Command {
             request.setAttribute("paginationParameter",paginationParameter);
             request.setAttribute("pageNumber",pageNumber);
 
-            return "/WEB-INF/view/student/info.jsp";
+            return Path.STUDENT_INFO;
         }
 
-        return "redirect:/web-application/testing/student/info";
+        return Path.REDIRECT_STUDENT_INFO;
     }
 
     private int getPageNumber(HttpServletRequest request) {

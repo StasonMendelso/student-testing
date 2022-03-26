@@ -1,5 +1,6 @@
 package com.stason.testing.controller.commands.implementent.student;
 
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Answer;
@@ -46,11 +47,11 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
                 request.setAttribute("test",test);
                 request.getSession().removeAttribute("test");
             }else{
-                return "redirect:/web-application/testing/student/tests";
+                return Path.REDIRECT_STUDENT_TESTS;
             }
-            return "/WEB-INF/view/student/showTestResult.jsp";
+            return Path.STUDENT_RESULT;
         }else{
-            return "redirect:/web-application/testing/student/result";
+            return Path.REDIRECT_STUDENT_RESULT;
         }
     }
 }

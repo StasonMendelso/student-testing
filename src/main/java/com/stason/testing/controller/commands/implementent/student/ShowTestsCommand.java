@@ -4,6 +4,7 @@ import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.PaginationAndSortingService;
 import com.stason.testing.controller.services.PaginationService;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.dao.UserDao;
@@ -141,9 +142,9 @@ public class ShowTestsCommand implements Command {
             request.setAttribute("pageNumber2",pageNumber2);
             request.setAttribute("allTestList", testList);
 
-            return "/WEB-INF/view/student/showTests.jsp";
+            return Path.STUDENT_TESTS;
         }else{
-            return "redirect:/web-application/testing/student/tests";
+            return Path.REDIRECT_STUDENT_TESTS;
         }
 
     }
