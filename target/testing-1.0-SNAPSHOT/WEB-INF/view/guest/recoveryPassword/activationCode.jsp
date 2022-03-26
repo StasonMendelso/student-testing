@@ -44,7 +44,7 @@
 
             <form name="loginform" action="${pageContext.request.contextPath}/testing/recovery" method="get" accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
-                    <input type="text" class="form-control" id="login" name="activationCode" placeholder="name@example.com">
+                    <input type="text" required class="form-control" id="login" name="activationCode" placeholder="name@example.com">
                     <label for="login">Activation code</label>
                 </div>
 

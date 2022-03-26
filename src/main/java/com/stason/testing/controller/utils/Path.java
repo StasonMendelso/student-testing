@@ -3,6 +3,10 @@ package com.stason.testing.controller.utils;
 public class Path {
     //jsp (forward)
     public static final String INDEX = "/index.jsp";
+    public static final String CHANGE_PASSWORD = "/WEB-INF/view/changePasswordSendEmail.jsp";
+    public static final String CHANGE_PASSWORD_ERROR_IDENTIFICATION = "/WEB-INF/view/errorIdentificationLink.jsp";
+    public static final String CHANGE_PASSWORD_SUCCESS ="/WEB-INF/view/successfulOfChangingPassword.jsp" ;
+
     //guest
     public static final String GUEST_LOGIN = "/WEB-INF/view/guest/login.jsp";
     public static final String GUEST_REGISTER = "/WEB-INF/view/guest/register.jsp";
@@ -51,4 +55,5 @@ public class Path {
     public static final String REDIRECT_ADMIN_CREATE_TEST = "redirect:/web-application/testing/admin/createTest";
     public static final String REDIRECT_ADMIN_CREATE_QUESTION = "redirect:/web-application/testing/admin/createQuestion";
     public static final String REDIRECT_ADMIN_USER_TESTS = "redirect:/web-application/testing/admin/userTests";
+
 }

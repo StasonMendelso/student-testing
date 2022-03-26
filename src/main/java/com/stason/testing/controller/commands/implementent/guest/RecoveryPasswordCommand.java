@@ -37,7 +37,8 @@ public class RecoveryPasswordCommand implements Command {
                 int a = (int)(Math.random() *10);
                 activationCode.append(a);
             }
-            EmailSender.sendActivationCode(email,activationCode.toString());
+            EmailSender sender = new EmailSender();
+            sender.sendActivationCode(email,activationCode.toString());
             request.getSession().setAttribute("login", email);
             request.getSession().setAttribute("activationCode", activationCode.toString());
             return Path.RECOVERY_ACTIVATION_CODE;

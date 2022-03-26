@@ -46,7 +46,7 @@
 
             <form name="loginform" action="${pageContext.request.contextPath}/testing/recovery" method="post" accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
-                    <input type="email" class="form-control" id="login" name="email" placeholder="name@example.com">
+                    <input type="email" required class="form-control" id="login" name="email" placeholder="name@example.com">
                     <label for="login">Email for recovery</label>
                 </div>
                 <!-- reCAPTCHA -->

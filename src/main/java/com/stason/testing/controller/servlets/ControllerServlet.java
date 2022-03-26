@@ -1,6 +1,7 @@
 package com.stason.testing.controller.servlets;
 
 import com.stason.testing.controller.commands.*;
+import com.stason.testing.controller.commands.implementent.ChangePasswordCommand;
 import com.stason.testing.controller.commands.implementent.DefaultCommand;
 import com.stason.testing.controller.commands.implementent.admin.DeleteTestCommand;
 import com.stason.testing.controller.commands.implementent.admin.EditTestCommand;
@@ -30,6 +31,8 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/logout", new LogoutCommand());
         commands.put("/registration", new RegistrationCommand());
         commands.put("/admin/info",new AdminInfoCommand());
+        commands.put("/admin/changePassword",new ChangePasswordCommand());
+        commands.put("/student/changePassword",new ChangePasswordCommand());
         commands.put("/admin/showUsers", new ShowUsersCommand());
         commands.put("/admin/showTests", new com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand());
         commands.put("/admin/deleteTest", new DeleteTestCommand());

@@ -24,14 +24,22 @@
 
 </head>
 <body >
-<%@include file="../navbar.jsp"%>
+<c:if test="${sessionScopeScope.role==ADMIN}">
+    <%@include file="../../admin/navbar.jsp"%>
+</c:if>
+<c:if test="${sessionScope.role==STUDENT}">
+    <%@include file="../../student/navbar.jsp"%>
+</c:if>
+<c:if test="${sessionScope.role==GUEST}">
+    <%@include file="../navbar.jsp"%>
+</c:if>
 
 <main class="container-fluid bg-dark bg-opacity-25">
     <div class="row d-flex justify-content-center ">
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
-                <h2 class="text-white-50">Recovering Password</h2>
+                <h2 class="text-white-50">Create new password</h2>
             </div>
             <div  class="text-white-50">
                 <c:if var="result" test="${!empty requestScope.error}">
@@ -42,7 +50,7 @@
 
             </div>
 
-            <form name="loginform" action="${pageContext.request.contextPath}/testing/recovery" method="get" accept-charset="UTF-8">
+            <form name="loginform"  method="get" accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="password" required class="form-control" id="password" name="password" placeholder="name@example.com">
                     <label for="password">Password</label>
