@@ -26,6 +26,7 @@ public class ControllerServlet extends HttpServlet {
         commands.put("/",new DefaultCommand());
         commands.put("",new DefaultCommand());
         commands.put("/login",new LoginCommand());
+        commands.put("/recovery",new RecoveryPasswordCommand());
         commands.put("/logout", new LogoutCommand());
         commands.put("/registration", new RegistrationCommand());
         commands.put("/admin/info",new AdminInfoCommand());

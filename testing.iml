@@ -18,7 +18,9 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="testing" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -48,5 +50,7 @@
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
     <orderEntry type="library" name="Maven: javax:javaee-web-api:8.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish:javax.json:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.6.2" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
   </component>
 </module>

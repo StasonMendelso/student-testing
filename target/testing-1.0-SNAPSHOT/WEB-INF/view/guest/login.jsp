@@ -56,7 +56,7 @@
                     <label for="password" >Password</label>
                 </div>
                 <div class="mb-1 text-center">
-                    <a class="nav-link" href="#">Forgot password?</a>
+                    <a class="nav-link" href="/web-application/testing/recovery">Forgot password?</a>
                 </div>
                 <!-- reCAPTCHA -->
                 <div class="mb-2 d-flex justify-content-center">

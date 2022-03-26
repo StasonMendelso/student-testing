@@ -7,6 +7,11 @@ public class Path {
     public static final String GUEST_LOGIN = "/WEB-INF/view/guest/login.jsp";
     public static final String GUEST_REGISTER = "/WEB-INF/view/guest/register.jsp";
     public static final String GUEST_SUCCESSFUL_REGISTER = "/WEB-INF/view/guest/successful_registration.jsp";
+    public static final String RECOVERY_EMAIL = "/WEB-INF/view/guest/recoveryPassword/email.jsp";
+    public static final String RECOVERY_ACTIVATION_CODE = "/WEB-INF/view/guest/recoveryPassword/activationCode.jsp";
+    public static final String RECOVERY_CREATE_NEW_PASSWORD = "/WEB-INF/view/guest/recoveryPassword/createNewPassword.jsp";
+    public static final String RECOVERY_SUCCESSFUL = "/WEB-INF/view/guest/recoveryPassword/successfulOfRecoveringPassword.jsp";
+
     //student
     public static final String STUDENT_INFO = "/WEB-INF/view/student/info.jsp";
     public static final String STUDENT_TESTS = "/WEB-INF/view/student/showTests.jsp";

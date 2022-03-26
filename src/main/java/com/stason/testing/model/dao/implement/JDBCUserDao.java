@@ -256,6 +256,20 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
+    public void updatePassword(String login, String password, String salt) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE onlinetesting.users SET password=?, salt=? WHERE login=?");
+            preparedStatement.setString(1,password);
+            preparedStatement.setString(2, salt);
+            preparedStatement.setString(3, login);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void delete(int id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.users WHERE id=?");

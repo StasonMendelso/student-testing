@@ -46,7 +46,7 @@ public class AccessingFilter implements Filter {
             chain.doFilter(request, response);
         }else if(URI.contains("/admin") && role.equals(Role.ADMIN.name())) {
             chain.doFilter(request, response);
-        }else if((URI.contains("/login") || URI.contains("/registration") || URI.endsWith("/testing") || URI.endsWith("/testing/")) && role.equals(Role.GUEST.name())){
+        }else if((URI.contains("/login") || URI.contains("/registration") || URI.endsWith("/testing") || URI.endsWith("/testing/") || URI.endsWith("/recovery")) && role.equals(Role.GUEST.name())){
             chain.doFilter(request,response);
         }else{
             if(URI.contains("/login")) chain.doFilter(request,response);
