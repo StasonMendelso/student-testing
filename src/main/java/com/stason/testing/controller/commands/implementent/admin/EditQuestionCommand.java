@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
@@ -21,11 +22,11 @@ public class EditQuestionCommand implements Command {
             //todo перевірку isProperly...
             if (!isProperlyCheckboxChecked(request)) {
                 //Вы выбрали ответ как пустой вариант ответа
-                return "redirect:/web-application/testing/admin/editQuestionInfo?id=" + questionOrigin.getId();
+                return Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO + "?id=" + questionOrigin.getId();
             }
             if (request.getParameter("opt") == null) {
                 //Вы не выбрали правильный ответ!
-                return  "redirect:/web-application/testing/admin/editQuestionInfo?id=" + questionOrigin.getId();
+                return  Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO + "?id=" + questionOrigin.getId();
             } else {
                 String questionText = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionText"));
                 String rightOptions = Arrays.toString(request.getParameterValues("opt"));
@@ -60,7 +61,7 @@ public class EditQuestionCommand implements Command {
                 request.getSession().removeAttribute("editedQuestion");
                 request.getSession().setAttribute("editedTest", test);
                 request.getSession().setAttribute("questionNumber",question.getQuestionNumber());
-                return "redirect:/web-application/testing/admin/editTest?id=" + test.getId() ;
+                return Path.REDIRECT_ADMIN_EDIT_TEST + "?id=" + test.getId() ;
             }
         }
         //Видалити відповідь
@@ -95,7 +96,7 @@ public class EditQuestionCommand implements Command {
 
             request.getSession().setAttribute("editedQuestion", question);
             //return "/WEB-INF/view/admin/editQuestionInfo.jsp";
-            return "redirect:/web-application/testing/admin/editQuestionInfo?id=" + question.getId();
+            return Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO +"?id=" + question.getId();
         }
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + request.getSession().getAttribute("editedQuestion"));
         if (request.getParameter("id") != null) {
@@ -113,9 +114,9 @@ public class EditQuestionCommand implements Command {
             }
         }
         if (request.getRequestURI().contains("admin/editQuestionInfo")) {
-            return "/WEB-INF/view/admin/editQuestionInfo.jsp";
+            return Path.ADMIN_EDIT_QUESTIONS_INFO;
         } else {
-            return "redirect:/web-application/testing/admin/editQuestionInfo";
+            return Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO;
         }
 
 
@@ -124,11 +125,11 @@ public class EditQuestionCommand implements Command {
     private String saveQuestion(HttpServletRequest request) {
         if(!isProperlyCheckboxChecked(request)){
             //Вы выбрали ответ как пустой вариант ответа
-            return "redirect:/web-application/testing/admin/createQuestion";
+            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }
         if(request.getParameter("opt")==null){
             //Вы не выбрали правильный ответ!
-            return "redirect:/web-application/testing/admin/createQuestion";
+            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }else{
             System.out.println(Arrays.toString(request.getParameterValues("opt")));
             String rightOptions = Arrays.toString(request.getParameterValues("opt"));
@@ -160,8 +161,8 @@ public class EditQuestionCommand implements Command {
             Test test = (Test) request.getSession().getAttribute("test");
             test.addQuestion(question);
             request.getSession().setAttribute("test",test);
-            return "redirect:/web-application/testing/admin/createQuestion";
-            //  return "/WEB-INF/view/admin/createQuestion.jsp";
+            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
+
         }
     }
 

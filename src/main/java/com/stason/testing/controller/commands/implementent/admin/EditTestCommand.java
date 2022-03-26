@@ -1,5 +1,6 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.QuestionDao;
@@ -19,7 +20,7 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
         if(request.getParameter("Save")!=null){
 
             if(request.getParameter("secretPassword")==null){
-                return "/WEB-INF/view/admin/editTest.jsp";
+                return Path.ADMIN_EDIT_TEST;
             }else{
                 String secretPassword =request.getParameter("secretPassword");
                 if(secretPassword.equals("save")){ // todo добавити константний клас з паролями
@@ -49,7 +50,7 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
                             answerDao.create(answer);
                         }
                     }
-                    return "redirect:/web-application/testing/admin/showTests";
+                    return Path.REDIRECT_ADMIN_TESTS;
                 }else{
                     request.setAttribute("error","Секретний код не співпадає");
                     int currentQuestionNumber = getQuestionNumber(request);
@@ -57,7 +58,7 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
                         request.setAttribute("currentQuestion", ((Test) request.getSession().getAttribute("editedTest")).getQuestion(currentQuestionNumber));
                         request.setAttribute("questionPageNumber", currentQuestionNumber);
                     }
-                    return "/WEB-INF/view/admin/editTest.jsp";
+                    return Path.ADMIN_EDIT_TEST;
                 }
             }
 
@@ -97,9 +98,9 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
 
         if(request.getRequestURI().contains("admin/editTest")){
             if(request.getParameter("id")==null || request.getParameter("id").isEmpty()) return "redirect:/web-application/testing/admin/showTests";
-            return "/WEB-INF/view/admin/editTest.jsp";
+            return Path.ADMIN_EDIT_TEST;
         }else {
-            return "redirect:/web-application/testing/admin/editTest";
+            return Path.REDIRECT_ADMIN_EDIT_TEST;
         }
     }
 

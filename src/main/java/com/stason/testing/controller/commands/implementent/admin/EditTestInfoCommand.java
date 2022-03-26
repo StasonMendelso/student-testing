@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +13,13 @@ public class EditTestInfoCommand implements com.stason.testing.controller.comman
         if(checkParameters(request)){
             saveEditedTest(request);
             Test test = (Test)request.getSession().getAttribute("editedTest");
-            return "redirect:/web-application/testing/admin/editTest?id="+test.getId();
+            return Path.REDIRECT_ADMIN_EDIT_TEST + "?id="+test.getId();
         }
 
         if(request.getRequestURI().contains("/admin/editTestInfo")){
-            return "/WEB-INF/view/admin/editTestInfo.jsp";
+            return Path.ADMIN_EDIT_TEST_INFO;
         }else {
-            return "redirect:/web-application/testing/admin/editTestInfo";
+            return Path.REDIRECT_ADMIN_EDIT_TEST_INFO;
         }
     }
     private boolean checkParameters(HttpServletRequest request){

@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
@@ -19,24 +20,24 @@ public class AddQuestionCommand implements Command {
             if(request.getSession().getAttribute("editedTest")!=null){
                 return saveQuestion(request);
             }else{
-                return "redirect:/web-application/testing/admin/showTests";
+                return Path.REDIRECT_ADMIN_TESTS;
             }
         }
         if(request.getRequestURI().contains("/admin/addQuestion")){
-            return "/WEB-INF/view/admin/addQuestion.jsp";
+            return Path.ADMIN_ADD_QUESTIONS;
         }else {
-            return "redirect:/web-application/testing/admin/addQuestion";
+            return Path.REDIRECT_ADMIN_ADD_QUESTIONS;
         }
     }
 
     private String saveQuestion(HttpServletRequest request) {
         if(!isProperlyCheckboxChecked(request)){
             //Вы выбрали ответ как пустой вариант ответа
-            return "redirect:/web-application/testing/admin/addQuestion";
+            return Path.REDIRECT_ADMIN_ADD_QUESTIONS;
         }
         if(request.getParameter("opt")==null){
             //Вы не выбрали правильный ответ!
-            return "redirect:/web-application/testing/admin/addQuestion";
+            return Path.REDIRECT_ADMIN_ADD_QUESTIONS;
         }else{
 
             System.out.println(Arrays.toString(request.getParameterValues("opt")));
@@ -83,7 +84,7 @@ public class AddQuestionCommand implements Command {
             question.setId(questionList.get(questionSize-1).getId()+1);
             test.addQuestion(question);
             request.getSession().setAttribute("editedTest",test);
-            return "redirect:/web-application/testing/admin/editTest?id="+test.getId();
+            return Path.REDIRECT_ADMIN_EDIT_TEST+"?id="+test.getId();
         }
     }
 

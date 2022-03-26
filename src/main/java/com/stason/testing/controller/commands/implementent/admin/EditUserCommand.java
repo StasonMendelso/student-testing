@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.User;
@@ -21,7 +22,7 @@ public class EditUserCommand implements Command {
                 boolean flag = false;
 
                 if(request.getParameter("secretPassword")==null){
-                    return "/WEB-INF/view/admin/editUserInfo.jsp";
+                    return Path.ADMIN_EDIT_USER_INFO;
                 }else{
                     String secretPassword =request.getParameter("secretPassword");
                     if(secretPassword.equals("save")){ // todo добавити константний клас з паролями
@@ -44,12 +45,12 @@ public class EditUserCommand implements Command {
 
                     userDao.update(user);
 
-                    return "redirect:/web-application/testing/admin/showUsers";
+                    return Path.REDIRECT_ADMIN_USERS;
                 }else{
                     User user = userDao.findById(Integer.parseInt(request.getParameter("id")));
                     request.setAttribute("user",user);
                     request.setAttribute("error", "Секретний код не співпадає");
-                    return "/WEB-INF/view/admin/editUserInfo.jsp";
+                    return Path.ADMIN_EDIT_USER_INFO;
                 }
             }
         }
@@ -64,9 +65,9 @@ public class EditUserCommand implements Command {
             request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
             if(request.getParameter("paginationParameter")!=null)
             request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
-            return "/WEB-INF/view/admin/editUserInfo.jsp";
+            return Path.ADMIN_EDIT_USER_INFO;
         }else{
-            return "redirect:/web-application/testing/admin/editUser";
+            return Path.ADMIN_EDIT_USER;
         }
     }
 }

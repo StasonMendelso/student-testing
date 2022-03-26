@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.PaginationService;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Test;
@@ -39,9 +40,9 @@ public class ShowUsersTestsCommand implements Command {
             request.getSession().removeAttribute("error");
         }
         if(request.getRequestURI().contains("/admin/userTests")){
-            return "/WEB-INF/view/admin/showUsersTests.jsp";
+            return Path.ADMIN_USER_TESTS ;
         }
-        return "redirect:/web-application/testing/admin/usersTests";
+        return Path.REDIRECT_ADMIN_USER_TESTS;
     }
     private int getPageNumber(HttpServletRequest request, String parameterName) {
         int pageNumber;

@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.QuestionDao;
@@ -28,7 +29,7 @@ public class DeleteQuestionCommand implements Command {
             request.getSession().setAttribute("editedTest",test);
             
         }
-        return "redirect:/web-application/testing/admin/editTest?id="+test.getId();
+        return Path.REDIRECT_ADMIN_EDIT_TEST+"?id="+test.getId();
     }
     private void deleteQuestion(HttpServletRequest request,int id){
 

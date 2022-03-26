@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,13 +28,13 @@ public class CreateTestCommand implements Command {
             test.setTimeMinutes(Integer.parseInt(request.getParameter("duration")));
             request.getSession().setAttribute("test",test);
 
-            return "redirect:/web-application/testing/admin/createQuestion";
+            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }
 
         if(request.getRequestURI().contains("/createTest")){
-            return "/WEB-INF/view/admin/createTest.jsp";
+            return Path.ADMIN_CREATE_TEST;
         }else {
-            return "redirect:/web-application/testing/admin/createTest";
+            return  Path.REDIRECT_ADMIN_CREATE_TEST;
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.TestDao;
 
@@ -23,6 +24,6 @@ public class DeletePassedTestByUserCommand implements Command {
         }
         request.getSession().setAttribute("thisPaginationParameter", request.getParameter("thisPaginationParameter"));
         request.getSession().setAttribute("thisPageNumber", request.getParameter("thisPageNumber"));
-        return "redirect:/web-application/testing/admin/userTests?id=" + userId;
+        return Path.REDIRECT_ADMIN_USER_TESTS + "?id=" + userId;
     }
 }

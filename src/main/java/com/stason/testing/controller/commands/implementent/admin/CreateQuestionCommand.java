@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.QuestionDao;
@@ -50,7 +51,7 @@ public class CreateQuestionCommand implements Command {
                 //видаляємо з сесії
                 request.getSession().removeAttribute("test");
                 //переходимо на сторінку, що тест успішно зберігся
-                return "/WEB-INF/view/admin/successful_creatingTest.jsp";
+                return Path.ADMIN_SUCCESSFUL_CREATING_TEST;
             }else{
                 return  url;
             }
@@ -64,24 +65,24 @@ public class CreateQuestionCommand implements Command {
             if(request.getSession().getAttribute("test")!=null){
                 return saveQuestion(request);
             }else{
-                return "redirect:/web-application/testing/admin/createTest";
+                return Path.REDIRECT_ADMIN_CREATE_TEST;
             }
         }
         if(request.getRequestURI().contains("/createQuestion")){
-            return "/WEB-INF/view/admin/createQuestion.jsp";
+            return Path.ADMIN_CREATE_QUESTION;
         }else {
-            return "redirect:/web-application/testing/admin/createQuestion";
+            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }
     }
 
     private String saveQuestion(HttpServletRequest request) {
         if(!isProperlyCheckboxChecked(request)){
             //Вы выбрали ответ как пустой вариант ответа
-            return "redirect:/web-application/testing/admin/createQuestion";
+            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }
         if(request.getParameter("opt")==null){
             //Вы не выбрали правильный ответ!
-            return "redirect:/web-application/testing/admin/createQuestion";
+            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }else{
             System.out.println(Arrays.toString(request.getParameterValues("opt")));
             String rightOptions = Arrays.toString(request.getParameterValues("opt"));
@@ -113,8 +114,8 @@ public class CreateQuestionCommand implements Command {
             Test test = (Test) request.getSession().getAttribute("test");
             test.addQuestion(question);
             request.getSession().setAttribute("test",test);
-            return "redirect:/web-application/testing/admin/createQuestion";
-            //  return "/WEB-INF/view/admin/createQuestion.jsp";
+            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
+
         }
     }
 

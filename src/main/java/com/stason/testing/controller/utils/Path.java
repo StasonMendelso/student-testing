@@ -12,7 +12,21 @@ public class Path {
     public static final String STUDENT_TESTS = "/WEB-INF/view/student/showTests.jsp";
     public static final String STUDENT_TEST= "/WEB-INF/view/student/doTest.jsp";
     public static final String STUDENT_RESULT= "/WEB-INF/view/student/showTestResult.jsp";
-    //redirect
+    //admin
+    public static final String ADMIN_INFO =  "/WEB-INF/view/admin/info.jsp";
+    public static final String ADMIN_TESTS = "/WEB-INF/view/admin/showTests.jsp";
+    public static final String ADMIN_USERS = "/WEB-INF/view/admin/showUsers.jsp";
+    public static final String ADMIN_USER_TESTS = "/WEB-INF/view/admin/showUsersTests.jsp";
+    public static final String ADMIN_EDIT_USER = "redirect:/web-application/testing/admin/editUser";
+    public static final String ADMIN_EDIT_USER_INFO = "/WEB-INF/view/admin/editUserInfo.jsp";
+    public static final String ADMIN_ADD_QUESTIONS = "/WEB-INF/view/admin/addQuestion.jsp";
+    public static final String ADMIN_CREATE_QUESTION = "/WEB-INF/view/admin/createQuestion.jsp";
+    public static final String ADMIN_CREATE_TEST = "/WEB-INF/view/admin/createTest.jsp";
+    public static final String ADMIN_EDIT_TEST = "/WEB-INF/view/admin/editTest.jsp";
+    public static final String ADMIN_EDIT_TEST_INFO = "/WEB-INF/view/admin/editTestInfo.jsp";
+    public static final String ADMIN_SUCCESSFUL_CREATING_TEST = "/WEB-INF/view/admin/successful_creatingTest.jsp";
+    public static final String ADMIN_EDIT_QUESTIONS_INFO = "/WEB-INF/view/admin/editQuestionInfo.jsp";
+    //-------------------------------redirect--------------------------------
     //guest
     public static final String REDIRECT_GUEST_LOGIN = "redirect:/web-application/testing";
     public static final String REDIRECT_GUEST_LOGOUT = "redirect:/web-application/testing/login";
@@ -23,4 +37,13 @@ public class Path {
     public static final String REDIRECT_STUDENT_TEST = "redirect:/web-application/testing/student/test";
     //admin
     public static final String REDIRECT_ADMIN_INFO = "redirect:/web-application/testing/admin/info";
+    public static final String REDIRECT_ADMIN_TESTS = "redirect:/web-application/testing/admin/showTests";
+    public static final String REDIRECT_ADMIN_USERS = "redirect:/web-application/testing/admin/showUsers";
+    public static final String REDIRECT_ADMIN_ADD_QUESTIONS = "redirect:/web-application/testing/admin/addQuestion";
+    public static final String REDIRECT_ADMIN_EDIT_QUESTIONS_INFO = "redirect:/web-application/testing/admin/editQuestionInfo";
+    public static final String REDIRECT_ADMIN_EDIT_TEST = "redirect:/web-application/testing/admin/editTest";
+    public static final String REDIRECT_ADMIN_EDIT_TEST_INFO = "redirect:/web-application/testing/admin/editTestInfo";
+    public static final String REDIRECT_ADMIN_CREATE_TEST = "redirect:/web-application/testing/admin/createTest";
+    public static final String REDIRECT_ADMIN_CREATE_QUESTION = "redirect:/web-application/testing/admin/createQuestion";
+    public static final String REDIRECT_ADMIN_USER_TESTS = "redirect:/web-application/testing/admin/userTests";
 }

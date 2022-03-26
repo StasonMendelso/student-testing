@@ -1,5 +1,6 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.QuestionDao;
@@ -15,7 +16,7 @@ public class DeleteTestCommand implements com.stason.testing.controller.commands
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getParameter("secretPassword")==null){
-            return "redirect:/web-application/testing/admin/showUsers";
+            return Path.REDIRECT_ADMIN_USERS;
         }else {
             String secretPassword = request.getParameter("secretPassword");
             if (secretPassword.equals("delete")) { // todo добавити константний клас з паролями{
@@ -36,12 +37,12 @@ public class DeleteTestCommand implements com.stason.testing.controller.commands
                 request.getSession().setAttribute("order",request.getParameter("order"));
                 request.getSession().setAttribute("discipline",request.getParameter("discipline"));
                 request.getSession().setAttribute("error", "Секретний код не співпадає");
-                return "redirect:/web-application/testing/admin/showTests";
+                return Path.REDIRECT_ADMIN_TESTS;
             }
         }
 
 
-        return "redirect:/web-application/testing/admin/showTests";
+        return Path.REDIRECT_ADMIN_TESTS;
     }
     private  void deleteTest(int id){
         DaoFactory factory = DaoFactory.getInstance();

@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.PaginationService;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Test;
@@ -15,7 +16,6 @@ import java.util.List;
 public class ShowUsersCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
-        String showUsersUrl = "redirect:/web-application/testing/admin/showUsers";
         if(request.getRequestURI().contains("admin/showUser")) {
 
             int countOfPageNumberButtons =0;
@@ -39,9 +39,9 @@ public class ShowUsersCommand implements Command {
                 request.getSession().removeAttribute("error");
             }
 
-            return "/WEB-INF/view/admin/showUsers.jsp";
+            return Path.ADMIN_USERS;
         }else{
-            return showUsersUrl;
+            return Path.REDIRECT_ADMIN_USERS;
         }
     }
     private int getPageNumber(HttpServletRequest request, String parameterName) {

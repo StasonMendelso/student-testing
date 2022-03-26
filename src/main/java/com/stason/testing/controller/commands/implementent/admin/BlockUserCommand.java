@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 
@@ -12,7 +13,7 @@ public class BlockUserCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getParameter("secretPassword")==null){
-            return "redirect:/web-application/testing/admin/showUsers";
+            return Path.REDIRECT_ADMIN_USERS;
         }else{
             String secretPassword =request.getParameter("secretPassword");
             if(secretPassword.equals("block")){ // todo добавити константний клас з паролями
@@ -25,12 +26,12 @@ public class BlockUserCommand implements Command {
                 Integer id = Integer.valueOf(request.getParameter("id"));
                 blockedList.add(id);
                 request.getServletContext().setAttribute("blockedUsers",blockedList);
-                return "redirect:/web-application/testing/admin/showUsers";
+                return Path.REDIRECT_ADMIN_USERS;
             }else{
                 request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
                 request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
                 request.getSession().setAttribute("error", "Секретний код не співпадає");
-                return "redirect:/web-application/testing/admin/showUsers";
+                return Path.REDIRECT_ADMIN_USERS;
             }
         }
     }
