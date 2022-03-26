@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Role;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,6 @@ public class LogoutCommand implements Command {
         request.getSession().setAttribute("role", Role.GUEST.name());
         request.getSession().setAttribute("lang",lang);
 
-        return "redirect:/web-application/testing/login";
+        return Path.REDIRECT_GUEST_LOGOUT;
     }
 }

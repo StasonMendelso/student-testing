@@ -2,10 +2,7 @@ package com.stason.testing.controller.commands.implementent.guest;
 
 import com.mysql.cj.Session;
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.utils.EncodingConverter;
-import com.stason.testing.controller.utils.EncryptionPassword;
-import com.stason.testing.controller.utils.ValidatorService;
-import com.stason.testing.controller.utils.VerifyRecaptcha;
+import com.stason.testing.controller.utils.*;
 
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
@@ -26,11 +23,9 @@ public class LoginCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
 
-        String studentUrl = "redirect:/web-application/testing/student/info";
-        String adminUrl = "redirect:/web-application/testing/admin/info"; // Todo исправить на страничку с тестами?
-        if(request.getParameter("login")==null){
+         if(request.getParameter("login")==null){
             System.out.println("It is LoginCommand and forward /WEB-INF/view/guest/login.jsp");
-            return "/WEB-INF/view/guest/login.jsp";
+            return Path.GUEST_LOGIN;
         }
         if(request.getParameter("login")!=null) {
             String login = EncodingConverter.convertFromISOtoUTF8(request.getParameter("login"));
@@ -60,7 +55,7 @@ public class LoginCommand implements Command {
             }
             if (errors.size() > 0) {
                 request.setAttribute("errorsList", errors);
-                return "/WEB-INF/view/guest/login.jsp";
+                return Path.GUEST_LOGIN;
             }
 
             User user = new User();
@@ -79,7 +74,7 @@ public class LoginCommand implements Command {
                         errors.add("Хтось інший вже увійшов під цим записом");//Todo сделать локализацию
 
                         request.setAttribute("errorsList", errors);
-                        return "/WEB-INF/view/guest/login.jsp";
+                        return Path.GUEST_LOGIN;
                     }
                 }
 
@@ -90,7 +85,7 @@ public class LoginCommand implements Command {
                     errors.add("Ти заблокований! Звернися до адміністрації");//Todo сделать локализацию
 
                     request.setAttribute("errorsList", errors);
-                    return "/WEB-INF/view/guest/login.jsp";
+                    return  Path.GUEST_LOGIN;
                 }
 
                 String salt = user.getSalt();
@@ -113,24 +108,24 @@ public class LoginCommand implements Command {
                     session.setAttribute("idOfPassedTests", user.getIdPassedTestList());
 
 
-                    if (user.getRole().equals(Role.ADMIN.name())) return adminUrl;
-                    if (user.getRole().equals(Role.STUDENT.name())) return studentUrl;
+                    if (user.getRole().equals(Role.ADMIN.name())) return Path.REDIRECT_ADMIN_INFO;
+                    if (user.getRole().equals(Role.STUDENT.name())) return Path.REDIRECT_STUDENT_INFO;
                 }else{
                     errors.add("Користувача не знайдено. Перевірте логін та пароль");//Todo сделать локализацию
                     request.setAttribute("errorsList", errors);
 
-                    return "/WEB-INF/view/guest/login.jsp";
+                    return  Path.GUEST_LOGIN;
                 }
 
             } else {
                 errors.add("Користувача не знайдено. Перевірте логін та пароль");//Todo сделать локализацию
                 request.setAttribute("errorsList", errors);
 
-                return "/WEB-INF/view/guest/login.jsp";
+                return  Path.GUEST_LOGIN;
             }
-            return "redirect:/web-application/testing";
+            return Path.REDIRECT_GUEST_LOGIN;
         }else{
-            return "/WEB-INF/view/guest/login.jsp";
+            return  Path.GUEST_LOGIN;
         }
     }
 }

@@ -1,10 +1,7 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.utils.EncodingConverter;
-import com.stason.testing.controller.utils.EncryptionPassword;
-import com.stason.testing.controller.utils.ValidatorService;
-import com.stason.testing.controller.utils.VerifyRecaptcha;
+import com.stason.testing.controller.utils.*;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;
@@ -70,7 +67,7 @@ public class RegistrationCommand implements Command {
             System.out.println(errors);
             request.setAttribute("errorsList", errors);
             request.getServletContext().setAttribute("errorsList", errors);
-            return "/WEB-INF/view/guest/register.jsp";
+            return Path.GUEST_REGISTER;
         }
         //CheckUser
         //Создаем юзера
@@ -95,17 +92,16 @@ public class RegistrationCommand implements Command {
             errors.add("Уже есть пользователь с данным логином. Введите другую почту!");
             System.out.println(errors);
             request.setAttribute("errorsList", errors);
-            return "/WEB-INF/view/guest/register.jsp";
+            return Path.GUEST_REGISTER;
         }else{
             //заносим юзера в базу
-
             userDao.create(user);
 
         }
 
-            return "/WEB-INF/view/guest/successful_registration.jsp";
+            return Path.GUEST_SUCCESSFUL_REGISTER;
         }else {
-            return "/WEB-INF/view/guest/register.jsp";
+            return Path.GUEST_REGISTER;
         }
     }
 }
