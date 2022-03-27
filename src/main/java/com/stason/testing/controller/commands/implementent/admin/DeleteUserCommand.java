@@ -1,15 +1,15 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class DeleteUserCommand implements Command {
+    private final UserService userService = new UserService();
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getParameter("secretPassword")==null){
@@ -17,26 +17,26 @@ public class DeleteUserCommand implements Command {
         }else {
             String secretPassword = request.getParameter("secretPassword");
             if (secretPassword.equals("delete")) { // todo добавити константний клас з паролями
-                DaoFactory factory = DaoFactory.getInstance();
-                UserDao userDao = factory.createUserDao();
-                int id = Integer.parseInt(request.getParameter("id"));
+
+                int userId = Integer.parseInt(request.getParameter("id"));
                 if(request.getServletContext().getAttribute("logoutUsersId")!=null){
                     List<Integer> logoutUsersIdList = (List<Integer>)request.getServletContext().getAttribute("logoutUsersId");
                     boolean flag = true;
                     for(Integer idLogouted : logoutUsersIdList) {
-                        if (idLogouted == id) {
+                        if (idLogouted == userId) {
                             flag = false;
                             break;
                         }
                     }
                     if(flag) {
-                        logoutUsersIdList.add(id);
+                        logoutUsersIdList.add(userId);
                         request.getServletContext().setAttribute("logoutUsersId",logoutUsersIdList);
                     }
 
                 }
-                userDao.deletePassedTestsByUserId(id);
-                userDao.delete(id);
+
+                userService.deletePassedTestsByUserId(userId);
+                userService.delete(userId);
                 request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
                 request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
                 return Path.REDIRECT_ADMIN_USERS;

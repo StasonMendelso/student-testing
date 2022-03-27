@@ -3,14 +3,12 @@ package com.stason.testing.controller.commands.implementent.admin;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.PaginationService;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
-import com.stason.testing.model.entity.Test;
+
 import com.stason.testing.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class ShowUsersCommand implements Command {
@@ -18,15 +16,15 @@ public class ShowUsersCommand implements Command {
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getRequestURI().contains("admin/showUser")) {
 
-            int countOfPageNumberButtons =0;
             int paginationParameter = getPaginationParameter(request, "paginationParameter");
             int pageNumber = getPageNumber(request, "pageNumber");
-            List<User> list = PaginationService.paginateAllUsers(paginationParameter,pageNumber);
-            countOfPageNumberButtons = PaginationService.countButtonsForPaginationAllUsers(paginationParameter);
+            final PaginationService paginationService = new PaginationService();
+            List<User> list =  paginationService.paginateAllUsers(paginationParameter,pageNumber);
+            int countOfPageNumberButtons = paginationService.countButtonsForPaginationAllUsers(paginationParameter);
 
             if(list.isEmpty() && pageNumber>1){
                 pageNumber--;
-                list = PaginationService.paginateAllUsers(paginationParameter,pageNumber);
+                list =  paginationService.paginateAllUsers(paginationParameter,pageNumber);
             }
 
             request.setAttribute("countOfPageNumberButtons",countOfPageNumberButtons);

@@ -1,11 +1,10 @@
 package com.stason.testing.controller.commands.implementent.student;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.AnswerService;
+import com.stason.testing.controller.services.QuestionService;
+import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.AnswerDao;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.QuestionDao;
-import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
@@ -51,24 +50,23 @@ public class DoTestCommand implements Command {
                 }
             }
             int userId = (int) request.getSession().getAttribute("id");
-            DaoFactory factory = DaoFactory.getInstance();
-            TestDao testDao = factory.createTestDao();
-            testDao.addPassedTest(userId,testId,0);
+            TestService testService = new TestService();
+            testService.addPassedTest(userId,testId,0);
             idPassedTestsList.add(testId);
             request.getSession().setAttribute("idOfPassedTests",idPassedTestsList);
-            QuestionDao questionDao = factory.createQuestionDao();
-            AnswerDao answerDao = factory.createAnswerDao();
-            Test test = testDao.findById(testId);
-            List<Question> questionList = questionDao.findAllByTestId(testId);
+            QuestionService questionService = new QuestionService();
+            AnswerService answerService = new AnswerService();
+            Test test = testService.findById(testId);
+            List<Question> questionList = questionService.findAllByTestId(testId);
             Iterator<Question> iterator = questionList.iterator();
 
             while (iterator.hasNext()){
                 Question question = iterator.next();
                 int questionId = question.getId();
-                List<Answer> answerList = answerDao.findAllByQuestionId(questionId);
+                List<Answer> answerList = answerService.findAllByQuestionId(questionId);
                 List<Boolean> userOptions = new LinkedList<>();
                 for(int i =1; i <= answerList.size();i++){
-                    userOptions.add(new Boolean(false));
+                    userOptions.add(Boolean.FALSE);
                 }
                 question.setUserOptions(userOptions);
                 question.setAnswers(answerList);

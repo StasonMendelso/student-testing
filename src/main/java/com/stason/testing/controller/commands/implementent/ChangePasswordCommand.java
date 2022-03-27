@@ -1,12 +1,11 @@
 package com.stason.testing.controller.commands.implementent;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.EmailSender;
 import com.stason.testing.controller.utils.EncryptionLink;
 import com.stason.testing.controller.utils.EncryptionPassword;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,12 +42,13 @@ public class ChangePasswordCommand implements Command {
                 request.setAttribute("error","Паролі не співпадають");
                 return Path.RECOVERY_CREATE_NEW_PASSWORD;
             }
-            DaoFactory daoFactory = DaoFactory.getInstance();
-            UserDao userDao = daoFactory.createUserDao();
             String email = (String) request.getSession().getAttribute("login");
             String salt = EncryptionPassword.generateSalt();
             String hashedPassword = EncryptionPassword.hash(password,salt);
-            userDao.updatePassword(email,hashedPassword,salt);
+
+            UserService userService = new UserService();
+            userService.updatePassword(email,hashedPassword,salt);
+
             request.getSession().removeAttribute("login");
             String link = "redirect:/web-application/testing/role/changePassword";
             if (request.getSession().getAttribute("role").equals(Role.ADMIN.name())) link = link.replaceAll("role", "admin");

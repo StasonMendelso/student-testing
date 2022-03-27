@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.EmailSender;
 import com.stason.testing.controller.utils.EncryptionPassword;
 import com.stason.testing.controller.utils.Path;
@@ -43,11 +44,10 @@ public class RecoveryPasswordCommand implements Command {
             //Check email
             //
             String email = request.getParameter("email");
-            DaoFactory daoFactory = DaoFactory.getInstance();
-            UserDao userDao = daoFactory.createUserDao();
+            UserService userService = new UserService();
             User user = new User();
             user.setLogin(email);
-            if(!userDao.checkLogin(user)){
+            if(!userService.checkLogin(user)){
                 request.setAttribute("error","Не знайдено такого користувача");
                 return Path.RECOVERY_EMAIL;
             }
@@ -87,12 +87,11 @@ public class RecoveryPasswordCommand implements Command {
                 request.setAttribute("error","Паролі не співпадають");
                 return Path.RECOVERY_CREATE_NEW_PASSWORD;
             }
-            DaoFactory daoFactory = DaoFactory.getInstance();
-            UserDao userDao = daoFactory.createUserDao();
+            UserService userService = new UserService();
             String email = (String) request.getSession().getAttribute("login");
             String salt = EncryptionPassword.generateSalt();
             String hashedPassword = EncryptionPassword.hash(password,salt);
-            userDao.updatePassword(email,hashedPassword,salt);
+            userService.updatePassword(email,hashedPassword,salt);
             request.getSession().removeAttribute("login");
             return "redirect:/web-application/testing/recovery?successful=successful";
         }

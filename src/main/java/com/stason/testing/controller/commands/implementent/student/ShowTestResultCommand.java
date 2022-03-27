@@ -1,8 +1,7 @@
 package com.stason.testing.controller.commands.implementent.student;
 
+import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
@@ -28,9 +27,10 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
                     List<Boolean> userOptions = question.getUserOptions();
                     boolean flag=true;
                     for(int i=0;i<answerList.size();i++){
-                       if( !answerList.get(i).isRightAnswer()==(userOptions.get(i)) ){
-                           flag = false;
-                       }
+                        if (!answerList.get(i).isRightAnswer() == (userOptions.get(i))) {
+                            flag = false;
+                            break;
+                        }
                     }
                     if(flag) countOfRightAnswers++;
                 }
@@ -38,10 +38,9 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
                 double mark = ((double)countOfRightAnswers/countOfQuestions) * 100;
                 mark = (double)((int) (mark * 100)) / 100;
                 int userId = (int) request.getSession().getAttribute("id");
-                DaoFactory factory = DaoFactory.getInstance();
-                TestDao testDao = factory.createTestDao();
-//                testDao.addPassedTest(userId, test.getId(), mark);
-                testDao.updatePassedTest(userId,test.getId(),mark);
+                TestService testService = new TestService();
+
+                testService.updatePassedTest(userId,test.getId(),mark);
                 request.setAttribute("countOfRightAnswers",countOfRightAnswers);
                 request.setAttribute("mark",mark);
                 request.setAttribute("test",test);

@@ -2,16 +2,12 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.AnswerDao;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.QuestionDao;
-import com.stason.testing.model.entity.Answer;
-import com.stason.testing.model.entity.Question;
+
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
+
 
 public class DeleteQuestionCommand implements Command {
     @Override
@@ -31,7 +27,5 @@ public class DeleteQuestionCommand implements Command {
         }
         return Path.REDIRECT_ADMIN_EDIT_TEST+"?id="+test.getId();
     }
-    private void deleteQuestion(HttpServletRequest request,int id){
 
-    }
 }

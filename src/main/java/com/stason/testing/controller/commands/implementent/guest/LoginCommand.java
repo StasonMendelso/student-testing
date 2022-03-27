@@ -1,11 +1,9 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
-import com.mysql.cj.Session;
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.*;
 
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
 
@@ -61,10 +59,9 @@ public class LoginCommand implements Command {
             User user = new User();
             user.setLogin(login);
 
-            DaoFactory factory = DaoFactory.getInstance();
-            UserDao userDao = factory.createUserDao();
+            UserService userService = new UserService();
 
-            if (userDao.checkLogin(user)) {
+            if (userService.checkLogin(user)) {
                 HashSet<String> loggedUsers = new HashSet<>();
 
                 if (request.getServletContext().getAttribute("loggedUsers") != null) {
@@ -79,7 +76,7 @@ public class LoginCommand implements Command {
                 }
 
                     //беремо з базы юзера та встановлюємо відповідні атрибути
-                    user = userDao.findByLogin(login);
+                    user = userService.findByLogin(login);
 
                 if(user.isBlocked()){
                     errors.add("Ти заблокований! Звернися до адміністрації");//Todo сделать локализацию
@@ -103,7 +100,7 @@ public class LoginCommand implements Command {
                     session.setAttribute("name", user.getName());
                     session.setAttribute("surname", user.getSurname());
                     session.setAttribute("id", user.getId());
-                    List<Integer> idPassedTestsList = userDao.findIdPassedTestsByUserId(user.getId());
+                    List<Integer> idPassedTestsList = userService.findIdPassedTestsByUserId(user.getId());
                     user.setIdPassedTestList(idPassedTestsList);
                     session.setAttribute("idOfPassedTests", user.getIdPassedTestList());
 

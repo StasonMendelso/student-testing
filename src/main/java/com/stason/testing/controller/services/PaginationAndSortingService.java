@@ -2,15 +2,16 @@ package com.stason.testing.controller.services;
 
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.TestDao;
+import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PaginationAndSortingService {
-    public static List<Test> paginateAndSortUnpassedTests(int userId, int paginationParameter, int pageNumber, String orderBy, String order, String discipline){
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
+    private final DaoFactory factory = DaoFactory.getInstance();
+    private final TestDao testDao = factory.createTestDao();
+    public  List<Test> paginateAndSortUnpassedTests(int userId, int paginationParameter, int pageNumber, String orderBy, String order, String discipline){
         int index = paginationParameter*(pageNumber-1);
         if(discipline.equals("all")){
             return testDao.findAndPaginateAndSortUnpassedTests(userId,index,paginationParameter,orderBy,order);
@@ -19,9 +20,7 @@ public class PaginationAndSortingService {
         }
     }
 
-    public static int countButtonsForPaginatedAndSortedUnpassedTests(int userId, int paginationParameter, String discipline) {
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
+    public int countButtonsForPaginatedAndSortedUnpassedTests(int userId, int paginationParameter, String discipline) {
         int countUnPassedTest;
         if(discipline.equals("all")){
             countUnPassedTest = testDao.countPaginateAndSortUnpassedTests(userId);
@@ -38,9 +37,7 @@ public class PaginationAndSortingService {
         return (int) countOfPageNumberButtons;
     }
 
-    public static List<Test> paginateAndSortAllTests( int paginationParameter, int pageNumber, String orderBy, String order, String discipline) {
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
+    public  List<Test> paginateAndSortAllTests( int paginationParameter, int pageNumber, String orderBy, String order, String discipline) {
         int index = paginationParameter*(pageNumber-1);
         if(discipline.equals("all")){
             return testDao.findAndPaginateAndSortUnpassedTests(index,paginationParameter,orderBy,order);
@@ -49,9 +46,7 @@ public class PaginationAndSortingService {
         }
     }
 
-    public static int countButtonsForPaginatedAndSortedAllTests(int paginationParameter, String discipline) {
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
+    public  int countButtonsForPaginatedAndSortedAllTests(int paginationParameter, String discipline) {
         int countAllTest;
         if(discipline.equals("all")){
             countAllTest = testDao.countAllTest();

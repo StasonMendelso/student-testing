@@ -17,9 +17,9 @@ public class InfoCommand implements Command {
             //pagination
             int paginationParameter = getPaginationParameter(request);
             int pageNumber = getPageNumber(request);
-
-            List<Test> list = PaginationService.paginatePassedTests(userId,paginationParameter,pageNumber);
-            int countOfPageNumberButtons = PaginationService.countButtonsForPaginationPassedTests(userId,paginationParameter);
+            PaginationService paginationService = new PaginationService();
+            List<Test> list = paginationService.paginatePassedTests(userId,paginationParameter,pageNumber);
+            int countOfPageNumberButtons = paginationService.countButtonsForPaginationPassedTests(userId,paginationParameter);
 
             //end pagination
             request.setAttribute("testList", list);

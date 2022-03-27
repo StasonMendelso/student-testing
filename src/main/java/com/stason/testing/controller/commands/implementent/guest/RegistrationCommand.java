@@ -1,6 +1,7 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.*;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
@@ -84,18 +85,16 @@ public class RegistrationCommand implements Command {
 
         user.setPassword(hashedPassword);
         user.setSalt(salt);
-        //Создаем подключение
-        DaoFactory factory = DaoFactory.getInstance();
-        UserDao userDao = factory.createUserDao();
+            UserService userService = new UserService();
         //Проверяем, нету ли такого юзера за логином
-        if(userDao.checkUser(user)){
+        if(userService.checkUser(user)){
             errors.add("Уже есть пользователь с данным логином. Введите другую почту!");
             System.out.println(errors);
             request.setAttribute("errorsList", errors);
             return Path.GUEST_REGISTER;
         }else{
             //заносим юзера в базу
-            userDao.create(user);
+            userService.createNewUser(user);
 
         }
 

@@ -9,17 +9,17 @@ import com.stason.testing.model.entity.User;
 import java.util.List;
 
 public class PaginationService {
-    public static List<Test> paginatePassedTests(int userId, int paginationParameter, int pageNumber){
+    private final DaoFactory factory = DaoFactory.getInstance();
+    private final TestDao testDao = factory.createTestDao();
+    private final UserDao userDao = factory.createUserDao();
+    public  List<Test> paginatePassedTests(int userId, int paginationParameter, int pageNumber){
 
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
         int index = paginationParameter*(pageNumber-1);
 
         return testDao.findAndPaginatePassedTests(userId,index,paginationParameter);
     }
-    public static int countButtonsForPaginationPassedTests(int userId, int paginationParameter){
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
+    public  int countButtonsForPaginationPassedTests(int userId, int paginationParameter){
+
         int countPassedTest = testDao.countPassedTestByUser(userId);
         double countOfPageNumberButtons=(double)countPassedTest/paginationParameter;
         if(countOfPageNumberButtons<=1){
@@ -29,17 +29,14 @@ public class PaginationService {
         }
         return (int) countOfPageNumberButtons;
     }
-    public static List<Test> paginateUnpassedTests(int userId, int paginationParameter, int pageNumber){
+    public  List<Test> paginateUnpassedTests(int userId, int paginationParameter, int pageNumber){
 
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
         int index = paginationParameter*(pageNumber-1);
 
         return testDao.findAndPaginateUnsurpassedTests(userId,index,paginationParameter);
     }
-    public static int countButtonsForPaginationUnpassedTests(int userId, int paginationParameter){
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
+    public  int countButtonsForPaginationUnpassedTests(int userId, int paginationParameter){
+
         int countPassedTest = testDao.countUnpassedTestByUser(userId);
         double countOfPageNumberButtons=(double)countPassedTest/paginationParameter;
         if(countOfPageNumberButtons<=1){
@@ -50,9 +47,8 @@ public class PaginationService {
         return (int) countOfPageNumberButtons;
     }
 
-    public static int countButtonsForPaginationAllTests( int paginationParameter) {
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
+    public  int countButtonsForPaginationAllTests( int paginationParameter) {
+
         int countPassedTest = testDao.countAllTest();
         double countOfPageNumberButtons=(double)countPassedTest/paginationParameter;
         if(countOfPageNumberButtons<=1){
@@ -63,25 +59,21 @@ public class PaginationService {
         return (int) countOfPageNumberButtons;
     }
 
-    public static List<Test> paginateAllTests(int paginationParameter, int pageNumber) {
+    public  List<Test> paginateAllTests(int paginationParameter, int pageNumber) {
 
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
         int index = paginationParameter*(pageNumber-1);
 
         return testDao.findAndPaginateAllTests(index,paginationParameter);
     }
-    public static List<User> paginateAllUsers(int paginationParameter, int pageNumber) {
+    public  List<User> paginateAllUsers(int paginationParameter, int pageNumber) {
 
-        DaoFactory factory = DaoFactory.getInstance();
-        UserDao userDao = factory.createUserDao();
+
         int index = paginationParameter*(pageNumber-1);
 
         return userDao.findAndPaginateAllUsers(index,paginationParameter);
     }
-    public static int countButtonsForPaginationAllUsers( int paginationParameter) {
-        DaoFactory factory = DaoFactory.getInstance();
-        UserDao userDao = factory.createUserDao();
+    public  int countButtonsForPaginationAllUsers( int paginationParameter) {
+
         int countPassedTest = userDao.countAllUsers();
         double countOfPageNumberButtons=(double)countPassedTest/paginationParameter;
         if(countOfPageNumberButtons<=1){

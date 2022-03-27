@@ -3,11 +3,11 @@ package com.stason.testing.controller.commands.implementent.admin;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.PaginationAndSortingService;
 import com.stason.testing.controller.services.PaginationService;
+import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.TestDao;
-import com.stason.testing.model.dao.UserDao;
+
+
 import com.stason.testing.model.entity.Test;
 import com.stason.testing.model.entity.User;
 
@@ -19,18 +19,19 @@ import java.util.List;
 import java.util.Map;
 
 public class ShowTestsCommand implements Command {
+    private final PaginationService paginationService = new PaginationService();
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getRequestURI().contains("admin/showTests")) {
-            int countOfPageNumberButtons =0;
-            List<Test> testList = new ArrayList<>();
+            int countOfPageNumberButtons;
+            List<Test> testList;
             int paginationParameter = getPaginationParameter(request, "paginationParameter");
             int pageNumber = getPageNumber(request, "pageNumber");
 
             if(request.getParameter("clear")!=null) {
 
-                countOfPageNumberButtons = PaginationService.countButtonsForPaginationAllTests( paginationParameter);
-                testList = PaginationService.paginateAllTests(paginationParameter, pageNumber);
+                countOfPageNumberButtons =  paginationService.countButtonsForPaginationAllTests( paginationParameter);
+                testList =  paginationService.paginateAllTests(paginationParameter, pageNumber);
 
             }else if((request.getParameter("orderBy")!=null || request.getSession().getAttribute("orderBy")!=null) &&
                     (request.getParameter("order")!=null || request.getSession().getAttribute("order")!=null) &&
@@ -42,18 +43,19 @@ public class ShowTestsCommand implements Command {
                 String order =  getParameterFromRequestOrSession(request,"order"); // ASC DESC
                 String discipline = EncodingConverter.convertFromISOtoUTF8( getParameterFromRequestOrSession(request,"discipline")); // ALL another
                 if(orderBy.isEmpty()){
-                    testList = PaginationService.paginateAllTests(paginationParameter,pageNumber);
-                    countOfPageNumberButtons=PaginationService.countButtonsForPaginationAllTests(paginationParameter);
+                    testList =  paginationService.paginateAllTests(paginationParameter,pageNumber);
+                    countOfPageNumberButtons= paginationService.countButtonsForPaginationAllTests(paginationParameter);
                     if(testList.isEmpty() && pageNumber>1){
                         pageNumber--;
-                        testList= PaginationService.paginateAllTests(paginationParameter,pageNumber);
+                        testList=  paginationService.paginateAllTests(paginationParameter,pageNumber);
                     }
                 }else {
-                    testList = PaginationAndSortingService.paginateAndSortAllTests(paginationParameter, pageNumber, orderBy, order, discipline);
-                    countOfPageNumberButtons = PaginationAndSortingService.countButtonsForPaginatedAndSortedAllTests(paginationParameter, discipline);
+                    PaginationAndSortingService paginationAndSortingService = new PaginationAndSortingService();
+                    testList = paginationAndSortingService.paginateAndSortAllTests(paginationParameter, pageNumber, orderBy, order, discipline);
+                    countOfPageNumberButtons = paginationAndSortingService.countButtonsForPaginatedAndSortedAllTests(paginationParameter, discipline);
                     if(testList.isEmpty() && pageNumber>1){
                         pageNumber--;
-                        testList= PaginationAndSortingService.paginateAndSortAllTests(paginationParameter, pageNumber, orderBy, order, discipline);
+                        testList= paginationAndSortingService.paginateAndSortAllTests(paginationParameter, pageNumber, orderBy, order, discipline);
                     }
                 }
                 Map<String,String> sortingOptions = new HashMap<>();
@@ -62,17 +64,17 @@ public class ShowTestsCommand implements Command {
                 sortingOptions.put("discipline",discipline);
                 request.setAttribute("sortingOptions", sortingOptions);
             }else{
-                testList = PaginationService.paginateAllTests(paginationParameter,pageNumber);
-                countOfPageNumberButtons=PaginationService.countButtonsForPaginationAllTests(paginationParameter);
+                testList =  paginationService.paginateAllTests(paginationParameter,pageNumber);
+                countOfPageNumberButtons= paginationService.countButtonsForPaginationAllTests(paginationParameter);
                 if(testList.isEmpty() && pageNumber>1){
                     pageNumber--;
-                    testList= PaginationService.paginateAllTests(paginationParameter,pageNumber);
+                    testList=  paginationService.paginateAllTests(paginationParameter,pageNumber);
                 }
             }
 
-            DaoFactory factory = DaoFactory.getInstance();
-            TestDao testDao = factory.createTestDao();
-            List<String> disciplinesList = testDao.findAllDisciplines();
+
+            final TestService testService = new TestService();
+            List<String> disciplinesList = testService.findAllDisciplines();
             request.setAttribute("disciplinesList", disciplinesList);
 
             request.setAttribute("countOfPageNumberButtons",countOfPageNumberButtons);

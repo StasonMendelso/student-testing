@@ -1,18 +1,18 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
+
 import com.stason.testing.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 
 public class EditUserCommand implements Command {
+    private final UserService userService = new UserService();
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request) {
         if(request.getParameter("id")!=null){
             request.getSession().setAttribute("idUser",request.getParameter("id"));
         }
@@ -29,11 +29,10 @@ public class EditUserCommand implements Command {
                         flag=true;
                     }
                 }
-                DaoFactory factory = DaoFactory.getInstance();
-                UserDao userDao = factory.createUserDao();
+                int userId=Integer.parseInt(request.getParameter("id"));
+                User user = userService.findById(userId);
                 if(flag) {
 
-                    User user = userDao.findById(Integer.parseInt(request.getParameter("id")));
                     if (!request.getParameter("surname").isEmpty()) {
                         String surname = EncodingConverter.convertFromISOtoUTF8(request.getParameter("surname"));
                         user.setSurname(surname);
@@ -43,11 +42,10 @@ public class EditUserCommand implements Command {
                         user.setName(name);
                     }
 
-                    userDao.update(user);
+                    userService.update(user);
 
                     return Path.REDIRECT_ADMIN_USERS;
                 }else{
-                    User user = userDao.findById(Integer.parseInt(request.getParameter("id")));
                     request.setAttribute("user",user);
                     request.setAttribute("error", "Секретний код не співпадає");
                     return Path.ADMIN_EDIT_USER_INFO;
@@ -55,9 +53,8 @@ public class EditUserCommand implements Command {
             }
         }
         if(request.getRequestURI().contains("/admin/editUser") && !request.getRequestURI().contains("?")){
-            DaoFactory factory = DaoFactory.getInstance();
-            UserDao userDao = factory.createUserDao();
-            User user = userDao.findById(Integer.parseInt((String)request.getSession().getAttribute("idUser")));
+            int idUser = Integer.parseInt((String)request.getSession().getAttribute("idUser"));
+            User user = userService.findById(idUser);
             request.getSession().removeAttribute("idUser");
 
             request.setAttribute("user",user);

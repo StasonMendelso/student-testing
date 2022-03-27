@@ -1,12 +1,12 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.AnswerService;
+import com.stason.testing.controller.services.QuestionService;
+import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.AnswerDao;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.QuestionDao;
-import com.stason.testing.model.dao.TestDao;
+
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
@@ -16,6 +16,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 public class CreateQuestionCommand implements Command {
+    private  final TestService testService = new TestService();
+    private  final QuestionService questionService = new QuestionService();
+    private  final AnswerService answerService = new AnswerService();
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         System.out.println(request.getSession().getAttribute("test"));
@@ -24,28 +27,25 @@ public class CreateQuestionCommand implements Command {
             String url = saveQuestion(request);
             if(url.contains("createQuestion")){
                 // беремо з сесії тест і зберігаємо в БД
-                DaoFactory factory = DaoFactory.getInstance();
-                TestDao testDao = factory.createTestDao();
-                QuestionDao questionDao = factory.createQuestionDao();
-                AnswerDao answerDao = factory.createAnswerDao();
+
 
                 Test test = (Test) request.getSession().getAttribute("test");
 
                 // добавляємо тест в БД
-                testDao.create (test);
+                testService.create (test);
                 // добавляємо вопросы в БД
-                int testId = testDao.findIdByName(test.getName());
+                int testId = testService.findIdByName(test.getName());
                 int i =1;
                 for(Question question : test.getQuestions()){
                     question.setTestId(testId);
                     question.setQuestionNumber(i++);
-                    questionDao.create(question);
+                    questionService.create(question);
                     //добавляємо до кожного вопроса відповіді в БД
-                    int questionId = questionDao.findId(question);
+                    int questionId = questionService.findId(question);
 
                     for(Answer answer: question.getAnswers()){
                         answer.setQuestionId(questionId);
-                        answerDao.create(answer);
+                        answerService.create(answer);
                     }
                 }
                 //видаляємо з сесії

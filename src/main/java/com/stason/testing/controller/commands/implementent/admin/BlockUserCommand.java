@@ -1,15 +1,15 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class BlockUserCommand implements Command {
+    private final UserService userService =new UserService();
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getParameter("secretPassword")==null){
@@ -17,9 +17,9 @@ public class BlockUserCommand implements Command {
         }else{
             String secretPassword =request.getParameter("secretPassword");
             if(secretPassword.equals("block")){ // todo добавити константний клас з паролями
-                DaoFactory factory = DaoFactory.getInstance();
-                UserDao userDao = factory.createUserDao();
-                userDao.block(Integer.parseInt(request.getParameter("id")));
+                int userId = Integer.parseInt(request.getParameter("id"));
+
+                userService.block(userId);
                 request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
                 request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
                 List<Integer> blockedList = (List<Integer>)request.getServletContext().getAttribute("blockedUsers");
