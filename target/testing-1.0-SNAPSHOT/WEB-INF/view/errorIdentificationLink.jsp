@@ -24,10 +24,11 @@
 
 </head>
 <body >
-<c:if test="${sessionScopeScope.role==ADMIN}">
+
+<c:if test="${sessionScope.role=='ADMIN'}">
     <%@include file="admin/navbar.jsp"%>
 </c:if>
-<c:if test="${sessionScope.role==STUDENT}">
+<c:if test="${sessionScope.role=='STUDENT'}">
     <%@include file="student/navbar.jsp"%>
 </c:if>
 

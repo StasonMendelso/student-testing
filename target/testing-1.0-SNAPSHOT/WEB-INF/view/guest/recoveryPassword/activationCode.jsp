@@ -42,7 +42,8 @@
 
             </div>
 
-            <form name="loginform" action="${pageContext.request.contextPath}/testing/recovery" method="get" accept-charset="UTF-8">
+            <form name="loginform" action="${pageContext.request.contextPath}/testing/recovery" method="post" accept-charset="UTF-8">
+                <h4 class="text-white-50 text-center">Please, check your e-mail, the activation code to change password was sent to your e-mail </h4>
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="text" required class="form-control" id="login" name="activationCode" placeholder="name@example.com">
                     <label for="login">Activation code</label>
