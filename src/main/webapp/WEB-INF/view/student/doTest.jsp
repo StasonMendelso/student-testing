@@ -35,7 +35,7 @@
 
     <c:set var="question" value="${requestScope.question}"/>
     <div class="row  d-flex justify-content-between ps-3 pe-3 ">
-        <form  id="UserAnswers">
+        <form  id="UserAnswers" method="post">
         <div class="bg-question mb-5 container" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-left mt-2 pb-3">
                 <div class="row">

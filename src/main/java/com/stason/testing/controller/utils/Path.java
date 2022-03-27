@@ -56,4 +56,5 @@ public class Path {
     public static final String REDIRECT_ADMIN_CREATE_QUESTION = "redirect:/web-application/testing/admin/createQuestion";
     public static final String REDIRECT_ADMIN_USER_TESTS = "redirect:/web-application/testing/admin/userTests";
 
+
 }

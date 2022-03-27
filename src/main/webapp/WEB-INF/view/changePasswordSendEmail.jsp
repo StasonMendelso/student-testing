@@ -24,10 +24,10 @@
 
 </head>
 <body >
-<c:if test="${sessionScopeScope.role==ADMIN}">
+<c:if test="${sessionScope.role=='ADMIN'}">
     <%@include file="admin/navbar.jsp"%>
 </c:if>
-<c:if test="${sessionScope.role==STUDENT}">
+<c:if test="${sessionScope.role=='STUDENT'}">
     <%@include file="student/navbar.jsp"%>
 </c:if>
 
@@ -36,7 +36,9 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2 pb-3">
-                <h2 class="text-white-50"></h2>
+                <c:if test="${not empty requestScope.error}">
+                    <h4 class="text-info">${requestScope.error}</h4>
+                </c:if>
                 <h4 class="text-success text-center">The activation link to change password was sent to your e-mail</h4>
                 <span class="text-white-50 text-center">Please, check e-mail</span> <br>
             </div>

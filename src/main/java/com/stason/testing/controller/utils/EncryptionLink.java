@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.Base64;
 
 public class EncryptionLink {
-    private static final int ITERATIONS = 6000;
-    private static final int KEY_LENGTH = 200;
+    private static final int ITERATIONS = 600;
+    private static final int KEY_LENGTH = 512;
     private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
 
     public static String hash(String login,String salt) {
@@ -24,8 +24,8 @@ public class EncryptionLink {
         SecretKeyFactory fac = null;
         try {
             fac = SecretKeyFactory.getInstance(ALGORITHM);
-            byte[] securePassword = fac.generateSecret(spec).getEncoded();
-            return Base64.getEncoder().encodeToString(securePassword);
+            byte[] secureLink = fac.generateSecret(spec).getEncoded();
+            return Base64.getEncoder().encodeToString(secureLink).replaceAll("\\+","A");
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace();
         } finally {

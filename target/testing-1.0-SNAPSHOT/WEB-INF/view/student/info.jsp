@@ -39,6 +39,7 @@
                 <p>Login: ${sessionScope.login}</p>
                 <p>Student name: ${sessionScope.name}</p>
                 <p>Student surname: ${sessionScope.surname}</p>
+                <p class="text-center"><a class="nav-link" href="/web-application/testing/student/changePassword">Change Password</a></p>
             </div>
         </div>
     </div>

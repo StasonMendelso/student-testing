@@ -24,13 +24,13 @@
 
 </head>
 <body >
-<c:if test="${sessionScopeScope.role==ADMIN}">
+<c:if test="${sessionScope.role=='ADMIN'}">
     <%@include file="../../admin/navbar.jsp"%>
 </c:if>
-<c:if test="${sessionScope.role==STUDENT}">
+<c:if test="${sessionScope.role=='STUDENT'}">
     <%@include file="../../student/navbar.jsp"%>
 </c:if>
-<c:if test="${sessionScope.role==GUEST}">
+<c:if test="${sessionScope.role=='GUEST'}">
     <%@include file="../navbar.jsp"%>
 </c:if>
 
@@ -50,7 +50,7 @@
 
             </div>
 
-            <form name="loginform"  method="get" accept-charset="UTF-8">
+            <form name="loginform"  method="post" accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="password" required class="form-control" id="password" name="password" placeholder="name@example.com">
                     <label for="password">Password</label>

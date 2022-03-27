@@ -4,12 +4,14 @@ import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EmailSender;
 import com.stason.testing.controller.utils.EncryptionPassword;
 import com.stason.testing.controller.utils.Path;
+import com.stason.testing.controller.utils.VerifyRecaptcha;
 import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.User;
 
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 
@@ -20,6 +22,23 @@ public class RecoveryPasswordCommand implements Command {
             return Path.RECOVERY_EMAIL;
         }
         if(request.getParameter("email")!=null){
+            //reCaptcha
+            String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+
+            System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
+
+            // Verify CAPTCHA.
+            boolean valid = false;
+            try {
+                valid = VerifyRecaptcha.verify(gRecaptchaResponse);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (!valid) {
+                request.setAttribute("error","ReCaptcha is invalid");
+                return Path.RECOVERY_EMAIL;
+            }
+
             //Validate email
             //Check email
             //
@@ -41,6 +60,9 @@ public class RecoveryPasswordCommand implements Command {
             sender.sendActivationCode(email,activationCode.toString());
             request.getSession().setAttribute("login", email);
             request.getSession().setAttribute("activationCode", activationCode.toString());
+            return "redirect:/web-application/testing/recovery?activateCode=activate";
+        }
+        if(request.getParameter("activateCode")!=null){
             return Path.RECOVERY_ACTIVATION_CODE;
         }
         if(request.getParameter("activationCode")!=null){
@@ -53,8 +75,9 @@ public class RecoveryPasswordCommand implements Command {
                 return Path.RECOVERY_ACTIVATION_CODE;
             }
             request.getSession().removeAttribute("activationCode");
-            return Path.RECOVERY_CREATE_NEW_PASSWORD;
+            return "redirect:/web-application/testing/recovery?changePassword";
         }
+
         if(request.getParameter("password")!=null && request.getParameter("repeatedPassword")!=null){
             String password = request.getParameter("password");
             String repeatedPassword = request.getParameter("repeatedPassword");
@@ -71,9 +94,12 @@ public class RecoveryPasswordCommand implements Command {
             String hashedPassword = EncryptionPassword.hash(password,salt);
             userDao.updatePassword(email,hashedPassword,salt);
             request.getSession().removeAttribute("login");
-            return Path.RECOVERY_SUCCESSFUL;
+            return "redirect:/web-application/testing/recovery?successful=successful";
         }
-
+        if(request.getParameter("successful")!=null) return Path.RECOVERY_SUCCESSFUL;
+        if(request.getParameter("changePassword")!=null){
+            return Path.RECOVERY_CREATE_NEW_PASSWORD;
+        }
         return Path.RECOVERY_EMAIL;
     }
 }

@@ -40,7 +40,7 @@
                             <span class="col-8 text-center">${error}</span>
                             <span class="col-1"></span>
                             <span class="col-1" style="padding-right: 25px">
-                                 <form method="get" id="pagination_form" >
+                                 <form method="post" id="pagination_form" >
                                 <select class="form-select" name="paginationParameter" id="pagination">
                                     <option value="5" <c:if test="${requestScope.paginationParameter==5}">selected</c:if> >5</option>
                                     <option value="10" <c:if test="${requestScope.paginationParameter==10}">selected</c:if> >10</option>
@@ -170,7 +170,7 @@
                     </tbody>
                     <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0px 0px 30px 30px;"></caption>
                 </table>
-           <form>
+           <form method="post">
                <input hidden name="paginationParameter" value="${requestScope.paginationParameter}">
                 <nav >
                     <ul class="pagination pagination-lg justify-content-center">

@@ -60,7 +60,7 @@
                 </div>
                 <br>
                 <div class="text-left mt-2 pb-3 table-responsive">
-                    <form>
+                    <form method="post">
                         <input hidden name="id" value="${user.id}">
                         <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
                             <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0 0;"><span style="padding-left: 25px">Edit user information</span></caption>
