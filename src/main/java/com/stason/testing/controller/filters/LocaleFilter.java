@@ -21,7 +21,6 @@ public class LocaleFilter implements Filter {
         System.out.println(count++);
         System.out.println("It is Filter");
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
         if(req.getParameter("lang")!=null){
             req.getSession().setAttribute("lang", req.getParameter("lang"));
             String referrer = req.getHeader("referer");
@@ -40,8 +39,6 @@ public class LocaleFilter implements Filter {
             System.out.println("Lang is NULL.Set Lang by default");
             req.getSession().setAttribute("lang", "ua");
         }
-
-
         chain.doFilter(request, response);
     }
     
