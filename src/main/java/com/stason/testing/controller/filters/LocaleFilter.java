@@ -36,7 +36,7 @@ public class LocaleFilter implements Filter {
 
         }
         else{
-            System.out.println("Lang is NULL.Set Lang by default");
+            System.out.println("Lang is NULL.Set Lang by default as \"UA\"");
             req.getSession().setAttribute("lang", "ua");
         }
         chain.doFilter(request, response);
