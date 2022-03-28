@@ -1,14 +1,16 @@
 package com.stason.testing.controller.services;
 
-import com.stason.testing.model.dao.DaoFactory;
+
 import com.stason.testing.model.dao.TestDao;
+import com.stason.testing.model.dao.implement.JDBCTestDao;
 import com.stason.testing.model.entity.Test;
 
 import java.util.List;
 
 public class TestService {
-    private final DaoFactory factory = DaoFactory.getInstance();
-    private final TestDao testDao = factory.createTestDao();
+
+
+    private final TestDao testDao = new JDBCTestDao();
     public void addPassedTest(int userId,int testId, double mark){
         testDao.addPassedTest(userId,testId,0);
     }

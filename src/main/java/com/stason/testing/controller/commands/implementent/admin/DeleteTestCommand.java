@@ -1,10 +1,9 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
+import com.stason.testing.controller.services.AnswerService;
+import com.stason.testing.controller.services.QuestionService;
+import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.dao.AnswerDao;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.QuestionDao;
-import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 
@@ -45,19 +44,19 @@ public class DeleteTestCommand implements com.stason.testing.controller.commands
         return Path.REDIRECT_ADMIN_TESTS;
     }
     private  void deleteTest(int id){
-        DaoFactory factory = DaoFactory.getInstance();
-        TestDao testDao = factory.createTestDao();
-        QuestionDao questionDao = factory.createQuestionDao();
-        AnswerDao answerDao = factory.createAnswerDao();
-        List<Question> questionList = questionDao.findAllByTestId(id);
+
+        TestService testService = new TestService();
+        QuestionService questionService = new QuestionService();
+        AnswerService answerService = new AnswerService();
+        List<Question> questionList = questionService.findAllByTestId(id);
         for(Question question :questionList){
             int questionId = question.getId();
-            List<Answer> answerList = answerDao.findAllByQuestionId(questionId);
+            List<Answer> answerList = answerService.findAllByQuestionId(questionId);
             for(Answer answer:answerList){
-                answerDao.delete(answer.getId());
+                answerService.delete(answer.getId());
             }
-            questionDao.delete(questionId);
+            questionService.delete(questionId);
         }
-        testDao.delete(id);
+        testService.delete(id);
     }
 }

@@ -1,14 +1,15 @@
 package com.stason.testing.controller.services;
 
-import com.stason.testing.model.dao.DaoFactory;
 import com.stason.testing.model.dao.UserDao;
+import com.stason.testing.model.dao.implement.JDBCUserDao;
 import com.stason.testing.model.entity.User;
 
 import java.util.List;
 
 public class UserService {
-    private final DaoFactory factory = DaoFactory.getInstance();
-    private final UserDao userDao = factory.createUserDao();
+
+    private final UserDao userDao = new JDBCUserDao();
+
     public boolean checkLogin(User user){
         return userDao.checkLogin(user);
     }
@@ -17,9 +18,6 @@ public class UserService {
     }
     public List<Integer> findIdPassedTestsByUserId(int userId){
         return  userDao.findIdPassedTestsByUserId(userId);
-    }
-    public boolean checkUser(User user){
-        return userDao.checkUser(user);
     }
     public void createNewUser(User user){
         userDao.create(user);
@@ -50,5 +48,9 @@ public class UserService {
 
     public void unblock(int id) {
         userDao.unblock(id);
+    }
+
+    public List<Integer> findIdBlockedUsers() {
+        return  userDao.findIdBlockedUsers();
     }
 }

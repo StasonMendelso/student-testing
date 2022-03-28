@@ -1,5 +1,6 @@
 package com.stason.testing.model.dao.implement;
 
+import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.QuestionDao;
 import com.stason.testing.model.entity.Question;
 
@@ -11,26 +12,29 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCQuestionDao implements QuestionDao {
-    private final Connection connection;
-
-    public JDBCQuestionDao(Connection connection) {
-        this.connection=connection;
+    private static class Query{
+        static final String findId = "SELECT id FROM onlinetesting.questions WHERE tests_id=? AND questionNumber=?";
+        static final String create = "INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)";
+        static final String findAllByTestId = "SELECT * FROM onlinetesting.questions WHERE tests_id=?";
+        static final String findById = "SELECT * FROM onlinetesting.questions WHERE id=?";
+        static final String delete = "DELETE FROM onlinetesting.questions WHERE id=?";
     }
-
     @Override
     public int findId(Question question) {
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=? AND questionNumber=?");
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findId)){
+           
             preparedStatement.setInt(1,question.getTestId());
             preparedStatement.setInt(2,question.getQuestionNumber());
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                return resultSet.getInt("id");
-            }else{
-                throw  new SQLException("Result set is NULL");
-            }
+           try( ResultSet resultSet = preparedStatement.executeQuery()) {
+               if (resultSet.next()) {
+                   return resultSet.getInt("id");
+               } else {
+                   throw new SQLException("Result set is NULL");
+               }
+           }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,8 +43,8 @@ public class JDBCQuestionDao implements QuestionDao {
 
     @Override
     public void create(Question question) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)");
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
             preparedStatement.setInt(1,question.getTestId());
             preparedStatement.setInt(2,question.getQuestionNumber());
             preparedStatement.setString(3,question.getTextQuestion());
@@ -53,38 +57,39 @@ public class JDBCQuestionDao implements QuestionDao {
     @Override
     public List<Question> findAllByTestId(int id){
         List<Question> list = new LinkedList<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.questions WHERE tests_id=?");
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAllByTestId)){
             preparedStatement.setInt(1,id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
-                Question question = new Question();
-                question.setId(resultSet.getInt("id"));
-                question.setTestId(resultSet.getInt("tests_id"));
-                question.setTextQuestion(resultSet.getString("question"));
-                question.setQuestionNumber(resultSet.getInt("questionNumber"));
-                list.add(question);
+            try( ResultSet resultSet = preparedStatement.executeQuery()){
+                while(resultSet.next()){
+                    Question question = new Question();
+                    question.setId(resultSet.getInt("id"));
+                    question.setTestId(resultSet.getInt("tests_id"));
+                    question.setTextQuestion(resultSet.getString("question"));
+                    question.setQuestionNumber(resultSet.getInt("questionNumber"));
+                    list.add(question);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return list;
     }
 
     @Override
     public Question findById(int id) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.questions WHERE id=?");
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findById)){
             preparedStatement.setInt(1,id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
-                Question question = new Question();
-                question.setId(resultSet.getInt("id"));
-                question.setTestId(resultSet.getInt("tests_id"));
-                question.setTextQuestion(resultSet.getString("question"));
-                question.setQuestionNumber(resultSet.getInt("questionNumber"));
-                return question;
+            try( ResultSet resultSet = preparedStatement.executeQuery()){
+                if(resultSet.next()){
+                    Question question = new Question();
+                    question.setId(resultSet.getInt("id"));
+                    question.setTestId(resultSet.getInt("tests_id"));
+                    question.setTextQuestion(resultSet.getString("question"));
+                    question.setQuestionNumber(resultSet.getInt("questionNumber"));
+                    return question;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,9 +109,8 @@ public class JDBCQuestionDao implements QuestionDao {
 
     @Override
     public void delete(int id) {
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.questions WHERE id=?");
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

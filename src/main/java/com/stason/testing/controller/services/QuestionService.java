@@ -1,14 +1,15 @@
 package com.stason.testing.controller.services;
 
-import com.stason.testing.model.dao.DaoFactory;
+
 import com.stason.testing.model.dao.QuestionDao;
+import com.stason.testing.model.dao.implement.JDBCQuestionDao;
 import com.stason.testing.model.entity.Question;
 
 import java.util.List;
 
 public class QuestionService {
-    private final DaoFactory factory = DaoFactory.getInstance();
-    private final QuestionDao questionDao = factory.createQuestionDao();
+
+    private final QuestionDao questionDao = new JDBCQuestionDao();
     public List<Question> findAllByTestId(int testId){
         return questionDao.findAllByTestId(testId);
     }

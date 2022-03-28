@@ -3,8 +3,6 @@ package com.stason.testing.controller.commands.implementent.guest;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.*;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
 
@@ -87,7 +85,7 @@ public class RegistrationCommand implements Command {
         user.setSalt(salt);
             UserService userService = new UserService();
         //Проверяем, нету ли такого юзера за логином
-        if(userService.checkUser(user)){
+        if(userService.checkLogin(user)){
             errors.add("Уже есть пользователь с данным логином. Введите другую почту!");
             System.out.println(errors);
             request.setAttribute("errorsList", errors);

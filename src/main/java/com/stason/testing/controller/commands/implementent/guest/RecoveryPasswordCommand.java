@@ -6,8 +6,6 @@ import com.stason.testing.controller.utils.EmailSender;
 import com.stason.testing.controller.utils.EncryptionPassword;
 import com.stason.testing.controller.utils.Path;
 import com.stason.testing.controller.utils.VerifyRecaptcha;
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.User;
 
 

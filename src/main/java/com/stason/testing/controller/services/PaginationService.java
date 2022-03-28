@@ -1,17 +1,19 @@
 package com.stason.testing.controller.services;
 
-import com.stason.testing.model.dao.DaoFactory;
+
 import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.dao.UserDao;
+import com.stason.testing.model.dao.implement.JDBCTestDao;
+import com.stason.testing.model.dao.implement.JDBCUserDao;
 import com.stason.testing.model.entity.Test;
 import com.stason.testing.model.entity.User;
 
 import java.util.List;
 
 public class PaginationService {
-    private final DaoFactory factory = DaoFactory.getInstance();
-    private final TestDao testDao = factory.createTestDao();
-    private final UserDao userDao = factory.createUserDao();
+
+private final TestDao testDao = new JDBCTestDao();
+    private final UserDao userDao = new JDBCUserDao();
     public  List<Test> paginatePassedTests(int userId, int paginationParameter, int pageNumber){
 
         int index = paginationParameter*(pageNumber-1);
@@ -37,7 +39,7 @@ public class PaginationService {
     }
     public  int countButtonsForPaginationUnpassedTests(int userId, int paginationParameter){
 
-        int countPassedTest = testDao.countUnpassedTestByUser(userId);
+        int countPassedTest = testDao.countUnsurpassedTestByUser(userId);
         double countOfPageNumberButtons=(double)countPassedTest/paginationParameter;
         if(countOfPageNumberButtons<=1){
             countOfPageNumberButtons=0;

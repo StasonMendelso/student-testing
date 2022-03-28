@@ -49,7 +49,6 @@ public class ChangePasswordCommand implements Command {
             UserService userService = new UserService();
             userService.updatePassword(email,hashedPassword,salt);
 
-            request.getSession().removeAttribute("login");
             String link = "redirect:/web-application/testing/role/changePassword";
             if (request.getSession().getAttribute("role").equals(Role.ADMIN.name())) link = link.replaceAll("role", "admin");
             if (request.getSession().getAttribute("role").equals(Role.STUDENT.name())) link = link.replaceAll("role", "student");

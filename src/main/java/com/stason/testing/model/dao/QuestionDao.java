@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface QuestionDao extends GenericDao<Question>{
     List<Question> findAllByTestId(int id);
-    public int findId(Question question);
+    int findId(Question question);
 }

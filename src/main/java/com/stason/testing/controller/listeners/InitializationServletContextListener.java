@@ -1,7 +1,6 @@
 package com.stason.testing.controller.listeners;
 
-import com.stason.testing.model.dao.DaoFactory;
-import com.stason.testing.model.dao.UserDao;
+import com.stason.testing.controller.services.UserService;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -13,9 +12,8 @@ import java.util.List;
 public class InitializationServletContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        DaoFactory factory = DaoFactory.getInstance();
-        UserDao userDao = factory.createUserDao();
-        List<Integer> blockedUsers = userDao.findIdBlockedUsers();
+        UserService userService = new UserService();
+        List<Integer> blockedUsers = userService.findIdBlockedUsers();
         for(int i=0;i<blockedUsers.size();i++){
             System.out.println(blockedUsers.get(i));
         }
