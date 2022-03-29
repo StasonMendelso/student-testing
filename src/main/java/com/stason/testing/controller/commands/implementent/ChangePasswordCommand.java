@@ -8,13 +8,12 @@ import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 
 public class ChangePasswordCommand implements Command {
     private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         if(request.getParameterMap().isEmpty()) {
             String activationLink = Constants.ACTIVATION_LINK;
             if (request.getSession().getAttribute("role").equals(Role.ADMIN.name())) activationLink = activationLink.replaceAll("role", "admin");

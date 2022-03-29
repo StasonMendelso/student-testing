@@ -8,6 +8,7 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -17,11 +18,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DoTestCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(DoTestCommand.class.getName());
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
-        System.out.println("-------------------");
-        System.out.println(request.getParameter("currentClientTime"));
-        System.out.println("-------------------");
+    public String execute(HttpServletRequest request){
+
 
         String uri = request.getRequestURI();
         int testId = 0;
@@ -33,6 +33,7 @@ public class DoTestCommand implements Command {
         }
         //якщо тест не налл і айді зійшлось, то продовжуємо проходження теста
         if(request.getSession().getAttribute("test")!=null && request.getParameter("id")!=null){
+            logger.info("User continue to do test");
             Test currentTest = (Test) request.getSession().getAttribute("test");
             if(testId==currentTest.getId()){
                 return Path.REDIRECT_STUDENT_TEST+"?question=1";
@@ -75,12 +76,12 @@ public class DoTestCommand implements Command {
             Date date = new Date(Long.parseLong(request.getParameter("currentClientTime")));
             long outDateMilliseconds = Long.parseLong(request.getParameter("currentClientTime"))+test.getTimeSeconds()*1000L;
             Date outDate = new Date(outDateMilliseconds);
-            System.out.println("Дата клієнта: "+date);
-            System.out.println("Дата здачі тесту для цього клієнта: "+outDate);
+            logger.info("User started test ["+test.getName()+"] at "+date+ " Passed Date is "+ outDate);
             request.getSession().setAttribute("test",test);
             request.getSession().setAttribute("outDateMilliseconds",outDateMilliseconds);
             return Path.REDIRECT_STUDENT_TEST+"?question=1";
         }
+
         if(request.getSession().getAttribute("test")==null ){
             return Path.REDIRECT_STUDENT_TESTS;
         }
@@ -88,6 +89,7 @@ public class DoTestCommand implements Command {
 
         if(request.getParameter("save")!=null && request.getParameter("questionNumber")!=null && request.getParameter("finish")!=null){
             saveAnswers(request);
+            logger.info("User has passed test");
             return new ShowTestResultCommand().execute(request);
         }
         //Для сохранения ответов пользователя
@@ -101,7 +103,6 @@ public class DoTestCommand implements Command {
             int questionNumber = Integer.parseInt(request.getParameter("question"));
             Test test = (Test) request.getSession().getAttribute("test");
             Question question = test.getQuestion(questionNumber);
-            System.out.println(question);
             request.setAttribute("question", question);
             return Path.STUDENT_TEST;
         }

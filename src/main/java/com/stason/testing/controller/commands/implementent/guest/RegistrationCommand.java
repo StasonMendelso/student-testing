@@ -9,8 +9,7 @@ import com.stason.testing.model.entity.User;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class RegistrationCommand implements Command {
     private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         if(request.getParameter("login")!=null){
 
         //1.Validate

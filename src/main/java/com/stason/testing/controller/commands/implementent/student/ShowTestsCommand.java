@@ -5,10 +5,12 @@ import com.stason.testing.controller.services.PaginationAndSortingService;
 import com.stason.testing.controller.services.PaginationService;
 import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.services.UserService;
+import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.Path;
 
 import com.stason.testing.model.entity.Test;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -18,15 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 public class ShowTestsCommand implements Command {
-    private final PaginationService paginationService = new PaginationService();
-    private final PaginationAndSortingService paginationAndSortingService = new PaginationAndSortingService();
+    private final  static Logger logger = Logger.getLogger(ShowTestsCommand.class.getName());
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         String uri = request.getRequestURI();
         if(uri.contains("/student/tests")){
             int userId = (int) request.getSession().getAttribute("id");
-
-
             int countOfPageNumberButtons1 =0;
             int countOfPageNumberButtons2 =0;
             List<Test> unsurpassedTests = new ArrayList<>();
@@ -36,8 +35,11 @@ public class ShowTestsCommand implements Command {
             int paginationParameter2 = getPaginationParameter(request, "paginationParameter2");
             int pageNumber2 = getPageNumber(request, "pageNumber2");
 
-            if(request.getParameter("clear")!=null) {
+            final PaginationService paginationService = new PaginationService();
+            final PaginationAndSortingService paginationAndSortingService = new PaginationAndSortingService();
 
+            if(request.getParameter("clear")!=null) {
+                  // скидаємо сортування
                 countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnpassedTests(userId, paginationParameter1);
                 unsurpassedTests = paginationService.paginateUnpassedTests(userId, paginationParameter1, pageNumber1);
                 countOfPageNumberButtons2 = paginationService.countButtonsForPaginationAllTests( paginationParameter2);
@@ -48,6 +50,7 @@ public class ShowTestsCommand implements Command {
                     request.getParameter("discipline")!=null &&
                     request.getParameter("clear")==null
             ){
+                //робимо сортування
                 String orderBy = request.getParameter("orderBy"); //
                 String order = request.getParameter("order"); // ASC DESC
                 String discipline = EncodingConverter.convertFromISOtoUTF8(request.getParameter("discipline")); // ALL another
@@ -65,6 +68,7 @@ public class ShowTestsCommand implements Command {
                 sortingOptions.put("discipline",discipline);
                 request.setAttribute("sortingOptions", sortingOptions);
             }else {
+                // змінилася пагінація1
                 if (request.getParameter("orderBy1") != null &&
                         request.getParameter("order1") != null &&
                         request.getParameter("discipline1") != null &&
@@ -88,6 +92,7 @@ public class ShowTestsCommand implements Command {
                     sortingOptions.put("discipline", discipline);
                     request.setAttribute("sortingOptions", sortingOptions);
                 }
+                // змінилася пагінація2
                 if (request.getParameter("orderBy2") != null &&
                         request.getParameter("order2") != null &&
                         request.getParameter("discipline2") != null &&
@@ -112,6 +117,7 @@ public class ShowTestsCommand implements Command {
                     request.setAttribute("sortingOptions", sortingOptions);
 
                 }
+                //загрузка сторінки вперше
                 if (request.getParameter("orderBy1") == null &&
                         request.getParameter("order1") == null &&
                         request.getParameter("discipline1") == null &&

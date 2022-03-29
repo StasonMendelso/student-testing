@@ -8,14 +8,13 @@ import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class EditQuestionCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request) {
         Question questionOrigin = (Question) request.getSession().getAttribute("editedQuestion");
         //Сохранити питання
         if (request.getParameter("Save") != null) {

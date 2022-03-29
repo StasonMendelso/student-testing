@@ -6,12 +6,11 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 
 
 public class DeleteQuestionCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         Test test = (Test)request.getSession().getAttribute("editedTest");
         int countOfQuestions = test.getCountOfQuestions();
         if(countOfQuestions==1){

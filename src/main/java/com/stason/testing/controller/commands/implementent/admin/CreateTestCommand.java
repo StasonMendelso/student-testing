@@ -4,13 +4,15 @@ import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+
 
 public class CreateTestCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(CreateTestCommand.class.getName());
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         //1.Валидация
         //2.Проверка нету с таким именем теста
         //3.Проверка всех параметров формы и сохранение в сессию объекта Тест
@@ -27,7 +29,7 @@ public class CreateTestCommand implements Command {
             test.setDifficulty(difficulty);
             test.setTimeMinutes(Integer.parseInt(request.getParameter("duration")));
             request.getSession().setAttribute("test",test);
-
+            logger.info("Admin creates new test");
             return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }
 

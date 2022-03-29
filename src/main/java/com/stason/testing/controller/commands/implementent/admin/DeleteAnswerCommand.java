@@ -4,13 +4,12 @@ import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Question;
 
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+
 
 public class DeleteAnswerCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("DeleteId"));
 
         Question question = (Question) request.getSession().getAttribute("editedQuestion");

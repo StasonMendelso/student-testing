@@ -10,7 +10,6 @@ import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
     private final QuestionService questionService = new QuestionService();
     private final AnswerService answerService = new AnswerService();
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         if(request.getParameter("Save")!=null){
 
             if(request.getParameter("secretPassword")==null){

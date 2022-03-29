@@ -16,7 +16,7 @@ import java.io.UnsupportedEncodingException;
 
 public class RecoveryPasswordCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         if(request.getParameterMap().isEmpty()){
             return Path.RECOVERY_EMAIL;
         }

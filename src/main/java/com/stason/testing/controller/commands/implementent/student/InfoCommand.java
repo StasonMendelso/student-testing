@@ -4,14 +4,16 @@ import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.PaginationService;
 import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+
 import java.util.List;
 
 public class InfoCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(InfoCommand.class.getName());
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request) {
         if(request.getRequestURI().contains("/student/info")){
             int userId = (int) request.getSession().getAttribute("id");
             //pagination

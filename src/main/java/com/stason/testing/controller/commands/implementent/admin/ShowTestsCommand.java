@@ -11,7 +11,6 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,7 @@ import java.util.Map;
 public class ShowTestsCommand implements Command {
     private final PaginationService paginationService = new PaginationService();
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         if(request.getRequestURI().contains("admin/showTests")) {
             int countOfPageNumberButtons;
             List<Test> testList;

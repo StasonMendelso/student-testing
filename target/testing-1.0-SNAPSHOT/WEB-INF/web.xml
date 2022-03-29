@@ -64,10 +64,18 @@
         <filter-name>BackArrowFilter</filter-name>
         <url-pattern>/testing/login</url-pattern>
 
-        <url-pattern>/testing/student/info</url-pattern>
-        <url-pattern>/testing/admin/info</url-pattern>
+        <url-pattern>/testing/student/*</url-pattern>
+        <url-pattern>/testing/admin/*</url-pattern>
     </filter-mapping>
-
+    <filter>
+        <filter-name>BackArrowDoTestFilter</filter-name>
+        <filter-class>com.stason.testing.controller.filters.BackArrowForDoTestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BackArrowDoTestFilter</filter-name>
+        <url-pattern>/testing/student/test</url-pattern>
+        <url-pattern>/testing/student/result</url-pattern>
+    </filter-mapping>
 
     <listener>
         <listener-class>com.stason.testing.controller.listeners.DestroyingListener</listener-class>

@@ -7,13 +7,13 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+
 
 import java.util.List;
 
 public class ShowUsersCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         if(request.getRequestURI().contains("admin/showUser")) {
 
             int paginationParameter = getPaginationParameter(request, "paginationParameter");

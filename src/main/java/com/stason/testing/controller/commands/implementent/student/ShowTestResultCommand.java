@@ -5,19 +5,20 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class ShowTestResultCommand implements com.stason.testing.controller.commands.Command {
+    private final  static Logger logger = Logger.getLogger(ShowTestResultCommand.class.getName());
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         //Обраховуємо оцінку
         if(request.getRequestURI().contains("/student/result")) {
             if(request.getSession().getAttribute("test")!=null){
                 Test test = (Test) request.getSession().getAttribute("test");
-                System.out.println(test);
                 int countOfQuestions = test.getCountOfQuestions();
                 int countOfRightAnswers = 0;
 
@@ -39,7 +40,7 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
                 mark = (double)((int) (mark * 100)) / 100;
                 int userId = (int) request.getSession().getAttribute("id");
                 TestService testService = new TestService();
-
+                logger.info("The mark is " + mark);
                 testService.updatePassedTest(userId,test.getId(),mark);
                 request.setAttribute("countOfRightAnswers",countOfRightAnswers);
                 request.setAttribute("mark",mark);

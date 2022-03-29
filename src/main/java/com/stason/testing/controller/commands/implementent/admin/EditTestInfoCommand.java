@@ -5,11 +5,10 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 
 public class EditTestInfoCommand implements com.stason.testing.controller.commands.Command {
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         if(checkParameters(request)){
             saveEditedTest(request);
             Test test = (Test)request.getSession().getAttribute("editedTest");

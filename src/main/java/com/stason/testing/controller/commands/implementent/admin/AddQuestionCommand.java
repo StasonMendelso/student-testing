@@ -6,17 +6,17 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
 
 public class AddQuestionCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(AddQuestionCommand.class.getName());
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         if(request.getParameter("SaveQuestion")!=null){
-            Test test = (Test) request.getSession().getAttribute("editedTest");
             if(request.getSession().getAttribute("editedTest")!=null){
                 return saveQuestion(request);
             }else{

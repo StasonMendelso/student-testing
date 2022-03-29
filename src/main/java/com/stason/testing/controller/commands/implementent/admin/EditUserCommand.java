@@ -6,10 +6,12 @@ import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.Path;
 
 import com.stason.testing.model.entity.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class EditUserCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(EditUserCommand.class.getName());
     private final UserService userService = new UserService();
     @Override
     public String execute(HttpServletRequest request) {
@@ -43,7 +45,7 @@ public class EditUserCommand implements Command {
                     }
 
                     userService.update(user);
-
+                    logger.info("Admin updated information about user");
                     return Path.REDIRECT_ADMIN_USERS;
                 }else{
                     request.setAttribute("user",user);

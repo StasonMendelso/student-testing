@@ -7,13 +7,13 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+
 import java.util.List;
 
 public class ShowUsersTestsCommand implements Command {
     private final PaginationService paginationService = new PaginationService();
     @Override
-    public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
+    public String execute(HttpServletRequest request){
         int userId =-1;
         int thisPaginationParameter =getPaginationParameter(request,"thisPaginationParameter");
         int thisPageNumber = getPageNumber(request,"thisPageNumber");
