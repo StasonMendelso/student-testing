@@ -1,14 +1,18 @@
 package com.stason.testing.controller.listeners;
 
+import com.stason.testing.controller.servlets.ControllerServlet;
+import org.apache.log4j.Logger;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.util.HashSet;
 
 @WebListener
-public class DestoriyngListener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
+public class DestroyingListener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
+    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 
-    public DestoriyngListener() {
+    public DestroyingListener() {
     }
 
     @Override
@@ -34,6 +38,7 @@ public class DestoriyngListener implements ServletContextListener, HttpSessionLi
                 .getAttribute("login");
         loggedUsers.remove(login);
         se.getSession().setAttribute("loggedUsers", loggedUsers);
+        logger.info("The user with login "+login+" has removed from loggedUsers");
     }
 
     @Override

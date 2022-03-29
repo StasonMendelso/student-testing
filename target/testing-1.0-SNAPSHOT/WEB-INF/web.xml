@@ -70,7 +70,7 @@
 
 
     <listener>
-        <listener-class>com.stason.testing.controller.listeners.DestoriyngListener</listener-class>
+        <listener-class>com.stason.testing.controller.listeners.DestroyingListener</listener-class>
     </listener>
 
 

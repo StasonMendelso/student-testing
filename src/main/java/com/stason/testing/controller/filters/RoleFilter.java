@@ -1,6 +1,8 @@
 package com.stason.testing.controller.filters;
 
+import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.model.entity.Role;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -10,6 +12,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "RoleFilter")
 public class RoleFilter implements Filter {
+    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
     public void init(FilterConfig config) throws ServletException {
     }
 
@@ -18,15 +21,15 @@ public class RoleFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-        System.out.println("It is RoleFilter");
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        System.out.println(req.getSession().getAttribute("role"));
         if(req.getSession().getAttribute("role")==null){
-            System.out.println("It is RoleFilter if statement");
+            logger.info("Set role as "+Role.GUEST.name());
             req.getSession().setAttribute("role", Role.GUEST.name());
             chain.doFilter(req, resp);
         }else {
+            logger.info("Role is "+req.getSession().getAttribute("role"));
             chain.doFilter(req, resp);
         }
     }

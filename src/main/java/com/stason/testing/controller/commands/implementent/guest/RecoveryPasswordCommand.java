@@ -28,11 +28,7 @@ public class RecoveryPasswordCommand implements Command {
 
             // Verify CAPTCHA.
             boolean valid = false;
-            try {
-                valid = VerifyRecaptcha.verify(gRecaptchaResponse);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            valid = VerifyRecaptcha.verify(gRecaptchaResponse);
             if (!valid) {
                 request.setAttribute("error","ReCaptcha is invalid");
                 return Path.RECOVERY_EMAIL;
@@ -45,7 +41,7 @@ public class RecoveryPasswordCommand implements Command {
             UserService userService = new UserService();
             User user = new User();
             user.setLogin(email);
-            if(!userService.checkLogin(user)){
+            if(!userService.checkLogin(email)){
                 request.setAttribute("error","Не знайдено такого користувача");
                 return Path.RECOVERY_EMAIL;
             }

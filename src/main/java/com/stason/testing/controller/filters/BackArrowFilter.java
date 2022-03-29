@@ -1,7 +1,9 @@
 package com.stason.testing.controller.filters;
 
 import com.stason.testing.controller.commands.implementent.guest.LogoutCommand;
+import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.model.entity.Role;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -11,6 +13,8 @@ import java.io.IOException;
 
 @WebFilter(filterName = "BackArrowFilter")
 public class BackArrowFilter implements Filter {
+    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+
     public void init(FilterConfig config) throws ServletException {
     }
 
@@ -19,7 +23,6 @@ public class BackArrowFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-        System.out.println("It is BackArrowFilter");
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
@@ -31,12 +34,11 @@ public class BackArrowFilter implements Filter {
         String role = (String) req.getSession().getAttribute("role");
         String URI = req.getRequestURI();
 
-
-        //ToDo Соединить два фильтра в один, потому что оба отвечают за доступ
         if(role.equals(Role.STUDENT.name())){
             if(URI.contains("student")){
 
             }else{
+                logger.info("Do logout, because URI doesn't contain /student");
                 new LogoutCommand().execute(req);
             }
         }
@@ -44,6 +46,7 @@ public class BackArrowFilter implements Filter {
             if(URI.contains("admin")){
 
             }else{
+                logger.info("Do logout, because URI doesn't contain /admin");
                 new LogoutCommand().execute(req);
             }
         }

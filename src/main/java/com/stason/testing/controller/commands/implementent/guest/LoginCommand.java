@@ -2,27 +2,26 @@ package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
+import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.controller.utils.*;
 
 import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LoginCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 
 
     @Override
     public String execute(HttpServletRequest request) {
 
          if(request.getParameter("login")==null){
-            System.out.println("It is LoginCommand and forward /WEB-INF/view/guest/login.jsp");
             return Path.GUEST_LOGIN;
         }
         if(request.getParameter("login")!=null) {
@@ -39,15 +38,9 @@ public class LoginCommand implements Command {
             //CAPTCHA
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 
-            System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
-
             // Verify CAPTCHA.
             boolean valid = false;
-            try {
-                valid = VerifyRecaptcha.verify(gRecaptchaResponse);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            valid = VerifyRecaptcha.verify(gRecaptchaResponse);
             if (!valid) {
                 errors.add("Captcha invalid!");
             }
@@ -61,12 +54,11 @@ public class LoginCommand implements Command {
 
             UserService userService = new UserService();
 
-            if (userService.checkLogin(user)) {
+            if (userService.checkLogin(login)) {
                 HashSet<String> loggedUsers = new HashSet<>();
 
                 if (request.getServletContext().getAttribute("loggedUsers") != null) {
                     loggedUsers = (HashSet<String>) request.getServletContext().getAttribute("loggedUsers");
-                    System.out.println(loggedUsers);
                     if (loggedUsers.stream().anyMatch(login::equals)) {
                         errors.add("Хтось інший вже увійшов під цим записом");//Todo сделать локализацию
 
@@ -74,7 +66,6 @@ public class LoginCommand implements Command {
                         return Path.GUEST_LOGIN;
                     }
                 }
-
                     //беремо з базы юзера та встановлюємо відповідні атрибути
                     user = userService.findByLogin(login);
 
@@ -84,15 +75,12 @@ public class LoginCommand implements Command {
                     request.setAttribute("errorsList", errors);
                     return  Path.GUEST_LOGIN;
                 }
-
                 String salt = user.getSalt();
-                System.out.println(salt);
-                System.out.println(EncryptionPassword.hash(password, salt));
-                System.out.println(user.getPassword());
                 if(Objects.equals(EncryptionPassword.hash(password, salt), user.getPassword())) {
 
                     loggedUsers.add(login);
                     request.getServletContext().setAttribute("loggedUsers", loggedUsers);
+                    logger.info("Logged users are "+ Arrays.toString(loggedUsers.toArray()));
 
                     HttpSession session = request.getSession();
                     session.setAttribute("role", user.getRole());

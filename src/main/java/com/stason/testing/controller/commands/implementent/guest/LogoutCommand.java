@@ -1,22 +1,25 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Role;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 
 public class LogoutCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
     @Override
     public String execute(HttpServletRequest request) {
         String login = (String)request.getSession().getAttribute("login");
         HashSet<String> loggedUsers = new HashSet<>();
         loggedUsers =(HashSet<String>) request.getServletContext().getAttribute("loggedUsers");
-        System.out.println(loggedUsers);
+        logger.info("LoggedUsers before logouting are "+loggedUsers);
         loggedUsers.remove(login);
-        System.out.println(loggedUsers);
         request.getSession().getServletContext().setAttribute("loggedUsers",loggedUsers);
+        logger.info("LoggedUsers after logouting are "+loggedUsers);
 
         //Сохраняем язык чтобы не сменился когда сессия станет невалидной.
         String lang = (String) request.getSession().getAttribute("lang");

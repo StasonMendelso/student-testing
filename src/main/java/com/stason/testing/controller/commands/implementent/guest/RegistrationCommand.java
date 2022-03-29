@@ -2,9 +2,11 @@ package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
+import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.controller.utils.*;
 import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegistrationCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getParameter("login")!=null){
@@ -29,46 +33,43 @@ public class RegistrationCommand implements Command {
         String password = EncodingConverter.convertFromISOtoUTF8(request.getParameter("password"));
         String repeatedPassword = EncodingConverter.convertFromISOtoUTF8(request.getParameter("repeated-password"));
 
-        System.out.println("Register command{\n"+email+"\n" + username +"\n"+ surname +"\n"+ password+"\n" + repeatedPassword+"\n}");
-
         //Validate
         if(!ValidatorService.validateEmail(email)){
-            errors.add("Введено невірний формат почти");
+            errors.add("Введено невірний формат почти");//Todo локалізацію
         }
         if(!ValidatorService.validateUsername(username)){
-            errors.add("Ім'я повинно починатися з великої літери та має бути тільки з букв");
+            errors.add("Ім'я повинно починатися з великої літери та має бути тільки з букв");//Todo локалізацію
         }
         if(!ValidatorService.validateSurname(surname)){
-            errors.add("The surname must be started with Uppercase and contains only alphabet symbols");
+            errors.add("The surname must be started with Uppercase and contains only alphabet symbols");//Todo локалізацію
         }
         if(!ValidatorService.validatePassword(password)){
-            errors.add("Пароль повинен містити одну цифру, одну верхню та нижню букви, один спец символ, та мати длинну від 8 до 20 символів");
+            errors.add("Пароль повинен містити одну цифру, одну верхню та нижню букви, один спец символ, та мати длинну від 8 до 20 символів");//Todo локалізацію
         }
         if(!ValidatorService.isPasswordRepeated(password,repeatedPassword)){
-            errors.add("Паролі не співпадають");
+            errors.add("Паролі не співпадають");//Todo локалізацію
         }
             //CAPTCHA
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 
-            System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
-
             // Verify CAPTCHA.
             boolean valid = false;
-            try {
-                valid = VerifyRecaptcha.verify(gRecaptchaResponse);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            valid = VerifyRecaptcha.verify(gRecaptchaResponse);
             if (!valid) {
-                errors.add("Captcha invalid!");
+                errors.add("Captcha invalid!");//Todo локалізацію
             }
         if(errors.size()!=0){
-            System.out.println(errors);
             request.setAttribute("errorsList", errors);
             request.getServletContext().setAttribute("errorsList", errors);
             return Path.GUEST_REGISTER;
         }
         //CheckUser
+            UserService userService = new UserService();
+            if(userService.checkLogin(email)){
+                errors.add("Уже есть пользователь с данным логином. Введите другую почту!");//Todo локалізацію
+                request.setAttribute("errorsList", errors);
+                return Path.GUEST_REGISTER;
+            }
         //Создаем юзера
         User user = new User();
         user.setLogin(email);
@@ -83,19 +84,10 @@ public class RegistrationCommand implements Command {
 
         user.setPassword(hashedPassword);
         user.setSalt(salt);
-            UserService userService = new UserService();
-        //Проверяем, нету ли такого юзера за логином
-        if(userService.checkLogin(user)){
-            errors.add("Уже есть пользователь с данным логином. Введите другую почту!");
-            System.out.println(errors);
-            request.setAttribute("errorsList", errors);
-            return Path.GUEST_REGISTER;
-        }else{
+
             //заносим юзера в базу
             userService.createNewUser(user);
-
-        }
-
+        logger.info("Registered new user: "+surname+" "+username+" "+email);
             return Path.GUEST_SUCCESSFUL_REGISTER;
         }else {
             return Path.GUEST_REGISTER;

@@ -118,11 +118,11 @@ public class JDBCUserDao implements UserDao {
 
 
     @Override
-    public boolean checkLogin(User user){
+    public boolean checkLogin(String login){
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.checkLogin)){
-            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(1, login);
             try(  ResultSet resultSet = preparedStatement.executeQuery()){
                 if(resultSet.next()) return true;
             }

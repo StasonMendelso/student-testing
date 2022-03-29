@@ -10,8 +10,8 @@ public class UserService {
 
     private final UserDao userDao = new JDBCUserDao();
 
-    public boolean checkLogin(User user){
-        return userDao.checkLogin(user);
+    public boolean checkLogin(String login){
+        return userDao.checkLogin(login);
     }
     public User findByLogin(String login){
         return userDao.findByLogin(login);

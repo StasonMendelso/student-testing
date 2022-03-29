@@ -9,6 +9,8 @@ import com.stason.testing.controller.commands.implementent.admin.*;
 import com.stason.testing.controller.commands.implementent.student.*;
 import com.stason.testing.controller.commands.implementent.guest.*;
 import com.stason.testing.controller.commands.implementent.student.ShowTestsCommand;
+import org.apache.log4j.Logger;
+
 
 
 import java.io.*;
@@ -22,8 +24,9 @@ import javax.servlet.http.*;
 
 public class ControllerServlet extends HttpServlet {
     private final Map<String, Command> commands = new HashMap<>() ;
-
+private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
     public void init() {
+        logger.debug("Initialization "+ControllerServlet.class.getName());
         commands.put("/",new DefaultCommand());
         commands.put("",new DefaultCommand());
         commands.put("/login",new LoginCommand());
@@ -69,18 +72,16 @@ public class ControllerServlet extends HttpServlet {
         process(req,resp);
     }
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("It is servlet");
-        System.out.println(request.getRequestURI());
-
+        logger.info("Servlet");
             String uri = request.getRequestURI();
-        System.out.println("IT IS OLD URI"+uri);
+        logger.info("Old URI is:"+uri);
             uri = uri.replaceAll(".*/testing", "");
             uri = uri.replaceAll("\\?.*","");
-        System.out.println("COMMAND IS "+uri);
             Command command = commands.getOrDefault(uri, new DefaultCommand());
-            if(command!=null) {
+        logger.info("Command is:"+command);
+        if(command!=null) {
                 String newUrl = command.execute(request);
-                System.out.println("NewUrl is "+newUrl);
+            logger.info("New URL is:"+newUrl);
                 if (newUrl.contains("redirect:")) {
                     response.sendRedirect(newUrl.replaceAll("redirect:", ""));
                 } else {

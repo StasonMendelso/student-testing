@@ -2,20 +2,21 @@ package com.stason.testing.controller.commands.implementent;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
-import com.stason.testing.controller.utils.EmailSender;
-import com.stason.testing.controller.utils.EncryptionLink;
-import com.stason.testing.controller.utils.EncryptionPassword;
-import com.stason.testing.controller.utils.Path;
+import com.stason.testing.controller.servlets.ControllerServlet;
+import com.stason.testing.controller.utils.*;
 import com.stason.testing.model.entity.Role;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 public class ChangePasswordCommand implements Command {
+    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+
     @Override
     public String execute(HttpServletRequest request) throws UnsupportedEncodingException {
         if(request.getParameterMap().isEmpty()) {
-            String activationLink = "http://localhost:8080/web-application/testing/role/changePassword";
+            String activationLink = Constants.ACTIVATION_LINK;
             if (request.getSession().getAttribute("role").equals(Role.ADMIN.name())) activationLink = activationLink.replaceAll("role", "admin");
             if (request.getSession().getAttribute("role").equals(Role.STUDENT.name())) activationLink = activationLink.replaceAll("role", "student");
             String login = (String) request.getSession().getAttribute("login");
@@ -29,7 +30,7 @@ public class ChangePasswordCommand implements Command {
                 request.getSession().setAttribute("identification", hashedLink);
                 return Path.CHANGE_PASSWORD;
             }else{
-                request.setAttribute("error", "The identification link was sent to your e-mail.");
+                request.setAttribute("error", "The identification link was sent to your e-mail.");//Todo локалізацію
                 return Path.CHANGE_PASSWORD;
             }
         }
@@ -39,7 +40,7 @@ public class ChangePasswordCommand implements Command {
             //Validate
             //Check password
             if(!password.equals(repeatedPassword)){
-                request.setAttribute("error","Паролі не співпадають");
+                request.setAttribute("error","Паролі не співпадають"); //Todo локалізацію
                 return Path.RECOVERY_CREATE_NEW_PASSWORD;
             }
             String email = (String) request.getSession().getAttribute("login");
@@ -50,6 +51,7 @@ public class ChangePasswordCommand implements Command {
             userService.updatePassword(email,hashedPassword,salt);
 
             String link = "redirect:/web-application/testing/role/changePassword";
+            logger.info("User "+email+" changed password");
             if (request.getSession().getAttribute("role").equals(Role.ADMIN.name())) link = link.replaceAll("role", "admin");
             if (request.getSession().getAttribute("role").equals(Role.STUDENT.name())) link = link.replaceAll("role", "student");
 
@@ -59,9 +61,10 @@ public class ChangePasswordCommand implements Command {
         if(request.getParameter("identification")!=null){
             String identificationFromUser = request.getParameter("identification");
             String identification = (String) request.getSession().getAttribute("identification");
-            System.out.println(identificationFromUser);
-            System.out.println(identification);
-            if(!identification.equals(identificationFromUser)) return Path.CHANGE_PASSWORD_ERROR_IDENTIFICATION;
+            if(!identification.equals(identificationFromUser)){
+                logger.info("Identification is not relevant");
+                return Path.CHANGE_PASSWORD_ERROR_IDENTIFICATION;
+            }
             return Path.RECOVERY_CREATE_NEW_PASSWORD;
         }
 

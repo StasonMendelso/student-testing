@@ -5,7 +5,7 @@ import com.stason.testing.model.entity.User;
 import java.util.List;
 
 public interface UserDao extends GenericDao<User> {
-    boolean checkLogin(User user);
+    boolean checkLogin(String login);
     User findByLogin(String login);
     boolean block(int id);
     boolean unblock(int id);
