@@ -19,7 +19,7 @@ public class JDBCAnswerDao implements AnswerDao {
 
     }
     @Override
-    public void create(Answer answer) {
+    public boolean create(Answer answer) {
         try  (Connection connection = ConnectionPool.getInstance().getConnection();
               PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
             preparedStatement.setString(1, answer.getAnswer());
@@ -30,6 +30,7 @@ public class JDBCAnswerDao implements AnswerDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override

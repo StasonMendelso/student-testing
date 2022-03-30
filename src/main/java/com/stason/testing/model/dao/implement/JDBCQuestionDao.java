@@ -42,7 +42,7 @@ public class JDBCQuestionDao implements QuestionDao {
     }
 
     @Override
-    public void create(Question question) {
+    public boolean create(Question question) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
             preparedStatement.setInt(1,question.getTestId());
@@ -53,6 +53,7 @@ public class JDBCQuestionDao implements QuestionDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
     @Override
     public List<Question> findAllByTestId(int id){

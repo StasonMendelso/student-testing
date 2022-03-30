@@ -1,8 +1,10 @@
 package com.stason.testing.model.dao.implement;
 
+import com.stason.testing.controller.commands.implementent.admin.EditUserCommand;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Test;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,11 +12,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCTestDao implements TestDao {
+    private final  static Logger logger = Logger.getLogger(EditUserCommand.class.getName());
     private static class Query{
         static final String deletePassedTestById = "DELETE FROM onlinetesting.passedtests WHERE test_id=?";
         static final String countTestByDiscipline = "SELECT COUNT(1) FROM onlinetesting.tests WHERE tests.nameOfDiscipline=?";
-        static final String findAndPaginateAndSortUnsurpassedTests = "";
-        static final String findAndPaginateAndSortByDisciplineUnsurpassedTests = "";
+//        static final String findAndPaginateAndSortUnsurpassedTests = "";
+//        static final String findAndPaginateAndSortByDisciplineUnsurpassedTests = "";
         static final String updatePassedTest = "update onlinetesting.passedtests SET mark=? WHERE user_id=? AND test_id=?;";
         static final String countAllTest = "SELECT COUNT(1) FROM onlinetesting.tests";
         static final String findAndPaginateAllTests = "SELECT * FROM onlinetesting.`tests` limit ?,?;";
@@ -23,7 +26,7 @@ public class JDBCTestDao implements TestDao {
         static final String findAllDisciplines = "SELECT DISTINCT onlinetesting.tests.nameOfDiscipline FROM onlinetesting.tests;";
         static final String countUnsurpassedTestByUser = "SELECT COUNT(1) FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL;";
         static final String countPassedTestByUser = "SELECT COUNT(1) FROM onlinetesting.`passedtests` WHERE user_id=?";
-        static final String findAndPaginateAndSortUnsurpassedTestsByUserId = "";
+//        static final String findAndPaginateAndSortUnsurpassedTestsByUserId = "";
         static final String findAndPaginateAndSortByDisciplineUnsurpassedTestsByUserId = "SELECT * FROM onlinetesting.`tests`, (SELECT mark, test_id FROM onlinetesting.`passedtests` WHERE user_id=?) as `passedtests` WHERE `tests`.id = `passedtests`.test_id limit ?,?;";
         static final String findAndPaginateUnsurpassedTests = " SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL limit ?,?;";
         static final String addPassedTest = "INSERT INTO onlinetesting.passedtests (user_id, test_id, mark) VALUES (?,?,?)";
@@ -357,7 +360,7 @@ public class JDBCTestDao implements TestDao {
 
 
     @Override
-    public void create(Test test) {
+    public boolean create(Test test)  {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
             preparedStatement.setString(1,test.getName());
@@ -365,11 +368,13 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setString(3,test.getDifficulty());
             preparedStatement.setInt(4,test.getTimeMinutes());
             preparedStatement.setInt(5,test.getCountOfQuestions());
-
-            if(preparedStatement.execute()) System.out.println("Test was added to DB");
-
+            boolean isCreated = preparedStatement.execute();
+            if(isCreated) System.out.println("Test was added to DB");
+            return isCreated;
         } catch (SQLException e) {
+            logger.warn("Failed to add new test in DB ",e);
             e.printStackTrace();
+            return false;
         }
     }
 

@@ -30,7 +30,6 @@ public class CreateQuestionCommand implements Command {
 
 
                 Test test = (Test) request.getSession().getAttribute("test");
-
                 // добавляємо тест в БД
                 testService.create (test);
                 // добавляємо вопросы в БД
@@ -48,6 +47,7 @@ public class CreateQuestionCommand implements Command {
                         answerService.create(answer);
                     }
                 }
+
                 //видаляємо з сесії
                 request.getSession().removeAttribute("test");
                 //переходимо на сторінку, що тест успішно зберігся

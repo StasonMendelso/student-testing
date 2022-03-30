@@ -12,7 +12,7 @@ public class TestService {
 
     private final TestDao testDao = new JDBCTestDao();
     public void addPassedTest(int userId,int testId, double mark){
-        testDao.addPassedTest(userId,testId,0);
+        testDao.addPassedTest(userId,testId,mark);
     }
     public Test findById(int testId){
       return testDao.findById(testId);

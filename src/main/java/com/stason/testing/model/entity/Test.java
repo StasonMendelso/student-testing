@@ -4,7 +4,6 @@ package com.stason.testing.model.entity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Test {
@@ -137,22 +136,18 @@ public class Test {
         boolean flag = false;
 
         for(int i=0;i<questions.size();i++){
-            System.out.println(questions);
             if(flag){
                 Question question = questions.get(i);
                 question.setQuestionNumber(i+1);
                 questions.set(i,question);
-                System.out.println(questions);
-            }else{
-                System.out.println(questions);
+
             }
             if(questions.get(i).getId()==id){
                 questions.remove(i);
                 countOfQuestions--;
                 flag=true;
                 i--;
-                System.out.println("After Deleting");
-                System.out.println(questions);
+
             }
 
         }

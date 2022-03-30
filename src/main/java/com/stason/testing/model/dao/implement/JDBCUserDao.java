@@ -161,7 +161,7 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public void create(User user) {
+    public boolean create(User user) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
@@ -177,6 +177,7 @@ public class JDBCUserDao implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
