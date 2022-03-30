@@ -45,7 +45,7 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public void deletePassedTestsByUserId(int id) {
+    public boolean deletePassedTestsByUserId(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTestsByUserId)){
             preparedStatement.setInt(1,id);
@@ -53,7 +53,7 @@ public class JDBCUserDao implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return false;
     }
 
     @Override
@@ -256,7 +256,7 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public void update(User user) {
+    public boolean update(User user) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement  preparedStatement = connection.prepareStatement(Query.update)){
@@ -267,11 +267,12 @@ public class JDBCUserDao implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
 
     }
 
     @Override
-    public void updatePassword(String login, String password, String salt) {
+    public boolean updatePassword(String login, String password, String salt) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.updatePassword)){
@@ -282,10 +283,12 @@ public class JDBCUserDao implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
+
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
             preparedStatement.setInt(1,id);
@@ -294,6 +297,8 @@ public class JDBCUserDao implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
+
     }
 
     @Override

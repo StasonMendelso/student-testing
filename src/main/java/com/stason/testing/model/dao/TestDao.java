@@ -7,7 +7,7 @@ import java.util.List;
 public interface TestDao extends GenericDao<Test>{
     int findIdByName(String testName);
 
-    void addPassedTest(int userId, int testId, double mark);
+    boolean addPassedTest(int userId, int testId, double mark);
     List<Test> findAndPaginateUnsurpassedTests(int userId, int index, int paginationParameter);
     int countUnsurpassedTestByUser(int userId);
     List<Test> findAndPaginatePassedTests(int userId, int index,int paginationParameter);
@@ -33,6 +33,6 @@ public interface TestDao extends GenericDao<Test>{
 
     int countTestByDiscipline(String discipline);
 
-    void updatePassedTest(int userId, int id, double mark);
-    void deletePassedTestById(int testId);
+    boolean updatePassedTest(int userId, int id, double mark);
+    boolean deletePassedTestById(int testId);
 }

@@ -40,7 +40,7 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public void deletePassedTestById(int testId) {
+    public boolean deletePassedTestById(int testId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement =connection.prepareStatement(Query.deletePassedTestById)){
             preparedStatement.setInt(1,testId);
@@ -48,6 +48,8 @@ public class JDBCTestDao implements TestDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
+
     }
 
     @Override
@@ -108,7 +110,7 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public void updatePassedTest(int userId, int testId, double mark) {
+    public boolean updatePassedTest(int userId, int testId, double mark) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.updatePassedTest)){
@@ -119,6 +121,8 @@ public class JDBCTestDao implements TestDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
+
     }
 
     @Override
@@ -327,7 +331,7 @@ public class JDBCTestDao implements TestDao {
         return list;
     }
     @Override
-    public void addPassedTest(int userId, int testId, double mark) {
+    public boolean addPassedTest(int userId, int testId, double mark) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.addPassedTest)){
             preparedStatement.setInt(1,userId);
@@ -337,6 +341,7 @@ public class JDBCTestDao implements TestDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
 
     }
 
@@ -426,7 +431,8 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public void update(Test entity) {
+    public boolean update(Test entity) {
+        return false;
 
     }
     public void deletePassedTest(int id){
@@ -442,7 +448,7 @@ public class JDBCTestDao implements TestDao {
         }
     }
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
             deletePassedTest(id);
@@ -454,6 +460,8 @@ public class JDBCTestDao implements TestDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
+
     }
 
     @Override

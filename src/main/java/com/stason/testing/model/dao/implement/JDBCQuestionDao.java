@@ -104,12 +104,13 @@ public class JDBCQuestionDao implements QuestionDao {
     }
 
     @Override
-    public void update(Question entity) {
+    public boolean update(Question entity) {
+        return false;
 
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
             preparedStatement.setInt(1,id);
@@ -117,6 +118,8 @@ public class JDBCQuestionDao implements QuestionDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
+
     }
 
     @Override

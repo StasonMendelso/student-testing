@@ -68,12 +68,12 @@ public class JDBCAnswerDao implements AnswerDao {
     }
 
     @Override
-    public void update(Answer entity) {
-
+    public boolean update(Answer entity) {
+        return false;
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
             preparedStatement.setInt(1,id);
@@ -81,6 +81,7 @@ public class JDBCAnswerDao implements AnswerDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override

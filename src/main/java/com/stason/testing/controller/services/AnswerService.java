@@ -15,11 +15,11 @@ public class AnswerService {
         return answerDao.findAllByQuestionId(questionId);
     }
 
-    public void create(Answer answer) {
-        answerDao.create(answer);
+    public boolean create(Answer answer) {
+        return answerDao.create(answer);
     }
 
-    public void delete(int id) {
-        answerDao.delete(id);
+    public boolean delete(int id) {
+        return answerDao.delete(id);
     }
 }
