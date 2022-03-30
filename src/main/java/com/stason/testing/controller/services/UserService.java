@@ -19,8 +19,8 @@ public class UserService {
     public List<Integer> findIdPassedTestsByUserId(int userId){
         return  userDao.findIdPassedTestsByUserId(userId);
     }
-    public void createNewUser(User user){
-        userDao.create(user);
+    public boolean createNewUser(User user){
+        return userDao.create(user);
     }
     public void updatePassword(String login, String hashedPassword,String salt){
         userDao.updatePassword(login,hashedPassword,salt);

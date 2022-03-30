@@ -1,15 +1,20 @@
 package com.stason.testing.model.dao.implement;
 
+import com.stason.testing.controller.exceptions.DataBaseException;
+import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCUserDao implements UserDao {
+    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+
     private static class Query{
         static final String findIdBlockedUsers = "SELECT id FROM onlinetesting.users WHERE blocked=true";
         static final String deletePassedTestsByUserId = "DELETE FROM onlinetesting.passedtests WHERE user_id=?";
@@ -22,7 +27,6 @@ public class JDBCUserDao implements UserDao {
         static final String block = "UPDATE onlinetesting.users set blocked=1 WHERE id=?";
         static final String unblock = "UPDATE onlinetesting.users set blocked=0 WHERE id=?";
         static final String findById = "SELECT * FROM onlinetesting.users WHERE id=?";
-        static final String findAll = "SELECT * FROM onlinetesting.users";
         static final String update = "UPDATE onlinetesting.users SET name=?, surname=? WHERE id=?";
         static final String updatePassword = "UPDATE onlinetesting.users SET password=?, salt=? WHERE login=?";
         static final String delete = "DELETE FROM onlinetesting.users WHERE id=?";
@@ -39,7 +43,8 @@ public class JDBCUserDao implements UserDao {
                 list.add(resultSet.getInt("id"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find id blocked users, because", e);
+            throw new DataBaseException("Can't find id blocked users");
         }
         return list;
     }
@@ -49,11 +54,11 @@ public class JDBCUserDao implements UserDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTestsByUserId)){
             preparedStatement.setInt(1,id);
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't delete user's passed Tests with id user ="+id+", because", e);
+            throw new DataBaseException("Can't delete user's passed Tests with id user ="+id);
         }
-        return false;
     }
 
     @Override
@@ -70,7 +75,8 @@ public class JDBCUserDao implements UserDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find id of passed tests by user ="+id+", because", e);
+            throw new DataBaseException("Can't find id of passed tests by user ="+id);
         }
         return list;
     }
@@ -96,7 +102,8 @@ public class JDBCUserDao implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find and paginate all users, because", e);
+            throw new DataBaseException("Can't find and paginate all users");
         }
         return list;
     }
@@ -111,7 +118,8 @@ public class JDBCUserDao implements UserDao {
                 return resultSet.getInt("COUNT(1)");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't count all users, because", e);
+            throw new DataBaseException("Can't count All Users");
         }
         return 0;
     }
@@ -127,7 +135,8 @@ public class JDBCUserDao implements UserDao {
                 if(resultSet.next()) return true;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't checkLogin "+login+", because", e);
+            throw new DataBaseException("Can't check"+login);
         }
 
         return false;
@@ -155,7 +164,9 @@ public class JDBCUserDao implements UserDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find by login "+login+", because", e);
+            throw new DataBaseException("Can't find by login "+login);
+
         }
         return null;
     }
@@ -172,12 +183,12 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setString(5, user.getSurname());
             preparedStatement.setString(6, user.getRole());
             preparedStatement.setString(7, user.getStringIntBlocked());
-            preparedStatement.execute();
+            return preparedStatement.execute();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't create new user"+user.getLogin()+", because", e);
+            throw new DataBaseException("Can't create new user");
         }
-        return false;
     }
 
     @Override
@@ -187,9 +198,9 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setInt(1,id);
             return preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't block user id="+id+", because", e);
+            throw new DataBaseException("Can't block user id="+id);
         }
-        return false;
     }
     @Override
     public boolean unblock(int id) {
@@ -198,9 +209,9 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setInt(1,id);
             return preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't unblock user id="+id+", because", e);
+            throw new DataBaseException("Can't unblock user id="+id);
         }
-        return false;
     }
 
 
@@ -226,33 +237,15 @@ public class JDBCUserDao implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find user by id="+id+", because", e);
+            throw new DataBaseException("Can't find user by id="+id);
         }
         return null;
     }
 
     @Override
     public List<User> findAll() {
-        List<User> list = new ArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             Statement statement = connection.createStatement()){
-            try(ResultSet resultSet = statement.executeQuery(Query.findAll)){
-                while(resultSet.next()){
-                    User user = new User();
-                    user.setLogin(resultSet.getString("login"));
-                    user.setName(resultSet.getString("name"));
-                    user.setSurname(resultSet.getString("surname"));
-                    user.setRole(Role.valueOf(resultSet.getString("role")));
-                    user.setId(resultSet.getInt("id"));
-                    user.setBlocked(resultSet.getBoolean("blocked"));
-                    list.add(user);
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
+        throw new DataBaseException("Can't find all");
     }
 
     @Override
@@ -263,12 +256,12 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
             preparedStatement.setInt(3, user.getId());
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate()!=0;
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+            logger.error("Can't update user, because", e);
+            throw new DataBaseException("Can't update user "+user.getLogin());
 
+        }
     }
 
     @Override
@@ -279,11 +272,11 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setString(1,password);
             preparedStatement.setString(2, salt);
             preparedStatement.setString(3, login);
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate()!=0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't update password, user's login="+login+", because", e);
+            throw new DataBaseException("Can't update password for"+login);
         }
-        return false;
 
     }
 
@@ -292,17 +285,16 @@ public class JDBCUserDao implements UserDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
             preparedStatement.setInt(1,id);
-            preparedStatement.execute();
+            return preparedStatement.execute();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+            logger.error("Can't delete, user's id="+id+", because", e);
+            throw new DataBaseException("Can't delete, user's id="+id);
 
+        }
     }
 
     @Override
     public void close() throws Exception {
-        System.out.println("Closing!!");
     }
 }

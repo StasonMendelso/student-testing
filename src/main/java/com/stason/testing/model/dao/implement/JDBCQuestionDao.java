@@ -1,8 +1,10 @@
 package com.stason.testing.model.dao.implement;
 
+import com.stason.testing.controller.exceptions.DataBaseException;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.QuestionDao;
 import com.stason.testing.model.entity.Question;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCQuestionDao implements QuestionDao {
+    private final  static Logger logger = Logger.getLogger(JDBCQuestionDao.class.getName());
     private static class Query{
         static final String findId = "SELECT id FROM onlinetesting.questions WHERE tests_id=? AND questionNumber=?";
         static final String create = "INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)";
@@ -32,13 +35,13 @@ public class JDBCQuestionDao implements QuestionDao {
                if (resultSet.next()) {
                    return resultSet.getInt("id");
                } else {
-                   throw new SQLException("Result set is NULL");
+                   throw new DataBaseException("Can't find id for question="+question.getTestId());
                }
            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find id for question="+question.getTestId()+", because", e);
+            throw new DataBaseException("Can't find id for question="+question.getTestId());
         }
-        return 0;
     }
 
     @Override
@@ -49,20 +52,21 @@ public class JDBCQuestionDao implements QuestionDao {
             preparedStatement.setInt(2,question.getQuestionNumber());
             preparedStatement.setString(3,question.getTextQuestion());
 
-            if(preparedStatement.execute()) System.out.println("Question #"+question.getQuestionNumber()+"was added in DB");
+            return preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't create question="+question.getTextQuestion()+", because", e);
+            throw new DataBaseException("Can't create question="+question.getTextQuestion());
         }
-        return false;
     }
     @Override
     public List<Question> findAllByTestId(int id){
-        List<Question> list = new LinkedList<>();
+
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.findAllByTestId)){
             preparedStatement.setInt(1,id);
             try( ResultSet resultSet = preparedStatement.executeQuery()){
                 while(resultSet.next()){
+                    List<Question> list = new LinkedList<>();
                     Question question = new Question();
                     question.setId(resultSet.getInt("id"));
                     question.setTestId(resultSet.getInt("tests_id"));
@@ -72,9 +76,10 @@ public class JDBCQuestionDao implements QuestionDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't all question for test with id="+id+",because", e);
+            throw new DataBaseException("Can't all question for test");
         }
-        return list;
+        return null;
     }
 
     @Override
@@ -93,19 +98,20 @@ public class JDBCQuestionDao implements QuestionDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find question for id="+id+",because", e);
+            throw new DataBaseException("Can't find question for id="+id);
         }
         return null;
     }
 
     @Override
     public List<Question> findAll() {
-        return null;
+        throw new DataBaseException("Can't find all questions");
     }
 
     @Override
     public boolean update(Question entity) {
-        return false;
+        throw new DataBaseException("Can't update question");
 
     }
 
@@ -116,7 +122,8 @@ public class JDBCQuestionDao implements QuestionDao {
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't delete question for id="+id+",because", e);
+            throw new DataBaseException("Can't delete question for id="+id);
         }
         return false;
 
@@ -124,6 +131,5 @@ public class JDBCQuestionDao implements QuestionDao {
 
     @Override
     public void close() throws Exception {
-
     }
 }

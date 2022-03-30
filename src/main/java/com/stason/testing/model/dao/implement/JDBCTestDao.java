@@ -1,6 +1,7 @@
 package com.stason.testing.model.dao.implement;
 
 import com.stason.testing.controller.commands.implementent.admin.EditUserCommand;
+import com.stason.testing.controller.exceptions.DataBaseException;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.entity.Test;
@@ -12,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCTestDao implements TestDao {
-    private final  static Logger logger = Logger.getLogger(EditUserCommand.class.getName());
+    private final  static Logger logger = Logger.getLogger(JDBCTestDao.class.getName());
     private static class Query{
         static final String deletePassedTestById = "DELETE FROM onlinetesting.passedtests WHERE test_id=?";
         static final String countTestByDiscipline = "SELECT COUNT(1) FROM onlinetesting.tests WHERE tests.nameOfDiscipline=?";
@@ -44,11 +45,11 @@ public class JDBCTestDao implements TestDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement =connection.prepareStatement(Query.deletePassedTestById)){
             preparedStatement.setInt(1,testId);
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate()!=0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't create new user"+testId+", because", e);
+            throw new DataBaseException("Can't create new user");
         }
-        return false;
 
     }
 
@@ -64,7 +65,8 @@ public class JDBCTestDao implements TestDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't count tests by discipline="+discipline+", because", e);
+            throw new DataBaseException("Can't count tests by discipline="+discipline);
         }
         return 0;
     }
@@ -83,7 +85,8 @@ public class JDBCTestDao implements TestDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find or paginate or sort unsurpassed tests, because", e);
+            throw new DataBaseException("Can't find or paginate or sort unsurpassed tests");
         }
         return list;
     }
@@ -104,7 +107,8 @@ public class JDBCTestDao implements TestDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find or paginate or sort unsurpassed tests by discipline, because", e);
+            throw new DataBaseException("Can't find or paginate or sort unsurpassed tests by discipline");
         }
         return list;
     }
@@ -119,7 +123,8 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setInt(3,testId);
             preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't update passed test"+testId+" for user"+userId+" with mark"+mark+", because", e);
+            throw new DataBaseException("Can't update passed test");
         }
         return false;
 
@@ -135,7 +140,8 @@ public class JDBCTestDao implements TestDao {
                 return resultSet.getInt("COUNT(1)");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't count all tests, because", e);
+            throw new DataBaseException("Can't count all tests");
         }
         return 0;
     }
@@ -156,7 +162,8 @@ public class JDBCTestDao implements TestDao {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find or paginate all tests, because", e);
+            throw new DataBaseException("Can't find or paginate all tests");
         }
         return list;
     }
@@ -173,7 +180,8 @@ public class JDBCTestDao implements TestDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't count for unsurpassed tests, because", e);
+            throw new DataBaseException("Can't count for unsurpassed tests");
         }
         return 0;
     }
@@ -191,7 +199,8 @@ public class JDBCTestDao implements TestDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't count for unsurpassed tests (sorted by discipline="+discipline+"), because", e);
+            throw new DataBaseException("Can't count for unsurpassed tests (sorted by discipline="+discipline);
         }
         return 0;
     }
@@ -206,7 +215,8 @@ public class JDBCTestDao implements TestDao {
                 disciplinesList.add(resultSet.getString("nameOfDiscipline"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find all disciplines, because", e);
+            throw new DataBaseException("Can't find all disciplines");
         }
         return disciplinesList;
     }
@@ -224,7 +234,8 @@ public class JDBCTestDao implements TestDao {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't count unsurpassed test by user="+userId+", because", e);
+            throw new DataBaseException("Can't count unsurpassed test by user");
         }
         return 0;
     }
@@ -240,7 +251,8 @@ public class JDBCTestDao implements TestDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't count passed test by user="+userId+", because", e);
+            throw new DataBaseException("Can't count passed test by user");
         }
         return 0;
     }
@@ -263,7 +275,8 @@ public class JDBCTestDao implements TestDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find, paginate or sort unsurpassed test by user="+userId+", because", e);
+            throw new DataBaseException("Can't find, paginate or sort unsurpassed test by user");
         }
         return list;
     }
@@ -285,7 +298,8 @@ public class JDBCTestDao implements TestDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find, paginate or sort(by discipline="+discipline+") unsurpassed test by user="+userId+", because", e);
+            throw new DataBaseException("Can't find, paginate or sort(by discipline="+discipline+") unsurpassed test by user="+userId);
         }
         return list;
     }
@@ -307,7 +321,8 @@ public class JDBCTestDao implements TestDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find, paginate passed tests by user="+userId+", because", e);
+            throw new DataBaseException("Can't find, paginate passed tests by user="+userId);
         }
         return list;
     }
@@ -326,7 +341,8 @@ public class JDBCTestDao implements TestDao {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find, paginate unsurpassed tests by user="+userId+", because", e);
+            throw new DataBaseException("Can't find, paginate unsurpassed tests by user="+userId);
         }
         return list;
     }
@@ -339,7 +355,8 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setDouble(3,mark);
             preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't add passed test="+testId+" for user="+userId+", because", e);
+            throw new DataBaseException("Can't add paginate passed test="+testId+" for user="+userId);
         }
         return false;
 
@@ -354,13 +371,13 @@ public class JDBCTestDao implements TestDao {
                 if(resultSet.next()) {
                     return resultSet.getInt("id");
                 }else{
-                    throw new SQLException("Result set  is NULL");
+                    return 0;
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find id for test="+testName+", because", e);
+            throw new DataBaseException("Can't find id for test="+testName);
         }
-        return 0;
     }
 
 
@@ -373,13 +390,10 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setString(3,test.getDifficulty());
             preparedStatement.setInt(4,test.getTimeMinutes());
             preparedStatement.setInt(5,test.getCountOfQuestions());
-            boolean isCreated = preparedStatement.execute();
-            if(isCreated) System.out.println("Test was added to DB");
-            return isCreated;
+            return preparedStatement.execute();
         } catch (SQLException e) {
-            logger.warn("Failed to add new test in DB ",e);
-            e.printStackTrace();
-            return false;
+            logger.error("Failed to add new test in DB ",e);
+            throw new DataBaseException("Failed to add new test in DB ="+test.getName());
         }
     }
 
@@ -394,7 +408,8 @@ public class JDBCTestDao implements TestDao {
                 return builtTest(resultSet);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find test by id="+id,e);
+            throw new DataBaseException("Can't find test by id="+id);
         }
 
         return null;
@@ -425,14 +440,15 @@ public class JDBCTestDao implements TestDao {
                 list.add(test);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find all tests",e);
+            throw new DataBaseException("Can't find all tests");
         }
         return list;
     }
 
     @Override
     public boolean update(Test entity) {
-        return false;
+        throw new DataBaseException("Can't update test");
 
     }
     public void deletePassedTest(int id){
@@ -440,11 +456,9 @@ public class JDBCTestDao implements TestDao {
              PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTest)){
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
-
-
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't delete passed test id="+id+", because", e);
+            throw new DataBaseException("Can't delete passed test id="+id);
         }
     }
     @Override
@@ -458,7 +472,8 @@ public class JDBCTestDao implements TestDao {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't delete test id="+id+", because", e);
+            throw new DataBaseException("Can't delete test id="+id);
         }
         return false;
 

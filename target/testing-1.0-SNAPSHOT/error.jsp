@@ -1,7 +1,7 @@
-<%@ page import="com.stason.testing.controller.utils.Constants" %>
+<%@ page import="com.stason.testing.controller.exceptions.ServiceException" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ page isErrorPage='true' %>
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
 
@@ -37,16 +37,18 @@
 <main class="container-fluid bg-dark bg-opacity-25">
     <div class="row d-flex justify-content-center ">
 
-        <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
+        <div class="w-50 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
-                <h2 class="text-white-50">Something went wrong...</h2>
+                <img src="https://cdn-icons-png.flaticon.com/512/1673/1673460.png" class="w-25">
+                <h1 class="text-danger bold">Something went wrong...</h1>
+
             </div>
-            <div  class="text-white-50">
-                <c:if var="result" test="${!empty requestScope.error}">
-                    <div class="form" style="margin: 0 auto;margin-top: 10px; ">
-                        <c:out value="${requestScope.error}"/><br>
-                    </div>
-                </c:if>
+            <div  class="text-white-50 text-center mb-4">
+
+                <div  style="margin: 0 auto;margin-top: 10px; ">
+                    <h4 class="text-white-50">HTTP STATUS CODE: <%out.println(((ServiceException)exception).getHttpStatusCode());%></h4>
+                    <h4 class="text-white-50"><%out.print(exception.getMessage());%></h4>
+                </div>
 
             </div>
 

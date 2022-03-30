@@ -11,6 +11,7 @@ public class Path {
     public static final String GUEST_LOGIN = "/WEB-INF/view/guest/login.jsp";
     public static final String GUEST_REGISTER = "/WEB-INF/view/guest/register.jsp";
     public static final String GUEST_SUCCESSFUL_REGISTER = "/WEB-INF/view/guest/successful_registration.jsp";
+    public static final String GUEST_UNSUCCESSFUL_REGISTER = "/WEB-INF/view/guest/unsuccessful_registration.jsp";
     public static final String RECOVERY_EMAIL = "/WEB-INF/view/guest/recoveryPassword/email.jsp";
     public static final String RECOVERY_ACTIVATION_CODE = "/WEB-INF/view/guest/recoveryPassword/activationCode.jsp";
     public static final String RECOVERY_CREATE_NEW_PASSWORD = "/WEB-INF/view/guest/recoveryPassword/createNewPassword.jsp";
@@ -55,6 +56,7 @@ public class Path {
     public static final String REDIRECT_ADMIN_CREATE_TEST = "redirect:/web-application/testing/admin/createTest";
     public static final String REDIRECT_ADMIN_CREATE_QUESTION = "redirect:/web-application/testing/admin/createQuestion";
     public static final String REDIRECT_ADMIN_USER_TESTS = "redirect:/web-application/testing/admin/userTests";
+
 
 
 }

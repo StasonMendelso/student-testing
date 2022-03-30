@@ -1,8 +1,10 @@
 package com.stason.testing.model.dao.implement;
 
+import com.stason.testing.controller.exceptions.DataBaseException;
 import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.entity.Answer;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCAnswerDao implements AnswerDao {
+    private final  static Logger logger = Logger.getLogger(JDBCQuestionDao.class.getName());
+
     private static class Query{
         static final String create = "INSERT INTO onlinetesting.answers (answer, isRightAnswer, questions_id) VALUES (?,?,?)";
         static final String findAllByQuestionId = "SELECT * FROM onlinetesting.answers WHERE questions_id=?";
@@ -26,11 +30,11 @@ public class JDBCAnswerDao implements AnswerDao {
             preparedStatement.setBoolean(2, answer.isRightAnswer());
             preparedStatement.setInt(3,answer.getQuestionId());
 
-            if(preparedStatement.execute()) System.out.println("Відповідь "+answer.getAnswer()+" добавлена");
+            return preparedStatement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't create Answer for question="+answer.getQuestionId()+", because", e);
+            throw new DataBaseException("Can't create Answer");
         }
-        return false;
     }
 
     @Override
@@ -51,7 +55,8 @@ public class JDBCAnswerDao implements AnswerDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't find all Answers for question="+id+", because", e);
+            throw new DataBaseException("Can't create Answer");
         }
 
         return answerList;
@@ -77,11 +82,11 @@ public class JDBCAnswerDao implements AnswerDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
             preparedStatement.setInt(1,id);
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate()!=0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't delete Answer for question="+id+", because", e);
+            throw new DataBaseException("Can't delete Answer");
         }
-        return false;
     }
 
     @Override

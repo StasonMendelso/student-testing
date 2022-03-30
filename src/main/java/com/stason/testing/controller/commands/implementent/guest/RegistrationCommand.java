@@ -85,7 +85,9 @@ public class RegistrationCommand implements Command {
         user.setSalt(salt);
 
             //заносим юзера в базу
-            userService.createNewUser(user);
+            if( !userService.createNewUser(user)){
+                return Path.GUEST_UNSUCCESSFUL_REGISTER;
+            }
         logger.info("Registered new user: "+surname+" "+username+" "+email);
             return Path.GUEST_SUCCESSFUL_REGISTER;
         }else {

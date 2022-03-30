@@ -21,7 +21,6 @@ public class CreateQuestionCommand implements Command {
     private  final AnswerService answerService = new AnswerService();
     @Override
     public String execute(HttpServletRequest request){
-        System.out.println(request.getSession().getAttribute("test"));
         if (request.getParameter("SaveTest")!=null){
 
             String url = saveQuestion(request);

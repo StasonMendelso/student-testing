@@ -1,5 +1,6 @@
 package com.stason.testing.controller.filters;
 
+import com.stason.testing.controller.exceptions.ForbiddenException;
 import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
@@ -16,6 +17,7 @@ public class AccessingFilter implements Filter {
     private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
 
     public void init(FilterConfig config) throws ServletException {
+        //Todo зробити мапу з посилань які доступні користувачу
     }
 
     public void destroy() {
@@ -64,7 +66,7 @@ public class AccessingFilter implements Filter {
         }else{
             if(URI.contains("/login")) chain.doFilter(request,response);
             logger.warn("Accessing Filter - ACCESS DENIED FOR "+ role + " for URL "+URL);
-            res.sendRedirect("/web-application/testing/login");
+            throw new ForbiddenException("Accessing was denied");
         }
     }
 }
