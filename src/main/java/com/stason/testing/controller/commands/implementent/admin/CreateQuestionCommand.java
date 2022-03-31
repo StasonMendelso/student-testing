@@ -14,6 +14,7 @@ import com.stason.testing.model.entity.Test;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.Enumeration;
 
 public class CreateQuestionCommand implements Command {
     private  final TestService testService = new TestService();
@@ -22,15 +23,26 @@ public class CreateQuestionCommand implements Command {
     @Override
     public String execute(HttpServletRequest request){
         if (request.getParameter("SaveTest")!=null){
+            Enumeration<String> stringEnumeration = request.getParameterNames();
+            while(stringEnumeration.hasMoreElements()){
+                System.out.println(stringEnumeration.nextElement());
+            }
 
             String url = saveQuestion(request);
+            // не пройшов валідацію
+            if(!url.contains("redirect"))return url;
             if(url.contains("createQuestion")){
                 // беремо з сесії тест і зберігаємо в БД
 
 
                 Test test = (Test) request.getSession().getAttribute("test");
                 // добавляємо тест в БД
-                testService.create (test);
+                try{
+                    testService.create (test);
+                }catch (RuntimeException ex){
+                    deleteLastQuestion(request);
+                    throw ex;
+                }
                 // добавляємо вопросы в БД
                 int testId = testService.findIdByName(test.getName());
                 int i =1;
@@ -74,14 +86,20 @@ public class CreateQuestionCommand implements Command {
         }
     }
 
+    private void deleteLastQuestion(HttpServletRequest request) {
+        Test test = (Test) request.getSession().getAttribute("test");
+        test.deleteLastQuestion();
+
+    }
+
     private String saveQuestion(HttpServletRequest request) {
         if(!isProperlyCheckboxChecked(request)){
             //Вы выбрали ответ как пустой вариант ответа
-            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
+            return Path.ADMIN_CREATE_QUESTION;
         }
         if(request.getParameter("opt")==null){
             //Вы не выбрали правильный ответ!
-            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
+            return Path.ADMIN_CREATE_QUESTION;
         }else{
             System.out.println(Arrays.toString(request.getParameterValues("opt")));
             String rightOptions = Arrays.toString(request.getParameterValues("opt"));

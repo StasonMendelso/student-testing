@@ -34,6 +34,7 @@
                 <h1 class="text-center t-5">Create question</h1>
                 <div class="mt-1 mb-1 fs-4">
                     Всього запитань наявно в тесті: ${sessionScope.test.countOfQuestions}
+                    ${sessionScope.test}
                 </div>
 
                 <form method="post" >

@@ -46,6 +46,7 @@
                     <table class="table table-bordered table-hover table-striped mt-2  rounded-top caption-top">
                         <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                             <span style="padding-left: 25px" >Test information
+                                <h4>${test}</h4>
                                 <button class="ms-2 btn btn-primary" type="button" onclick="location.href='/web-application/testing/admin/editTestInfo'">Edit</button>
                             </span>
                         </caption>

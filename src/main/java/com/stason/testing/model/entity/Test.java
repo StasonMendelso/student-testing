@@ -86,7 +86,15 @@ public class Test {
     public String getDifficulty() {
         return difficulty;
     }
+  public int getIntDifficulty(){
+        switch(this.difficulty){
+          case "Easy": return 1;
+          case "Medium": return 2;
+          case "Hard": return 3;
+            default: return -1;
+      }
 
+  }
     public void setDifficulty(String difficulty) {
         switch (difficulty){
             case "1" :
@@ -176,5 +184,10 @@ public class Test {
             i++;
         }
 
+    }
+
+    public void deleteLastQuestion() {
+        questions.remove(questions.size()-1);
+        countOfQuestions--;
     }
 }

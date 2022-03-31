@@ -2,6 +2,7 @@ package com.stason.testing.controller.filters;
 
 import com.stason.testing.controller.exceptions.ForbiddenException;
 import com.stason.testing.controller.servlets.ControllerServlet;
+import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
 
@@ -10,14 +11,26 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+
 
 @WebFilter(filterName = "AccessingFilter")
 public class AccessingFilter implements Filter {
-    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+    private final  static Logger logger = Logger.getLogger(AccessingFilter.class.getName());
 
+    private HashMap<Role, HashSet<String>> accessingURL = new HashMap<>();
     public void init(FilterConfig config) throws ServletException {
         //Todo зробити мапу з посилань які доступні користувачу
+        HashSet<String> accessingURLAdmin = new HashSet<>();
+        accessingURLAdmin.add("/logout");
+        accessingURL.put(Role.ADMIN,accessingURLAdmin);
+        HashSet<String> accessingURLStudent = new HashSet<>();
+        accessingURL.put(Role.STUDENT,accessingURLStudent);
+        HashSet<String> accessingURLGuest = new HashSet<>();
+        accessingURL.put(Role.GUEST,accessingURLGuest);
+
     }
 
     public void destroy() {
@@ -54,13 +67,13 @@ public class AccessingFilter implements Filter {
                 }
             }
         }
-        if(URI.contains("/student") && role.equals(Role.STUDENT.name())) {
+        if((URI.contains("/student") ||URI.contains("/logout") || URI.contains("/error")) && role.equals(Role.STUDENT.name())) {
             logger.info("Accessing Filter - Student has access to this URL "+URL);
             chain.doFilter(request, response);
-        }else if(URI.contains("/admin") && role.equals(Role.ADMIN.name())) {
+        }else if((URI.contains("/admin") ||URI.contains("/logout") || URI.contains("/error"))&& role.equals(Role.ADMIN.name())) {
             logger.info("Accessing Filter - Admin has access to this URL "+URL);
             chain.doFilter(request, response);
-        }else if((URI.contains("/login") || URI.contains("/registration") || URI.endsWith("/testing") || URI.endsWith("/testing/") || URI.endsWith("/recovery")) && role.equals(Role.GUEST.name())){
+        }else if((URI.contains("/login") || URI.contains("/registration") || URI.endsWith("/testing") || URI.endsWith("/testing/") || URI.endsWith("/recovery") || URI.contains("/error")) && role.equals(Role.GUEST.name())){
             logger.info("Accessing Filter - Guest has access to this URL "+URL);
             chain.doFilter(request,response);
         }else{

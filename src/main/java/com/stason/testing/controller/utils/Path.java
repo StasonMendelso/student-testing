@@ -1,6 +1,7 @@
 package com.stason.testing.controller.utils;
 
 public class Path {
+    public static final String ERROR_PAGE="/error.jsp";
     //jsp (forward)
     public static final String INDEX = "/index.jsp";
     public static final String CHANGE_PASSWORD = "/WEB-INF/view/changePasswordSendEmail.jsp";
@@ -37,6 +38,8 @@ public class Path {
     public static final String ADMIN_SUCCESSFUL_CREATING_TEST = "/WEB-INF/view/admin/successful_creatingTest.jsp";
     public static final String ADMIN_EDIT_QUESTIONS_INFO = "/WEB-INF/view/admin/editQuestionInfo.jsp";
     //-------------------------------redirect--------------------------------
+    //error
+    public static final String REDIRECT_ERROR_PAGE="redirect:/web-application/testing/error";
     //guest
     public static final String REDIRECT_GUEST_LOGIN = "redirect:/web-application/testing";
     public static final String REDIRECT_GUEST_LOGOUT = "redirect:/web-application/testing/login";

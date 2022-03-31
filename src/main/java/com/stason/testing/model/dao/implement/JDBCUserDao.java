@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCUserDao implements UserDao {
-    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+    private final  static Logger logger = Logger.getLogger(JDBCUserDao.class.getName());
 
     private static class Query{
         static final String findIdBlockedUsers = "SELECT id FROM onlinetesting.users WHERE blocked=true";

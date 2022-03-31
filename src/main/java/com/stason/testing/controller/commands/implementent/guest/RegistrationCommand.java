@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegistrationCommand implements Command {
-    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+    private final  static Logger logger = Logger.getLogger(RegistrationCommand.class.getName());
 
     @Override
     public String execute(HttpServletRequest request){

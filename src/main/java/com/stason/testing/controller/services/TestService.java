@@ -24,8 +24,8 @@ public class TestService {
         return testDao.findAllDisciplines();
     }
 
-    public void create(Test test) {
-        testDao.create(test);
+    public boolean create(Test test) {
+        return testDao.create(test);
     }
 
     public int findIdByName(String name) {
@@ -38,5 +38,9 @@ public class TestService {
 
     public void delete(int id) {
         testDao.delete(id);
+    }
+
+    public void update(Test test) {
+        testDao.update(test);
     }
 }

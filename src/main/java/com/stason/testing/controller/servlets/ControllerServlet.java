@@ -9,6 +9,7 @@ import com.stason.testing.controller.commands.implementent.admin.*;
 import com.stason.testing.controller.commands.implementent.student.*;
 import com.stason.testing.controller.commands.implementent.guest.*;
 import com.stason.testing.controller.commands.implementent.student.ShowTestsCommand;
+import com.stason.testing.controller.utils.Path;
 import org.apache.log4j.Logger;
 
 
@@ -19,7 +20,6 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.*;
 
 public class ControllerServlet extends HttpServlet {
@@ -80,14 +80,22 @@ private final  static Logger logger = Logger.getLogger(ControllerServlet.class.g
             Command command = commands.getOrDefault(uri, new DefaultCommand());
         logger.info("Command is:"+command);
         if(command!=null) {
-                String newUrl = command.execute(request);
+            String newUrl;
+            try {
+                 newUrl = command.execute(request);
+
             logger.info("New URL is:"+newUrl);
                 if (newUrl.contains("redirect:")) {
                     response.sendRedirect(newUrl.replaceAll("redirect:", ""));
                 } else {
                     request.getRequestDispatcher(newUrl).forward(request, response);
                 }
+            }catch (RuntimeException ex){
+                System.out.println("============EXCEPTIONS WAS CATCH==========");
+                throw ex;
             }
+        }
+
         }
 
 

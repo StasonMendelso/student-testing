@@ -65,8 +65,9 @@ public class JDBCQuestionDao implements QuestionDao {
              PreparedStatement preparedStatement = connection.prepareStatement(Query.findAllByTestId)){
             preparedStatement.setInt(1,id);
             try( ResultSet resultSet = preparedStatement.executeQuery()){
+                List<Question> list = new LinkedList<>();
                 while(resultSet.next()){
-                    List<Question> list = new LinkedList<>();
+
                     Question question = new Question();
                     question.setId(resultSet.getInt("id"));
                     question.setTestId(resultSet.getInt("tests_id"));
@@ -74,12 +75,12 @@ public class JDBCQuestionDao implements QuestionDao {
                     question.setQuestionNumber(resultSet.getInt("questionNumber"));
                     list.add(question);
                 }
+                return list;
             }
         } catch (SQLException e) {
             logger.error("Can't all question for test with id="+id+",because", e);
             throw new DataBaseException("Can't all question for test");
         }
-        return null;
     }
 
     @Override

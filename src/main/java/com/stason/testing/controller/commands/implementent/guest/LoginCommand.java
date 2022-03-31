@@ -2,7 +2,6 @@ package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
-import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.controller.utils.*;
 
 import com.stason.testing.model.entity.Role;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class LoginCommand implements Command {
-    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+    private final  static Logger logger = Logger.getLogger(LoginCommand.class.getName());
 
 
     @Override
@@ -30,7 +29,7 @@ public class LoginCommand implements Command {
             List<String> errors = new ArrayList<>();
 
             if (!ValidatorService.validateEmail(login)) {
-                errors.add("Невалідний логін");//Todo сделать локализацию
+                errors.add("Невалідний логін");//Todo сделать локализацию передавати key для fmt або сделать свой тег
             }
             if (!ValidatorService.validatePassword(password)) {
                 errors.add("Невалідний пароль");//Todo сделать локализацию

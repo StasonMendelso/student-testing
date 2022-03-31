@@ -1,9 +1,10 @@
 package com.stason.testing.model.dao.implement;
 
-import com.stason.testing.controller.commands.implementent.admin.EditUserCommand;
 import com.stason.testing.controller.exceptions.DataBaseException;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.TestDao;
+import com.stason.testing.model.entity.Answer;
+import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
 import org.apache.log4j.Logger;
 
@@ -382,12 +383,12 @@ public class JDBCTestDao implements TestDao {
 
 
     @Override
-    public boolean create(Test test)  {
+    public boolean create(Test test) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
             preparedStatement.setString(1,test.getName());
             preparedStatement.setString(2,test.getNameOfDiscipline());
-            preparedStatement.setString(3,test.getDifficulty());
+            preparedStatement.setInt(3,test.getIntDifficulty());
             preparedStatement.setInt(4,test.getTimeMinutes());
             preparedStatement.setInt(5,test.getCountOfQuestions());
             return preparedStatement.execute();
@@ -447,9 +448,95 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public boolean update(Test entity) {
-        throw new DataBaseException("Can't update test");
+    public boolean update(Test test) {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try{
+            connection.setAutoCommit(false);
 
+            //UPDATE TEST INFORMATION
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE onlinetesting.tests SET name=?, nameOfDiscipline=?,difficulty=?,time_minutes=?,countOfQuestions=? WHERE id=?");
+            preparedStatement.setString(1,test.getName());
+            preparedStatement.setString(2,test.getNameOfDiscipline());
+            preparedStatement.setInt(3,test.getIntDifficulty());
+            preparedStatement.setInt(4,test.getTimeMinutes());
+            preparedStatement.setInt(5,test.getCountOfQuestions());
+            preparedStatement.setInt(6,test.getId());
+            preparedStatement.executeUpdate();
+            //DELETE ANSWERS FOR EVERY QUESTION IN THIS TEST
+            preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=?");
+            preparedStatement.setInt(1,test.getId());
+            List<Integer> questionsIdFromDBForThisTest = new ArrayList<>();
+            try(ResultSet resultSet =preparedStatement.executeQuery()){
+                while(resultSet.next()){
+                    questionsIdFromDBForThisTest.add(resultSet.getInt("id"));
+                }
+            }
+
+            for (Integer questionId : questionsIdFromDBForThisTest) {
+                preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.answers WHERE questions_id=?");
+                preparedStatement.setInt(1,questionId);
+                preparedStatement.executeUpdate();
+
+            }
+            //DELETE QUESTIONS FOR THIS TEST
+            preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.questions WHERE tests_id=?");
+            preparedStatement.setInt(1,test.getId());
+            preparedStatement.executeUpdate();
+            //INSERT NEW QUESTION FOR THIS TEST
+            List<Question> questionList = test.getQuestions();
+            for(Question question:questionList){
+                preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.questions (tests_id, question, questionNumber) VALUES (?,?,?)");
+                preparedStatement.setInt(1,test.getId());
+                preparedStatement.setString(2,question.getTextQuestion());
+                preparedStatement.setInt(3,question.getQuestionNumber());
+                preparedStatement.execute();
+                //INSERT ANSWERS FOR THIS QUESTION
+                preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE questionNumber=? AND tests_id=?");
+                preparedStatement.setInt(1,question.getQuestionNumber());
+                preparedStatement.setInt(2,test.getId());
+                ResultSet resultSet = preparedStatement.executeQuery();
+                int questionId =-1;
+                if(resultSet.next()){
+                     questionId = resultSet.getInt("id");
+                }
+                List<Answer> answerList = question.getAnswers();
+                for(Answer answer:answerList){
+                    preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.answers (answer, isRightAnswer, questions_id) VALUES (?,?,?)");
+                    preparedStatement.setString(1,answer.getAnswer());
+                    preparedStatement.setBoolean(2,answer.isRightAnswer());
+                    preparedStatement.setInt(3,questionId);
+                    preparedStatement.execute();
+                }
+            }
+            //DELETE PASSED TEST FOR EVERY USER, BECAUSE TEST WAS EDITED
+            preparedStatement = connection.prepareStatement(Query.deletePassedTest);
+            preparedStatement.setInt(1,test.getId());
+            preparedStatement.executeUpdate();
+            connection.commit();
+            connection.setAutoCommit(true);
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+                logger.error("Can't rollback in update()");
+                throw new DataBaseException("Can't rollback in update",ex);
+            }
+            logger.error("Error update()");
+            throw new DataBaseException("Error update()",e);
+        }finally {
+            if(connection!=null){
+                try {
+                    connection.setAutoCommit(true);
+                    connection.close();
+                } catch (SQLException e) {
+                    logger.error("Error close connection");
+                    throw new DataBaseException("Error with BD",e);
+                }
+            }
+        }
+        return false;
     }
     public void deletePassedTest(int id){
         try (Connection connection = ConnectionPool.getInstance().getConnection();

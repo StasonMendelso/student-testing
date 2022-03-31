@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 public class ChangePasswordCommand implements Command {
-    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+    private final  static Logger logger = Logger.getLogger(ChangePasswordCommand.class.getName());
 
     @Override
     public String execute(HttpServletRequest request){
