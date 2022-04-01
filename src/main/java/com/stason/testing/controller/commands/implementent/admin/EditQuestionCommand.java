@@ -25,7 +25,7 @@ public class EditQuestionCommand implements Command {
             }
             if (request.getParameter("opt") == null) {
                 //Вы не выбрали правильный ответ!
-                return  Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO + "?id=" + questionOrigin.getId();
+                return Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO + "?id=" + questionOrigin.getId();
             } else {
                 String questionText = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionText"));
                 String rightOptions = Arrays.toString(request.getParameterValues("opt"));
@@ -37,18 +37,18 @@ public class EditQuestionCommand implements Command {
                 List<Answer> answerList = question.getAnswers();
                 int i = 1;
                 Iterator<Answer> iterator = answerList.iterator();
-                while(iterator.hasNext()){
+                while (iterator.hasNext()) {
                     Answer answer = iterator.next();
                     String paramName = "answer" + i;
 
-                    if(request.getParameter(paramName)==null){
+                    if (request.getParameter(paramName) == null) {
                         continue;
-                    }else{
+                    } else {
                         String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
                         answer.setAnswer(answerText);
-                        if(rightOptions.contains(String.valueOf(i))){
+                        if (rightOptions.contains(String.valueOf(i))) {
                             answer.setRightAnswer(true);
-                        }else{
+                        } else {
                             answer.setRightAnswer(false);
                         }
                         i++;
@@ -59,8 +59,8 @@ public class EditQuestionCommand implements Command {
                 test.setQuestionById(question, question.getId());
                 request.getSession().removeAttribute("editedQuestion");
                 request.getSession().setAttribute("editedTest", test);
-                request.getSession().setAttribute("questionNumber",question.getQuestionNumber());
-                return Path.REDIRECT_ADMIN_EDIT_TEST + "?id=" + test.getId() ;
+                request.getSession().setAttribute("questionNumber", question.getQuestionNumber());
+                return Path.REDIRECT_ADMIN_EDIT_TEST + "?id=" + test.getId();
             }
         }
         //Видалити відповідь
@@ -86,16 +86,14 @@ public class EditQuestionCommand implements Command {
             answer.setQuestionId(question.getId());
 
             answer.setId(question.getLastAnswer().getId() + 1);
-            System.out.println(request.getSession().getAttribute("editedTest"));
+
             question.addAnswer(answer);
-            System.out.println(request.getSession().getAttribute("editedTest"));
-            System.out.println(questionOrigin);
-            System.out.println(question);
+
             //  test.setQuestionById(question, Integer.parseInt(request.getParameter("id")));
 
             request.getSession().setAttribute("editedQuestion", question);
             //return "/WEB-INF/view/admin/editQuestionInfo.jsp";
-            return Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO +"?id=" + question.getId();
+            return Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO + "?id=" + question.getId();
         }
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + request.getSession().getAttribute("editedQuestion"));
         if (request.getParameter("id") != null) {
@@ -119,17 +117,17 @@ public class EditQuestionCommand implements Command {
         }
 
 
-
     }
+
     private String saveQuestion(HttpServletRequest request) {
-        if(!isProperlyCheckboxChecked(request)){
+        if (!isProperlyCheckboxChecked(request)) {
             //Вы выбрали ответ как пустой вариант ответа
             return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }
-        if(request.getParameter("opt")==null){
+        if (request.getParameter("opt") == null) {
             //Вы не выбрали правильный ответ!
             return Path.REDIRECT_ADMIN_CREATE_QUESTION;
-        }else{
+        } else {
             System.out.println(Arrays.toString(request.getParameterValues("opt")));
             String rightOptions = Arrays.toString(request.getParameterValues("opt"));
             // проверка, валидация тд тп
@@ -138,17 +136,17 @@ public class EditQuestionCommand implements Command {
             Question question = new Question();
             question.setTextQuestion(questionName);
 
-            for(int i =1;i<=4;i++){
+            for (int i = 1; i <= 4; i++) {
                 String paramName = "answer" + i;
-                if(request.getParameter(paramName).isEmpty()){
+                if (request.getParameter(paramName).isEmpty()) {
                     continue;
-                }else{
+                } else {
                     Answer answer = new Answer();
                     String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
                     answer.setAnswer(answerText);
-                    if(rightOptions.contains(String.valueOf(i))){
+                    if (rightOptions.contains(String.valueOf(i))) {
                         answer.setRightAnswer(true);
-                    }else{
+                    } else {
                         answer.setRightAnswer(false);
                     }
                     question.addAnswer(answer);
@@ -159,22 +157,22 @@ public class EditQuestionCommand implements Command {
             System.out.println("=====================================");
             Test test = (Test) request.getSession().getAttribute("test");
             test.addQuestion(question);
-            request.getSession().setAttribute("test",test);
+            request.getSession().setAttribute("test", test);
             return Path.REDIRECT_ADMIN_CREATE_QUESTION;
 
         }
     }
 
-    private boolean isProperlyCheckboxChecked(HttpServletRequest request){
+    private boolean isProperlyCheckboxChecked(HttpServletRequest request) {
         String rightOptions = Arrays.toString(request.getParameterValues("opt"));
         // Выбран 1 вариант как правильный, но нету варианта ответа
-        if(rightOptions.contains("1") && request.getParameter("answer1").isEmpty()) return false;
+        if (rightOptions.contains("1") && request.getParameter("answer1").isEmpty()) return false;
         // Выбран 2 вариант как правильный, но нету варианта ответа
-        if(rightOptions.contains("2") && request.getParameter("answer2").isEmpty()) return false;
+        if (rightOptions.contains("2") && request.getParameter("answer2").isEmpty()) return false;
         // Выбран 3 вариант как правильный, но нету варианта ответа
-        if(rightOptions.contains("3") && request.getParameter("answer3").isEmpty()) return false;
+        if (rightOptions.contains("3") && request.getParameter("answer3").isEmpty()) return false;
         // Выбран 4 вариант как правильный, но нету варианта ответа
-        if(rightOptions.contains("4") && request.getParameter("answer4").isEmpty()) return false;
+        if (rightOptions.contains("4") && request.getParameter("answer4").isEmpty()) return false;
 
         return true;
     }

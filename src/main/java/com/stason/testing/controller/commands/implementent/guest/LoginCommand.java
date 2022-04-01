@@ -34,7 +34,7 @@ public class LoginCommand implements Command {
                 errors.add(INVALID_LOGIN);//Todo сделать локализацию передавати key для fmt або сделать свой тег
             }
             if (!ValidatorService.validatePassword(password)) {
-                errors.add(INVALID_PASSWORD);//Todo сделать локализацию
+                errors.add(INVALID_PASSWORD);
             }
             //CAPTCHA
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
@@ -61,7 +61,7 @@ public class LoginCommand implements Command {
                 if (request.getServletContext().getAttribute("loggedUsers") != null) {
                     loggedUsers = (HashSet<String>) request.getServletContext().getAttribute("loggedUsers");
                     if (loggedUsers.stream().anyMatch(login::equals)) {
-                        errors.add(ACCOUNT_IS_LOGGED);//Todo сделать локализацию
+                        errors.add(ACCOUNT_IS_LOGGED);
 
                         request.setAttribute("errorsList", errors);
                         return Path.GUEST_LOGIN;
@@ -71,7 +71,7 @@ public class LoginCommand implements Command {
                     user = userService.findByLogin(login);
 
                 if(user.isBlocked()){
-                    errors.add(ACCOUNT_IS_BLOCKED);//Todo сделать локализацию
+                    errors.add(ACCOUNT_IS_BLOCKED);
 
                     request.setAttribute("errorsList", errors);
                     return  Path.GUEST_LOGIN;
@@ -97,14 +97,14 @@ public class LoginCommand implements Command {
                     if (user.getRole().equals(Role.ADMIN.name())) return Path.REDIRECT_ADMIN_INFO;
                     if (user.getRole().equals(Role.STUDENT.name())) return Path.REDIRECT_STUDENT_INFO;
                 }else{
-                    errors.add(ACCOUNT_NOT_FOUND);//Todo сделать локализацию
+                    errors.add(ACCOUNT_NOT_FOUND);
                     request.setAttribute("errorsList", errors);
 
                     return  Path.GUEST_LOGIN;
                 }
 
             } else {
-                errors.add(ACCOUNT_NOT_FOUND);//Todo сделать локализацию
+                errors.add(ACCOUNT_NOT_FOUND);
                 request.setAttribute("errorsList", errors);
 
                 return  Path.GUEST_LOGIN;

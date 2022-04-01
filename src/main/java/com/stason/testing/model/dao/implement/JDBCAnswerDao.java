@@ -14,25 +14,26 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCAnswerDao implements AnswerDao {
-    private final  static Logger logger = Logger.getLogger(JDBCAnswerDao.class.getName());
+    private final static Logger logger = Logger.getLogger(JDBCAnswerDao.class.getName());
 
-    private static class Query{
+    private static class Query {
         static final String create = "INSERT INTO onlinetesting.answers (answer, isRightAnswer, questions_id) VALUES (?,?,?)";
         static final String findAllByQuestionId = "SELECT * FROM onlinetesting.answers WHERE questions_id=?";
         static final String delete = "DELETE FROM onlinetesting.answers WHERE id=?";
 
     }
+
     @Override
     public boolean create(Answer answer) {
-        try  (Connection connection = ConnectionPool.getInstance().getConnection();
-              PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.create)) {
             preparedStatement.setString(1, answer.getAnswer());
             preparedStatement.setBoolean(2, answer.isRightAnswer());
-            preparedStatement.setInt(3,answer.getQuestionId());
+            preparedStatement.setInt(3, answer.getQuestionId());
 
             return preparedStatement.execute();
         } catch (SQLException e) {
-            logger.error("Can't create Answer for question="+answer.getQuestionId()+", because", e);
+            logger.error("Can't create Answer for question=" + answer.getQuestionId() + ", because", e);
             throw new DataBaseException("Can't create Answer");
         }
     }
@@ -41,10 +42,10 @@ public class JDBCAnswerDao implements AnswerDao {
     public List<Answer> findAllByQuestionId(int id) {
         List<Answer> answerList = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAllByQuestionId)){
-            preparedStatement.setInt(1,id);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAllByQuestionId)) {
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Answer answer = new Answer();
                     answer.setId(resultSet.getInt("id"));
                     answer.setQuestionId(resultSet.getInt("questions_id"));
@@ -55,8 +56,8 @@ public class JDBCAnswerDao implements AnswerDao {
             }
 
         } catch (SQLException e) {
-            logger.error("Can't find all Answers for question="+id+", because", e);
-            throw new DataBaseException("Can't create Answer");
+            logger.error("Can't find all Answers for question=" + id + ", because", e);
+            throw new DataBaseException("Can't find all answers for questions");
         }
 
         return answerList;
@@ -80,11 +81,11 @@ public class JDBCAnswerDao implements AnswerDao {
     @Override
     public boolean delete(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
-            preparedStatement.setInt(1,id);
-            return preparedStatement.executeUpdate()!=0;
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)) {
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
-            logger.error("Can't delete Answer for question="+id+", because", e);
+            logger.error("Can't delete Answer for question=" + id + ", because", e);
             throw new DataBaseException("Can't delete Answer");
         }
     }

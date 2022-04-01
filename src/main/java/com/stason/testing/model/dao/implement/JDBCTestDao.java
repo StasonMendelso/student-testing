@@ -137,7 +137,6 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setInt(2, userId);
             preparedStatement.setInt(3, testId);
             preparedStatement.execute();
-            if(1==1)throw new DataBaseException("Can't update passed test");
         } catch (SQLException e) {
             logger.error("Can't update passed test" + testId + " for user" + userId + " with mark" + mark + ", because", e);
             throw new DataBaseException("Can't update passed test");
@@ -569,16 +568,61 @@ public class JDBCTestDao implements TestDao {
 
     @Override
     public boolean delete(int id) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)) {
-            deletePassedTest(id);
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            //DELETE ANSWERS FOR EVERY QUESTION IN THIS TEST
+            preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=?");
+            preparedStatement.setInt(1, id);
+            List<Integer> questionsIdFromDBForThisTest = new ArrayList<>();
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    questionsIdFromDBForThisTest.add(resultSet.getInt("id"));
+                }
+            }
+
+            for (Integer questionId : questionsIdFromDBForThisTest) {
+                preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.answers WHERE questions_id=?");
+                preparedStatement.setInt(1, questionId);
+                preparedStatement.executeUpdate();
+
+            }
+            //DELETE QUESTIONS FOR THIS TEST
+            preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.questions WHERE tests_id=?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            //DELETE PASSED TEST FOR EVERY USER, BECAUSE TEST WAS EDITED
+            preparedStatement = connection.prepareStatement(Query.deletePassedTest);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            //DELETE TEST
+            preparedStatement = connection.prepareStatement(Query.delete);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
 
-
+            connection.commit();
+            connection.setAutoCommit(true);
+            preparedStatement.close();
+            connection.close();
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                logger.error("Can't rollback in delete()",ex);
+            }
             logger.error("Can't delete test id=" + id + ", because", e);
             throw new DataBaseException("Can't delete test id=" + id);
+        }finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if(connection!=null){
+                    connection.close();
+                }
+            }catch (SQLException e) {
+                logger.error("Can't close connection or preparedStatement in delete()", e);
+            }
         }
         return false;
 

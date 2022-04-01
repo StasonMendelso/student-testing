@@ -30,10 +30,6 @@ public class UserService {
         userDao.block(userId);
     }
 
-    public void deletePassedTestsByUserId(int userId) {
-        userDao.deletePassedTestsByUserId(userId);
-    }
-
     public void delete(int userId) {
         userDao.delete(userId);
     }

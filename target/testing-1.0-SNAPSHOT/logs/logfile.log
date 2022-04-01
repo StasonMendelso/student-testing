@@ -8449,3 +8449,1753 @@ java.sql.SQLException: No value specified for parameter 1
 [INFO]-[2022-04-01 19:01:33,094]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/test
 [INFO]-[2022-04-01 19:01:33,094]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.DoTestCommand@2a1bafc2
 [INFO]-[2022-04-01 19:01:33,094]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/doTest.jsp
+[DEBUG]-[2022-04-01 19:02:13,277]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 19:02:13,451]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[10, 24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 19:02:29,642]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 19:02:29,679]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 19:02:29,679]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:02:29,679]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 19:02:29,679]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:02:29,679]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[WARN]-[2022-04-01 19:02:29,679]-[filters.AccessingFilter:doFilter:81]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/student/test
+[INFO]-[2022-04-01 19:02:45,998]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 19:02:45,998]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:02:45,998]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:02:45,998]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:02:45,998]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:02:45,998]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:02:45,998]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:02:45,998]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@75b131a1
+[INFO]-[2022-04-01 19:02:45,998]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 19:02:54,596]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 19:02:54,597]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:02:54,597]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:02:54,597]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:02:54,597]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:02:54,597]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:02:54,597]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:02:54,597]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@75b131a1
+[INFO]-[2022-04-01 19:02:54,861]-[guest.LoginCommand:execute:84]-Logged users are [stepanBandera@ukr.net]
+[INFO]-[2022-04-01 19:02:54,862]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/student/info
+[INFO]-[2022-04-01 19:02:54,865]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 19:02:54,865]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:02:54,865]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:02:54,865]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:02:54,865]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/info
+[INFO]-[2022-04-01 19:02:54,865]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:02:54,865]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/info
+[INFO]-[2022-04-01 19:02:54,865]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.InfoCommand@f95930e
+[INFO]-[2022-04-01 19:02:54,868]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/info.jsp
+[INFO]-[2022-04-01 19:02:58,406]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 19:02:58,406]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:02:58,406]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:02:58,406]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:02:58,406]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/tests
+[INFO]-[2022-04-01 19:02:58,406]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:02:58,407]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/tests
+[INFO]-[2022-04-01 19:02:58,407]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.ShowTestsCommand@34cfb343
+[INFO]-[2022-04-01 19:02:58,411]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/showTests.jsp
+[INFO]-[2022-04-01 19:02:59,874]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 19:02:59,874]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:02:59,875]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:02:59,875]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:02:59,875]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/test
+[INFO]-[2022-04-01 19:02:59,875]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:02:59,875]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/test
+[INFO]-[2022-04-01 19:02:59,875]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.DoTestCommand@2b090637
+[INFO]-[2022-04-01 19:02:59,880]-[student.DoTestCommand:execute:81]-User started test [Functions] at Fri Apr 01 19:02:59 EEST 2022 Passed Date is Fri Apr 01 19:17:59 EEST 2022
+[INFO]-[2022-04-01 19:02:59,884]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/student/test?question=1
+[INFO]-[2022-04-01 19:02:59,887]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 19:02:59,887]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:02:59,887]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:02:59,887]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:02:59,887]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/test
+[INFO]-[2022-04-01 19:02:59,887]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:02:59,888]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/test
+[INFO]-[2022-04-01 19:02:59,888]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.DoTestCommand@2b090637
+[INFO]-[2022-04-01 19:02:59,888]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/doTest.jsp
+[INFO]-[2022-04-01 19:03:02,858]-[filters.LocaleFilter:doFilter:28]-Filters time:8
+[INFO]-[2022-04-01 19:03:02,858]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:03:02,858]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:03:02,858]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:03:02,858]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/test
+[INFO]-[2022-04-01 19:03:02,858]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:03:02,858]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/test
+[INFO]-[2022-04-01 19:03:02,858]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.DoTestCommand@2b090637
+[INFO]-[2022-04-01 19:03:02,858]-[student.DoTestCommand:execute:38]-User continue to do test
+[INFO]-[2022-04-01 19:03:02,859]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/student/test?question=1
+[INFO]-[2022-04-01 19:03:02,862]-[filters.LocaleFilter:doFilter:28]-Filters time:9
+[INFO]-[2022-04-01 19:03:02,862]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:03:02,862]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:03:02,862]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:03:02,862]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/test
+[INFO]-[2022-04-01 19:03:02,862]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:03:02,862]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/test
+[INFO]-[2022-04-01 19:03:02,863]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.DoTestCommand@2b090637
+[INFO]-[2022-04-01 19:03:02,863]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/doTest.jsp
+[INFO]-[2022-04-01 19:03:05,979]-[filters.LocaleFilter:doFilter:28]-Filters time:10
+[INFO]-[2022-04-01 19:03:05,979]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:03:05,980]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:03:05,980]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:03:05,980]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/test
+[INFO]-[2022-04-01 19:03:05,980]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:03:05,980]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/test
+[INFO]-[2022-04-01 19:03:05,980]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.DoTestCommand@2b090637
+[INFO]-[2022-04-01 19:03:05,980]-[student.DoTestCommand:execute:95]-User has passed test
+[INFO]-[2022-04-01 19:03:05,980]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/student/result
+[INFO]-[2022-04-01 19:03:05,983]-[filters.LocaleFilter:doFilter:28]-Filters time:11
+[INFO]-[2022-04-01 19:03:05,983]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:03:05,983]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:03:05,983]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:03:05,983]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/result
+[INFO]-[2022-04-01 19:03:05,983]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:03:05,983]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/result
+[INFO]-[2022-04-01 19:03:05,983]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.ShowTestResultCommand@66294a37
+[INFO]-[2022-04-01 19:03:05,983]-[student.ShowTestResultCommand:execute:44]-The mark is 0.0
+[INFO]-[2022-04-01 19:03:38,322]-[filters.LocaleFilter:doFilter:28]-Filters time:12
+[INFO]-[2022-04-01 19:03:38,323]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:03:38,323]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:03:38,323]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:03:38,323]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/info
+[INFO]-[2022-04-01 19:03:38,323]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:03:38,323]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/info
+[INFO]-[2022-04-01 19:03:38,323]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.InfoCommand@f95930e
+[INFO]-[2022-04-01 19:03:38,325]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/info.jsp
+[INFO]-[2022-04-01 19:03:39,383]-[filters.LocaleFilter:doFilter:28]-Filters time:13
+[INFO]-[2022-04-01 19:03:39,383]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:03:39,383]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:03:39,383]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:03:39,383]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/tests
+[INFO]-[2022-04-01 19:03:39,383]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:03:39,383]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/tests
+[INFO]-[2022-04-01 19:03:39,383]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.ShowTestsCommand@34cfb343
+[INFO]-[2022-04-01 19:03:39,387]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/showTests.jsp
+[INFO]-[2022-04-01 19:03:42,479]-[filters.LocaleFilter:doFilter:28]-Filters time:14
+[INFO]-[2022-04-01 19:03:42,479]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:03:42,479]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:03:42,479]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:03:42,480]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/tests
+[INFO]-[2022-04-01 19:03:42,480]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:03:42,480]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/tests
+[INFO]-[2022-04-01 19:03:42,480]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.ShowTestsCommand@34cfb343
+[INFO]-[2022-04-01 19:03:42,483]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/showTests.jsp
+[INFO]-[2022-04-01 19:03:44,192]-[filters.LocaleFilter:doFilter:28]-Filters time:15
+[INFO]-[2022-04-01 19:03:44,192]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:03:44,192]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:03:44,192]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 19:03:44,192]-[filters.AccessingFilter:doFilter:71]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/tests
+[INFO]-[2022-04-01 19:03:44,192]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:03:44,192]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/tests
+[INFO]-[2022-04-01 19:03:44,193]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.ShowTestsCommand@34cfb343
+[INFO]-[2022-04-01 19:03:44,196]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/showTests.jsp
+[DEBUG]-[2022-04-01 19:18:22,760]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 19:18:22,943]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[10, 24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 19:18:22,987]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 19:18:23,027]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 19:18:23,027]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:18:23,027]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 19:18:23,028]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:18:23,028]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[WARN]-[2022-04-01 19:18:23,028]-[filters.AccessingFilter:doFilter:81]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/logout
+[INFO]-[2022-04-01 19:18:24,802]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 19:18:24,802]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:18:24,802]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:18:24,802]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:18:24,802]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:18:24,803]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:18:24,803]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:18:24,803]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5deadde4
+[INFO]-[2022-04-01 19:18:24,803]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 19:18:29,250]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 19:18:29,250]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:18:29,250]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:18:29,251]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:18:29,251]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:18:29,251]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:18:29,251]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:18:29,251]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5deadde4
+[INFO]-[2022-04-01 19:18:29,493]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 19:18:29,494]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:18:29,497]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 19:18:29,497]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:18:29,497]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:18:29,497]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:18:29,497]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:18:29,497]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:18:29,497]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:18:29,497]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@55b7f3d7
+[INFO]-[2022-04-01 19:18:29,497]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 19:18:33,287]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 19:18:33,287]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:18:33,287]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:18:33,287]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:18:33,287]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:18:33,287]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:18:33,287]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:18:33,287]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@61dfa8e7
+[INFO]-[2022-04-01 19:18:33,291]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 19:18:36,401]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 19:18:36,401]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:18:36,401]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:18:36,401]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:18:36,401]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/editTest
+[INFO]-[2022-04-01 19:18:36,401]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:18:36,401]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/editTest
+[INFO]-[2022-04-01 19:18:36,402]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.EditTestCommand@4c33e12
+[INFO]-[2022-04-01 19:18:44,278]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 19:18:44,278]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:18:44,278]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:18:44,278]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:18:44,278]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:18:44,278]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:18:44,278]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:18:44,278]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@61dfa8e7
+[INFO]-[2022-04-01 19:18:44,280]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[DEBUG]-[2022-04-01 19:20:09,551]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 19:20:09,788]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[10, 24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 19:20:10,728]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 19:20:10,764]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 19:20:10,764]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:20:10,764]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 19:20:10,764]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:20:10,764]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[WARN]-[2022-04-01 19:20:10,765]-[filters.AccessingFilter:doFilter:81]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:20:13,482]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 19:20:13,482]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:20:13,482]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:20:13,482]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:20:13,482]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:20:13,482]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:20:13,483]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:20:13,483]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@1f966297
+[INFO]-[2022-04-01 19:20:13,483]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 19:20:16,001]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 19:20:16,001]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:20:16,001]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:20:16,002]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:20:16,002]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:20:16,002]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:20:16,002]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:20:16,002]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@1f966297
+[INFO]-[2022-04-01 19:20:16,264]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 19:20:16,265]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:20:16,268]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 19:20:16,268]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:20:16,268]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:20:16,268]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:20:16,268]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:20:16,268]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:20:16,268]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:20:16,269]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@7aceeb8
+[INFO]-[2022-04-01 19:20:16,269]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 19:20:18,014]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 19:20:18,015]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:20:18,015]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:20:18,015]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:20:18,015]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:20:18,015]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:20:18,015]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:20:18,015]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@3375c273
+[INFO]-[2022-04-01 19:20:18,018]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 19:20:19,826]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 19:20:19,826]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:20:19,826]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:20:19,826]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:20:19,826]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/editTest
+[INFO]-[2022-04-01 19:20:19,827]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:20:19,827]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/editTest
+[INFO]-[2022-04-01 19:20:19,827]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.EditTestCommand@1f616ea7
+[ERROR]-[2022-04-01 19:20:19,836]-[implement.JDBCAnswerDao:findAllByQuestionId:58]-Can't find all Answers for question=179, because
+java.sql.SQLException: No value specified for parameter 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1026)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:121)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:121)
+	at com.stason.testing.model.dao.implement.JDBCAnswerDao.findAllByQuestionId(JDBCAnswerDao.java:46)
+	at com.stason.testing.controller.services.AnswerService.findAllByQuestionId(AnswerService.java:15)
+	at com.stason.testing.controller.commands.implementent.admin.EditTestCommand.execute(EditTestCommand.java:76)
+	at com.stason.testing.controller.servlets.ControllerServlet.process(ControllerServlet.java:85)
+	at com.stason.testing.controller.servlets.ControllerServlet.doGet(ControllerServlet.java:63)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.AccessingFilter.doFilter(AccessingFilter.java:75)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.RoleFilter.doFilter(RoleFilter.java:33)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.EncodingFilter.doFilter(EncodingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.LocaleFilter.doFilter(LocaleFilter.java:39)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[DEBUG]-[2022-04-01 19:20:56,530]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 19:20:56,707]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[10, 24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 19:21:26,332]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 19:21:26,368]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 19:21:26,368]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:21:26,368]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 19:21:26,368]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:21:26,368]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[WARN]-[2022-04-01 19:21:26,368]-[filters.AccessingFilter:doFilter:81]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/editTest
+[INFO]-[2022-04-01 19:21:28,613]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 19:21:28,614]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:21:28,614]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:21:28,614]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:21:28,614]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:21:28,614]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:21:28,614]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:21:28,614]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@54826be2
+[INFO]-[2022-04-01 19:21:28,614]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 19:21:31,503]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 19:21:31,503]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:21:31,503]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:21:31,503]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:21:31,503]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:21:31,503]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:21:31,503]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:21:31,504]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@54826be2
+[INFO]-[2022-04-01 19:21:31,711]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 19:21:31,712]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:21:31,714]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 19:21:31,715]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:21:31,715]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:21:31,715]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:21:31,715]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:21:31,715]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:21:31,715]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:21:31,715]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@77e90d02
+[INFO]-[2022-04-01 19:21:31,715]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 19:21:34,375]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 19:21:34,375]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:21:34,375]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:21:34,375]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:21:34,375]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:21:34,375]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:21:34,376]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:21:34,376]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@74825cb1
+[INFO]-[2022-04-01 19:21:34,379]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 19:21:36,926]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 19:21:36,926]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:21:36,926]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:21:36,926]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:21:36,926]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/editTest
+[INFO]-[2022-04-01 19:21:36,926]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:21:36,926]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/editTest
+[INFO]-[2022-04-01 19:21:36,927]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.EditTestCommand@710b25b3
+[ERROR]-[2022-04-01 19:21:36,938]-[implement.JDBCAnswerDao:findAllByQuestionId:58]-Can't find all Answers for question=179, because
+java.sql.SQLException: No value specified for parameter 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1026)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:121)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:121)
+	at com.stason.testing.model.dao.implement.JDBCAnswerDao.findAllByQuestionId(JDBCAnswerDao.java:46)
+	at com.stason.testing.controller.services.AnswerService.findAllByQuestionId(AnswerService.java:15)
+	at com.stason.testing.controller.commands.implementent.admin.EditTestCommand.execute(EditTestCommand.java:76)
+	at com.stason.testing.controller.servlets.ControllerServlet.process(ControllerServlet.java:85)
+	at com.stason.testing.controller.servlets.ControllerServlet.doGet(ControllerServlet.java:63)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.AccessingFilter.doFilter(AccessingFilter.java:75)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.RoleFilter.doFilter(RoleFilter.java:33)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.EncodingFilter.doFilter(EncodingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.LocaleFilter.doFilter(LocaleFilter.java:39)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]-[2022-04-01 19:24:31,824]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 19:24:31,824]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:31,824]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:31,824]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:24:31,824]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/logout
+[INFO]-[2022-04-01 19:24:31,824]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:31,824]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/logout
+[INFO]-[2022-04-01 19:24:31,824]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LogoutCommand@5c6ff47f
+[INFO]-[2022-04-01 19:24:31,824]-[guest.LogoutCommand:execute:19]-LoggedUsers before logouting are [admin@gmail.com]
+[INFO]-[2022-04-01 19:24:31,825]-[guest.LogoutCommand:execute:22]-LoggedUsers after logouting are []
+[INFO]-[2022-04-01 19:24:31,825]-[listeners.DestroyingListener:sessionDestroyed:41]-The user with login admin@gmail.com has removed from loggedUsers
+[INFO]-[2022-04-01 19:24:31,825]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/login
+[INFO]-[2022-04-01 19:24:31,828]-[filters.LocaleFilter:doFilter:28]-Filters time:8
+[INFO]-[2022-04-01 19:24:31,828]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:31,828]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:31,828]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:24:31,828]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:24:31,828]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:31,828]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:24:31,828]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@54826be2
+[INFO]-[2022-04-01 19:24:31,828]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[DEBUG]-[2022-04-01 19:24:32,686]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 19:24:32,882]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[10, 24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 19:24:36,196]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 19:24:36,232]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 19:24:36,232]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:36,233]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 19:24:36,233]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:36,233]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 19:24:36,233]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:24:36,233]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:36,233]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:24:36,233]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@4dbc1b70
+[INFO]-[2022-04-01 19:24:37,697]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 19:24:37,698]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:24:37,701]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 19:24:37,701]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:37,701]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:37,701]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:24:37,701]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:24:37,701]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:37,701]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:24:37,701]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@4121886
+[INFO]-[2022-04-01 19:24:37,701]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 19:24:46,310]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 19:24:46,310]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:46,310]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:46,310]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:24:46,310]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:24:46,310]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:46,310]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:24:46,310]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@3113ce24
+[INFO]-[2022-04-01 19:24:46,314]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 19:24:47,405]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 19:24:47,405]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:47,405]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:47,405]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:24:47,406]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 19:24:47,406]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:47,406]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 19:24:47,406]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@3344a921
+[INFO]-[2022-04-01 19:24:47,408]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-01 19:24:50,737]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 19:24:50,737]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:50,738]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:50,738]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:24:50,738]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/editUser
+[INFO]-[2022-04-01 19:24:50,738]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:50,738]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/editUser
+[INFO]-[2022-04-01 19:24:50,738]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.EditUserCommand@1de358f8
+[ERROR]-[2022-04-01 19:24:50,746]-[implement.JDBCUserDao:findById:240]-Can't find user by id=27, because
+java.sql.SQLException: No value specified for parameter 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1026)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:121)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:121)
+	at com.stason.testing.model.dao.implement.JDBCUserDao.findById(JDBCUserDao.java:224)
+	at com.stason.testing.model.dao.implement.JDBCUserDao.findById(JDBCUserDao.java:15)
+	at com.stason.testing.controller.services.UserService.findById(UserService.java:42)
+	at com.stason.testing.controller.commands.implementent.admin.EditUserCommand.execute(EditUserCommand.java:59)
+	at com.stason.testing.controller.servlets.ControllerServlet.process(ControllerServlet.java:85)
+	at com.stason.testing.controller.servlets.ControllerServlet.doGet(ControllerServlet.java:63)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.AccessingFilter.doFilter(AccessingFilter.java:75)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.RoleFilter.doFilter(RoleFilter.java:33)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.EncodingFilter.doFilter(EncodingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.LocaleFilter.doFilter(LocaleFilter.java:39)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]-[2022-04-01 19:24:54,497]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 19:24:54,497]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:54,497]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:54,497]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:24:54,498]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:24:54,498]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:54,498]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:24:54,498]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@3113ce24
+[INFO]-[2022-04-01 19:24:54,500]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 19:24:56,436]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 19:24:56,436]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:24:56,436]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:24:56,436]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:24:56,436]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 19:24:56,436]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:24:56,436]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 19:24:56,437]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@3344a921
+[INFO]-[2022-04-01 19:24:56,439]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-01 19:27:07,230]-[filters.LocaleFilter:doFilter:28]-Filters time:8
+[INFO]-[2022-04-01 19:27:07,230]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:27:07,230]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:27:07,230]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:27:07,230]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/logout
+[INFO]-[2022-04-01 19:27:07,230]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:27:07,230]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/logout
+[INFO]-[2022-04-01 19:27:07,230]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LogoutCommand@523d0b8d
+[INFO]-[2022-04-01 19:27:07,230]-[guest.LogoutCommand:execute:19]-LoggedUsers before logouting are [admin@gmail.com]
+[INFO]-[2022-04-01 19:27:07,231]-[guest.LogoutCommand:execute:22]-LoggedUsers after logouting are []
+[INFO]-[2022-04-01 19:27:07,231]-[listeners.DestroyingListener:sessionDestroyed:41]-The user with login admin@gmail.com has removed from loggedUsers
+[INFO]-[2022-04-01 19:27:07,231]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/login
+[INFO]-[2022-04-01 19:27:07,234]-[filters.LocaleFilter:doFilter:28]-Filters time:9
+[INFO]-[2022-04-01 19:27:07,234]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:27:07,234]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:27:07,235]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:27:07,235]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:27:07,235]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:27:07,235]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:27:07,235]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@4dbc1b70
+[INFO]-[2022-04-01 19:27:07,235]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[DEBUG]-[2022-04-01 19:27:08,138]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 19:27:08,338]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[10, 24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 19:27:16,847]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 19:27:16,884]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 19:27:16,884]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:27:16,884]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 19:27:16,884]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:27:16,884]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 19:27:16,885]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:27:16,885]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:27:16,885]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:27:16,885]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@4a9fc238
+[INFO]-[2022-04-01 19:27:16,885]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 19:27:24,453]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 19:27:24,453]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:27:24,453]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:27:24,453]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 19:27:24,453]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 19:27:24,453]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:27:24,453]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 19:27:24,454]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@4a9fc238
+[INFO]-[2022-04-01 19:27:24,664]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 19:27:24,665]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:27:24,668]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 19:27:24,668]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:27:24,668]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:27:24,669]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:27:24,669]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:27:24,669]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:27:24,669]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 19:27:24,669]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@77d894b9
+[INFO]-[2022-04-01 19:27:24,669]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 19:27:28,253]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 19:27:28,253]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 19:27:28,253]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 19:27:28,253]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 19:27:28,253]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:27:28,253]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 19:27:28,253]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 19:27:28,254]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@58c3b813
+[ERROR]-[2022-04-01 19:27:28,263]-[implement.JDBCTestDao:countAllTest:158]-Can't count all tests, because
+java.sql.SQLException: Column 'COUN)' not found.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.findColumn(ResultSetImpl.java:584)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getInt(ResultSetImpl.java:851)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getInt(DelegatingResultSet.java:631)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getInt(DelegatingResultSet.java:631)
+	at com.stason.testing.model.dao.implement.JDBCTestDao.countAllTest(JDBCTestDao.java:155)
+	at com.stason.testing.controller.services.PaginationService.countButtonsForPaginationAllTests(PaginationService.java:54)
+	at com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand.execute(ShowTestsCommand.java:65)
+	at com.stason.testing.controller.servlets.ControllerServlet.process(ControllerServlet.java:85)
+	at com.stason.testing.controller.servlets.ControllerServlet.doGet(ControllerServlet.java:63)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.AccessingFilter.doFilter(AccessingFilter.java:75)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.RoleFilter.doFilter(RoleFilter.java:33)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.EncodingFilter.doFilter(EncodingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.LocaleFilter.doFilter(LocaleFilter.java:39)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]-[2022-04-01 20:18:43,230]-[listeners.DestroyingListener:sessionDestroyed:41]-The user with login admin@gmail.com has removed from loggedUsers
+[DEBUG]-[2022-04-01 20:32:29,078]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 20:32:29,267]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[10, 24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 20:34:21,448]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 20:34:21,484]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 20:34:21,484]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:21,485]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 20:34:21,485]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:21,485]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[WARN]-[2022-04-01 20:34:21,485]-[filters.AccessingFilter:doFilter:81]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/logout
+[INFO]-[2022-04-01 20:34:24,780]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 20:34:24,780]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:24,781]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:24,781]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[WARN]-[2022-04-01 20:34:24,781]-[filters.AccessingFilter:doFilter:81]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 20:34:26,351]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 20:34:26,351]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:26,351]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:26,351]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 20:34:26,351]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 20:34:26,351]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:26,351]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 20:34:26,352]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5fd6cd70
+[INFO]-[2022-04-01 20:34:26,352]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 20:34:29,680]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 20:34:29,680]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:29,680]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:29,680]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 20:34:29,680]-[filters.AccessingFilter:doFilter:77]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 20:34:29,680]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:29,680]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 20:34:29,680]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5fd6cd70
+[INFO]-[2022-04-01 20:34:29,903]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 20:34:29,904]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 20:34:29,906]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 20:34:29,906]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:29,906]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:29,906]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 20:34:29,907]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 20:34:29,907]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:29,907]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 20:34:29,907]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@e95d991
+[INFO]-[2022-04-01 20:34:29,907]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 20:34:31,879]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 20:34:31,879]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:31,879]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:31,879]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 20:34:31,879]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:31,879]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:31,879]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:31,880]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@2d83d86f
+[INFO]-[2022-04-01 20:34:31,882]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-01 20:34:39,761]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 20:34:39,761]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:39,761]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:39,761]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 20:34:39,761]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/deleteUser
+[INFO]-[2022-04-01 20:34:39,761]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:39,761]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/deleteUser
+[INFO]-[2022-04-01 20:34:39,761]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.DeleteUserCommand@237513fa
+[INFO]-[2022-04-01 20:34:39,789]-[admin.DeleteUserCommand:execute:40]-Admin deleted user[10]
+[INFO]-[2022-04-01 20:34:39,789]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:39,792]-[filters.LocaleFilter:doFilter:28]-Filters time:8
+[INFO]-[2022-04-01 20:34:39,792]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:39,792]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:39,792]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 20:34:39,793]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:39,793]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:39,793]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:39,793]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@2d83d86f
+[INFO]-[2022-04-01 20:34:39,795]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-01 20:34:42,521]-[filters.LocaleFilter:doFilter:28]-Filters time:9
+[INFO]-[2022-04-01 20:34:42,521]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:42,521]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:42,521]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 20:34:42,521]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:42,521]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:42,521]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:42,521]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@2d83d86f
+[INFO]-[2022-04-01 20:34:42,524]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-01 20:34:55,096]-[filters.LocaleFilter:doFilter:28]-Filters time:10
+[INFO]-[2022-04-01 20:34:55,096]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:55,096]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:55,096]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 20:34:55,096]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:55,096]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:55,096]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 20:34:55,096]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@2d83d86f
+[INFO]-[2022-04-01 20:34:55,099]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-01 20:34:58,696]-[filters.LocaleFilter:doFilter:28]-Filters time:11
+[INFO]-[2022-04-01 20:34:58,696]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 20:34:58,696]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 20:34:58,696]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 20:34:58,696]-[filters.AccessingFilter:doFilter:74]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/userTests
+[INFO]-[2022-04-01 20:34:58,696]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 20:34:58,696]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/userTests
+[INFO]-[2022-04-01 20:34:58,696]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersTestsCommand@69b58f62
+[INFO]-[2022-04-01 20:34:58,698]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showUsersTests.jsp
+[DEBUG]-[2022-04-01 20:47:23,256]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 20:47:23,477]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:06:07,597]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:06:07,788]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:07:07,911]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:07:07,949]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:07:07,949]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:07:07,949]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:07:07,950]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:07:07,950]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[WARN]-[2022-04-01 21:07:07,950]-[filters.AccessingFilter:doFilter:119]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 21:07:54,827]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:07:54,827]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:07:54,827]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:07:54,827]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[WARN]-[2022-04-01 21:07:54,828]-[filters.AccessingFilter:doFilter:119]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/showUsersdfg
+[DEBUG]-[2022-04-01 21:16:30,021]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:16:30,218]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:16:34,239]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:16:34,277]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:16:34,277]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:16:34,277]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:16:34,277]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:16:34,277]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:16:34,277]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:16:34,277]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:16:34,277]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:16:34,278]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@6e6ddcb4
+[INFO]-[2022-04-01 21:16:34,278]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:16:55,134]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:16:55,134]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:16:55,134]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:16:55,134]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[WARN]-[2022-04-01 21:16:55,134]-[filters.AccessingFilter:doFilter:128]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/createQuestion
+[DEBUG]-[2022-04-01 21:20:16,083]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:20:16,292]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:20:23,788]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:20:23,826]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:20:23,826]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:20:23,826]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:20:23,826]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:20:23,826]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[WARN]-[2022-04-01 21:20:23,827]-[filters.AccessingFilter:doFilter:126]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/createQuestion
+[INFO]-[2022-04-01 21:20:35,847]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:20:35,847]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:20:35,847]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:20:35,847]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:20:35,847]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:20:35,847]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:20:35,847]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:20:35,847]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@644be7c9
+[INFO]-[2022-04-01 21:20:35,848]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[WARN]-[2022-04-01 21:20:35,947]-[filters.AccessingFilter:doFilter:126]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:21:03,839]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 21:21:03,839]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:21:03,839]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:21:03,840]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:21:03,840]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/registration
+[INFO]-[2022-04-01 21:21:03,840]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:21:03,840]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/registration
+[INFO]-[2022-04-01 21:21:03,840]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.RegistrationCommand@7d1c97a6
+[INFO]-[2022-04-01 21:21:03,840]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/register.jsp
+[WARN]-[2022-04-01 21:21:03,938]-[filters.AccessingFilter:doFilter:126]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/registration
+[DEBUG]-[2022-04-01 21:21:10,413]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:21:10,602]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:21:15,806]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:21:15,863]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:21:15,863]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:21:15,863]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:21:15,863]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:21:15,863]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:21:15,864]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:21:15,864]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:21:15,864]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:21:15,864]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@27618968
+[INFO]-[2022-04-01 21:21:15,864]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[WARN]-[2022-04-01 21:21:16,084]-[filters.AccessingFilter:doFilter:126]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/login
+[DEBUG]-[2022-04-01 21:21:46,017]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:21:46,221]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:21:47,070]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:21:47,108]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:21:47,108]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:21:47,108]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:21:47,108]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:21:47,108]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:21:47,109]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:21:47,109]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:21:47,109]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:21:47,109]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@a735cdb
+[INFO]-[2022-04-01 21:21:47,109]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:21:51,671]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:21:51,671]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:21:51,671]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:21:51,671]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:21:51,671]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/registration
+[INFO]-[2022-04-01 21:21:51,671]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:21:51,671]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/registration
+[INFO]-[2022-04-01 21:21:51,671]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.RegistrationCommand@3de081fd
+[INFO]-[2022-04-01 21:21:51,672]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/register.jsp
+[INFO]-[2022-04-01 21:21:52,380]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 21:21:52,380]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:21:52,380]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:21:52,380]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:21:52,380]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:21:52,381]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:21:52,381]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:21:52,381]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@a735cdb
+[INFO]-[2022-04-01 21:21:52,381]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[DEBUG]-[2022-04-01 21:22:21,256]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:22:21,441]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:22:25,868]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:22:25,905]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:22:25,905]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:22:25,905]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:22:25,905]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:22:25,905]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:22:25,906]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:22:25,906]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:22:25,906]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:22:25,906]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@359e1f14
+[INFO]-[2022-04-01 21:22:25,906]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:22:30,247]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:22:30,248]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:22:30,248]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:22:30,248]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:22:30,248]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/registration
+[INFO]-[2022-04-01 21:22:30,248]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:22:30,248]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/registration
+[INFO]-[2022-04-01 21:22:30,248]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.RegistrationCommand@66e13ef
+[INFO]-[2022-04-01 21:22:30,248]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/register.jsp
+[INFO]-[2022-04-01 21:22:32,983]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 21:22:32,983]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:22:32,983]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:22:32,983]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:22:32,983]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:22:32,983]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:22:32,983]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:22:32,984]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@5f7f0a75
+[INFO]-[2022-04-01 21:22:32,984]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:22:35,017]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 21:22:35,018]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:22:35,018]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:22:35,018]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:22:35,018]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:22:35,018]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:22:35,018]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:22:35,018]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@359e1f14
+[INFO]-[2022-04-01 21:22:35,018]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:22:48,871]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 21:22:48,871]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:22:48,871]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:22:48,872]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[WARN]-[2022-04-01 21:22:48,872]-[filters.AccessingFilter:doFilter:129]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin
+[INFO]-[2022-04-01 21:23:19,745]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 21:23:19,745]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:23:19,745]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:23:19,745]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[WARN]-[2022-04-01 21:23:19,745]-[filters.AccessingFilter:doFilter:129]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/adminsdfsdfsd
+[INFO]-[2022-04-01 21:23:23,566]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 21:23:23,567]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:23:23,567]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:23:23,567]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[WARN]-[2022-04-01 21:23:23,567]-[filters.AccessingFilter:doFilter:129]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/adsdfsdf
+[DEBUG]-[2022-04-01 21:28:06,327]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:28:06,501]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:28:09,468]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:28:09,508]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:28:09,508]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:28:09,508]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:28:09,508]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:28:09,508]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[WARN]-[2022-04-01 21:28:09,508]-[filters.AccessingFilter:doFilter:132]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/adsdfsdf
+[DEBUG]-[2022-04-01 21:30:38,099]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:30:38,272]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:30:46,173]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:30:46,211]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:30:46,211]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:30:46,211]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:30:46,211]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:30:46,211]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:32:52,831]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:32:52,831]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:32:52,831]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:32:52,831]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[WARN]-[2022-04-01 21:32:52,831]-[filters.AccessingFilter:lambda$doFilter$0:133]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:33:34,282]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 21:33:34,282]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:33:34,282]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:33:34,282]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[WARN]-[2022-04-01 21:33:34,282]-[filters.AccessingFilter:lambda$doFilter$0:133]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/student/info
+[DEBUG]-[2022-04-01 21:34:04,647]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:34:04,824]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:34:06,769]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:34:06,807]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:34:06,807]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:34:06,807]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:34:06,807]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:34:06,807]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:34:06,808]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:34:06,808]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/infofgdf
+[INFO]-[2022-04-01 21:34:06,808]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@2db6808b
+[INFO]-[2022-04-01 21:34:06,808]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:34:12,655]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:34:12,655]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:34:12,655]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:34:12,655]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:34:12,655]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:34:12,655]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:34:12,656]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:34:12,656]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3e0c205
+[INFO]-[2022-04-01 21:34:12,656]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:34:15,200]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 21:34:15,200]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:34:15,200]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:34:15,200]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:34:15,200]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:34:15,200]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:34:15,200]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:34:15,200]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3e0c205
+[INFO]-[2022-04-01 21:34:15,409]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 21:34:15,410]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:34:15,413]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 21:34:15,413]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:34:15,413]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:34:15,413]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:34:15,415]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:34:15,415]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:34:15,415]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:34:15,415]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@13b8130
+[INFO]-[2022-04-01 21:34:15,415]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:34:26,464]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 21:34:26,464]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:34:26,464]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:34:26,464]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:34:26,464]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:34:26,464]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:34:26,464]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:34:26,464]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@13b8130
+[INFO]-[2022-04-01 21:34:26,464]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:34:28,924]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 21:34:28,924]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:34:28,924]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:34:28,925]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:34:28,925]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:34:28,925]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/infoxcv
+[INFO]-[2022-04-01 21:34:28,925]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3d328cd6
+[INFO]-[2022-04-01 21:34:28,925]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:34:36,290]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 21:34:36,290]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:34:36,290]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:34:36,290]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:34:36,290]-[filters.BackArrowFilter:doFilter:49]-Do logout, because URI doesn't contain /admin
+[INFO]-[2022-04-01 21:34:36,290]-[guest.LogoutCommand:execute:19]-LoggedUsers before logouting are [admin@gmail.com]
+[INFO]-[2022-04-01 21:34:36,290]-[guest.LogoutCommand:execute:22]-LoggedUsers after logouting are []
+[INFO]-[2022-04-01 21:34:36,291]-[listeners.DestroyingListener:sessionDestroyed:41]-The user with login admin@gmail.com has removed from loggedUsers
+[INFO]-[2022-04-01 21:34:36,291]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:34:36,291]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:34:36,291]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:34:36,291]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3e0c205
+[INFO]-[2022-04-01 21:34:36,291]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:34:40,038]-[filters.LocaleFilter:doFilter:28]-Filters time:8
+[INFO]-[2022-04-01 21:34:40,038]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:34:40,038]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:34:40,038]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:34:40,038]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:34:40,038]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/infoxcv
+[INFO]-[2022-04-01 21:34:40,038]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@33646e09
+[INFO]-[2022-04-01 21:34:40,039]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[DEBUG]-[2022-04-01 21:35:23,516]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:35:23,694]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:35:26,557]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:35:26,594]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:35:26,594]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:35:26,595]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:35:26,595]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:35:26,595]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:35:26,595]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:35:26,595]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/infoxcv
+[INFO]-[2022-04-01 21:35:26,595]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@6426a780
+[INFO]-[2022-04-01 21:35:26,595]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:35:28,069]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:35:28,069]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:35:28,069]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:35:28,069]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:35:28,069]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:35:28,069]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/infoxcv
+[INFO]-[2022-04-01 21:35:28,069]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@5d846704
+[INFO]-[2022-04-01 21:35:28,069]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:35:30,154]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 21:35:30,154]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:35:30,154]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:35:30,154]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:35:30,155]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:35:30,155]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:35:30,155]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:35:30,155]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5546001c
+[INFO]-[2022-04-01 21:35:30,155]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:35:41,000]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 21:35:41,001]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:35:41,001]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:35:41,001]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:35:41,001]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:35:41,001]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:35:41,001]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:35:41,001]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5546001c
+[INFO]-[2022-04-01 21:35:41,216]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 21:35:41,217]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:35:41,220]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 21:35:41,220]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:35:41,220]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:35:41,220]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:35:41,220]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:35:41,220]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:35:41,220]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:35:41,220]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@390b7b41
+[INFO]-[2022-04-01 21:35:41,220]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:37:10,557]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 21:37:10,558]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:10,558]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:10,558]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[WARN]-[2022-04-01 21:37:10,558]-[filters.AccessingFilter:lambda$doFilter$0:128]-Accessing Filter - ACCESS DENIED FOR ADMIN for URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:37:12,825]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 21:37:12,825]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:12,825]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:12,825]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:12,825]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:12,826]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:12,826]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:12,826]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@390b7b41
+[INFO]-[2022-04-01 21:37:12,826]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:37:15,584]-[filters.LocaleFilter:doFilter:28]-Filters time:8
+[INFO]-[2022-04-01 21:37:15,584]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:15,584]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:15,584]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:15,584]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:37:15,584]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:15,584]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:37:15,584]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@19a8e8ac
+[INFO]-[2022-04-01 21:37:15,589]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 21:37:21,666]-[filters.LocaleFilter:doFilter:28]-Filters time:9
+[INFO]-[2022-04-01 21:37:21,666]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:21,666]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:21,666]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:21,666]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 21:37:21,666]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:21,666]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-01 21:37:21,666]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@6b81284b
+[INFO]-[2022-04-01 21:37:21,669]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-01 21:37:23,163]-[filters.LocaleFilter:doFilter:28]-Filters time:10
+[INFO]-[2022-04-01 21:37:23,163]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:23,163]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:23,163]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:23,163]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:37:23,164]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:23,164]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:37:23,164]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@19a8e8ac
+[INFO]-[2022-04-01 21:37:23,166]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 21:37:24,386]-[filters.LocaleFilter:doFilter:28]-Filters time:11
+[INFO]-[2022-04-01 21:37:24,386]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:24,386]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:24,386]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:24,386]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/logout
+[INFO]-[2022-04-01 21:37:24,386]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:24,386]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/logout
+[INFO]-[2022-04-01 21:37:24,386]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LogoutCommand@3893398c
+[INFO]-[2022-04-01 21:37:24,386]-[guest.LogoutCommand:execute:19]-LoggedUsers before logouting are [admin@gmail.com]
+[INFO]-[2022-04-01 21:37:24,387]-[guest.LogoutCommand:execute:22]-LoggedUsers after logouting are []
+[INFO]-[2022-04-01 21:37:24,387]-[listeners.DestroyingListener:sessionDestroyed:41]-The user with login admin@gmail.com has removed from loggedUsers
+[INFO]-[2022-04-01 21:37:24,387]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/login
+[INFO]-[2022-04-01 21:37:24,390]-[filters.LocaleFilter:doFilter:28]-Filters time:12
+[INFO]-[2022-04-01 21:37:24,390]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:24,390]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:24,390]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:37:24,390]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:37:24,390]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:24,390]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:37:24,390]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5546001c
+[INFO]-[2022-04-01 21:37:24,390]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:37:28,811]-[filters.LocaleFilter:doFilter:28]-Filters time:13
+[INFO]-[2022-04-01 21:37:28,811]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:28,812]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:28,812]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:37:28,812]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:28,812]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/logindfg
+[INFO]-[2022-04-01 21:37:28,812]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@23d6f799
+[INFO]-[2022-04-01 21:37:28,812]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:37:30,920]-[filters.LocaleFilter:doFilter:28]-Filters time:14
+[INFO]-[2022-04-01 21:37:30,920]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:30,920]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:30,920]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:37:30,920]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:37:30,920]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:30,920]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:37:30,920]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5546001c
+[INFO]-[2022-04-01 21:37:30,920]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:37:37,654]-[filters.LocaleFilter:doFilter:28]-Filters time:15
+[INFO]-[2022-04-01 21:37:37,655]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:37,655]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:37,655]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:37:37,655]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:37:37,655]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:37,655]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:37:37,655]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@5546001c
+[INFO]-[2022-04-01 21:37:37,837]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 21:37:37,838]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:37,841]-[filters.LocaleFilter:doFilter:28]-Filters time:16
+[INFO]-[2022-04-01 21:37:37,841]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:37,841]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:37,841]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:37,841]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:37,841]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:37,841]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:37,841]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@390b7b41
+[INFO]-[2022-04-01 21:37:37,841]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:37:40,150]-[filters.LocaleFilter:doFilter:28]-Filters time:17
+[INFO]-[2022-04-01 21:37:40,150]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:40,150]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:40,150]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:40,151]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:40,151]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/infofdgdg
+[INFO]-[2022-04-01 21:37:40,151]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@253aa520
+[INFO]-[2022-04-01 21:37:40,151]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:37:42,787]-[filters.LocaleFilter:doFilter:28]-Filters time:18
+[INFO]-[2022-04-01 21:37:42,787]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:42,787]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:42,788]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:42,788]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:42,788]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:42,788]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:42,788]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@390b7b41
+[INFO]-[2022-04-01 21:37:42,788]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:37:44,092]-[filters.LocaleFilter:doFilter:28]-Filters time:19
+[INFO]-[2022-04-01 21:37:44,092]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:44,092]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:44,092]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:44,092]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:44,092]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:44,092]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:37:44,092]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@390b7b41
+[INFO]-[2022-04-01 21:37:44,092]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:37:48,341]-[filters.LocaleFilter:doFilter:28]-Filters time:20
+[INFO]-[2022-04-01 21:37:48,341]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:37:48,341]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:37:48,341]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:37:48,341]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:37:48,342]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/infofdgdg
+[INFO]-[2022-04-01 21:37:48,342]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3654c0ee
+[INFO]-[2022-04-01 21:37:48,342]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:01,767]-[filters.LocaleFilter:doFilter:28]-Filters time:21
+[INFO]-[2022-04-01 21:38:01,767]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:01,768]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:01,768]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:01,768]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:01,768]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:01,768]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@472348db
+[INFO]-[2022-04-01 21:38:01,768]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:06,595]-[filters.LocaleFilter:doFilter:28]-Filters time:22
+[INFO]-[2022-04-01 21:38:06,595]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:06,595]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:06,595]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:06,595]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:06,595]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:06,595]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@8f3bf4
+[INFO]-[2022-04-01 21:38:06,595]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:07,796]-[filters.LocaleFilter:doFilter:28]-Filters time:23
+[INFO]-[2022-04-01 21:38:07,796]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:07,796]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:07,796]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:07,796]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:07,796]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:07,796]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3ba20797
+[INFO]-[2022-04-01 21:38:07,796]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:08,539]-[filters.LocaleFilter:doFilter:28]-Filters time:24
+[INFO]-[2022-04-01 21:38:08,539]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:08,540]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:08,540]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:08,540]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:08,540]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:08,540]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3febc47e
+[INFO]-[2022-04-01 21:38:08,540]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:09,037]-[filters.LocaleFilter:doFilter:28]-Filters time:25
+[INFO]-[2022-04-01 21:38:09,038]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:09,038]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:09,038]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:09,038]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:09,038]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:09,038]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@21aaa4ee
+[INFO]-[2022-04-01 21:38:09,038]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:09,357]-[filters.LocaleFilter:doFilter:28]-Filters time:26
+[INFO]-[2022-04-01 21:38:09,358]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:09,358]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:09,358]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:09,358]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:09,358]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:09,358]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@2cf44fe5
+[INFO]-[2022-04-01 21:38:09,358]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:09,547]-[filters.LocaleFilter:doFilter:28]-Filters time:27
+[INFO]-[2022-04-01 21:38:09,547]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:09,547]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:09,547]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:09,548]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:09,548]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:09,548]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@26a534d9
+[INFO]-[2022-04-01 21:38:09,548]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:09,733]-[filters.LocaleFilter:doFilter:28]-Filters time:28
+[INFO]-[2022-04-01 21:38:09,733]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:09,733]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:09,733]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:09,733]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:09,733]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:09,733]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@60709a98
+[INFO]-[2022-04-01 21:38:09,733]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:10,113]-[filters.LocaleFilter:doFilter:28]-Filters time:29
+[INFO]-[2022-04-01 21:38:10,114]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:10,114]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:10,114]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:10,114]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:10,114]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/ad
+[INFO]-[2022-04-01 21:38:10,114]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@22a8ce89
+[INFO]-[2022-04-01 21:38:10,114]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:12,932]-[filters.LocaleFilter:doFilter:28]-Filters time:30
+[INFO]-[2022-04-01 21:38:12,932]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:12,932]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:12,932]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[WARN]-[2022-04-01 21:38:12,933]-[filters.AccessingFilter:lambda$doFilter$0:128]-Accessing Filter - ACCESS DENIED FOR ADMIN for URL http://localhost:8080/web-application/testing
+[INFO]-[2022-04-01 21:38:17,994]-[filters.LocaleFilter:doFilter:28]-Filters time:31
+[INFO]-[2022-04-01 21:38:17,994]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:17,994]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:17,994]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[WARN]-[2022-04-01 21:38:17,994]-[filters.AccessingFilter:lambda$doFilter$0:128]-Accessing Filter - ACCESS DENIED FOR ADMIN for URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:38:21,392]-[filters.LocaleFilter:doFilter:28]-Filters time:32
+[INFO]-[2022-04-01 21:38:21,392]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:21,392]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:21,392]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:21,392]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/createQuestion
+[INFO]-[2022-04-01 21:38:21,392]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:21,393]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/createQuestion
+[INFO]-[2022-04-01 21:38:21,393]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.CreateQuestionCommand@3a0371c4
+[INFO]-[2022-04-01 21:38:21,393]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/createQuestion.jsp
+[INFO]-[2022-04-01 21:38:25,069]-[filters.LocaleFilter:doFilter:28]-Filters time:33
+[INFO]-[2022-04-01 21:38:25,069]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:25,069]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:25,069]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:25,069]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:25,069]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/a
+[INFO]-[2022-04-01 21:38:25,069]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3f89a272
+[INFO]-[2022-04-01 21:38:25,069]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:27,501]-[filters.LocaleFilter:doFilter:28]-Filters time:34
+[INFO]-[2022-04-01 21:38:27,501]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:27,501]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:27,501]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:27,501]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:27,501]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/a
+[INFO]-[2022-04-01 21:38:27,501]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@702d9073
+[INFO]-[2022-04-01 21:38:27,501]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:28,013]-[filters.LocaleFilter:doFilter:28]-Filters time:35
+[INFO]-[2022-04-01 21:38:28,013]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:28,013]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:28,013]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:28,013]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:28,013]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/a
+[INFO]-[2022-04-01 21:38:28,013]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3c4a68f2
+[INFO]-[2022-04-01 21:38:28,014]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:28,243]-[filters.LocaleFilter:doFilter:28]-Filters time:36
+[INFO]-[2022-04-01 21:38:28,243]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:28,244]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:28,244]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:28,244]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:28,244]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/a
+[INFO]-[2022-04-01 21:38:28,244]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@2233a40b
+[INFO]-[2022-04-01 21:38:28,244]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:38:43,198]-[filters.LocaleFilter:doFilter:28]-Filters time:37
+[INFO]-[2022-04-01 21:38:43,198]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:38:43,198]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:38:43,198]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:38:43,198]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:38:43,198]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/a
+[INFO]-[2022-04-01 21:38:43,199]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@74d80e3e
+[INFO]-[2022-04-01 21:38:43,199]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[DEBUG]-[2022-04-01 21:39:26,243]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:39:26,443]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:39:27,268]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:39:27,306]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:39:27,306]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:27,306]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:39:27,306]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:27,306]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:39:27,307]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:27,307]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/a
+[INFO]-[2022-04-01 21:39:27,307]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3c0df915
+[INFO]-[2022-04-01 21:39:27,307]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:30,544]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:39:30,545]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:30,545]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:30,545]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:39:30,545]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:39:30,545]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:30,545]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:39:30,545]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@2e5c1b5b
+[INFO]-[2022-04-01 21:39:30,545]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:39:32,920]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 21:39:32,920]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:32,920]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:32,920]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:39:32,920]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:39:32,920]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:32,920]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:39:32,921]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@2e5c1b5b
+[INFO]-[2022-04-01 21:39:33,173]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 21:39:33,175]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:39:33,177]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 21:39:33,177]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:33,177]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:33,177]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:33,178]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:39:33,178]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:33,178]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:39:33,178]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@2ab76e0f
+[INFO]-[2022-04-01 21:39:33,178]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:39:40,174]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 21:39:40,174]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:40,174]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:40,174]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:40,175]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:40,175]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/i
+[INFO]-[2022-04-01 21:39:40,175]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3fb06356
+[INFO]-[2022-04-01 21:39:40,175]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:43,597]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 21:39:43,597]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:43,597]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:43,597]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:43,598]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:43,598]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/i
+[INFO]-[2022-04-01 21:39:43,598]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@227abae9
+[INFO]-[2022-04-01 21:39:43,598]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:44,365]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 21:39:44,365]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:44,365]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:44,365]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:44,366]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:44,366]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/i
+[INFO]-[2022-04-01 21:39:44,366]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@260c2495
+[INFO]-[2022-04-01 21:39:44,366]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:44,811]-[filters.LocaleFilter:doFilter:28]-Filters time:8
+[INFO]-[2022-04-01 21:39:44,812]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:44,812]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:44,812]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:44,812]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:44,812]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/i
+[INFO]-[2022-04-01 21:39:44,812]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@5d3fc555
+[INFO]-[2022-04-01 21:39:44,812]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:48,235]-[filters.LocaleFilter:doFilter:28]-Filters time:9
+[INFO]-[2022-04-01 21:39:48,235]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:48,235]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:48,235]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:48,236]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:39:48,236]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:48,236]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:39:48,236]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@2ab76e0f
+[INFO]-[2022-04-01 21:39:48,236]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:39:49,086]-[filters.LocaleFilter:doFilter:28]-Filters time:10
+[INFO]-[2022-04-01 21:39:49,087]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:49,087]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:49,087]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:49,087]-[filters.AccessingFilter:doFilter:120]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:39:49,087]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:49,087]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:39:49,087]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@48e48c94
+[INFO]-[2022-04-01 21:39:49,092]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 21:39:51,802]-[filters.LocaleFilter:doFilter:28]-Filters time:11
+[INFO]-[2022-04-01 21:39:51,802]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:51,802]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:51,802]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:51,802]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:51,802]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/adm
+[INFO]-[2022-04-01 21:39:51,802]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3e6f15b7
+[INFO]-[2022-04-01 21:39:51,802]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:53,454]-[filters.LocaleFilter:doFilter:28]-Filters time:12
+[INFO]-[2022-04-01 21:39:53,454]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:53,454]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:53,454]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:53,454]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:53,454]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/adm
+[INFO]-[2022-04-01 21:39:53,454]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@31b95f24
+[INFO]-[2022-04-01 21:39:53,454]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:54,037]-[filters.LocaleFilter:doFilter:28]-Filters time:13
+[INFO]-[2022-04-01 21:39:54,037]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:54,037]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:54,037]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:54,037]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:54,037]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/adm
+[INFO]-[2022-04-01 21:39:54,037]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@3a4943d7
+[INFO]-[2022-04-01 21:39:54,038]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:54,404]-[filters.LocaleFilter:doFilter:28]-Filters time:14
+[INFO]-[2022-04-01 21:39:54,404]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:54,404]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:54,404]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:54,404]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:54,404]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/adm
+[INFO]-[2022-04-01 21:39:54,404]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@7ffc7dd7
+[INFO]-[2022-04-01 21:39:54,404]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:54,643]-[filters.LocaleFilter:doFilter:28]-Filters time:15
+[INFO]-[2022-04-01 21:39:54,643]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:54,643]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:54,643]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:54,644]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:54,644]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/adm
+[INFO]-[2022-04-01 21:39:54,644]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@59a1f660
+[INFO]-[2022-04-01 21:39:54,644]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:54,845]-[filters.LocaleFilter:doFilter:28]-Filters time:16
+[INFO]-[2022-04-01 21:39:54,845]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:54,845]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:54,845]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:54,845]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:54,845]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/adm
+[INFO]-[2022-04-01 21:39:54,845]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@5650e504
+[INFO]-[2022-04-01 21:39:54,846]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:55,083]-[filters.LocaleFilter:doFilter:28]-Filters time:17
+[INFO]-[2022-04-01 21:39:55,083]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:55,083]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:55,083]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:39:55,084]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:39:55,084]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/adm
+[INFO]-[2022-04-01 21:39:55,084]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@4b851ba0
+[INFO]-[2022-04-01 21:39:55,084]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:39:59,112]-[filters.LocaleFilter:doFilter:28]-Filters time:18
+[INFO]-[2022-04-01 21:39:59,113]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:39:59,113]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:39:59,113]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[WARN]-[2022-04-01 21:39:59,113]-[filters.AccessingFilter:lambda$doFilter$0:128]-Accessing Filter - ACCESS DENIED FOR ADMIN for URL http://localhost:8080/web-application/testing/
+[DEBUG]-[2022-04-01 21:40:49,059]-[listeners.InitializationServletContextListener:contextInitialized:19]-Initialization of ServletContext
+[INFO]-[2022-04-01 21:40:49,234]-[listeners.InitializationServletContextListener:contextInitialized:25]-Blocked users (id:[24, 30]) were added to ServletContext
+[DEBUG]-[2022-04-01 21:40:53,308]-[servlets.ControllerServlet:init:29]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-01 21:40:53,345]-[filters.LocaleFilter:doFilter:28]-Filters time:1
+[INFO]-[2022-04-01 21:40:53,345]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:40:53,346]-[filters.LocaleFilter:doFilter:36]-Set Lang by default "UA"
+[INFO]-[2022-04-01 21:40:53,346]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:40:53,346]-[filters.RoleFilter:doFilter:28]-Set role as GUEST
+[INFO]-[2022-04-01 21:40:53,346]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:40:53,346]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:40:53,346]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:40:53,346]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@1c853cab
+[INFO]-[2022-04-01 21:40:53,346]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:40:54,761]-[filters.LocaleFilter:doFilter:28]-Filters time:2
+[INFO]-[2022-04-01 21:40:54,762]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:40:54,762]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:40:54,762]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:40:54,762]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:40:54,762]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:40:54,762]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:40:54,762]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@757b6cd4
+[INFO]-[2022-04-01 21:40:54,762]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:41:02,032]-[filters.LocaleFilter:doFilter:28]-Filters time:3
+[INFO]-[2022-04-01 21:41:02,033]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:02,033]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:02,033]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:41:02,033]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:41:02,033]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:02,033]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:41:02,033]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@757b6cd4
+[INFO]-[2022-04-01 21:41:02,246]-[guest.LoginCommand:execute:84]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-01 21:41:02,247]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:02,250]-[filters.LocaleFilter:doFilter:28]-Filters time:4
+[INFO]-[2022-04-01 21:41:02,251]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:02,251]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:02,251]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:02,251]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:02,251]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:02,251]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:02,251]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@4542fca0
+[INFO]-[2022-04-01 21:41:02,251]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:41:04,632]-[filters.LocaleFilter:doFilter:28]-Filters time:5
+[INFO]-[2022-04-01 21:41:04,632]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:04,632]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:04,632]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:04,632]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:04,633]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/inf
+[INFO]-[2022-04-01 21:41:04,633]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@31ea156f
+[INFO]-[2022-04-01 21:41:04,633]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:06,532]-[filters.LocaleFilter:doFilter:28]-Filters time:6
+[INFO]-[2022-04-01 21:41:06,532]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:06,532]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:06,532]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:06,532]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:06,532]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/inf
+[INFO]-[2022-04-01 21:41:06,532]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@57661324
+[INFO]-[2022-04-01 21:41:06,532]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:07,094]-[filters.LocaleFilter:doFilter:28]-Filters time:7
+[INFO]-[2022-04-01 21:41:07,094]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:07,094]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:07,094]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:07,094]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:07,094]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/inf
+[INFO]-[2022-04-01 21:41:07,094]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@7297ae61
+[INFO]-[2022-04-01 21:41:07,094]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:11,558]-[filters.LocaleFilter:doFilter:28]-Filters time:8
+[INFO]-[2022-04-01 21:41:11,558]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:11,558]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:11,558]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:11,558]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:41:11,558]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:11,558]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:41:11,558]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@1c853cab
+[INFO]-[2022-04-01 21:41:11,558]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:12,907]-[filters.LocaleFilter:doFilter:28]-Filters time:9
+[INFO]-[2022-04-01 21:41:12,907]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:12,907]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:12,907]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:12,907]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:41:12,908]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:12,908]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:41:12,908]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@1c853cab
+[INFO]-[2022-04-01 21:41:12,908]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:13,653]-[filters.LocaleFilter:doFilter:28]-Filters time:10
+[INFO]-[2022-04-01 21:41:13,654]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:13,654]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:13,654]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:13,654]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:41:13,654]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:13,654]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:41:13,654]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@1c853cab
+[INFO]-[2022-04-01 21:41:13,654]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:13,972]-[filters.LocaleFilter:doFilter:28]-Filters time:11
+[INFO]-[2022-04-01 21:41:13,972]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:13,972]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:13,972]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:13,972]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:41:13,972]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:13,972]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:41:13,972]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@1c853cab
+[INFO]-[2022-04-01 21:41:13,973]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:16,674]-[filters.LocaleFilter:doFilter:28]-Filters time:12
+[INFO]-[2022-04-01 21:41:16,674]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:16,674]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:16,674]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:16,674]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:41:16,674]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:16,675]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:41:16,675]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@1c853cab
+[INFO]-[2022-04-01 21:41:16,675]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:20,216]-[filters.LocaleFilter:doFilter:28]-Filters time:13
+[INFO]-[2022-04-01 21:41:20,217]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:20,217]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:20,217]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:20,217]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:20,217]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:20,217]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:20,217]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@4542fca0
+[INFO]-[2022-04-01 21:41:20,217]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:41:24,140]-[filters.LocaleFilter:doFilter:28]-Filters time:14
+[INFO]-[2022-04-01 21:41:24,140]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:24,140]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:24,140]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:24,140]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:41:24,140]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:24,140]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:41:24,140]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@1c853cab
+[INFO]-[2022-04-01 21:41:24,140]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:24,693]-[filters.LocaleFilter:doFilter:28]-Filters time:15
+[INFO]-[2022-04-01 21:41:24,694]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:24,694]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:24,694]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:24,694]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/
+[INFO]-[2022-04-01 21:41:24,694]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:24,694]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/
+[INFO]-[2022-04-01 21:41:24,694]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@1c853cab
+[INFO]-[2022-04-01 21:41:24,694]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:25,338]-[filters.LocaleFilter:doFilter:28]-Filters time:16
+[INFO]-[2022-04-01 21:41:25,338]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:25,338]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:25,338]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:25,338]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:25,338]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:25,338]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:25,338]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@4542fca0
+[INFO]-[2022-04-01 21:41:25,339]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:41:26,758]-[filters.LocaleFilter:doFilter:28]-Filters time:17
+[INFO]-[2022-04-01 21:41:26,758]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:26,758]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:26,758]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:26,758]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:26,758]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:26,758]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:26,758]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@4542fca0
+[INFO]-[2022-04-01 21:41:26,759]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:41:29,585]-[filters.LocaleFilter:doFilter:28]-Filters time:18
+[INFO]-[2022-04-01 21:41:29,585]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:29,585]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:29,585]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:29,585]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:41:29,585]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:29,585]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:41:29,585]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@55d5c308
+[INFO]-[2022-04-01 21:41:29,590]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 21:41:36,024]-[filters.LocaleFilter:doFilter:28]-Filters time:19
+[INFO]-[2022-04-01 21:41:36,024]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:36,024]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:36,024]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:36,025]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:36,025]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests/dfgdfgdf
+[INFO]-[2022-04-01 21:41:36,025]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@4849e9fb
+[INFO]-[2022-04-01 21:41:36,025]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:39,280]-[filters.LocaleFilter:doFilter:28]-Filters time:20
+[INFO]-[2022-04-01 21:41:39,281]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:39,281]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:39,281]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:52,911]-[filters.LocaleFilter:doFilter:28]-Filters time:21
+[INFO]-[2022-04-01 21:41:52,911]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:52,911]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:52,911]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:52,911]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:52,911]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/232354
+[INFO]-[2022-04-01 21:41:52,911]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@e9ebbc2
+[INFO]-[2022-04-01 21:41:52,911]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:41:54,962]-[filters.LocaleFilter:doFilter:28]-Filters time:22
+[INFO]-[2022-04-01 21:41:54,962]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:54,962]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:54,962]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:54,962]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:54,962]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:54,962]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-01 21:41:54,962]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@4542fca0
+[INFO]-[2022-04-01 21:41:54,963]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-01 21:41:55,719]-[filters.LocaleFilter:doFilter:28]-Filters time:23
+[INFO]-[2022-04-01 21:41:55,720]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:55,720]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:55,720]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:55,720]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:41:55,720]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:55,720]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-01 21:41:55,720]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@55d5c308
+[INFO]-[2022-04-01 21:41:55,722]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-01 21:41:56,707]-[filters.LocaleFilter:doFilter:28]-Filters time:24
+[INFO]-[2022-04-01 21:41:56,707]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:56,707]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:56,707]-[filters.RoleFilter:doFilter:32]-Role is ADMIN
+[INFO]-[2022-04-01 21:41:56,708]-[filters.AccessingFilter:doFilter:124]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/logout
+[INFO]-[2022-04-01 21:41:56,708]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:56,708]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/logout
+[INFO]-[2022-04-01 21:41:56,708]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LogoutCommand@1b956d77
+[INFO]-[2022-04-01 21:41:56,708]-[guest.LogoutCommand:execute:19]-LoggedUsers before logouting are [admin@gmail.com]
+[INFO]-[2022-04-01 21:41:56,708]-[guest.LogoutCommand:execute:22]-LoggedUsers after logouting are []
+[INFO]-[2022-04-01 21:41:56,708]-[listeners.DestroyingListener:sessionDestroyed:41]-The user with login admin@gmail.com has removed from loggedUsers
+[INFO]-[2022-04-01 21:41:56,708]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/login
+[INFO]-[2022-04-01 21:41:56,711]-[filters.LocaleFilter:doFilter:28]-Filters time:25
+[INFO]-[2022-04-01 21:41:56,711]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:41:56,711]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:41:56,711]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:41:56,711]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:41:56,711]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:41:56,711]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:41:56,711]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@757b6cd4
+[INFO]-[2022-04-01 21:41:56,711]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-01 21:42:03,031]-[filters.LocaleFilter:doFilter:28]-Filters time:26
+[INFO]-[2022-04-01 21:42:03,031]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:42:03,031]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:42:03,032]-[filters.RoleFilter:doFilter:32]-Role is GUEST
+[INFO]-[2022-04-01 21:42:03,032]-[filters.AccessingFilter:doFilter:110]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-01 21:42:03,032]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:42:03,032]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-01 21:42:03,032]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@757b6cd4
+[INFO]-[2022-04-01 21:42:03,224]-[guest.LoginCommand:execute:84]-Logged users are [sergey.petrenko@gmail.com]
+[INFO]-[2022-04-01 21:42:03,225]-[servlets.ControllerServlet:process:87]-New URL is:redirect:/web-application/testing/student/info
+[INFO]-[2022-04-01 21:42:03,228]-[filters.LocaleFilter:doFilter:28]-Filters time:27
+[INFO]-[2022-04-01 21:42:03,228]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:42:03,228]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:42:03,228]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 21:42:03,228]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/info
+[INFO]-[2022-04-01 21:42:03,228]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:42:03,228]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/info
+[INFO]-[2022-04-01 21:42:03,228]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.InfoCommand@796bc6d5
+[INFO]-[2022-04-01 21:42:03,230]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/info.jsp
+[INFO]-[2022-04-01 21:42:06,657]-[filters.LocaleFilter:doFilter:28]-Filters time:28
+[INFO]-[2022-04-01 21:42:06,657]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:42:06,657]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:42:06,657]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 21:42:06,658]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:42:06,658]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/infoyui
+[INFO]-[2022-04-01 21:42:06,658]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@a4cb368
+[INFO]-[2022-04-01 21:42:06,658]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:42:07,931]-[filters.LocaleFilter:doFilter:28]-Filters time:29
+[INFO]-[2022-04-01 21:42:07,931]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:42:07,931]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:42:07,931]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 21:42:07,931]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:42:07,932]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/infoyui
+[INFO]-[2022-04-01 21:42:07,932]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@34aebd6c
+[INFO]-[2022-04-01 21:42:07,932]-[servlets.ControllerServlet:process:87]-New URL is:/index.jsp
+[INFO]-[2022-04-01 21:42:09,754]-[filters.LocaleFilter:doFilter:28]-Filters time:30
+[INFO]-[2022-04-01 21:42:09,754]-[filters.LocaleFilter:doFilter:29]-Locale Filter
+[INFO]-[2022-04-01 21:42:09,754]-[filters.EncodingFilter:doFilter:25]-Encoding Filter
+[INFO]-[2022-04-01 21:42:09,754]-[filters.RoleFilter:doFilter:32]-Role is STUDENT
+[INFO]-[2022-04-01 21:42:09,754]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Student has access to this URL http://localhost:8080/web-application/testing/student/info
+[INFO]-[2022-04-01 21:42:09,754]-[servlets.ControllerServlet:process:75]-Servlet
+[INFO]-[2022-04-01 21:42:09,754]-[servlets.ControllerServlet:process:77]-Old URI is:/web-application/testing/student/info
+[INFO]-[2022-04-01 21:42:09,754]-[servlets.ControllerServlet:process:81]-Command is:com.stason.testing.controller.commands.implementent.student.InfoCommand@796bc6d5
+[INFO]-[2022-04-01 21:42:09,756]-[servlets.ControllerServlet:process:87]-New URL is:/WEB-INF/view/student/info.jsp

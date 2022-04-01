@@ -1,8 +1,6 @@
 package com.stason.testing.controller.filters;
 
 import com.stason.testing.controller.exceptions.ForbiddenException;
-import com.stason.testing.controller.servlets.ControllerServlet;
-import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
 
@@ -18,18 +16,55 @@ import java.util.List;
 
 @WebFilter(filterName = "AccessingFilter")
 public class AccessingFilter implements Filter {
-    private final  static Logger logger = Logger.getLogger(AccessingFilter.class.getName());
+    private final static Logger logger = Logger.getLogger(AccessingFilter.class.getName());
 
-    private HashMap<Role, HashSet<String>> accessingURL = new HashMap<>();
+    private final HashMap<Role, HashSet<String>> accessingURLs = new HashMap<>();
+
     public void init(FilterConfig config) throws ServletException {
-        //Todo зробити мапу з посилань які доступні користувачу
         HashSet<String> accessingURLAdmin = new HashSet<>();
+
+        accessingURLAdmin.add("/");
+        accessingURLAdmin.add("");
         accessingURLAdmin.add("/logout");
-        accessingURL.put(Role.ADMIN,accessingURLAdmin);
+        accessingURLAdmin.add("/admin/info");
+        accessingURLAdmin.add("/admin/changePassword");
+        accessingURLAdmin.add("/admin/showUsers");
+        accessingURLAdmin.add("/admin/showTests");
+        accessingURLAdmin.add("/admin/deleteTest");
+        accessingURLAdmin.add("/admin/editTest");
+        accessingURLAdmin.add("/admin/editTestInfo");
+        accessingURLAdmin.add("/admin/editTestDeleteQuestion");
+        accessingURLAdmin.add("/admin/editQuestionInfo");
+        accessingURLAdmin.add("/admin/deleteAnswer");
+        accessingURLAdmin.add("/admin/addQuestion");
+        accessingURLAdmin.add("/admin/createTest");
+        accessingURLAdmin.add("/admin/createQuestion");
+        accessingURLAdmin.add("/admin/userTests");
+        accessingURLAdmin.add("/admin/deletePassedTest");
+        accessingURLAdmin.add("/admin/blockUser");
+        accessingURLAdmin.add("/admin/unblockUser");
+        accessingURLAdmin.add("/admin/deleteUser");
+        accessingURLAdmin.add("/admin/editUser");
+        accessingURLs.put(Role.ADMIN, accessingURLAdmin);
+
         HashSet<String> accessingURLStudent = new HashSet<>();
-        accessingURL.put(Role.STUDENT,accessingURLStudent);
+        accessingURLStudent.add("/");
+        accessingURLStudent.add("");
+        accessingURLStudent.add("/logout");
+        accessingURLStudent.add("/student/changePassword");
+        accessingURLStudent.add("/student/info");
+        accessingURLStudent.add("/student/tests");
+        accessingURLStudent.add("/student/test");
+        accessingURLStudent.add("/student/result");
+        accessingURLs.put(Role.STUDENT, accessingURLStudent);
+
         HashSet<String> accessingURLGuest = new HashSet<>();
-        accessingURL.put(Role.GUEST,accessingURLGuest);
+        accessingURLGuest.add("/");
+        accessingURLGuest.add("");
+        accessingURLGuest.add("/login");
+        accessingURLGuest.add("/recovery");
+        accessingURLGuest.add("/registration");
+        accessingURLs.put(Role.GUEST, accessingURLGuest);
 
     }
 
@@ -43,15 +78,15 @@ public class AccessingFilter implements Filter {
         String role = (String) req.getSession().getAttribute("role");
         String URI = req.getRequestURI();
         String URL = req.getRequestURL().toString();
-
+        String newURI = URI.replaceAll(".*/testing","");
 
         //Перевірка чи не заблокували користувача під час його сесії або чи він не заблокований зовсім
-        if((URI.contains("/student") && role.equals(Role.STUDENT.name())) ||(URI.contains("/admin") && role.equals(Role.ADMIN.name()))) {
+        if (role.equals(Role.STUDENT.name()) || role.equals(Role.ADMIN.name())) {
             List<Integer> blockedList = (List<Integer>) req.getServletContext().getAttribute("blockedUsers");
             int userId = (int) req.getSession().getAttribute("id");
             for (int blockedId : blockedList) {
                 if (blockedId == userId) {
-                    logger.info("Accessing Filter - User "+userId+" is blocked");
+                    logger.info("Accessing Filter - User " + userId + " is blocked");
                     res.sendRedirect("/web-application/testing/login");
                     return;
                 }
@@ -59,7 +94,7 @@ public class AccessingFilter implements Filter {
             List<Integer> logoutUsersId = (List<Integer>) req.getServletContext().getAttribute("logoutUsersId");
             for (int logoutId : logoutUsersId) {
                 if (logoutId == userId) {
-                    logger.info("Accessing Filter - User "+userId+" must be log outed");
+                    logger.info("Accessing Filter - User " + userId + " must be log outed");
                     logoutUsersId.remove((Integer) logoutId);
                     req.getServletContext().setAttribute("logoutUsersId", logoutUsersId);
                     res.sendRedirect("/web-application/testing/login");
@@ -67,19 +102,37 @@ public class AccessingFilter implements Filter {
                 }
             }
         }
-        if((URI.contains("/student") ||URI.contains("/logout") || URI.contains("/error")) && role.equals(Role.STUDENT.name())) {
-            logger.info("Accessing Filter - Student has access to this URL "+URL);
-            chain.doFilter(request, response);
-        }else if((URI.contains("/admin") ||URI.contains("/logout") || URI.contains("/error"))&& role.equals(Role.ADMIN.name())) {
-            logger.info("Accessing Filter - Admin has access to this URL "+URL);
-            chain.doFilter(request, response);
-        }else if((URI.contains("/login") || URI.contains("/registration") || URI.endsWith("/testing") || URI.endsWith("/testing/") || URI.endsWith("/recovery") || URI.contains("/error")) && role.equals(Role.GUEST.name())){
-            logger.info("Accessing Filter - Guest has access to this URL "+URL);
-            chain.doFilter(request,response);
-        }else{
-            if(URI.contains("/login")) chain.doFilter(request,response);
-            logger.warn("Accessing Filter - ACCESS DENIED FOR "+ role + " for URL "+URL);
-            throw new ForbiddenException("Accessing was denied");
+
+        if(role.equals(Role.GUEST.name())){
+            if(accessingURLs.get(Role.GUEST).contains(newURI)){
+                logger.info("Accessing Filter - Guest has access to this URL " + URL);
+                chain.doFilter(request,response);
+                return;
+            }
         }
+        if(role.equals(Role.STUDENT.name())){
+            if(accessingURLs.get(Role.STUDENT).contains(newURI)){
+                logger.info("Accessing Filter - Student has access to this URL " + URL);
+                chain.doFilter(request,response);
+                return;
+            }
+        }
+        if(role.equals(Role.ADMIN.name())){
+            if(accessingURLs.get(Role.ADMIN).contains(newURI)){
+                logger.info("Accessing Filter - Admin has access to this URL " + URL);
+                chain.doFilter(request,response);
+                return;
+            }
+        }
+
+        accessingURLs.forEach((role1, strings) -> {
+            if(strings.contains(newURI)){
+                logger.warn("Accessing Filter - ACCESS DENIED FOR " + role + " for URL " + URL);
+                throw new ForbiddenException("Accessing was denied");
+            }
+        });
+
+        chain.doFilter(request,response);
+
     }
 }

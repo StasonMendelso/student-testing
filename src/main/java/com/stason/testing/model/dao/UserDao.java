@@ -17,6 +17,6 @@ public interface UserDao extends GenericDao<User> {
     List<Integer> findIdPassedTestsByUserId(int id);
 
     List<Integer> findIdBlockedUsers();
-    boolean deletePassedTestsByUserId(int id);
+
     boolean updatePassword(String login, String password, String salt);
 }

@@ -1,7 +1,6 @@
 package com.stason.testing.model.dao.implement;
 
 import com.stason.testing.controller.exceptions.DataBaseException;
-import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.entity.Role;
@@ -49,17 +48,6 @@ public class JDBCUserDao implements UserDao {
         return list;
     }
 
-    @Override
-    public boolean deletePassedTestsByUserId(int id) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTestsByUserId)){
-            preparedStatement.setInt(1,id);
-            return preparedStatement.executeUpdate() != 0;
-        } catch (SQLException e) {
-            logger.error("Can't delete user's passed Tests with id user ="+id+", because", e);
-            throw new DataBaseException("Can't delete user's passed Tests with id user ="+id);
-        }
-    }
 
     @Override
     public List<Integer> findIdPassedTestsByUserId(int id) {
@@ -282,16 +270,37 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public boolean delete(int id) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTestsByUserId);
             preparedStatement.setInt(1,id);
-            return preparedStatement.execute();
-
+            preparedStatement.executeUpdate();
+            preparedStatement = connection.prepareStatement(Query.delete);
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+            connection.setAutoCommit(true);
+            connection.close();
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                logger.error("Can't rollback in delete()", e);
+            }
             logger.error("Can't delete, user's id="+id+", because", e);
             throw new DataBaseException("Can't delete, user's id="+id);
 
+        }finally {
+            if(connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    logger.error("Can't close connection", e);
+                }
+            }
         }
+        return false;
     }
 
     @Override

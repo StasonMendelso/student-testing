@@ -29,7 +29,15 @@
 
 </head>
   <body >
+  <c:if test="${sessionScope.role=='ADMIN'}">
+    <%@include file="WEB-INF/view/admin/navbar.jsp"%>
+  </c:if>
+  <c:if test="${sessionScope.role=='STUDENT'}">
+    <%@include file="WEB-INF/view/student/navbar.jsp"%>
+  </c:if>
+  <c:if test="${sessionScope.role=='GUEST'}">
     <%@include file="WEB-INF/view/guest/navbar.jsp"%>
+  </c:if>
 
     <main class="container-fluid ">
       <div class="row d-flex justify-content-center ">

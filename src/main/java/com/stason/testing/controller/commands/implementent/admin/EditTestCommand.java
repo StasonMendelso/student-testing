@@ -3,11 +3,13 @@ package com.stason.testing.controller.commands.implementent.admin;
 import com.stason.testing.controller.services.AnswerService;
 import com.stason.testing.controller.services.QuestionService;
 import com.stason.testing.controller.services.TestService;
+import com.stason.testing.controller.utils.Constants;
 import com.stason.testing.controller.utils.Path;
 
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
@@ -26,7 +28,7 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
                 return Path.ADMIN_EDIT_TEST;
             } else {
                 String secretPassword = request.getParameter("secretPassword");
-                if (secretPassword.equals("save")) { // todo добавити константний клас з паролями
+                if (secretPassword.equals(Constants.PASSWORD_SAVE_EDITED_TEST)) {
 
                     Test test = (Test) request.getSession().getAttribute("editedTest");
                     //Удаляєм тест повністю

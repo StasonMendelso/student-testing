@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
+import com.stason.testing.controller.utils.Constants;
 import com.stason.testing.controller.utils.Path;
 import org.apache.log4j.Logger;
 
@@ -17,7 +18,7 @@ public class DeleteUserCommand implements Command {
             return Path.REDIRECT_ADMIN_USERS;
         }else {
             String secretPassword = request.getParameter("secretPassword");
-            if (secretPassword.equals("delete")) { // todo добавити константний клас з паролями
+            if (secretPassword.equals(Constants.PASSWORD_DELETE_USER)) {
 
                 int userId = Integer.parseInt(request.getParameter("id"));
                 if(request.getServletContext().getAttribute("logoutUsersId")!=null){
@@ -36,7 +37,6 @@ public class DeleteUserCommand implements Command {
 
                 }
 
-                userService.deletePassedTestsByUserId(userId);
                 userService.delete(userId);
                 logger.info("Admin deleted user["+userId+"]");
                 request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));

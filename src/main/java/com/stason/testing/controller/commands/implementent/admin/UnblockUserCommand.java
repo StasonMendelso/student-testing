@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
+import com.stason.testing.controller.utils.Constants;
 import com.stason.testing.controller.utils.Path;
 import org.apache.log4j.Logger;
 
@@ -19,7 +20,7 @@ public class UnblockUserCommand implements Command {
             return Path.REDIRECT_ADMIN_USERS;
         }else{
             String secretPassword =request.getParameter("secretPassword");
-            if(secretPassword.equals("unblock")) { // todo добавити константний клас з паролями
+            if(secretPassword.equals(Constants.PASSWORD_UNBLOCK_USER)) {
                 int userId = Integer.parseInt(request.getParameter("id"));
                 final UserService userService = new UserService();
                 userService.unblock(userId);
