@@ -22,16 +22,16 @@
                 </li>
             </ul>
         </div>
-        <div class="col-9">
+        <div class="col-8">
             <span class="text-white-50">Role:${sessionScope.role}</span>
         </div>
-        <div class="col-1">
+        <div class="col-2">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/web-application/testing/login">Login</a>
+                    <a class="nav-link" href="/web-application/testing/login"><fmt:message key="navbar.guest.label.login"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/web-application/testing/registration">Register</a>
+                    <a class="nav-link" href="/web-application/testing/registration"><fmt:message key="navbar.guest.label.register"/></a>
                 </li>
             </ul>
         </div>
@@ -40,9 +40,8 @@
                 <li class="dropdown nav-item">
                     <form method="post">
                         <select class="form-select bg-secondary bg-opacity-100 text-white-50" style="border: none" id="language" name="lang" onchange="submit()">
-                            <option class="dropdown-item text-white-50" value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="label.lang.en" /></option>
-                            <option class="dropdown-item text-white-50" value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="label.lang.ua" /></option>
-                            <option class="dropdown-item text-white-50" value="ru" ${sessionScope.lang == 'ru' ? 'selected' : ''}><fmt:message key="label.lang.ru" /></option>
+                            <option class="dropdown-item text-white-50" value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="navbar.label.lang.en" /></option>
+                            <option class="dropdown-item text-white-50" value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="navbar.label.lang.ua" /></option>
                         </select>
                     </form>
                 </li>

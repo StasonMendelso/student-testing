@@ -1,7 +1,8 @@
 <%@ page import="com.stason.testing.controller.utils.Constants" %>
+<%@ page import="com.stason.testing.controller.utils.ErrorForUser" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix = "errorLocalization" uri="errorLocalizationURI"%>
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
 
@@ -32,14 +33,16 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
+
                 <h2 class="text-white-50">Login</h2>
+
             </div>
             <div  class="text-white-50">
                 <c:set var="test" value="${requestScope.errorsList}"/>
                 <c:if var="result" test="${!empty test}">
                     <div class="form" style="margin: 0 auto;margin-top: 10px; ">
                         <c:forEach items="${requestScope.errorsList}" var="er">
-                            <c:out value="${er}"/><br>
+                            <errorLocalization:localize error="${er}" lang="${sessionScope.lang}" /><br>
                         </c:forEach>
                     </div>
                 </c:if>

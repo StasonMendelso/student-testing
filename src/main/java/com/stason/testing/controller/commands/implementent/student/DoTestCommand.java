@@ -4,6 +4,7 @@ import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.AnswerService;
 import com.stason.testing.controller.services.QuestionService;
 import com.stason.testing.controller.services.TestService;
+import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
@@ -26,12 +27,12 @@ public class DoTestCommand implements Command {
         String uri = request.getRequestURI();
         int testId = 0;
 
-        //Для инициализации
+        //For initalization
         if(request.getParameter("id")!=null){
 
             testId = Integer.parseInt(request.getParameter("id"));
         }
-        //якщо тест не налл і айді зійшлось, то продовжуємо проходження теста
+        //If user want to continue the test
         if(request.getSession().getAttribute("test")!=null && request.getParameter("id")!=null){
             logger.info("User continue to do test");
             Test currentTest = (Test) request.getSession().getAttribute("test");
@@ -41,7 +42,7 @@ public class DoTestCommand implements Command {
                 return Path.REDIRECT_STUDENT_TESTS;
             }
         }
-        //Для инициализации
+        //For initialization
         if(request.getSession().getAttribute("test")==null && request.getParameter("id")!=null  && request.getParameter("currentClientTime")!=null){
             //start-> занести в бд що тест пройдено на 0%, занести в сесію, що тест вже пройден.
             List<Integer> idPassedTestsList = (List<Integer>) request.getSession().getAttribute("idOfPassedTests");
@@ -52,7 +53,7 @@ public class DoTestCommand implements Command {
             }
             int userId = (int) request.getSession().getAttribute("id");
             TestService testService = new TestService();
-            testService.addPassedTest(userId,testId,0);
+
             idPassedTestsList.add(testId);
             request.getSession().setAttribute("idOfPassedTests",idPassedTestsList);
             QuestionService questionService = new QuestionService();
@@ -60,7 +61,6 @@ public class DoTestCommand implements Command {
             Test test = testService.findById(testId);
             List<Question> questionList = questionService.findAllByTestId(testId);
             Iterator<Question> iterator = questionList.iterator();
-
             while (iterator.hasNext()){
                 Question question = iterator.next();
                 int questionId = question.getId();
@@ -79,26 +79,35 @@ public class DoTestCommand implements Command {
             logger.info("User started test ["+test.getName()+"] at "+date+ " Passed Date is "+ outDate);
             request.getSession().setAttribute("test",test);
             request.getSession().setAttribute("outDateMilliseconds",outDateMilliseconds);
+            testService.addPassedTest(userId,testId,0);
             return Path.REDIRECT_STUDENT_TEST+"?question=1";
         }
 
         if(request.getSession().getAttribute("test")==null ){
             return Path.REDIRECT_STUDENT_TESTS;
         }
-        //Для сохранения ответов пользователя
 
+        //The user has finished test
         if(request.getParameter("save")!=null && request.getParameter("questionNumber")!=null && request.getParameter("finish")!=null){
             saveAnswers(request);
             logger.info("User has passed test");
-            return new ShowTestResultCommand().execute(request);
+            try{
+                return new ShowTestResultCommand().execute(request);
+            }catch (Exception ex){
+                int userId = (int) request.getSession().getAttribute("id");
+                UserService userService = new UserService();
+                //todo Написати видалення тесту як пройденого
+                throw ex;
+            }
+
         }
-        //Для сохранения ответов пользователя
+        //The user answered one question
         if(request.getParameter("nextQuestion")!=null && request.getParameter("save")!=null && request.getParameter("questionNumber")!=null){
             return saveAnswers(request);
         }
 
 
-        //Для инициализации
+        //For initialization
         if(request.getParameter("question")!=null){
             int questionNumber = Integer.parseInt(request.getParameter("question"));
             Test test = (Test) request.getSession().getAttribute("test");

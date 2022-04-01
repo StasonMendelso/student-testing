@@ -14,11 +14,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCTestDao implements TestDao {
-    private final  static Logger logger = Logger.getLogger(JDBCTestDao.class.getName());
-    private static class Query{
+    private final static Logger logger = Logger.getLogger(JDBCTestDao.class.getName());
+
+    private static class Query {
         static final String deletePassedTestById = "DELETE FROM onlinetesting.passedtests WHERE test_id=?";
         static final String countTestByDiscipline = "SELECT COUNT(1) FROM onlinetesting.tests WHERE tests.nameOfDiscipline=?";
-//        static final String findAndPaginateAndSortUnsurpassedTests = "";
+        //        static final String findAndPaginateAndSortUnsurpassedTests = "";
 //        static final String findAndPaginateAndSortByDisciplineUnsurpassedTests = "";
         static final String updatePassedTest = "update onlinetesting.passedtests SET mark=? WHERE user_id=? AND test_id=?;";
         static final String countAllTest = "SELECT COUNT(1) FROM onlinetesting.tests";
@@ -28,7 +29,7 @@ public class JDBCTestDao implements TestDao {
         static final String findAllDisciplines = "SELECT DISTINCT onlinetesting.tests.nameOfDiscipline FROM onlinetesting.tests;";
         static final String countUnsurpassedTestByUser = "SELECT COUNT(1) FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL;";
         static final String countPassedTestByUser = "SELECT COUNT(1) FROM onlinetesting.`passedtests` WHERE user_id=?";
-//        static final String findAndPaginateAndSortUnsurpassedTestsByUserId = "";
+        //        static final String findAndPaginateAndSortUnsurpassedTestsByUserId = "";
         static final String findAndPaginateAndSortByDisciplineUnsurpassedTestsByUserId = "SELECT * FROM onlinetesting.`tests`, (SELECT mark, test_id FROM onlinetesting.`passedtests` WHERE user_id=?) as `passedtests` WHERE `tests`.id = `passedtests`.test_id limit ?,?;";
         static final String findAndPaginateUnsurpassedTests = " SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL limit ?,?;";
         static final String addPassedTest = "INSERT INTO onlinetesting.passedtests (user_id, test_id, mark) VALUES (?,?,?)";
@@ -44,11 +45,11 @@ public class JDBCTestDao implements TestDao {
     @Override
     public boolean deletePassedTestById(int testId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement =connection.prepareStatement(Query.deletePassedTestById)){
-            preparedStatement.setInt(1,testId);
-            return preparedStatement.executeUpdate()!=0;
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTestById)) {
+            preparedStatement.setInt(1, testId);
+            return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
-            logger.error("Can't create new user"+testId+", because", e);
+            logger.error("Can't create new user" + testId + ", because", e);
             throw new DataBaseException("Can't create new user");
         }
 
@@ -57,17 +58,17 @@ public class JDBCTestDao implements TestDao {
     @Override
     public int countTestByDiscipline(String discipline) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.countTestByDiscipline)){
-            preparedStatement.setString(1,discipline);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                if(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.countTestByDiscipline)) {
+            preparedStatement.setString(1, discipline);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
                     return resultSet.getInt("COUNT(1)");
                 }
             }
 
         } catch (SQLException e) {
-            logger.error("Can't count tests by discipline="+discipline+", because", e);
-            throw new DataBaseException("Can't count tests by discipline="+discipline);
+            logger.error("Can't count tests by discipline=" + discipline + ", because", e);
+            throw new DataBaseException("Can't count tests by discipline=" + discipline);
         }
         return 0;
     }
@@ -76,11 +77,11 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginateAndSortUnsurpassedTests(int index, int paginationParameter, String orderBy, String order) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests ORDER BY " + orderBy + " " + order + " limit ?,?;")){
-            preparedStatement.setInt(1,index);
-            preparedStatement.setInt(2,paginationParameter);
-            try( ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
+            preparedStatement.setInt(1, index);
+            preparedStatement.setInt(2, paginationParameter);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Test test = builtTest(resultSet);
                     list.add(test);
                 }
@@ -95,13 +96,13 @@ public class JDBCTestDao implements TestDao {
     @Override
     public List<Test> findAndPaginateAndSortUnsurpassedTests(int index, int paginationParameter, String orderBy, String order, String discipline) {
         List<Test> list = new LinkedList<>();
-        try  (Connection connection = ConnectionPool.getInstance().getConnection();
-              PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests WHERE tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;")){
-            preparedStatement.setString(1,discipline);
-            preparedStatement.setInt(2,index);
-            preparedStatement.setInt(3,paginationParameter);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests WHERE tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
+            preparedStatement.setString(1, discipline);
+            preparedStatement.setInt(2, index);
+            preparedStatement.setInt(3, paginationParameter);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Test test = builtTest(resultSet);
                     list.add(test);
                 }
@@ -118,13 +119,13 @@ public class JDBCTestDao implements TestDao {
     public boolean updatePassedTest(int userId, int testId, double mark) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.updatePassedTest)){
-            preparedStatement.setDouble(1,mark);
-            preparedStatement.setInt(2,userId);
-            preparedStatement.setInt(3,testId);
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.updatePassedTest)) {
+            preparedStatement.setDouble(1, mark);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setInt(3, testId);
             preparedStatement.execute();
         } catch (SQLException e) {
-            logger.error("Can't update passed test"+testId+" for user"+userId+" with mark"+mark+", because", e);
+            logger.error("Can't update passed test" + testId + " for user" + userId + " with mark" + mark + ", because", e);
             throw new DataBaseException("Can't update passed test");
         }
         return false;
@@ -135,9 +136,9 @@ public class JDBCTestDao implements TestDao {
     public int countAllTest() {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(Query.countAllTest)){
+             ResultSet resultSet = statement.executeQuery(Query.countAllTest)) {
 
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getInt("COUNT(1)");
             }
         } catch (SQLException e) {
@@ -151,11 +152,11 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginateAllTests(int index, int paginationParameter) {
         List<Test> list = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAndPaginateAllTests)){
-            preparedStatement.setInt(1,index);
-            preparedStatement.setInt(2,paginationParameter);
-            try(  ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAndPaginateAllTests)) {
+            preparedStatement.setInt(1, index);
+            preparedStatement.setInt(2, paginationParameter);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Test test = builtTest(resultSet);
                     list.add(test);
                 }
@@ -172,10 +173,10 @@ public class JDBCTestDao implements TestDao {
     @Override
     public int countPaginateAndSortUnsurpassedTests(int userId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.countPaginateAndSortUnsurpassedTests)){
-            preparedStatement.setInt(1,userId);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                if(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.countPaginateAndSortUnsurpassedTests)) {
+            preparedStatement.setInt(1, userId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
                     return resultSet.getInt("COUNT(1)");
                 }
             }
@@ -190,29 +191,29 @@ public class JDBCTestDao implements TestDao {
     @Override
     public int countPaginateAndSortUnsurpassedTests(int userId, String discipline) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.countPaginateAndSortByDisciplineUnsurpassedTests)){
-            preparedStatement.setInt(1,userId);
-            preparedStatement.setString(2,discipline);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                if(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.countPaginateAndSortByDisciplineUnsurpassedTests)) {
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, discipline);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
                     return resultSet.getInt("COUNT(1)");
                 }
             }
 
         } catch (SQLException e) {
-            logger.error("Can't count for unsurpassed tests (sorted by discipline="+discipline+"), because", e);
-            throw new DataBaseException("Can't count for unsurpassed tests (sorted by discipline="+discipline);
+            logger.error("Can't count for unsurpassed tests (sorted by discipline=" + discipline + "), because", e);
+            throw new DataBaseException("Can't count for unsurpassed tests (sorted by discipline=" + discipline);
         }
         return 0;
     }
 
-    public List<String> findAllDisciplines(){
+    public List<String> findAllDisciplines() {
         List<String> disciplinesList = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(Query.findAllDisciplines)){
+             ResultSet resultSet = statement.executeQuery(Query.findAllDisciplines)) {
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 disciplinesList.add(resultSet.getString("nameOfDiscipline"));
             }
         } catch (SQLException e) {
@@ -225,17 +226,17 @@ public class JDBCTestDao implements TestDao {
     @Override
     public int countUnsurpassedTestByUser(int userId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.countUnsurpassedTestByUser)){
-            preparedStatement.setInt(1,userId);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                if(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.countUnsurpassedTestByUser)) {
+            preparedStatement.setInt(1, userId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
                     return resultSet.getInt("COUNT(1)");
                 }
             }
 
 
         } catch (SQLException e) {
-            logger.error("Can't count unsurpassed test by user="+userId+", because", e);
+            logger.error("Can't count unsurpassed test by user=" + userId + ", because", e);
             throw new DataBaseException("Can't count unsurpassed test by user");
         }
         return 0;
@@ -244,15 +245,15 @@ public class JDBCTestDao implements TestDao {
     @Override
     public int countPassedTestByUser(int userId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.countPassedTestByUser)){
-            preparedStatement.setInt(1,userId);
-            try( ResultSet resultSet = preparedStatement.executeQuery()){
-                if(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.countPassedTestByUser)) {
+            preparedStatement.setInt(1, userId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
                     return resultSet.getInt("COUNT(1)");
                 }
             }
         } catch (SQLException e) {
-            logger.error("Can't count passed test by user="+userId+", because", e);
+            logger.error("Can't count passed test by user=" + userId + ", because", e);
             throw new DataBaseException("Can't count passed test by user");
         }
         return 0;
@@ -262,21 +263,21 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginateAndSortUnsurpassedTests(int userId, int index, int paginationParameter, String orderBy, String order) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL ORDER BY " + orderBy + " " + order + " limit ?,?;")){
+             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
 
-            preparedStatement.setInt(1,userId);
-            preparedStatement.setInt(2,index);
-            preparedStatement.setInt(3,paginationParameter);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, index);
+            preparedStatement.setInt(3, paginationParameter);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-                while(resultSet.next()){
+                while (resultSet.next()) {
                     Test test = builtTest(resultSet);
                     list.add(test);
                 }
             }
 
         } catch (SQLException e) {
-            logger.error("Can't find, paginate or sort unsurpassed test by user="+userId+", because", e);
+            logger.error("Can't find, paginate or sort unsurpassed test by user=" + userId + ", because", e);
             throw new DataBaseException("Can't find, paginate or sort unsurpassed test by user");
         }
         return list;
@@ -286,21 +287,21 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginateAndSortUnsurpassedTests(int userId, int index, int paginationParameter, String orderBy, String order, String discipline) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id  IS NULL AND tests.nameOfDiscipline=? ORDER BY " + orderBy +" " + order + " limit ?,?;")){
+             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id  IS NULL AND tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
 
-            preparedStatement.setInt(1,userId);
-            preparedStatement.setString(2,discipline);
-            preparedStatement.setInt(3,index);
-            preparedStatement.setInt(4,paginationParameter);
-            try( ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, discipline);
+            preparedStatement.setInt(3, index);
+            preparedStatement.setInt(4, paginationParameter);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Test test = builtTest(resultSet);
                     list.add(test);
                 }
             }
         } catch (SQLException e) {
-            logger.error("Can't find, paginate or sort(by discipline="+discipline+") unsurpassed test by user="+userId+", because", e);
-            throw new DataBaseException("Can't find, paginate or sort(by discipline="+discipline+") unsurpassed test by user="+userId);
+            logger.error("Can't find, paginate or sort(by discipline=" + discipline + ") unsurpassed test by user=" + userId + ", because", e);
+            throw new DataBaseException("Can't find, paginate or sort(by discipline=" + discipline + ") unsurpassed test by user=" + userId);
         }
         return list;
     }
@@ -309,12 +310,12 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginatePassedTests(int userId, int index, int paginationParameter) {
         List<Test> list = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAndPaginateAndSortByDisciplineUnsurpassedTestsByUserId)){
-            preparedStatement.setInt(1,userId);
-            preparedStatement.setInt(2,index);
-            preparedStatement.setInt(3,paginationParameter);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAndPaginateAndSortByDisciplineUnsurpassedTestsByUserId)) {
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, index);
+            preparedStatement.setInt(3, paginationParameter);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Test test = builtTest(resultSet);
                     test.setMark(resultSet.getDouble("mark"));
                     list.add(test);
@@ -322,42 +323,44 @@ public class JDBCTestDao implements TestDao {
             }
 
         } catch (SQLException e) {
-            logger.error("Can't find, paginate passed tests by user="+userId+", because", e);
-            throw new DataBaseException("Can't find, paginate passed tests by user="+userId);
+            logger.error("Can't find, paginate passed tests by user=" + userId + ", because", e);
+            throw new DataBaseException("Can't find, paginate passed tests by user=" + userId);
         }
         return list;
     }
+
     @Override
     public List<Test> findAndPaginateUnsurpassedTests(int userId, int index, int paginationParameter) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAndPaginateUnsurpassedTests)){
-            preparedStatement.setInt(1,userId);
-            preparedStatement.setInt(2,index);
-            preparedStatement.setInt(3,paginationParameter);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAndPaginateUnsurpassedTests)) {
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, index);
+            preparedStatement.setInt(3, paginationParameter);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Test test = builtTest(resultSet);
                     list.add(test);
                 }
             }
         } catch (SQLException e) {
-            logger.error("Can't find, paginate unsurpassed tests by user="+userId+", because", e);
-            throw new DataBaseException("Can't find, paginate unsurpassed tests by user="+userId);
+            logger.error("Can't find, paginate unsurpassed tests by user=" + userId + ", because", e);
+            throw new DataBaseException("Can't find, paginate unsurpassed tests by user=" + userId);
         }
         return list;
     }
+
     @Override
     public boolean addPassedTest(int userId, int testId, double mark) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.addPassedTest)){
-            preparedStatement.setInt(1,userId);
-            preparedStatement.setInt(2,testId);
-            preparedStatement.setDouble(3,mark);
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.addPassedTest)) {
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, testId);
+            preparedStatement.setDouble(3, mark);
             preparedStatement.execute();
         } catch (SQLException e) {
-            logger.error("Can't add passed test="+testId+" for user="+userId+", because", e);
-            throw new DataBaseException("Can't add paginate passed test="+testId+" for user="+userId);
+            logger.error("Can't add passed test=" + testId + " for user=" + userId + ", because", e);
+            throw new DataBaseException("Can't add paginate passed test=" + testId + " for user=" + userId);
         }
         return false;
 
@@ -366,18 +369,18 @@ public class JDBCTestDao implements TestDao {
     @Override
     public int findIdByName(String testName) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findIdByName)){
-            preparedStatement.setString(1,testName);
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                if(resultSet.next()) {
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findIdByName)) {
+            preparedStatement.setString(1, testName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
                     return resultSet.getInt("id");
-                }else{
+                } else {
                     return 0;
                 }
             }
         } catch (SQLException e) {
-            logger.error("Can't find id for test="+testName+", because", e);
-            throw new DataBaseException("Can't find id for test="+testName);
+            logger.error("Can't find id for test=" + testName + ", because", e);
+            throw new DataBaseException("Can't find id for test=" + testName);
         }
     }
 
@@ -385,32 +388,32 @@ public class JDBCTestDao implements TestDao {
     @Override
     public boolean create(Test test) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
-            preparedStatement.setString(1,test.getName());
-            preparedStatement.setString(2,test.getNameOfDiscipline());
-            preparedStatement.setInt(3,test.getIntDifficulty());
-            preparedStatement.setInt(4,test.getTimeMinutes());
-            preparedStatement.setInt(5,test.getCountOfQuestions());
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.create)) {
+            preparedStatement.setString(1, test.getName());
+            preparedStatement.setString(2, test.getNameOfDiscipline());
+            preparedStatement.setInt(3, test.getDifficulty());
+            preparedStatement.setInt(4, test.getTimeMinutes());
+            preparedStatement.setInt(5, test.getCountOfQuestions());
             return preparedStatement.execute();
         } catch (SQLException e) {
-            logger.error("Failed to add new test in DB ",e);
-            throw new DataBaseException("Failed to add new test in DB ="+test.getName());
+            logger.error("Failed to add new test in DB ", e);
+            throw new DataBaseException("Failed to add new test in DB =" + test.getName());
         }
     }
 
     @Override
     public Test findById(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findById)){
-            preparedStatement.setInt(1,id);
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.findById)) {
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
 
                 return builtTest(resultSet);
             }
         } catch (SQLException e) {
-            logger.error("Can't find test by id="+id,e);
-            throw new DataBaseException("Can't find test by id="+id);
+            logger.error("Can't find test by id=" + id, e);
+            throw new DataBaseException("Can't find test by id=" + id);
         }
 
         return null;
@@ -421,7 +424,7 @@ public class JDBCTestDao implements TestDao {
         test.setId(resultSet.getInt("id"));
         test.setName(resultSet.getString("name"));
         test.setNameOfDiscipline(resultSet.getString("nameOfDiscipline"));
-        test.setDifficulty(resultSet.getString("difficulty"));
+        test.setDifficulty(resultSet.getInt("difficulty"));
         test.setTimeMinutes(resultSet.getInt("time_minutes"));
         test.setCountOfQuestions(resultSet.getInt("countOfQuestions"));
         return test;
@@ -432,16 +435,16 @@ public class JDBCTestDao implements TestDao {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(Query.findAll)){
+             ResultSet resultSet = statement.executeQuery(Query.findAll)) {
 
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 Test test = builtTest(resultSet);
 
                 list.add(test);
             }
         } catch (SQLException e) {
-            logger.error("Can't find all tests",e);
+            logger.error("Can't find all tests", e);
             throw new DataBaseException("Can't find all tests");
         }
         return list;
@@ -450,67 +453,67 @@ public class JDBCTestDao implements TestDao {
     @Override
     public boolean update(Test test) {
         Connection connection = ConnectionPool.getInstance().getConnection();
-        try{
+        try {
             connection.setAutoCommit(false);
 
             //UPDATE TEST INFORMATION
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE onlinetesting.tests SET name=?, nameOfDiscipline=?,difficulty=?,time_minutes=?,countOfQuestions=? WHERE id=?");
-            preparedStatement.setString(1,test.getName());
-            preparedStatement.setString(2,test.getNameOfDiscipline());
-            preparedStatement.setInt(3,test.getIntDifficulty());
-            preparedStatement.setInt(4,test.getTimeMinutes());
-            preparedStatement.setInt(5,test.getCountOfQuestions());
-            preparedStatement.setInt(6,test.getId());
+            preparedStatement.setString(1, test.getName());
+            preparedStatement.setString(2, test.getNameOfDiscipline());
+            preparedStatement.setInt(3, test.getDifficulty());
+            preparedStatement.setInt(4, test.getTimeMinutes());
+            preparedStatement.setInt(5, test.getCountOfQuestions());
+            preparedStatement.setInt(6, test.getId());
             preparedStatement.executeUpdate();
             //DELETE ANSWERS FOR EVERY QUESTION IN THIS TEST
             preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=?");
-            preparedStatement.setInt(1,test.getId());
+            preparedStatement.setInt(1, test.getId());
             List<Integer> questionsIdFromDBForThisTest = new ArrayList<>();
-            try(ResultSet resultSet =preparedStatement.executeQuery()){
-                while(resultSet.next()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     questionsIdFromDBForThisTest.add(resultSet.getInt("id"));
                 }
             }
 
             for (Integer questionId : questionsIdFromDBForThisTest) {
                 preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.answers WHERE questions_id=?");
-                preparedStatement.setInt(1,questionId);
+                preparedStatement.setInt(1, questionId);
                 preparedStatement.executeUpdate();
 
             }
             //DELETE QUESTIONS FOR THIS TEST
             preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.questions WHERE tests_id=?");
-            preparedStatement.setInt(1,test.getId());
+            preparedStatement.setInt(1, test.getId());
             preparedStatement.executeUpdate();
             //INSERT NEW QUESTION FOR THIS TEST
             List<Question> questionList = test.getQuestions();
-            for(Question question:questionList){
+            for (Question question : questionList) {
                 preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.questions (tests_id, question, questionNumber) VALUES (?,?,?)");
-                preparedStatement.setInt(1,test.getId());
-                preparedStatement.setString(2,question.getTextQuestion());
-                preparedStatement.setInt(3,question.getQuestionNumber());
+                preparedStatement.setInt(1, test.getId());
+                preparedStatement.setString(2, question.getTextQuestion());
+                preparedStatement.setInt(3, question.getQuestionNumber());
                 preparedStatement.execute();
                 //INSERT ANSWERS FOR THIS QUESTION
                 preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE questionNumber=? AND tests_id=?");
-                preparedStatement.setInt(1,question.getQuestionNumber());
-                preparedStatement.setInt(2,test.getId());
+                preparedStatement.setInt(1, question.getQuestionNumber());
+                preparedStatement.setInt(2, test.getId());
                 ResultSet resultSet = preparedStatement.executeQuery();
-                int questionId =-1;
-                if(resultSet.next()){
-                     questionId = resultSet.getInt("id");
+                int questionId = -1;
+                if (resultSet.next()) {
+                    questionId = resultSet.getInt("id");
                 }
                 List<Answer> answerList = question.getAnswers();
-                for(Answer answer:answerList){
+                for (Answer answer : answerList) {
                     preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.answers (answer, isRightAnswer, questions_id) VALUES (?,?,?)");
-                    preparedStatement.setString(1,answer.getAnswer());
-                    preparedStatement.setBoolean(2,answer.isRightAnswer());
-                    preparedStatement.setInt(3,questionId);
+                    preparedStatement.setString(1, answer.getAnswer());
+                    preparedStatement.setBoolean(2, answer.isRightAnswer());
+                    preparedStatement.setInt(3, questionId);
                     preparedStatement.execute();
                 }
             }
             //DELETE PASSED TEST FOR EVERY USER, BECAUSE TEST WAS EDITED
             preparedStatement = connection.prepareStatement(Query.deletePassedTest);
-            preparedStatement.setInt(1,test.getId());
+            preparedStatement.setInt(1, test.getId());
             preparedStatement.executeUpdate();
             connection.commit();
             connection.setAutoCommit(true);
@@ -521,46 +524,47 @@ public class JDBCTestDao implements TestDao {
                 connection.setAutoCommit(true);
             } catch (SQLException ex) {
                 logger.error("Can't rollback in update()");
-                throw new DataBaseException("Can't rollback in update",ex);
+                throw new DataBaseException("Can't rollback in update", ex);
             }
             logger.error("Error update()");
-            throw new DataBaseException("Error update()",e);
-        }finally {
-            if(connection!=null){
+            throw new DataBaseException("Error update()", e);
+        } finally {
+            if (connection != null) {
                 try {
                     connection.setAutoCommit(true);
                     connection.close();
                 } catch (SQLException e) {
                     logger.error("Error close connection");
-                    throw new DataBaseException("Error with BD",e);
+                    throw new DataBaseException("Error with BD", e);
                 }
             }
         }
         return false;
     }
-    public void deletePassedTest(int id){
+
+    public void deletePassedTest(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTest)){
-            preparedStatement.setInt(1,id);
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTest)) {
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.error("Can't delete passed test id="+id+", because", e);
-            throw new DataBaseException("Can't delete passed test id="+id);
+            logger.error("Can't delete passed test id=" + id + ", because", e);
+            throw new DataBaseException("Can't delete passed test id=" + id);
         }
     }
+
     @Override
     public boolean delete(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)) {
             deletePassedTest(id);
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
 
 
-
         } catch (SQLException e) {
-            logger.error("Can't delete test id="+id+", because", e);
-            throw new DataBaseException("Can't delete test id="+id);
+            logger.error("Can't delete test id=" + id + ", because", e);
+            throw new DataBaseException("Can't delete test id=" + id);
         }
         return false;
 

@@ -38,7 +38,7 @@ public class EditTestInfoCommand implements com.stason.testing.controller.comman
         if(!request.getParameter("duration").isEmpty()){
             test.setTimeMinutes(Integer.parseInt(request.getParameter("duration")));
         }
-        test.setDifficulty(request.getParameter("difficulty"));
+        test.setDifficulty(Integer.parseInt(request.getParameter("difficulty")));
         request.getSession().setAttribute("editedTest",test);
     }
 }

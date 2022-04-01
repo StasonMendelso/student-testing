@@ -1,11 +1,17 @@
 package com.stason.testing.controller.utils;
 
+import com.stason.testing.controller.exceptions.EmailException;
+import com.stason.testing.model.dao.implement.JDBCTestDao;
+import org.apache.log4j.Logger;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailSender {
+    private final static Logger logger = Logger.getLogger(EmailSender.class.getName());
+
     private String userName="glovastas2004@gmail.com";
     private String password="dyhqlheeaastdurs";
     // Get system properties
@@ -69,7 +75,8 @@ public class EmailSender {
             Transport.send(message);
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
-            mex.printStackTrace();
+            logger.warn("Can't send letter to email",mex);
+            throw new EmailException("Sorry, can't send letter to email", mex);
         }
     }
     public void sendActivationPasswordLink(String to, String activationLink) {
@@ -117,7 +124,8 @@ public class EmailSender {
             Transport.send(message);
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
-            mex.printStackTrace();
+            logger.warn("Can't send letter to email",mex);
+            throw new EmailException("Sorry, can't send letter to email", mex);
         }
     }
 }

@@ -65,7 +65,6 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
         }
         if (request.getParameter("id") != null && !request.getParameter("id").isEmpty()) {
             int id = Integer.parseInt(request.getParameter("id"));
-            System.out.println(id);
 
             Test test = testService.findById(id);
             List<Question> questionList = questionService.findAllByTestId(id);
@@ -77,8 +76,8 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
                 List<Answer> answerList = answerService.findAllByQuestionId(questionId);
                 question.setAnswers(answerList);
             }
-            System.out.println("2");
             test.setQuestions(questionList);
+
             if (request.getSession().getAttribute("editedTest") == null) {
                 request.getSession().setAttribute("editedTest", test);
             } else {
@@ -117,17 +116,17 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
         }
     }
 
-    private void deleteTest(int id) {
-
-        List<Question> questionList = questionService.findAllByTestId(id);
-        for (Question question : questionList) {
-            int questionId = question.getId();
-            List<Answer> answerList = answerService.findAllByQuestionId(questionId);
-            for (Answer answer : answerList) {
-                answerService.delete(answer.getId());
-            }
-            questionService.delete(questionId);
-        }
-        testService.delete(id);
-    }
+//    private void deleteTest(int id) {
+//
+//        List<Question> questionList = questionService.findAllByTestId(id);
+//        for (Question question : questionList) {
+//            int questionId = question.getId();
+//            List<Answer> answerList = answerService.findAllByQuestionId(questionId);
+//            for (Answer answer : answerList) {
+//                answerService.delete(answer.getId());
+//            }
+//            questionService.delete(questionId);
+//        }
+//        testService.delete(id);
+//    }
 }

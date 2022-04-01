@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="converter" tagdir="/WEB-INF/tags" %>
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
 
@@ -126,7 +127,7 @@
                         <td>${test.id}</td>
                         <td>${test.name}</td>
                         <td>${test.nameOfDiscipline}</td>
-                        <td>${test.difficulty}</td>
+                        <td><converter:difficulty intDifficulty="${test.difficulty}"/></td>
                         <td>${test.timeMinutes}</td>
                         <td>${test.countOfQuestions}</td>
 

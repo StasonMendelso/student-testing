@@ -10,7 +10,7 @@ public class Test {
     private int id;
     private String name;
     private String nameOfDiscipline;
-    private String difficulty;
+    private int difficulty;
     private int timeMinutes;
     private int timeSeconds;
     private int countOfQuestions;
@@ -83,30 +83,22 @@ public class Test {
         this.nameOfDiscipline = nameOfDiscipline;
     }
 
-    public String getDifficulty() {
+    public int getDifficulty() {
         return difficulty;
     }
-  public int getIntDifficulty(){
-        switch(this.difficulty){
-          case "Easy": return 1;
-          case "Medium": return 2;
-          case "Hard": return 3;
-            default: return -1;
-      }
 
-  }
-    public void setDifficulty(String difficulty) {
-        switch (difficulty){
-            case "1" :
-                difficulty="Easy";
-                break;
-            case "2" :
-                    difficulty="Medium";
-                    break;
-            case "3" :
-                    difficulty="Hard";
-                    break;
-        }
+    public void setDifficulty(int difficulty) {
+//        switch (difficulty){
+//            case "1" :
+//                difficulty="Easy";
+//                break;
+//            case "2" :
+//                    difficulty="Medium";
+//                    break;
+//            case "3" :
+//                    difficulty="Hard";
+//                    break;
+//        }
         this.difficulty = difficulty;
     }
 

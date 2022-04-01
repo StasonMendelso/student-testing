@@ -5,7 +5,7 @@
          version="4.0">
 
     <error-page>
-        <exception-type>java.lang.Throwable</exception-type >
+        <exception-type>com.stason.testing.controller.exceptions.ServiceException</exception-type >
         <location>/error.jsp</location>
     </error-page>
     <error-page>
@@ -23,6 +23,7 @@
         <servlet-name>controller</servlet-name>
         <url-pattern>/testing/*</url-pattern>
     </servlet-mapping>
+
 
   
 <!--FILTERS-->

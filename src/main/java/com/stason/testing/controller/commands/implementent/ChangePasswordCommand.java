@@ -22,9 +22,11 @@ public class ChangePasswordCommand implements Command {
             //send message
             if(request.getSession().getAttribute("identification")==null) {
                 EmailSender sender = new EmailSender();
+                //Generate identification
                 String salt = EncryptionLink.generateSalt();
                 String hashedLink = EncryptionLink.hash(login, salt);
                 activationLink += "?identification=" + hashedLink;
+                //Send Activation link to email for changing password
                 sender.sendActivationPasswordLink(login, activationLink);
                 request.getSession().setAttribute("identification", hashedLink);
                 return Path.CHANGE_PASSWORD;
@@ -60,6 +62,7 @@ public class ChangePasswordCommand implements Command {
         if(request.getParameter("identification")!=null){
             String identificationFromUser = request.getParameter("identification");
             String identification = (String) request.getSession().getAttribute("identification");
+            //Check identificationLink
             if(!identification.equals(identificationFromUser)){
                 logger.info("Identification is not relevant");
                 return Path.CHANGE_PASSWORD_ERROR_IDENTIFICATION;

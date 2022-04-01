@@ -14,7 +14,7 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="converter" tagdir="/WEB-INF/tags" %>
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
@@ -61,7 +61,7 @@
                             <td>Discipline:${test.nameOfDiscipline}</td>
                         </tr>
                         <tr>
-                            <td>Difficulty:${test.difficulty}</td>
+                            <td>Difficulty:<converter:difficulty intDifficulty="${test.difficulty}"/></td>
                         </tr>
                         <tr>
                             <td>Duration(Minutes):${test.timeMinutes}</td>

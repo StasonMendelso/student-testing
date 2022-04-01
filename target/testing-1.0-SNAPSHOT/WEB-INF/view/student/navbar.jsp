@@ -31,10 +31,10 @@
         <div class="col-3">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/web-application/testing/student/info">Info</a>
+                    <a class="nav-link" href="/web-application/testing/student/info"><fmt:message key="navbar.student.label.info"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/web-application/testing/student/tests">Tests</a>
+                    <a class="nav-link" href="/web-application/testing/student/tests"><fmt:message key="navbar.student.label.tests"/></a>
                 </li>
             </ul>
         </div>
@@ -60,7 +60,7 @@
         <div class="col-1">
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link <c:if test="${not empty sessionScope.test}">disabled</c:if>" href="/web-application/testing/logout">Log out</a>
+                    <a class="nav-link <c:if test="${not empty sessionScope.test}">disabled</c:if>" href="/web-application/testing/logout"><fmt:message key="navbar.label.logout"/></a>
                 </li>
             </ul>
         </div>
@@ -69,9 +69,8 @@
                 <li class="dropdown nav-item">
                     <form method="post">
                         <select class="form-select bg-secondary bg-opacity-100 text-white-50" style="border: none" id="language" name="lang" onchange="submit()">
-                            <option class="dropdown-item text-white-50" value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}>English </option>
-                            <option class="dropdown-item text-white-50" value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}>Ukrainian</option>
-                            <option class="dropdown-item text-white-50" value="ru" ${sessionScope.lang == 'ru' ? 'selected' : ''}><fmt:message key="label.lang.ru" /></option>
+                            <option class="dropdown-item text-white-50" value="en" ${sessionScope.lang == 'en' ? 'selected' : ''}><fmt:message key="navbar.label.lang.en" /></option>
+                            <option class="dropdown-item text-white-50" value="ua" ${sessionScope.lang == 'ua' ? 'selected' : ''}><fmt:message key="navbar.label.lang.ua" /></option>
                         </select>
                     </form>
                 </li>

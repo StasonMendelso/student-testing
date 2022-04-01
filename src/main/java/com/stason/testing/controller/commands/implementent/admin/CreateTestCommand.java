@@ -22,7 +22,7 @@ public class CreateTestCommand implements Command{
         if(request.getParameter("testName")!=null){
             String name = EncodingConverter.convertFromISOtoUTF8(request.getParameter("testName"));
             String disciplineName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("disciplineName"));
-            String difficulty = EncodingConverter.convertFromISOtoUTF8(request.getParameter("difficulty"));
+            int difficulty = Integer.parseInt(request.getParameter("difficulty"));
 
             Test test = new Test();
             test.setName(name);

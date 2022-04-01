@@ -63,7 +63,7 @@ public class JDBCQuestionDao implements QuestionDao {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.findAllByTestId)){
-            preparedStatement.setInt(1,id);
+             preparedStatement.setInt(1,id);
             try( ResultSet resultSet = preparedStatement.executeQuery()){
                 List<Question> list = new LinkedList<>();
                 while(resultSet.next()){

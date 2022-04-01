@@ -26,6 +26,7 @@ public class AddQuestionCommand implements Command {
         if(request.getRequestURI().contains("/admin/addQuestion")){
             return Path.ADMIN_ADD_QUESTIONS;
         }else {
+
             return Path.REDIRECT_ADMIN_ADD_QUESTIONS;
         }
     }

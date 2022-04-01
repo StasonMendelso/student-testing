@@ -6,6 +6,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <fmt:setLocale value="${sessionScope.lang}"/> <!--Какая-то связь со всеми языками???-->
 <fmt:setBundle basename="messages"/>
+<%@ taglib prefix="er" tagdir="/WEB-INF/tags" %>
 
 
 
@@ -28,7 +29,6 @@
 
 </head>
   <body >
-
     <%@include file="WEB-INF/view/guest/navbar.jsp"%>
 
     <main class="container-fluid ">

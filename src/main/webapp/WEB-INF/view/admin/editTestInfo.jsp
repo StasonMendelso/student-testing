@@ -7,8 +7,8 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="converter" tagdir="/WEB-INF/tags" %>
 
-<link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
 <head>
@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <td>Difficulty</td>
-                        <td>${test.difficulty}</td>
+                        <td><converter:difficulty intDifficulty="${test.difficulty}"/></td>
                     </tr>
                     <tr>
                         <td>Duration</td>
@@ -88,9 +88,9 @@
 
                                 <select id="difficulty" name="difficulty" class="mt-1 form-select flex-grow-1">
                                     <optgroup label="Difficulty">
-                                        <option value="Easy" selected>Easy</option>
-                                        <option value="Medium">Medium</option>
-                                        <option value="Hard">Hard</option>
+                                        <option value="1" selected>Easy</option>
+                                        <option value="2">Medium</option>
+                                        <option value="3">Hard</option>
                                     </optgroup>
 
                                 </select>

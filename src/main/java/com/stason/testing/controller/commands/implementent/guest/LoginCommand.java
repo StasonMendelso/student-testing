@@ -10,9 +10,8 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.*;
-
+import static com.stason.testing.controller.utils.ErrorForUser.*;
 public class LoginCommand implements Command {
     private final  static Logger logger = Logger.getLogger(LoginCommand.class.getName());
 
@@ -26,13 +25,13 @@ public class LoginCommand implements Command {
         if(request.getParameter("login")!=null) {
             String login = EncodingConverter.convertFromISOtoUTF8(request.getParameter("login"));
             String password = EncodingConverter.convertFromISOtoUTF8(request.getParameter("password"));
-            List<String> errors = new ArrayList<>();
+            List<ErrorForUser> errors = new ArrayList<>();
 
             if (!ValidatorService.validateEmail(login)) {
-                errors.add("Невалідний логін");//Todo сделать локализацию передавати key для fmt або сделать свой тег
+                errors.add(INVALID_LOGIN);//Todo сделать локализацию передавати key для fmt або сделать свой тег
             }
             if (!ValidatorService.validatePassword(password)) {
-                errors.add("Невалідний пароль");//Todo сделать локализацию
+                errors.add(INVALID_PASSWORD);//Todo сделать локализацию
             }
             //CAPTCHA
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
@@ -41,7 +40,7 @@ public class LoginCommand implements Command {
             boolean valid = false;
             valid = VerifyRecaptcha.verify(gRecaptchaResponse);
             if (!valid) {
-                errors.add("Captcha invalid!");
+                errors.add(INVALID_CAPTCHA);
             }
             if (errors.size() > 0) {
                 request.setAttribute("errorsList", errors);
@@ -59,7 +58,7 @@ public class LoginCommand implements Command {
                 if (request.getServletContext().getAttribute("loggedUsers") != null) {
                     loggedUsers = (HashSet<String>) request.getServletContext().getAttribute("loggedUsers");
                     if (loggedUsers.stream().anyMatch(login::equals)) {
-                        errors.add("Хтось інший вже увійшов під цим записом");//Todo сделать локализацию
+                        errors.add(ACCOUNT_IS_LOGGED);//Todo сделать локализацию
 
                         request.setAttribute("errorsList", errors);
                         return Path.GUEST_LOGIN;
@@ -69,7 +68,7 @@ public class LoginCommand implements Command {
                     user = userService.findByLogin(login);
 
                 if(user.isBlocked()){
-                    errors.add("Ти заблокований! Звернися до адміністрації");//Todo сделать локализацию
+                    errors.add(ACCOUNT_IS_BLOCKED);//Todo сделать локализацию
 
                     request.setAttribute("errorsList", errors);
                     return  Path.GUEST_LOGIN;
@@ -95,14 +94,14 @@ public class LoginCommand implements Command {
                     if (user.getRole().equals(Role.ADMIN.name())) return Path.REDIRECT_ADMIN_INFO;
                     if (user.getRole().equals(Role.STUDENT.name())) return Path.REDIRECT_STUDENT_INFO;
                 }else{
-                    errors.add("Користувача не знайдено. Перевірте логін та пароль");//Todo сделать локализацию
+                    errors.add(ACCOUNT_NOT_FOUND);//Todo сделать локализацию
                     request.setAttribute("errorsList", errors);
 
                     return  Path.GUEST_LOGIN;
                 }
 
             } else {
-                errors.add("Користувача не знайдено. Перевірте логін та пароль");//Todo сделать локализацию
+                errors.add(ACCOUNT_NOT_FOUND);//Todo сделать локализацию
                 request.setAttribute("errorsList", errors);
 
                 return  Path.GUEST_LOGIN;
