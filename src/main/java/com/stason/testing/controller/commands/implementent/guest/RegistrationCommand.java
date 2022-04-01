@@ -1,8 +1,10 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.EncryptionPassword;
 import com.stason.testing.controller.services.UserService;
-import com.stason.testing.controller.servlets.ControllerServlet;
+import com.stason.testing.controller.services.ValidatorService;
+import com.stason.testing.controller.services.VerifyRecaptcha;
 import com.stason.testing.controller.utils.*;
 import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;

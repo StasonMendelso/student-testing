@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ShowTestResultCommand implements com.stason.testing.controller.commands.Command {
@@ -41,7 +42,13 @@ public class ShowTestResultCommand implements com.stason.testing.controller.comm
                 int userId = (int) request.getSession().getAttribute("id");
                 TestService testService = new TestService();
                 logger.info("The mark is " + mark);
-                testService.updatePassedTest(userId,test.getId(),mark);
+                try {
+                    testService.updatePassedTest(userId, test.getId(), mark);
+                }catch (Exception ex){
+                    testService.deletePassedTestForUser(test.getId(),userId);
+                    request.getSession().removeAttribute("test");
+                    throw ex;
+                }
                 request.setAttribute("countOfRightAnswers",countOfRightAnswers);
                 request.setAttribute("mark",mark);
                 request.setAttribute("test",test);

@@ -1,7 +1,6 @@
-package com.stason.testing.controller.utils;
+package com.stason.testing.controller.services;
 
 import com.stason.testing.controller.exceptions.EmailException;
-import com.stason.testing.model.dao.implement.JDBCTestDao;
 import org.apache.log4j.Logger;
 
 import javax.mail.*;
@@ -9,8 +8,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class EmailSender {
-    private final static Logger logger = Logger.getLogger(EmailSender.class.getName());
+public class EmailSenderService {
+    private final static Logger logger = Logger.getLogger(EmailSenderService.class.getName());
 
     private String userName="glovastas2004@gmail.com";
     private String password="dyhqlheeaastdurs";
@@ -21,7 +20,7 @@ public class EmailSender {
 
     // Assuming you are sending email from through gmails smtp
     private String host = "smtp.gmail.com";
-    public EmailSender() {
+    public EmailSenderService() {
         // Setup mail server
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", "465");

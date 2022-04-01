@@ -1,4 +1,6 @@
-package com.stason.testing.controller.utils;
+package com.stason.testing.controller.services;
+
+import com.stason.testing.controller.utils.Constants;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

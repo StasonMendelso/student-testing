@@ -2,16 +2,14 @@ package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
-import com.stason.testing.controller.utils.EmailSender;
-import com.stason.testing.controller.utils.EncryptionPassword;
+import com.stason.testing.controller.services.EmailSenderService;
+import com.stason.testing.controller.services.EncryptionPassword;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.controller.utils.VerifyRecaptcha;
+import com.stason.testing.controller.services.VerifyRecaptcha;
 import com.stason.testing.model.entity.User;
 
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 
 public class RecoveryPasswordCommand implements Command {
@@ -50,7 +48,7 @@ public class RecoveryPasswordCommand implements Command {
                 int a = (int)(Math.random() *10);
                 activationCode.append(a);
             }
-            EmailSender sender = new EmailSender();
+            EmailSenderService sender = new EmailSenderService();
             sender.sendActivationCode(email,activationCode.toString());
             request.getSession().setAttribute("login", email);
             request.getSession().setAttribute("activationCode", activationCode.toString());

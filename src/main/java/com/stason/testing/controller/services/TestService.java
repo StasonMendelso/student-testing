@@ -43,4 +43,8 @@ public class TestService {
     public void update(Test test) {
         testDao.update(test);
     }
+
+    public void deletePassedTestForUser(int testId, int userId) {
+        testDao.deletePassedTestForUser(testId,userId);
+    }
 }

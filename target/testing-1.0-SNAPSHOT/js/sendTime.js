@@ -15,9 +15,11 @@ function sendClientTime(id) {
     let input1 = document.createElement('input');
     input1.name = 'currentClientTime';
     input1.value = currentdate.valueOf();
+    input1.hidden=true;
     let input2 = document.createElement('input');
     input2.name = 'id';
     input2.value = id;
+    input2.hidden=true;
     form.appendChild(input1);
     form.appendChild(input2);
 // перед отправкой формы, её нужно вставить в документ

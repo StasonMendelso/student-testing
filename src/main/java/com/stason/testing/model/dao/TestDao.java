@@ -35,4 +35,6 @@ public interface TestDao extends GenericDao<Test>{
 
     boolean updatePassedTest(int userId, int id, double mark);
     boolean deletePassedTestById(int testId);
+
+    void deletePassedTestForUser(int testId, int userId);
 }

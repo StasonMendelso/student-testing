@@ -1,8 +1,10 @@
 package com.stason.testing.controller.commands.implementent;
 
 import com.stason.testing.controller.commands.Command;
+import com.stason.testing.controller.services.EmailSenderService;
+import com.stason.testing.controller.services.EncryptionLink;
+import com.stason.testing.controller.services.EncryptionPassword;
 import com.stason.testing.controller.services.UserService;
-import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.controller.utils.*;
 import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
@@ -21,7 +23,7 @@ public class ChangePasswordCommand implements Command {
             String login = (String) request.getSession().getAttribute("login");
             //send message
             if(request.getSession().getAttribute("identification")==null) {
-                EmailSender sender = new EmailSender();
+                EmailSenderService sender = new EmailSenderService();
                 //Generate identification
                 String salt = EncryptionLink.generateSalt();
                 String hashedLink = EncryptionLink.hash(login, salt);

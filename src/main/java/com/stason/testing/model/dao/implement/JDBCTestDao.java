@@ -43,6 +43,19 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
+    public void deletePassedTestForUser(int testId, int userId) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE test_id=? AND user_id=?;");){
+            preparedStatement.setInt(1,testId);
+            preparedStatement.setInt(2,userId);
+            preparedStatement.executeUpdate();
+            }catch (SQLException ex){
+            logger.error("Can't delete passed test (test_id=" + testId + ") for user (user_id="+userId+"), because", ex);
+            throw new DataBaseException("Can't delete passed test for user");
+        }
+    }
+
+    @Override
     public boolean deletePassedTestById(int testId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTestById)) {
@@ -124,6 +137,7 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setInt(2, userId);
             preparedStatement.setInt(3, testId);
             preparedStatement.execute();
+            if(1==1)throw new DataBaseException("Can't update passed test");
         } catch (SQLException e) {
             logger.error("Can't update passed test" + testId + " for user" + userId + " with mark" + mark + ", because", e);
             throw new DataBaseException("Can't update passed test");

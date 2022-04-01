@@ -1,5 +1,5 @@
 
-import com.stason.testing.controller.utils.EncryptionPassword;
+import com.stason.testing.controller.services.EncryptionPassword;
 
 public class Main {
     public static void main(String[] args) {
