@@ -81,9 +81,7 @@ public class RecoveryPasswordCommand implements Command {
             }
             UserService userService = new UserService();
             String email = (String) request.getSession().getAttribute("login");
-            String salt = EncryptionPassword.generateSalt();
-            String hashedPassword = EncryptionPassword.hash(password,salt);
-            userService.updatePassword(email,hashedPassword,salt);
+            userService.updatePassword(email,password);
             request.getSession().removeAttribute("login");
             return "redirect:/web-application/testing/recovery?successful=successful";
         }

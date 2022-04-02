@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class ShowUsersCommand implements Command {
+    final PaginationService paginationService = new PaginationService();
     @Override
     public String execute(HttpServletRequest request){
         if(request.getRequestURI().contains("admin/showUser")) {
 
             int paginationParameter = getPaginationParameter(request, "paginationParameter");
             int pageNumber = getPageNumber(request, "pageNumber");
-            final PaginationService paginationService = new PaginationService();
+
             List<User> list =  paginationService.paginateAllUsers(paginationParameter,pageNumber);
             int countOfPageNumberButtons = paginationService.countButtonsForPaginationAllUsers(paginationParameter);
 

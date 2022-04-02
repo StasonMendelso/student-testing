@@ -23,16 +23,14 @@ public class DoTestCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-
-
         String uri = request.getRequestURI();
         int testId = 0;
 
-        //For initalization
+        //For initialization
         if (request.getParameter("id") != null) {
-
             testId = Integer.parseInt(request.getParameter("id"));
         }
+
         //If user want to continue the test
         if (request.getSession().getAttribute("test") != null && request.getParameter("id") != null) {
             logger.info("User continue to do test");
@@ -54,55 +52,35 @@ public class DoTestCommand implements Command {
             }
             int userId = (int) request.getSession().getAttribute("id");
             TestService testService = new TestService();
-            System.out.println(idPassedTestsList);
             idPassedTestsList.add(testId);
-            System.out.println(idPassedTestsList);
             request.getSession().setAttribute("idOfPassedTests", idPassedTestsList);
-            QuestionService questionService = new QuestionService();
-            AnswerService answerService = new AnswerService();
-            Test test = testService.findById(testId);
-            List<Question> questionList = questionService.findAllByTestId(testId);
-            Iterator<Question> iterator = questionList.iterator();
-            while (iterator.hasNext()) {
-                Question question = iterator.next();
-                int questionId = question.getId();
-                List<Answer> answerList = answerService.findAllByQuestionId(questionId);
-                List<Boolean> userOptions = new LinkedList<>();
-                for (int i = 1; i <= answerList.size(); i++) {
-                    userOptions.add(Boolean.FALSE);
-                }
-                question.setUserOptions(userOptions);
-                question.setAnswers(answerList);
-            }
-            test.setQuestions(questionList);
+
+            Test test = testService.findTestWithQuestionsAndAnswers(testId);
+            testService.addPassedTest(userId, testId, 0);
+
             Date date = new Date(Long.parseLong(request.getParameter("currentClientTime")));
             long outDateMilliseconds = Long.parseLong(request.getParameter("currentClientTime")) + test.getTimeSeconds() * 1000L;
             Date outDate = new Date(outDateMilliseconds);
+
             logger.info("User started test [" + test.getName() + "] at " + date + " Passed Date is " + outDate);
             request.getSession().setAttribute("test", test);
             request.getSession().setAttribute("outDateMilliseconds", outDateMilliseconds);
-            testService.addPassedTest(userId, testId, 0);
             return Path.REDIRECT_STUDENT_TEST + "?question=1";
         }
 
         if (request.getSession().getAttribute("test") == null) {
             return Path.REDIRECT_STUDENT_TESTS;
         }
-
         //The user has finished test
         if (request.getParameter("save") != null && request.getParameter("questionNumber") != null && request.getParameter("finish") != null) {
             saveAnswers(request);
             logger.info("User has passed test");
             return new ShowTestResultCommand().execute(request);
-
-
         }
         //The user answered one question
         if (request.getParameter("nextQuestion") != null && request.getParameter("save") != null && request.getParameter("questionNumber") != null) {
             return saveAnswers(request);
         }
-
-
         //For initialization
         if (request.getParameter("question") != null) {
             int questionNumber = Integer.parseInt(request.getParameter("question"));
@@ -111,8 +89,6 @@ public class DoTestCommand implements Command {
             request.setAttribute("question", question);
             return Path.STUDENT_TEST;
         }
-
-
         if (uri.contains("/student/test")) {
             return Path.STUDENT_TEST;
         } else {

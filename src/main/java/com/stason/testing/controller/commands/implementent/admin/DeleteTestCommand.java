@@ -28,43 +28,22 @@ public class DeleteTestCommand implements com.stason.testing.controller.commands
                 if (request.getParameter("id") != null) {
                     id = Integer.parseInt(request.getParameter("id"));
                 }
-                //   deleteTest(id);
-
                 testService.delete(id);
                 logger.info("Admin deleted test[" + id + "]");
-                request.getSession().setAttribute("pageNumber", request.getParameter("pageNumber"));
-                request.getSession().setAttribute("paginationParameter", request.getParameter("paginationParameter"));
-                request.getSession().setAttribute("orderBy", request.getParameter("orderBy"));
-                request.getSession().setAttribute("order", request.getParameter("order"));
-                request.getSession().setAttribute("discipline", request.getParameter("discipline"));
+               setAttributes(request);
             } else {
-                request.getSession().setAttribute("pageNumber", request.getParameter("pageNumber"));
-                request.getSession().setAttribute("paginationParameter", request.getParameter("paginationParameter"));
-                request.getSession().setAttribute("orderBy", request.getParameter("orderBy"));
-                request.getSession().setAttribute("order", request.getParameter("order"));
-                request.getSession().setAttribute("discipline", request.getParameter("discipline"));
+                setAttributes(request);
                 request.getSession().setAttribute("error", "Секретний код не співпадає");
                 return Path.REDIRECT_ADMIN_TESTS;
             }
         }
-
-
         return Path.REDIRECT_ADMIN_TESTS;
     }
-//    private  void deleteTest(int id){
-//
-//        TestService testService = new TestService();
-//        QuestionService questionService = new QuestionService();
-//        AnswerService answerService = new AnswerService();
-//        List<Question> questionList = questionService.findAllByTestId(id);
-//        for(Question question :questionList){
-//            int questionId = question.getId();
-//            List<Answer> answerList = answerService.findAllByQuestionId(questionId);
-//            for(Answer answer:answerList){
-//                answerService.delete(answer.getId());
-//            }
-//            questionService.delete(questionId);
-//        }
-//        testService.delete(id);
-//    }
+    private void setAttributes(HttpServletRequest request){
+        request.getSession().setAttribute("pageNumber", request.getParameter("pageNumber"));
+        request.getSession().setAttribute("paginationParameter", request.getParameter("paginationParameter"));
+        request.getSession().setAttribute("orderBy", request.getParameter("orderBy"));
+        request.getSession().setAttribute("order", request.getParameter("order"));
+        request.getSession().setAttribute("discipline", request.getParameter("discipline"));
+    }
 }

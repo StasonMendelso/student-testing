@@ -76,11 +76,6 @@ public class AddQuestionCommand implements Command {
                     question.addAnswer(answer);
                 }
             }
-            System.out.println("=====================================");
-            System.out.println("=Добавляєм в сесію обновльонний тест=");
-            System.out.println("=====================================");
-
-
             question.setQuestionNumber(questionSize+1);
             question.setId(questionList.get(questionSize-1).getId()+1);
             test.addQuestion(question);

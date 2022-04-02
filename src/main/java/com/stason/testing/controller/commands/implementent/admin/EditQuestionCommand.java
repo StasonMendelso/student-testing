@@ -16,6 +16,8 @@ public class EditQuestionCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         Question questionOrigin = (Question) request.getSession().getAttribute("editedQuestion");
+
+        //REFACTOR TO METHOD
         //Сохранити питання
         if (request.getParameter("Save") != null) {
             //todo перевірку isProperly...
@@ -117,50 +119,6 @@ public class EditQuestionCommand implements Command {
         }
 
 
-    }
-
-    private String saveQuestion(HttpServletRequest request) {
-        if (!isProperlyCheckboxChecked(request)) {
-            //Вы выбрали ответ как пустой вариант ответа
-            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
-        }
-        if (request.getParameter("opt") == null) {
-            //Вы не выбрали правильный ответ!
-            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
-        } else {
-            System.out.println(Arrays.toString(request.getParameterValues("opt")));
-            String rightOptions = Arrays.toString(request.getParameterValues("opt"));
-            // проверка, валидация тд тп
-
-            String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
-            Question question = new Question();
-            question.setTextQuestion(questionName);
-
-            for (int i = 1; i <= 4; i++) {
-                String paramName = "answer" + i;
-                if (request.getParameter(paramName).isEmpty()) {
-                    continue;
-                } else {
-                    Answer answer = new Answer();
-                    String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
-                    answer.setAnswer(answerText);
-                    if (rightOptions.contains(String.valueOf(i))) {
-                        answer.setRightAnswer(true);
-                    } else {
-                        answer.setRightAnswer(false);
-                    }
-                    question.addAnswer(answer);
-                }
-            }
-            System.out.println("=====================================");
-            System.out.println("=Добавляєм в сесію обновльонний тест=");
-            System.out.println("=====================================");
-            Test test = (Test) request.getSession().getAttribute("test");
-            test.addQuestion(question);
-            request.getSession().setAttribute("test", test);
-            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
-
-        }
     }
 
     private boolean isProperlyCheckboxChecked(HttpServletRequest request) {

@@ -11,7 +11,7 @@ public class UserService {
     private final UserDao userDao = new JDBCUserDao();
 
     public boolean checkLogin(String login){
-        return userDao.checkLogin(login);
+        return userDao.findByLogin(login)!=null;
     }
     public User findByLogin(String login){
         return userDao.findByLogin(login);
@@ -22,7 +22,9 @@ public class UserService {
     public boolean createNewUser(User user){
         return userDao.create(user);
     }
-    public void updatePassword(String login, String hashedPassword,String salt){
+    public void updatePassword(String login, String password){
+        String salt = EncryptionPassword.generateSalt();
+        String hashedPassword = EncryptionPassword.hash(password,salt);
         userDao.updatePassword(login,hashedPassword,salt);
     }
 

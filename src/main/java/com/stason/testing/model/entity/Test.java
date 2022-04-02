@@ -88,17 +88,6 @@ public class Test {
     }
 
     public void setDifficulty(int difficulty) {
-//        switch (difficulty){
-//            case "1" :
-//                difficulty="Easy";
-//                break;
-//            case "2" :
-//                    difficulty="Medium";
-//                    break;
-//            case "3" :
-//                    difficulty="Hard";
-//                    break;
-//        }
         this.difficulty = difficulty;
     }
 

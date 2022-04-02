@@ -33,25 +33,6 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
                     Test test = (Test) request.getSession().getAttribute("editedTest");
                     //Удаляєм тест повністю
                     testService.update(test);
-//                   deleteTest(test.getId());
-//                    //Добавляємо тест заново
-//                    testService.create(test);
-//                    List<Question> questionList = test.getQuestions();
-//                    int testId = testService.findIdByName(test.getName());
-//                    int i =1;
-//                    System.out.println("!!!!!!!!!!ADD TO BD QUESTION!!!!!!!!!!!!!");
-//                    for(Question question:questionList){
-//                        question.setTestId(testId);
-//                        question.setQuestionNumber(i++);
-//                        questionService.create(question);
-//                        List<Answer> answerList = question.getAnswers();
-//
-//                        int questionId = questionService.findId(question);
-//                        for(Answer answer:answerList){
-//                            answer.setQuestionId(questionId);
-//                            answerService.create(answer);
-//                        }
-//                    }
                     return Path.REDIRECT_ADMIN_TESTS;
                 } else {
                     request.setAttribute("error", "Секретний код не співпадає");
@@ -66,24 +47,14 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
 
         }
         if (request.getParameter("id") != null && !request.getParameter("id").isEmpty()) {
-            int id = Integer.parseInt(request.getParameter("id"));
+            int testId = Integer.parseInt(request.getParameter("id"));
 
-            Test test = testService.findById(id);
-            List<Question> questionList = questionService.findAllByTestId(id);
-            Iterator<Question> iterator = questionList.iterator();
-
-            while (iterator.hasNext()) {
-                Question question = iterator.next();
-                int questionId = question.getId();
-                List<Answer> answerList = answerService.findAllByQuestionId(questionId);
-                question.setAnswers(answerList);
-            }
-            test.setQuestions(questionList);
+            Test test = testService.findTestWithQuestionsAndAnswers(testId);
 
             if (request.getSession().getAttribute("editedTest") == null) {
                 request.getSession().setAttribute("editedTest", test);
             } else {
-                if (((Test) request.getSession().getAttribute("editedTest")).getId() != id) {
+                if (((Test) request.getSession().getAttribute("editedTest")).getId() != testId) {
                     request.getSession().setAttribute("editedTest", test);
 
                 }
@@ -118,17 +89,4 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
         }
     }
 
-//    private void deleteTest(int id) {
-//
-//        List<Question> questionList = questionService.findAllByTestId(id);
-//        for (Question question : questionList) {
-//            int questionId = question.getId();
-//            List<Answer> answerList = answerService.findAllByQuestionId(questionId);
-//            for (Answer answer : answerList) {
-//                answerService.delete(answer.getId());
-//            }
-//            questionService.delete(questionId);
-//        }
-//        testService.delete(id);
-//    }
 }

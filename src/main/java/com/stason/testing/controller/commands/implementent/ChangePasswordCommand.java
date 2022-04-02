@@ -47,11 +47,8 @@ public class ChangePasswordCommand implements Command {
                 return Path.RECOVERY_CREATE_NEW_PASSWORD;
             }
             String email = (String) request.getSession().getAttribute("login");
-            String salt = EncryptionPassword.generateSalt();
-            String hashedPassword = EncryptionPassword.hash(password,salt);
-
             UserService userService = new UserService();
-            userService.updatePassword(email,hashedPassword,salt);
+            userService.updatePassword(email,password);
 
             String link = "redirect:/web-application/testing/role/changePassword";
             logger.info("User "+email+" changed password");

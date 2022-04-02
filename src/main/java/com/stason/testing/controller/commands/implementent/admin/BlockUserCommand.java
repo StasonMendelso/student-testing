@@ -22,8 +22,7 @@ public class BlockUserCommand implements Command {
                 int userId = Integer.parseInt(request.getParameter("id"));
 
                 userService.block(userId);
-                request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
-                request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
+                setAttributes(request);
                 List<Integer> blockedList = (List<Integer>)request.getServletContext().getAttribute("blockedUsers");
                 Integer id = Integer.valueOf(request.getParameter("id"));
                 blockedList.add(id);
@@ -31,11 +30,14 @@ public class BlockUserCommand implements Command {
                 logger.info("Admin["+request.getSession().getAttribute("id")+"] blocked user["+userId+"]");
                 return Path.REDIRECT_ADMIN_USERS;
             }else{
-                request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
-                request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
+                setAttributes(request);
                 request.getSession().setAttribute("error", "Секретний код не співпадає");
                 return Path.REDIRECT_ADMIN_USERS;
             }
         }
+    }
+    private void setAttributes(HttpServletRequest request){
+        request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
+        request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
     }
 }

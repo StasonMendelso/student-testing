@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UnblockUserCommand implements Command {
     private final  static Logger logger = Logger.getLogger(EditUserCommand.class.getName());
-
+    final UserService userService = new UserService();
     @Override
     public String execute(HttpServletRequest request){
         if(request.getParameter("secretPassword")==null){
@@ -22,7 +22,7 @@ public class UnblockUserCommand implements Command {
             String secretPassword =request.getParameter("secretPassword");
             if(secretPassword.equals(Constants.PASSWORD_UNBLOCK_USER)) {
                 int userId = Integer.parseInt(request.getParameter("id"));
-                final UserService userService = new UserService();
+
                 userService.unblock(userId);
                 request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
                 request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
@@ -35,7 +35,7 @@ public class UnblockUserCommand implements Command {
             }else{
                 request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
                 request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
-                request.getSession().setAttribute("error", "Секретний код не співпадає");
+                request.getSession().setAttribute("error", "Секретний код не співпадає"); // TODO  локалізація
                 return Path.REDIRECT_ADMIN_USERS;
             }
         }

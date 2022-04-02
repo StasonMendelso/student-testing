@@ -23,7 +23,7 @@ public class CreateTestCommand implements Command{
             String name = EncodingConverter.convertFromISOtoUTF8(request.getParameter("testName"));
             String disciplineName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("disciplineName"));
             int difficulty = Integer.parseInt(request.getParameter("difficulty"));
-
+            //todo constructors?
             Test test = new Test();
             test.setName(name);
             test.setNameOfDiscipline(disciplineName);

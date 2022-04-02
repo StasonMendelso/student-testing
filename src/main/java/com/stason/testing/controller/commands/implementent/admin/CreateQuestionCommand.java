@@ -125,9 +125,6 @@ public class CreateQuestionCommand implements Command {
                     question.addAnswer(answer);
                 }
             }
-            System.out.println("=====================================");
-            System.out.println("=Добавляєм в сесію обновльонний тест=");
-            System.out.println("=====================================");
             Test test = (Test) request.getSession().getAttribute("test");
             test.addQuestion(question);
             request.getSession().setAttribute("test",test);

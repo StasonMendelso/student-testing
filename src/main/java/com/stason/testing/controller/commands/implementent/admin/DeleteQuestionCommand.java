@@ -16,7 +16,7 @@ public class DeleteQuestionCommand implements Command {
         if(countOfQuestions==1){
             //Спочатку добавте питання, а потім видаліть зайве!
             // set Error
-
+            //todo set error
         }else{
             int id = Integer.parseInt(request.getParameter("id"));
             test.deleteQuestion(id);
