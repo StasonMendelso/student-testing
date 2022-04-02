@@ -22,7 +22,7 @@ public class JDBCUserDao implements UserDao {
         static final String countAllUsers = "SELECT COUNT(1) FROM onlinetesting.users";
         static final String checkLogin = "SELECT * FROM onlinetesting.users WHERE login=?;";
         static final String findByLogin = "SELECT * FROM onlinetesting.users WHERE login=?;";
-        static final String create = "INSERT INTO onlinetesting.users (login,password,salt,name,surname,role,blocked)values(?,?,?,?,?,?,?);";
+        static final String create = "INSERT INTO onlinetesting.users (login,password,salt,name,surname,id_role,blocked)values(?,?,?,?,?,?,?);";
         static final String block = "UPDATE onlinetesting.users set blocked=1 WHERE id=?";
         static final String unblock = "UPDATE onlinetesting.users set blocked=0 WHERE id=?";
         static final String findById = "SELECT * FROM onlinetesting.users WHERE id=?";
@@ -83,7 +83,7 @@ public class JDBCUserDao implements UserDao {
                     user.setLogin(resultSet.getString("login"));
                     user.setName(resultSet.getString("name"));
                     user.setSurname(resultSet.getString("surname"));
-                    user.setRole(Role.valueOf(resultSet.getString("role")));
+                    user.setId_role(resultSet.getInt("id_role"));
                     user.setId(resultSet.getInt("id"));
                     user.setBlocked(resultSet.getBoolean("blocked"));
                     list.add(user);
@@ -126,7 +126,7 @@ public class JDBCUserDao implements UserDao {
                     user.setLogin(resultSet.getString("login"));
                     user.setName(resultSet.getString("name"));
                     user.setSurname(resultSet.getString("surname"));
-                    user.setRole(Role.valueOf(resultSet.getString("role")));
+                    user.setId_role(resultSet.getInt("id_role"));
                     user.setId(resultSet.getInt("id"));
                     user.setBlocked(resultSet.getBoolean("blocked"));
                     user.setPassword(resultSet.getString("password"));
@@ -153,9 +153,9 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setString(3, user.getSalt());
             preparedStatement.setString(4, user.getName());
             preparedStatement.setString(5, user.getSurname());
-            preparedStatement.setString(6, user.getRole());
+            preparedStatement.setInt(6, user.getId_role());
             preparedStatement.setString(7, user.getStringIntBlocked());
-            return preparedStatement.execute();
+            return preparedStatement.executeUpdate()!=0;
 
         } catch (SQLException e) {
             logger.error("Can't create new user"+user.getLogin()+", because", e);
@@ -200,7 +200,7 @@ public class JDBCUserDao implements UserDao {
                     user.setLogin(resultSet.getString("login"));
                     user.setName(resultSet.getString("name"));
                     user.setSurname(resultSet.getString("surname"));
-                    user.setRole(Role.valueOf(resultSet.getString("role")));
+                    user.setId_role(resultSet.getInt("id_role"));
                     user.setId(resultSet.getInt("id"));
                     user.setBlocked(resultSet.getBoolean("blocked"));
                     connection.close();

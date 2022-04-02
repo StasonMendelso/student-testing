@@ -1,9 +1,17 @@
 package com.stason.testing.model.entity;
 
 public enum Role {
-    GUEST,
-    STUDENT,
-    ADMIN;
+    GUEST(1),
+    STUDENT(2),
+    ADMIN(3);
+    Role(int id){
+        this.id=id;
+    }
+    private int id;
+
+    public int getId() {
+        return id;
+    }
 
     @Override
     public String toString() {

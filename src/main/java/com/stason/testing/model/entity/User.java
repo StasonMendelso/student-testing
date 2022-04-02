@@ -9,7 +9,16 @@ public class User {
     private String salt;
     private String name;
     private String surname;
-    private Role role;
+
+    public int getId_role() {
+        return id_role;
+    }
+
+    public void setId_role(int id_role) {
+        this.id_role = id_role;
+    }
+
+    private int id_role;
     private boolean blocked;
     private List<Integer> idPassedTestList;
     @Override
@@ -20,7 +29,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", role='" + role + '\'' +
+                ", role='" + id_role + '\'' +
                 ", blocked=" + blocked +
                 '}';
     }
@@ -66,11 +75,14 @@ public class User {
     }
 
     public String getRole() {
-        return role.name();
+        for(Role role:Role.values()){
+            if(role.ordinal()==this.id_role) return role.name();
+        }
+        return "GUEST";
     }
 
     public void setRole(Role role) {
-        this.role = role;
+        setId_role(role.ordinal());
     }
 
     public boolean isBlocked() {
