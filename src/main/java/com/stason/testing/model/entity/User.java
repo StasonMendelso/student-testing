@@ -76,13 +76,13 @@ public class User {
 
     public String getRole() {
         for(Role role:Role.values()){
-            if(role.ordinal()==this.id_role) return role.name();
+            if(role.getId()==this.id_role) return role.name();
         }
         return "GUEST";
     }
 
     public void setRole(Role role) {
-        setId_role(role.ordinal());
+        setId_role(role.getId());
     }
 
     public boolean isBlocked() {

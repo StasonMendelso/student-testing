@@ -40,8 +40,8 @@
             <div class="text-center mt-2 pb-3">
                 <h2 class="text-white-50">Registration</h2>
                 <h4 class="text-danger">You didn't registered successfully!</h4>
-                <span class="text-white-50">Now you can log in</span> <br>
-                <a class="btn-primary btn mt-2" href="/web-application/testing/login">Login</a>
+                <span class="text-white-50">Please, try again later</span> <br>
+                <a class="btn-primary btn mt-2" href="/web-application/testing/registration">Register</a>
             </div>
 
         </div>
