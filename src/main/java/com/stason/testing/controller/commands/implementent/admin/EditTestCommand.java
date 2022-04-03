@@ -4,6 +4,7 @@ import com.stason.testing.controller.services.AnswerService;
 import com.stason.testing.controller.services.QuestionService;
 import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.utils.Constants;
+import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
 
 import com.stason.testing.model.entity.Answer;
@@ -35,7 +36,7 @@ public class EditTestCommand implements com.stason.testing.controller.commands.C
                     testService.update(test);
                     return Path.REDIRECT_ADMIN_TESTS;
                 } else {
-                    request.setAttribute("error", "Секретний код не співпадає");
+                    request.setAttribute("error", ErrorForUser.SECRET_CODE_NOT_MATCH);
                     int currentQuestionNumber = getQuestionNumber(request);
                     if (request.getSession().getAttribute("editedTest") != null) {
                         request.setAttribute("currentQuestion", ((Test) request.getSession().getAttribute("editedTest")).getQuestion(currentQuestionNumber));

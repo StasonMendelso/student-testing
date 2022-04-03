@@ -13,13 +13,32 @@ public class ErrorTagLocalization extends TagSupport {
     private static final HashMap<ErrorForUser, String> keys = new HashMap<>();
 
     static {
-        //todo доробити мапу з локалізаціює
+
         keys.put(INVALID_LOGIN, "error.invalid.email");
         keys.put(INVALID_PASSWORD, "error.invalid.password");
         keys.put(INVALID_CAPTCHA, "error.invalid.captcha");
         keys.put(ACCOUNT_IS_BLOCKED, "error.account.blocked");
         keys.put(ACCOUNT_IS_LOGGED, "error.account.logged");
         keys.put(ACCOUNT_NOT_FOUND, "error.account.not_found");
+
+        keys.put(EMPTY_ANSWER_OPTION, "error.answer.empty_option");
+        keys.put(EMPTY_RIGHT_ANSWER_OPTION, "error.answer.empty_right_option");
+        keys.put(INVALID_ANSWER_NAME, "error.invalid.answer_name");
+        keys.put(INVALID_DISCIPLINE_NAME, "error.invalid.discipline_name");
+        keys.put(INVALID_QUESTION_NAME, "error.invalid.question_name");
+        keys.put(INVALID_TEST_DIFFICULTY, "error.invalid.test_difficulty");
+        keys.put(INVALID_TEST_DURATION, "error.invalid.test_duration");
+        keys.put(INVALID_TEST_NAME, "error.invalid.test_name");
+        keys.put(SUCH_TEST_NAME_ALREADY_EXISTS, "error.test.such_name_exists");
+        keys.put(SECRET_CODE_NOT_MATCH, "error.secret_code.not.match");
+        keys.put(INVALID_NAME, "error.invalid.name");
+        keys.put(INVALID_SURNAME, "error.invalid.surname");
+        keys.put(IDENTIFICATION_LINK_WAS_SENT, "identification_link.sent.yet");
+        keys.put(PASSWORD_NOT_MATCH, "error.passwords.not.match");
+        keys.put(ACCOUNT_IS_BUSY, "error.account.is.busy");
+        keys.put(INVALID_ACTIVATION_CODE, "invalid.activation.code");
+        keys.put(INCORRECT_ACTIVATION_CODE, "incorrect.activation.code");
+
     }
 
     private ErrorForUser error;
@@ -36,7 +55,12 @@ public class ErrorTagLocalization extends TagSupport {
 
     public int doStartTag() throws JspException {
         String key = keys.get(error);
-        String internationalizedError = resourceBundle.getString(key);
+        String internationalizedError;
+        try {
+            internationalizedError = resourceBundle.getString(key);
+        }catch (NullPointerException ex) {
+            return SKIP_BODY;
+        }
         JspWriter out = pageContext.getOut();
         try {
             out.print(internationalizedError);

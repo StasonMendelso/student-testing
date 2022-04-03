@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.TestService;
+import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
 import org.apache.log4j.Logger;
 
@@ -22,7 +23,7 @@ public class DeletePassedTestByUserCommand implements Command {
             testService.deletePassedTestById(testId);
             logger.info("Admin deleted passed test["+testId+"] in user ["+userId+"]");
         } else {
-            request.getSession().setAttribute("error", "Секретний код не співпадає");//todo локалізація
+            request.getSession().setAttribute("error", ErrorForUser.SECRET_CODE_NOT_MATCH);
         }
         request.getSession().setAttribute("thisPaginationParameter", request.getParameter("thisPaginationParameter"));
         request.getSession().setAttribute("thisPageNumber", request.getParameter("thisPageNumber"));

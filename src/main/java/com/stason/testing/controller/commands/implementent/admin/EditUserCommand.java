@@ -2,14 +2,18 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
+import com.stason.testing.controller.services.ValidatorService;
 import com.stason.testing.controller.utils.Constants;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
 
 import com.stason.testing.model.entity.User;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EditUserCommand implements Command {
     private final static Logger logger = Logger.getLogger(EditUserCommand.class.getName());
@@ -22,6 +26,24 @@ public class EditUserCommand implements Command {
         }
 
         if (request.getParameter("surname") != null && request.getParameter("name") != null) {
+            String surname = EncodingConverter.convertFromISOtoUTF8(request.getParameter("surname"));
+            String name = EncodingConverter.convertFromISOtoUTF8(request.getParameter("name"));
+            int userId = Integer.parseInt(request.getParameter("id"));
+            User user = userService.findById(userId);
+            //Validate
+            List<ErrorForUser> errors = new ArrayList<>();
+            if(!surname.isEmpty() && !ValidatorService.validateSurname(surname)){
+                errors.add(ErrorForUser.INVALID_SURNAME);
+            }
+            if(!name.isEmpty() &&!ValidatorService.validateUsername(name)){
+                errors.add(ErrorForUser.INVALID_NAME);
+            }
+            if(errors.size()!=0){
+                request.setAttribute("errorsList",errors);
+                request.setAttribute("user", user);
+                return Path.ADMIN_EDIT_USER_INFO;
+            }
+
             if (request.getRequestURI().contains("/admin/editUser") && (!request.getParameter("surname").isEmpty() || !request.getParameter("name").isEmpty())) {
                 boolean flag = false;
 
@@ -33,16 +55,13 @@ public class EditUserCommand implements Command {
                         flag = true;
                     }
                 }
-                int userId = Integer.parseInt(request.getParameter("id"));
-                User user = userService.findById(userId);
+
                 if (flag) {
 
                     if (!request.getParameter("surname").isEmpty()) {
-                        String surname = EncodingConverter.convertFromISOtoUTF8(request.getParameter("surname"));
                         user.setSurname(surname);
                     }
                     if (!request.getParameter("name").isEmpty()) {
-                        String name = EncodingConverter.convertFromISOtoUTF8(request.getParameter("name"));
                         user.setName(name);
                     }
 
@@ -51,7 +70,8 @@ public class EditUserCommand implements Command {
                     return Path.REDIRECT_ADMIN_USERS;
                 } else {
                     request.setAttribute("user", user);
-                    request.setAttribute("error", "Секретний код не співпадає");
+                    errors.add(ErrorForUser.SECRET_CODE_NOT_MATCH);
+                    request.setAttribute("errorsList",errors);
                     return Path.ADMIN_EDIT_USER_INFO;
                 }
             }

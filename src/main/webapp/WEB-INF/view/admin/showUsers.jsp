@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="errorlocalizator" uri="errorLocalizationURI" %>
 
 
 <html>
@@ -37,7 +37,7 @@
                     <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                         <div class="row align-items-center">
                             <span class="col-2" style="padding-left: 25px" >Users</span>
-                            <span class="col-8 text-center">${error}</span>
+                            <span class="col-8 text-center"><errorlocalizator:localize error="${error}" lang="${sessionScope.lang}"/></span>
                             <span class="col-1"></span>
                             <span class="col-1" style="padding-right: 25px">
                                  <form method="post" id="pagination_form" >

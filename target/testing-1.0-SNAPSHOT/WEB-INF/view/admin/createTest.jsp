@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix = "errorLocalization" uri="errorLocalizationURI"%>
 
 <html>
 <head>
@@ -52,6 +52,11 @@
                             <option value="2">Medium</option>
                             <option value="3">Hard</option>
                         </select>
+                    </div>
+                    <div class="mb-1 mt-3 text-center">
+                        <c:forEach items="${requestScope.errorsList}" var="er">
+                            <errorLocalization:localize error="${er}" lang="${sessionScope.lang}" /><br>
+                        </c:forEach>
                     </div>
                     <div class="mb-1 mt-3 text-center">
                         <input type="submit" name="submit" value="Створити тест" class="btn btn-primary">

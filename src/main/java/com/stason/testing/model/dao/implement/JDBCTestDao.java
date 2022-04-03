@@ -45,12 +45,12 @@ public class JDBCTestDao implements TestDao {
     @Override
     public void deletePassedTestForUser(int testId, int userId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE test_id=? AND user_id=?;");){
-            preparedStatement.setInt(1,testId);
-            preparedStatement.setInt(2,userId);
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE test_id=? AND user_id=?;");) {
+            preparedStatement.setInt(1, testId);
+            preparedStatement.setInt(2, userId);
             preparedStatement.executeUpdate();
-            }catch (SQLException ex){
-            logger.error("Can't delete passed test (test_id=" + testId + ") for user (user_id="+userId+"), because", ex);
+        } catch (SQLException ex) {
+            logger.error("Can't delete passed test (test_id=" + testId + ") for user (user_id=" + userId + "), because", ex);
             throw new DataBaseException("Can't delete passed test for user");
         }
     }
@@ -399,19 +399,85 @@ public class JDBCTestDao implements TestDao {
 
 
     @Override
-    public boolean create(Test test) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.create)) {
+    public boolean create(Test test){
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(Query.create);
+            connection.setAutoCommit(false);
             preparedStatement.setString(1, test.getName());
             preparedStatement.setString(2, test.getNameOfDiscipline());
             preparedStatement.setInt(3, test.getDifficulty());
             preparedStatement.setInt(4, test.getTimeMinutes());
             preparedStatement.setInt(5, test.getCountOfQuestions());
-            return preparedStatement.execute();
+            preparedStatement.execute();
+            int testId = -1;
+            preparedStatement = connection.prepareStatement(Query.findIdByName);
+            preparedStatement.setString(1,test.getName());
+            try(ResultSet resultSet = preparedStatement.executeQuery();){
+
+                if (resultSet.next()) {
+                    testId = resultSet.getInt("id");
+                }
+            }
+            //
+            int i =1;
+            for(Question question : test.getQuestions()){
+                preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)");
+                preparedStatement.setInt(1,testId);
+                preparedStatement.setInt(2,i);
+                preparedStatement.setString(3,question.getTextQuestion());
+                preparedStatement.execute();
+            //добавляємо до кожного вопроса відповіді в БД
+                preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=? AND questionNumber=?");
+                preparedStatement.setInt(1,testId);
+                preparedStatement.setInt(2,i++);
+                int questionId = -1;
+                try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if(resultSet.next()) questionId = resultSet.getInt("id");
+                }
+                preparedStatement =connection.prepareStatement("INSERT INTO onlinetesting.answers (answer, isRightAnswer, questions_id) VALUES (?,?,?)");
+                for(Answer answer: question.getAnswers()){
+                    answer.setQuestionId(questionId);
+                    preparedStatement.setString(1, answer.getAnswer());
+                    preparedStatement.setBoolean(2, answer.isRightAnswer());
+                    preparedStatement.setInt(3, answer.getQuestionId());
+                    preparedStatement.execute();
+                }
+            }
+
+            preparedStatement.close();
+            connection.commit();
+            connection.setAutoCommit(true);
+            connection.close();
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             logger.error("Failed to add new test in DB ", e);
             throw new DataBaseException("Failed to add new test in DB =" + test.getName());
+        }finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+        return false;
     }
 
     @Override
@@ -608,19 +674,19 @@ public class JDBCTestDao implements TestDao {
             try {
                 connection.rollback();
             } catch (SQLException ex) {
-                logger.error("Can't rollback in delete()",ex);
+                logger.error("Can't rollback in delete()", ex);
             }
             logger.error("Can't delete test id=" + id + ", because", e);
             throw new DataBaseException("Can't delete test id=" + id);
-        }finally {
+        } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
-                if(connection!=null){
+                if (connection != null) {
                     connection.close();
                 }
-            }catch (SQLException e) {
+            } catch (SQLException e) {
                 logger.error("Can't close connection or preparedStatement in delete()", e);
             }
         }

@@ -3,6 +3,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.Constants;
+import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
 import org.apache.log4j.Logger;
 
@@ -35,7 +36,7 @@ public class UnblockUserCommand implements Command {
             }else{
                 request.getSession().setAttribute("pageNumber",request.getParameter("pageNumber"));
                 request.getSession().setAttribute("paginationParameter",request.getParameter("paginationParameter"));
-                request.getSession().setAttribute("error", "Секретний код не співпадає"); // TODO  локалізація
+                request.getSession().setAttribute("error", ErrorForUser.SECRET_CODE_NOT_MATCH);
                 return Path.REDIRECT_ADMIN_USERS;
             }
         }

@@ -5,9 +5,14 @@ import java.util.regex.Pattern;
 
 public abstract class ValidatorService {
     private static final String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-    private static final String usernamePattern = "^[A-ZА-ЯІЁ][a-zа-яіїёъ']{1,29}$";
-    private static final String surnamePattern = "^[A-ZА-ЯІЁ][a-zа-яіїёъ']{1,29}$";
+    private static final String usernamePattern = "^[A-ZА-ЯІЁЄ][a-zа-яіїёъє']{1,29}$";
+    private static final String surnamePattern = "^[A-ZА-ЯІЁЄ][a-zа-яіїёъє']{1,29}$";
     private static final String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!\\-+=%*?&])[A-Za-z\\d@\\-$!%*?=+&]{8,20}$";
+    private static final String activationCodePattern = "^[0-9]{8}$";
+    private static final String testNamePattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,99}";
+    private static final String testDisciplineNamePattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,99}";
+    private static final String questionTextPattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,399}";
+    private static final String answerTextPattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,299}";
     public static boolean validateEmail(String email){
         Pattern pattern = Pattern.compile(emailPattern);
         Matcher matcher = pattern.matcher(email);
@@ -43,5 +48,40 @@ public abstract class ValidatorService {
     }
     public static boolean isPasswordRepeated(String password1,String password2){
         return password1.equals(password2);
+    }
+
+    public static boolean validateActivationCode(String activationCodeFromUser) {
+        Pattern pattern = Pattern.compile(activationCodePattern);
+        Matcher matcher = pattern.matcher(activationCodeFromUser);
+        return matcher.matches();
+    }
+    //For tests
+    public static boolean validateTestName(String testName){
+        Pattern pattern = Pattern.compile(testNamePattern); //replace regex
+        Matcher matcher = pattern.matcher(testName);
+        return matcher.matches();
+    }
+    public static boolean validateTestDisciplineName(String testName){
+        Pattern pattern = Pattern.compile(testDisciplineNamePattern);//replace regex
+        Matcher matcher = pattern.matcher(testName);
+        return matcher.matches();
+    }
+    public static boolean validateTestDifficulty(int difficulty){
+        if(difficulty>0 && difficulty<4) return true;
+        return false;
+    }
+    public static boolean validateTestTime(int minutes){
+        if(minutes>0) return true;
+        return false;
+    }
+    public static boolean validateQuestionText(String question){
+        Pattern pattern = Pattern.compile(questionTextPattern);//replace regex
+        Matcher matcher = pattern.matcher(question);
+        return matcher.matches();
+    }
+    public static boolean validateAnswerText(String answer){
+        Pattern pattern = Pattern.compile(answerTextPattern);//replace regex
+        Matcher matcher = pattern.matcher(answer);
+        return matcher.matches();
     }
 }

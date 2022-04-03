@@ -8,6 +8,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="errorlocalization" uri="errorLocalizationURI" %>
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
 
@@ -41,12 +42,12 @@
                 <h2 class="text-white-50">Registration</h2>
 
             </div>
-            <div class="text-white-50">
+            <div class="text-white-50 text-center">
                 <c:set var="test" value="${requestScope.errorsList}"/>
                 <c:if var="result" test="${!empty test}">
                     <div class="form" style="margin: 0 auto;margin-top: 10px; ">
                         <c:forEach items="${requestScope.errorsList}" var="er">
-                            <c:out value="${er}"/><br>
+                            <errorlocalization:localize error="${er}" lang="${sessionScope.lang}"/><br>
                         </c:forEach>
                     </div>
                 </c:if>

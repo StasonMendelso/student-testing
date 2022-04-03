@@ -31,7 +31,7 @@ public class LoginCommand implements Command {
             List<ErrorForUser> errors = new ArrayList<>();
 
             if (!ValidatorService.validateEmail(login)) {
-                errors.add(INVALID_LOGIN);//Todo сделать локализацию передавати key для fmt або сделать свой тег
+                errors.add(INVALID_LOGIN);
             }
             if (!ValidatorService.validatePassword(password)) {
                 errors.add(INVALID_PASSWORD);

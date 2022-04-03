@@ -4,7 +4,9 @@ import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.AnswerService;
 import com.stason.testing.controller.services.QuestionService;
 import com.stason.testing.controller.services.TestService;
+import com.stason.testing.controller.services.ValidatorService;
 import com.stason.testing.controller.utils.EncodingConverter;
+import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
 
 import com.stason.testing.model.entity.Answer;
@@ -13,75 +15,53 @@ import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.List;
 
 public class CreateQuestionCommand implements Command {
-    private  final TestService testService = new TestService();
-    private  final QuestionService questionService = new QuestionService();
-    private  final AnswerService answerService = new AnswerService();
+    private final TestService testService = new TestService();
+    private final QuestionService questionService = new QuestionService();
+    private final AnswerService answerService = new AnswerService();
+
     @Override
-    public String execute(HttpServletRequest request){
-        if (request.getParameter("SaveTest")!=null){
-            Enumeration<String> stringEnumeration = request.getParameterNames();
-            while(stringEnumeration.hasMoreElements()){
-                System.out.println(stringEnumeration.nextElement());
-            }
+    public String execute(HttpServletRequest request) {
+        if (request.getParameter("SaveTest") != null) {
 
             String url = saveQuestion(request);
             // не пройшов валідацію
-            if(!url.contains("redirect"))return url;
-            if(url.contains("createQuestion")){
-                // беремо з сесії тест і зберігаємо в БД
-
+            if (!url.contains("redirect")) return url;
+            if (url.contains("createQuestion")) {
 
                 Test test = (Test) request.getSession().getAttribute("test");
                 // добавляємо тест в БД
-                try{
-                    testService.create (test);
-                }catch (RuntimeException ex){
+                try {
+                    testService.create(test);
+                } catch (RuntimeException ex) {
                     deleteLastQuestion(request);
                     throw ex;
                 }
-                // добавляємо вопросы в БД
-                int testId = testService.findIdByName(test.getName());
-                int i =1;
-                for(Question question : test.getQuestions()){
-                    question.setTestId(testId);
-                    question.setQuestionNumber(i++);
-                    questionService.create(question);
-                    //добавляємо до кожного вопроса відповіді в БД
-                    int questionId = questionService.findId(question);
-
-                    for(Answer answer: question.getAnswers()){
-                        answer.setQuestionId(questionId);
-                        answerService.create(answer);
-                    }
-                }
-
                 //видаляємо з сесії
                 request.getSession().removeAttribute("test");
                 //переходимо на сторінку, що тест успішно зберігся
                 return Path.ADMIN_SUCCESSFUL_CREATING_TEST;
-            }else{
-                return  url;
+            } else {
+                return url;
             }
-
-
-
 
         }
 
-        if(request.getParameter("SaveQuestion")!=null){
-            if(request.getSession().getAttribute("test")!=null){
+        if (request.getParameter("SaveQuestion") != null) {
+            if (request.getSession().getAttribute("test") != null) {
                 return saveQuestion(request);
-            }else{
+            } else {
                 return Path.REDIRECT_ADMIN_CREATE_TEST;
             }
         }
-        if(request.getRequestURI().contains("/createQuestion")){
+        if (request.getRequestURI().contains("/createQuestion")) {
             return Path.ADMIN_CREATE_QUESTION;
-        }else {
+        } else {
             return Path.REDIRECT_ADMIN_CREATE_QUESTION;
         }
     }
@@ -93,52 +73,77 @@ public class CreateQuestionCommand implements Command {
     }
 
     private String saveQuestion(HttpServletRequest request) {
-        if(!isProperlyCheckboxChecked(request)){
+        List<ErrorForUser> errorForUserList = new ArrayList();
+        if (!isProperlyCheckboxChecked(request)) {
             //Вы выбрали ответ как пустой вариант ответа
+            errorForUserList.add(ErrorForUser.EMPTY_ANSWER_OPTION);
+            request.setAttribute("errorsList",errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
         }
-        if(request.getParameter("opt")==null){
+        if (request.getParameter("opt") == null) {
             //Вы не выбрали правильный ответ!
+            errorForUserList.add(ErrorForUser.EMPTY_RIGHT_ANSWER_OPTION);
+            request.setAttribute("errorsList",errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
-        }else{
-            System.out.println(Arrays.toString(request.getParameterValues("opt")));
-            String rightOptions = Arrays.toString(request.getParameterValues("opt"));
-            // проверка, валидация тд тп
+        }
 
-            String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
-            Question question = new Question();
-            question.setTextQuestion(questionName);
-
-            for(int i =1;i<=4;i++){
-                String paramName = "answer" + i;
-                if(request.getParameter(paramName).isEmpty()){
-                   continue;
-                }else{
-                    Answer answer = new Answer();
-                    String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
-                    answer.setAnswer(answerText);
-                    if(rightOptions.contains(String.valueOf(i))){
-                        answer.setRightAnswer(true);
-                    }else{
-                        answer.setRightAnswer(false);
-                    }
-                    question.addAnswer(answer);
+        String rightOptions = Arrays.toString(request.getParameterValues("opt"));
+        String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
+        if(!ValidatorService.validateQuestionText(questionName)){
+            errorForUserList.add(ErrorForUser.INVALID_QUESTION_NAME);
+        }
+        for (int i = 1; i <= 4; i++) {
+            String paramName = "answer" + i;
+            if (request.getParameter(paramName).isEmpty()) {
+                continue;
+            } else {
+                String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
+                if(!ValidatorService.validateAnswerText(answerText) && !errorForUserList.contains(ErrorForUser.INVALID_ANSWER_NAME)){
+                    errorForUserList.add(ErrorForUser.INVALID_ANSWER_NAME);
                 }
             }
-            Test test = (Test) request.getSession().getAttribute("test");
-            test.addQuestion(question);
-            request.getSession().setAttribute("test",test);
-            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
-
         }
+        if(errorForUserList.size()!=0){
+            request.setAttribute("errorsList", errorForUserList);
+            return Path.ADMIN_CREATE_QUESTION;
+        }
+        Question question = new Question();
+        question.setTextQuestion(questionName);
+
+        for (int i = 1; i <= 4; i++) {
+            String paramName = "answer" + i;
+            if (request.getParameter(paramName).isEmpty()) {
+                continue;
+            } else {
+                Answer answer = new Answer();
+                String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
+                answer.setAnswer(answerText);
+                if (rightOptions.contains(String.valueOf(i))) {
+                    answer.setRightAnswer(true);
+                } else {
+                    answer.setRightAnswer(false);
+                }
+                question.addAnswer(answer);
+            }
+        }
+        Test test = (Test) request.getSession().getAttribute("test");
+        test.addQuestion(question);
+        request.getSession().setAttribute("test", test);
+        return Path.REDIRECT_ADMIN_CREATE_QUESTION;
+
+
     }
 
-    private boolean isProperlyCheckboxChecked(HttpServletRequest request){
+    private boolean isProperlyCheckboxChecked(HttpServletRequest request) {
         String rightOptions = Arrays.toString(request.getParameterValues("opt"));
+        // Выбран 1 вариант как правильный, но нету варианта ответа
+        if (rightOptions.contains("1") && request.getParameter("answer1").isEmpty()) return false;
+        // Выбран 2 вариант как правильный, но нету варианта ответа
+        if (rightOptions.contains("2") && request.getParameter("answer2").isEmpty()) return false;
         // Выбран 3 вариант как правильный, но нету варианта ответа
-        if(rightOptions.contains("3") && request.getParameter("answer3").isEmpty()) return false;
+        if (rightOptions.contains("3") && request.getParameter("answer3").isEmpty()) return false;
         // Выбран 4 вариант как правильный, но нету варианта ответа
-        if(rightOptions.contains("4") && request.getParameter("answer4").isEmpty()) return false;
+        if (rightOptions.contains("4") && request.getParameter("answer4").isEmpty()) return false;
 
         return true;
     }

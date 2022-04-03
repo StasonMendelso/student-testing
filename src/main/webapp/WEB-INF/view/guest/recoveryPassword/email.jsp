@@ -1,6 +1,7 @@
 <%@ page import="com.stason.testing.controller.utils.Constants" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="errorlocalization" uri="errorLocalizationURI" %>
 
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
@@ -38,7 +39,7 @@
 
                 <c:if var="result" test="${!empty requestScope.error}">
                     <div class="form" style="margin: 0 auto;margin-top: 10px; ">
-                            <c:out value="${requestScope.error}"/><br>
+                        <errorlocalization:localize error="${requestScope.error}" lang="${sessionScope.lang}"/>
                     </div>
                 </c:if>
 

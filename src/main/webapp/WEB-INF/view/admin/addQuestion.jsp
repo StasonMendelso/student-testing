@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="errorLocalization" uri="errorLocalizationURI" %>
 
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
@@ -47,13 +48,13 @@
                         <div class="input-group-text">
                             <input class="form-check-input mt-0" type="checkbox" name="opt" value="1" aria-label="Checkbox for following text input" >
                         </div>
-                        <input type="text" class="form-control" required id="answer1" name="answer1" placeholder="Answer 1">
+                        <input type="text" class="form-control" id="answer1" name="answer1" placeholder="Answer 1">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-text">
                             <input class="form-check-input mt-0" type="checkbox" name="opt" value="2" aria-label="Checkbox for following text input">
                         </div>
-                        <input type="text" class="form-control" required id="answer2" name="answer2"  placeholder="Answer 2">
+                        <input type="text" class="form-control" id="answer2" name="answer2"  placeholder="Answer 2">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-text">
@@ -66,6 +67,11 @@
                             <input class="form-check-input mt-0" type="checkbox" name="opt" value="4" aria-label="Checkbox for following text input">
                         </div>
                         <input type="text" class="form-control" id="answer4" name="answer4"  placeholder="Answer 4">
+                    </div>
+                    <div class="mb-1 mt-3 text-center">
+                        <c:forEach items="${requestScope.errorsList}" var="er">
+                            <errorLocalization:localize error="${er}" lang="${sessionScope.lang}" /><br>
+                        </c:forEach>
                     </div>
                     <div class="text-center ">
                         <input class="btn btn-primary" type="submit" name="SaveQuestion" value="Сохранити питання">

@@ -8,6 +8,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="converter" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="errorLocalization" uri="errorLocalizationURI" %>
 
 
 <html>
@@ -101,9 +102,18 @@
                                 <input type="number" id="duration" name="duration" class="form-control" placeholder="Duration(in minutes)" inputmode="numerical">
                             </td>
                         </tr>
+                        <c:if test="${not empty requestScope.errorsList}">
+                            <tr class="text-center">
+                                <td colspan="2">
+                                    <c:forEach items="${requestScope.errorsList}" var="er">
+                                        <errorLocalization:localize error="${er}" lang="${sessionScope.lang}" /><br>
+                                    </c:forEach>
+                                </td>
+                            </tr>
+                        </c:if>
 
                         <tr class="text-center">
-                            <td colspan="2"><input type="submit" class="btn btn-primary" style="width: 25%" value="Save"></td>
+                            <td colspan="2"><input type="submit" class="btn btn-primary" style="width: 25%" value="Save"> </td>
                         </tr>
                         </tbody>
                         <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0px 0px 30px 30px;"></caption>

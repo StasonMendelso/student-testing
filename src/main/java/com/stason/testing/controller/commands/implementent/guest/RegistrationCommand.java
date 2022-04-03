@@ -26,7 +26,7 @@ public class RegistrationCommand implements Command {
         //2.CheckUser
         //3.Register
 
-        List<String> errors = new ArrayList<>();
+        List<ErrorForUser> errors = new ArrayList<>();
         //Convert to UTF-8
         String email = EncodingConverter.convertFromISOtoUTF8(request.getParameter("login"));
         String username = EncodingConverter.convertFromISOtoUTF8(request.getParameter("name"));
@@ -36,19 +36,19 @@ public class RegistrationCommand implements Command {
 
         //Validate
         if(!ValidatorService.validateEmail(email)){
-            errors.add("Введено невірний формат почти");//Todo локалізацію
+            errors.add(ErrorForUser.INVALID_LOGIN);
         }
         if(!ValidatorService.validateUsername(username)){
-            errors.add("Ім'я повинно починатися з великої літери та має бути тільки з букв");//Todo локалізацію
+            errors.add(ErrorForUser.INVALID_NAME);
         }
         if(!ValidatorService.validateSurname(surname)){
-            errors.add("The surname must be started with Uppercase and contains only alphabet symbols");//Todo локалізацію
+            errors.add(ErrorForUser.INVALID_SURNAME);
         }
-        if(!ValidatorService.validatePassword(password)){
-            errors.add("Пароль повинен містити одну цифру, одну верхню та нижню букви, один спец символ, та мати длинну від 8 до 20 символів");//Todo локалізацію
+        if(!ValidatorService.validatePassword(password) && !ValidatorService.validatePassword(repeatedPassword)){
+            errors.add(ErrorForUser.INVALID_PASSWORD);
         }
         if(!ValidatorService.isPasswordRepeated(password,repeatedPassword)){
-            errors.add("Паролі не співпадають");//Todo локалізацію
+            errors.add(ErrorForUser.PASSWORD_NOT_MATCH);
         }
             //CAPTCHA
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
@@ -57,7 +57,7 @@ public class RegistrationCommand implements Command {
             boolean valid = false;
             valid = VerifyRecaptcha.verify(gRecaptchaResponse);
             if (!valid) {
-                errors.add("Captcha invalid!");//Todo локалізацію
+                errors.add(ErrorForUser.INVALID_CAPTCHA);
             }
         if(errors.size()!=0){
             request.setAttribute("errorsList", errors);
@@ -67,7 +67,7 @@ public class RegistrationCommand implements Command {
         //CheckUser
             UserService userService = new UserService();
             if(userService.checkLogin(email)){
-                errors.add("Уже есть пользователь с данным логином. Введите другую почту!");//Todo локалізацію
+                errors.add(ErrorForUser.ACCOUNT_IS_BUSY);
                 request.setAttribute("errorsList", errors);
                 return Path.GUEST_REGISTER;
             }

@@ -1,10 +1,7 @@
 package com.stason.testing.controller.commands.implementent;
 
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.services.EmailSenderService;
-import com.stason.testing.controller.services.EncryptionLink;
-import com.stason.testing.controller.services.EncryptionPassword;
-import com.stason.testing.controller.services.UserService;
+import com.stason.testing.controller.services.*;
 import com.stason.testing.controller.utils.*;
 import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
@@ -33,7 +30,7 @@ public class ChangePasswordCommand implements Command {
                 request.getSession().setAttribute("identification", hashedLink);
                 return Path.CHANGE_PASSWORD;
             }else{
-                request.setAttribute("error", "The identification link was sent to your e-mail.");//Todo локалізацію
+                request.setAttribute("error", ErrorForUser.IDENTIFICATION_LINK_WAS_SENT);
                 return Path.CHANGE_PASSWORD;
             }
         }
@@ -41,9 +38,13 @@ public class ChangePasswordCommand implements Command {
             String password = request.getParameter("password");
             String repeatedPassword = request.getParameter("repeatedPassword");
             //Validate
+            if(!ValidatorService.validatePassword(password) && !ValidatorService.validatePassword(repeatedPassword)){
+                request.setAttribute("error",ErrorForUser.INVALID_PASSWORD);
+                return Path.RECOVERY_CREATE_NEW_PASSWORD;
+            }
             //Check password
-            if(!password.equals(repeatedPassword)){
-                request.setAttribute("error","Паролі не співпадають"); //Todo локалізацію
+            if(!ValidatorService.isPasswordRepeated(password,repeatedPassword)){
+                request.setAttribute("error",ErrorForUser.PASSWORD_NOT_MATCH);
                 return Path.RECOVERY_CREATE_NEW_PASSWORD;
             }
             String email = (String) request.getSession().getAttribute("login");

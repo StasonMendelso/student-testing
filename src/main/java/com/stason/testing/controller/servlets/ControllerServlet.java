@@ -9,7 +9,7 @@ import com.stason.testing.controller.commands.implementent.admin.*;
 import com.stason.testing.controller.commands.implementent.student.*;
 import com.stason.testing.controller.commands.implementent.guest.*;
 import com.stason.testing.controller.commands.implementent.student.ShowTestsCommand;
-import com.stason.testing.controller.utils.Path;
+import com.stason.testing.controller.exceptions.ServiceException;
 import org.apache.log4j.Logger;
 
 
@@ -92,6 +92,10 @@ private final  static Logger logger = Logger.getLogger(ControllerServlet.class.g
                 }
             }catch (RuntimeException ex){
                 System.out.println("============EXCEPTIONS WAS CATCH==========");
+                boolean flag = ex instanceof ServiceException;
+                if(!flag){
+                    logger.error("Error was catch",ex);
+                }
                 throw ex;
             }
         }

@@ -15,6 +15,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="converter" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="errorlocalization" uri="errorLocalizationURI" %>
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
@@ -160,7 +161,7 @@
                             <td class="text-center">
 
                                     <button type="submit" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#saveModal">Save Edited test</button>
-                                <c:if test="${not empty error}"><br><span class="mt-1">${error}</span>  </c:if>
+                                <c:if test="${not empty error}"><br><span class="mt-1"><errorlocalization:localize error="${error}" lang="${seesionScope.lang}"/></span>  </c:if>
                             </td>
                         </tr>
 

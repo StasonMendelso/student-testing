@@ -1,11 +1,9 @@
 package com.stason.testing.controller.commands.implementent.guest;
 
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.services.UserService;
-import com.stason.testing.controller.services.EmailSenderService;
-import com.stason.testing.controller.services.EncryptionPassword;
+import com.stason.testing.controller.services.*;
+import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.controller.services.VerifyRecaptcha;
 import com.stason.testing.model.entity.User;
 
 
@@ -28,19 +26,20 @@ public class RecoveryPasswordCommand implements Command {
             boolean valid = false;
             valid = VerifyRecaptcha.verify(gRecaptchaResponse);
             if (!valid) {
-                request.setAttribute("error","ReCaptcha is invalid");
+                request.setAttribute("error", ErrorForUser.INVALID_CAPTCHA);
                 return Path.RECOVERY_EMAIL;
             }
-
-            //Validate email
-            //Check email
-            //
             String email = request.getParameter("email");
+            //Validate email
+            if(!ValidatorService.validateEmail(email)){
+                request.setAttribute("error",ErrorForUser.INVALID_LOGIN);
+                return Path.RECOVERY_EMAIL;
+            }
+            //Check email
+
             UserService userService = new UserService();
-            User user = new User();
-            user.setLogin(email);
             if(!userService.checkLogin(email)){
-                request.setAttribute("error","Не знайдено такого користувача");
+                request.setAttribute("error",ErrorForUser.ACCOUNT_NOT_FOUND);
                 return Path.RECOVERY_EMAIL;
             }
             StringBuffer activationCode = new StringBuffer();
@@ -61,9 +60,13 @@ public class RecoveryPasswordCommand implements Command {
             String activationCode= String.valueOf(request.getSession().getAttribute("activationCode"));
             String activationCodeFromUser = request.getParameter("activationCode");
             //Validate
+            if(!ValidatorService.validateActivationCode(activationCodeFromUser)){
+                request.setAttribute("error",ErrorForUser.INVALID_ACTIVATION_CODE);
+                return Path.RECOVERY_ACTIVATION_CODE;
+            }
             //Check activation code
             if(!activationCode.equals(activationCodeFromUser)){
-                request.setAttribute("error","Невірний код активації");
+                request.setAttribute("error",ErrorForUser.INCORRECT_ACTIVATION_CODE);
                 return Path.RECOVERY_ACTIVATION_CODE;
             }
             request.getSession().removeAttribute("activationCode");
@@ -74,9 +77,13 @@ public class RecoveryPasswordCommand implements Command {
             String password = request.getParameter("password");
             String repeatedPassword = request.getParameter("repeatedPassword");
             //Validate
+            if(!ValidatorService.validatePassword(password) && !ValidatorService.validatePassword(repeatedPassword)){
+                request.setAttribute("error",ErrorForUser.INVALID_PASSWORD);
+                return Path.RECOVERY_CREATE_NEW_PASSWORD;
+            }
             //Check password
-            if(!password.equals(repeatedPassword)){
-                request.setAttribute("error","Паролі не співпадають");
+            if(!ValidatorService.isPasswordRepeated(password,repeatedPassword)){
+                request.setAttribute("error",ErrorForUser.PASSWORD_NOT_MATCH);
                 return Path.RECOVERY_CREATE_NEW_PASSWORD;
             }
             UserService userService = new UserService();

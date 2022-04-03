@@ -37,7 +37,7 @@
                 <h2 class="text-white-50">Login</h2>
 
             </div>
-            <div  class="text-white-50">
+            <div  class="text-white-50 text-center">
                 <c:set var="test" value="${requestScope.errorsList}"/>
                 <c:if var="result" test="${!empty test}">
                     <div class="form" style="margin: 0 auto;margin-top: 10px; ">

@@ -1,6 +1,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="errorlocalization" uri="errorLocalizationURI" %>
 
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
@@ -37,7 +38,7 @@
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2 pb-3">
                 <c:if test="${not empty requestScope.error}">
-                    <h4 class="text-info">${requestScope.error}</h4>
+                    <h4 class="text-info"><errorlocalization:localize error="${requestScope.error}" lang="${sessionScope.lang}"/></h4>
                 </c:if>
                 <h4 class="text-success text-center">The activation link to change password was sent to your e-mail</h4>
                 <span class="text-white-50 text-center">Please, check e-mail</span> <br>

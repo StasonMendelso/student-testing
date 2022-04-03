@@ -79,10 +79,17 @@
 
                             </tr>
                             <tr class="text-center">
+                                <td>
+                                    <c:forEach items="${requestScope.errorsList}" var="er">
+                                        <errorlocalizator:localize error="${er}" lang="${sessionScope.lang}"/> <br>
+                                    </c:forEach>
+                                </td>
+                            </tr>
+                            <tr class="text-center">
                                 <td colspan="2"><input type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" style="width: 25%" value="Save"></td>
                             </tr>
                             </tbody>
-                            <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0 0 30px 30px;">${requestScope.error}</caption>
+                            <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0 0 30px 30px;"></caption>
                             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">

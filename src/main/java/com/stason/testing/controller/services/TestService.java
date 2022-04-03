@@ -28,8 +28,8 @@ public class TestService {
         return testDao.findAllDisciplines();
     }
 
-    public boolean create(Test test) {
-        return testDao.create(test);
+    public void create(Test test) {
+        testDao.create(test);
     }
 
     public int findIdByName(String name) {
@@ -71,5 +71,9 @@ public class TestService {
         }
         test.setQuestions(questionList);
         return test;
+    }
+
+    public boolean checkTestName(String testName) {
+        return testDao.findIdByName(testName)!=0;
     }
 }
