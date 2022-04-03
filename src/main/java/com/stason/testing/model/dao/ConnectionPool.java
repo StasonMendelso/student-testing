@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConnectionPool {
+public class ConnectionPool{
 
     private static ConnectionPool instance;
 
@@ -25,20 +25,21 @@ public class ConnectionPool {
         Context initContext = null;
         try {
             initContext = new InitialContext();
-
-            dataSource = (DataSource)initContext.lookup("java:comp/env/jdbc/MyPool");
+            dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/MyPool");
         } catch (NamingException e) {
             e.printStackTrace();
         }
-
     }
     public Connection getConnection(){
         Connection con = null;
         try {
+
             con = dataSource.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return con;
     }
+
+
 }

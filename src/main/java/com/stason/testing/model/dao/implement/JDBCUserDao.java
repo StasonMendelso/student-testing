@@ -3,7 +3,6 @@ package com.stason.testing.model.dao.implement;
 import com.stason.testing.controller.exceptions.DataBaseException;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.UserDao;
-import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
 import org.apache.log4j.Logger;
 

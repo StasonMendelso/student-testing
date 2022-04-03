@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public abstract class ValidatorService {
     private static final String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-    private static final String usernamePattern = "^[A-ZА-ЯЁ][a-zа-яіїёъ']{1,29}$";
-    private static final String surnamePattern = "^[A-ZА-ЯЁ][a-zа-яіїёъ']{1,29}$";
+    private static final String usernamePattern = "^[A-ZА-ЯІЁ][a-zа-яіїёъ']{1,29}$";
+    private static final String surnamePattern = "^[A-ZА-ЯІЁ][a-zа-яіїёъ']{1,29}$";
     private static final String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!\\-+=%*?&])[A-Za-z\\d@\\-$!%*?=+&]{8,20}$";
     public static boolean validateEmail(String email){
         Pattern pattern = Pattern.compile(emailPattern);
