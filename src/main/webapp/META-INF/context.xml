@@ -8,5 +8,7 @@
             username="root" password="root"
             driverClassName="com.mysql.cj.jdbc.Driver"
             url="jdbc:mysql://localhost:3306/onlinetesting"
+            defaultTransactionIsolation="READ_COMMITTED"
+            defaultAutoCommit="true"
     />
 </Context>

@@ -1,9 +1,6 @@
 package com.stason.testing.model.entity;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Question implements Cloneable{
     private int id;
@@ -14,6 +11,15 @@ public class Question implements Cloneable{
     private List<Boolean> userOptions = new LinkedList<>();
     public void addAnswer(Answer answer){
         this.answers.add(answer);
+    }
+
+    public Question() {
+    }
+
+    public Question(int testId, int questionNumber, String textQuestion) {
+        this.testId = testId;
+        this.questionNumber = questionNumber;
+        this.textQuestion = textQuestion;
     }
 
     @Override
@@ -102,5 +108,18 @@ public class Question implements Cloneable{
         }
         question.setAnswers(list);
         return question;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Question question = (Question) o;
+        return id == question.id && testId == question.testId && questionNumber == question.questionNumber && textQuestion.equals(question.textQuestion) && Objects.equals(answers, question.answers) && Objects.equals(userOptions, question.userOptions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, testId, questionNumber, textQuestion, answers, userOptions);
     }
 }

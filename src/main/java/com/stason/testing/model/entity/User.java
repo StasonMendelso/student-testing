@@ -1,6 +1,7 @@
 package com.stason.testing.model.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 public class User {
     private int id;
@@ -16,6 +17,17 @@ public class User {
 
     public void setId_role(int id_role) {
         this.id_role = id_role;
+    }
+
+    public User() {
+    }
+
+    public User(String login, String password, String salt, String name, String surname) {
+        this.login = login;
+        this.password = password;
+        this.salt = salt;
+        this.name = name;
+        this.surname = surname;
     }
 
     private int id_role;
@@ -110,5 +122,18 @@ public class User {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && id_role == user.id_role && blocked == user.blocked && login.equals(user.login) && Objects.equals(password, user.password) && Objects.equals(salt, user.salt) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(idPassedTestList, user.idPassedTestList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password, salt, name, surname, id_role, blocked, idPassedTestList);
     }
 }

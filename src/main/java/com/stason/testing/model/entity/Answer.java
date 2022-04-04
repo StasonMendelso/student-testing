@@ -1,10 +1,21 @@
 package com.stason.testing.model.entity;
 
+import java.util.Objects;
+
 public class Answer{
     private int id;
     private String answer;
     private boolean isRightAnswer;
     private int questionId;
+
+    public Answer() {
+    }
+
+    public Answer(String answer, boolean isRightAnswer, int questionId) {
+        this.answer = answer;
+        this.isRightAnswer = isRightAnswer;
+        this.questionId = questionId;
+    }
 
     @Override
     public String toString() {
@@ -48,5 +59,16 @@ public class Answer{
         this.questionId = questionId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Answer answer1 = (Answer) o;
+        return id == answer1.id && isRightAnswer == answer1.isRightAnswer && questionId == answer1.questionId && answer.equals(answer1.answer);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, answer, isRightAnswer, questionId);
+    }
 }

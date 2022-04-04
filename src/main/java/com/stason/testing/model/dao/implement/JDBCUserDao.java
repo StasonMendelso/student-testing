@@ -214,10 +214,6 @@ public class JDBCUserDao implements UserDao {
         return null;
     }
 
-    @Override
-    public List<User> findAll() {
-        throw new DataBaseException("Can't find all");
-    }
 
     @Override
     public boolean update(User user) {

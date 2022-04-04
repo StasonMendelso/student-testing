@@ -5,6 +5,7 @@ package com.stason.testing.model.entity;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class Test {
     private int id;
@@ -145,6 +146,7 @@ public class Test {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+        this.countOfQuestions = questions.size();
     }
     public Question getQuestionById(int id){
         for(Question question:questions){
@@ -160,15 +162,29 @@ public class Test {
             if(question.getId()==id){
                 questions.remove(i);
                 questions.add(i,newQuestion);
-                break;
+                return;
             }
             i++;
         }
+        throw new RuntimeException("There is not question with id="+id);
 
     }
 
     public void deleteLastQuestion() {
         questions.remove(questions.size()-1);
         countOfQuestions--;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Test test = (Test) o;
+        return id == test.id && difficulty == test.difficulty && timeMinutes == test.timeMinutes && timeSeconds == test.timeSeconds && countOfQuestions == test.countOfQuestions && Double.compare(test.mark, mark) == 0 && name.equals(test.name) && Objects.equals(nameOfDiscipline, test.nameOfDiscipline) && Objects.equals(questions, test.questions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, nameOfDiscipline, difficulty, timeMinutes, timeSeconds, countOfQuestions, mark, questions);
     }
 }

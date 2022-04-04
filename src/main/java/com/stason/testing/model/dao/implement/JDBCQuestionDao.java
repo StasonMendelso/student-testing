@@ -105,10 +105,6 @@ public class JDBCQuestionDao implements QuestionDao {
         return null;
     }
 
-    @Override
-    public List<Question> findAll() {
-        throw new DataBaseException("Can't find all questions");
-    }
 
     @Override
     public boolean update(Question entity) {

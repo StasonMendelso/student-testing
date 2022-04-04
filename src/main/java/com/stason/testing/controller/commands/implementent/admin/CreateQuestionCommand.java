@@ -46,9 +46,9 @@ public class CreateQuestionCommand implements Command {
                 request.getSession().removeAttribute("test");
                 //переходимо на сторінку, що тест успішно зберігся
                 return Path.ADMIN_SUCCESSFUL_CREATING_TEST;
-            } else {
-                return url;
             }
+            return url;
+
 
         }
 
@@ -77,19 +77,19 @@ public class CreateQuestionCommand implements Command {
         if (!isProperlyCheckboxChecked(request)) {
             //Вы выбрали ответ как пустой вариант ответа
             errorForUserList.add(ErrorForUser.EMPTY_ANSWER_OPTION);
-            request.setAttribute("errorsList",errorForUserList);
+            request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
         }
         if (request.getParameter("opt") == null) {
             //Вы не выбрали правильный ответ!
             errorForUserList.add(ErrorForUser.EMPTY_RIGHT_ANSWER_OPTION);
-            request.setAttribute("errorsList",errorForUserList);
+            request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
         }
 
         String rightOptions = Arrays.toString(request.getParameterValues("opt"));
         String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
-        if(!ValidatorService.validateQuestionText(questionName)){
+        if (!ValidatorService.validateQuestionText(questionName)) {
             errorForUserList.add(ErrorForUser.INVALID_QUESTION_NAME);
         }
         for (int i = 1; i <= 4; i++) {
@@ -98,12 +98,12 @@ public class CreateQuestionCommand implements Command {
                 continue;
             } else {
                 String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
-                if(!ValidatorService.validateAnswerText(answerText) && !errorForUserList.contains(ErrorForUser.INVALID_ANSWER_NAME)){
+                if (!ValidatorService.validateAnswerText(answerText) && !errorForUserList.contains(ErrorForUser.INVALID_ANSWER_NAME)) {
                     errorForUserList.add(ErrorForUser.INVALID_ANSWER_NAME);
                 }
             }
         }
-        if(errorForUserList.size()!=0){
+        if (errorForUserList.size() != 0) {
             request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
         }

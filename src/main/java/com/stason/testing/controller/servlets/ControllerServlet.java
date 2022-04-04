@@ -61,14 +61,10 @@ private final  static Logger logger = Logger.getLogger(ControllerServlet.class.g
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         process(request,response);
-
-
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         process(req,resp);
     }
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,11 +94,9 @@ private final  static Logger logger = Logger.getLogger(ControllerServlet.class.g
                 }
                 throw ex;
             }
+            //todo 2 catches
         }
 
         }
 
-
-    public void destroy() {
-    }
 }

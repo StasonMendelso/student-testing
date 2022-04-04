@@ -63,20 +63,6 @@ public class JDBCAnswerDao implements AnswerDao {
         return answerList;
     }
 
-    @Override
-    public Answer findById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Answer> findAll() {
-        return null;
-    }
-
-    @Override
-    public boolean update(Answer entity) {
-        return false;
-    }
 
     @Override
     public boolean delete(int id) {
@@ -88,6 +74,15 @@ public class JDBCAnswerDao implements AnswerDao {
             logger.error("Can't delete Answer for question=" + id + ", because", e);
             throw new DataBaseException("Can't delete Answer");
         }
+    }
+    @Override
+    public Answer findById(int id) {
+        throw new DataBaseException("Can't find Answer by id");
+    }
+
+    @Override
+    public boolean update(Answer entity) {
+        throw new DataBaseException("Can't update answer");
     }
 
     @Override

@@ -509,25 +509,6 @@ public class JDBCTestDao implements TestDao {
         return test;
     }
 
-    @Override
-    public List<Test> findAll() {
-        List<Test> list = new LinkedList<>();
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(Query.findAll)) {
-
-
-            while (resultSet.next()) {
-                Test test = builtTest(resultSet);
-
-                list.add(test);
-            }
-        } catch (SQLException e) {
-            logger.error("Can't find all tests", e);
-            throw new DataBaseException("Can't find all tests");
-        }
-        return list;
-    }
 
     @Override
     public boolean update(Test test) {
@@ -595,42 +576,29 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setInt(1, test.getId());
             preparedStatement.executeUpdate();
             connection.commit();
-            connection.setAutoCommit(true);
 
         } catch (SQLException e) {
             try {
                 connection.rollback();
-                connection.setAutoCommit(true);
+
             } catch (SQLException ex) {
                 logger.error("Can't rollback in update()");
-                throw new DataBaseException("Can't rollback in update", ex);
             }
             logger.error("Error update()");
             throw new DataBaseException("Error update()", e);
         } finally {
             if (connection != null) {
                 try {
-                    connection.setAutoCommit(true);
+
                     connection.close();
                 } catch (SQLException e) {
                     logger.error("Error close connection");
-                    throw new DataBaseException("Error with BD", e);
                 }
             }
         }
         return false;
     }
 
-    public void deletePassedTest(int id) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTest)) {
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            logger.error("Can't delete passed test id=" + id + ", because", e);
-            throw new DataBaseException("Can't delete passed test id=" + id);
-        }
-    }
 
     @Override
     public boolean delete(int id) {
