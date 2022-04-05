@@ -7,7 +7,9 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="errorlocalizator" uri="errorLocalizationURI" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="messages"/>
 
 
 <html>
@@ -35,7 +37,7 @@
             <div class="w-50 bg-question  mb-5 bg-dark bg-opacity-50" style="border-radius: 30px 30px 30px 30px;box-shadow: 0 0 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
                 <div class="text-left mt-2 pb-3 table-responsive">
                     <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
-                        <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0 0;"><span style="padding-left: 25px">User information</span></caption>
+                        <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0 0;"><span style="padding-left: 25px"><fmt:message key="edit_user_info.info"/></span></caption>
                         <tbody class="bg-light">
                         <tr>
                             <td>Id</td>
@@ -46,11 +48,11 @@
                             <td>${user.login}</td>
                         </tr>
                         <tr>
-                            <td>Surname</td>
+                            <td><fmt:message key="edit_user_info.surname"/></td>
                             <td>${user.surname}</td>
                         </tr>
                         <tr>
-                            <td>Name</td>
+                            <td><fmt:message key="edit_user_info.name"/></td>
                             <td>${user.name}</td>
                         </tr>
                         </tbody>
@@ -63,17 +65,17 @@
                     <form method="post">
                         <input hidden name="id" value="${user.id}">
                         <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
-                            <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0 0;"><span style="padding-left: 25px">Edit user information</span></caption>
+                            <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0 0;"><span style="padding-left: 25px"><fmt:message key="edit_user_info.edit.information"/></span></caption>
                             <tbody class="bg-light">
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control"  id="surname" name="surname" placeholder="Surname">
+                                    <input type="text" class="form-control"  id="surname" name="surname" placeholder="<fmt:message key="edit_user_info.surname"/>">
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="<fmt:message key="edit_user_info.name"/>">
                                 </td>
 
 
@@ -86,7 +88,7 @@
                                 </td>
                             </tr>
                             <tr class="text-center">
-                                <td colspan="2"><input type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" style="width: 25%" value="Save"></td>
+                                <td colspan="2"><input type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal" style="width: 25%" value="<fmt:message key="button.save"/>"></td>
                             </tr>
                             </tbody>
                             <caption class="bg-light p-2 fs-5" style="caption-side: bottom;border-radius: 0 0 30px 30px;"></caption>
@@ -94,18 +96,18 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Save edited information</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="modal.save.edited.information"/></h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <form method="post" action="/web-application/testing/admin/editUser">
                                             <div class="modal-body">
-                                                <label for="secretPassword" class="form-label">Уведіть ключ безпеки:</label>
+                                                <label for="secretPassword" class="form-label"><fmt:message key="modal.enter.secret.key"/>:</label>
                                                 <input required id="secretPassword" type="password" name="secretPassword" class="form-control">
                                             </div>
                                             <div class="modal-footer">
 
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button  class="btn btn-outline-success" >Save</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><fmt:message key="modal.close"/></button>
+                                                <button  class="btn btn-outline-success"><fmt:message key="modal.save"/></button>
                                             </div>
                                         </form>
                                     </div>

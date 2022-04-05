@@ -5,10 +5,11 @@
   Time: 19:42
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="errorLocalization" uri="errorLocalizationURI" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="messages"/>
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
@@ -33,40 +34,40 @@
 
         <div class="w-50 bg-question  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-left mt-2 pb-3">
-                <h1 class="text-center t-5">Add question</h1>
+                <h1 class="text-center t-5"><fmt:message key="add_question.add.question"/></h1>
 
 
                 <form method="post" >
                     <div class="input-group mb-1">
-                        <span class="input-group-text fs-5" id="basic-addon1">Question ${sessionScope.editedTest.countOfQuestions+1}</span>
-                        <textarea type="text" class="form-control" required id="questionName" name="questionName" placeholder="What..."></textarea>
+                        <span class="input-group-text fs-5" id="basic-addon1"><fmt:message key="add_question.question"/> ${sessionScope.editedTest.countOfQuestions+1}</span>
+                        <textarea type="text" class="form-control" required id="questionName" name="questionName" placeholder="<fmt:message key="create_question.text"/>"></textarea>
                     </div>
 
-                    <h4>Answers</h4>
+                    <h4><fmt:message key="create_question.answers"/></h4>
 
                     <div class="input-group mb-3">
                         <div class="input-group-text">
                             <input class="form-check-input mt-0" type="checkbox" name="opt" value="1" aria-label="Checkbox for following text input" >
                         </div>
-                        <input type="text" class="form-control" id="answer1" name="answer1" placeholder="Answer 1">
+                        <input type="text" class="form-control" id="answer1" name="answer1" placeholder="<fmt:message key="create_question.answer"/> 1">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-text">
                             <input class="form-check-input mt-0" type="checkbox" name="opt" value="2" aria-label="Checkbox for following text input">
                         </div>
-                        <input type="text" class="form-control" id="answer2" name="answer2"  placeholder="Answer 2">
+                        <input type="text" class="form-control" id="answer2" name="answer2"  placeholder="<fmt:message key="create_question.answer"/> 2">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-text">
                             <input class="form-check-input mt-0" type="checkbox" name="opt" value="3" aria-label="Checkbox for following text input">
                         </div>
-                        <input type="text" class="form-control"  id="answer3" name="answer3" placeholder="Answer 3">
+                        <input type="text" class="form-control"  id="answer3" name="answer3" placeholder="<fmt:message key="create_question.answer"/> 3">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-text">
                             <input class="form-check-input mt-0" type="checkbox" name="opt" value="4" aria-label="Checkbox for following text input">
                         </div>
-                        <input type="text" class="form-control" id="answer4" name="answer4"  placeholder="Answer 4">
+                        <input type="text" class="form-control" id="answer4" name="answer4"  placeholder="<fmt:message key="create_question.answer"/> 4">
                     </div>
                     <div class="mb-1 mt-3 text-center">
                         <c:forEach items="${requestScope.errorsList}" var="er">
@@ -74,7 +75,7 @@
                         </c:forEach>
                     </div>
                     <div class="text-center ">
-                        <input class="btn btn-primary" type="submit" name="SaveQuestion" value="Сохранити питання">
+                        <input class="btn btn-primary" type="submit" name="SaveQuestion" value="<fmt:message key="add_question.save"/>">
 
                     </div>
                 </form>

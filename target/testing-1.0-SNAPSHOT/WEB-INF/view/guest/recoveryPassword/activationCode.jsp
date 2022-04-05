@@ -32,7 +32,7 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
-                <h2 class="text-white-50">Recovering Password</h2>
+                <h2 class="text-white-50"><fmt:message key="recovery.password.recovery"/></h2>
             </div>
             <div  class="text-white-50">
                 <c:if var="result" test="${!empty requestScope.error}">
@@ -44,15 +44,15 @@
             </div>
 
             <form name="loginform" action="${pageContext.request.contextPath}/testing/recovery" method="post" accept-charset="UTF-8">
-                <h4 class="text-white-50 text-center">Please, check your e-mail, the activation code to change password was sent to your e-mail </h4>
+                <h4 class="text-white-50 text-center"><fmt:message key="recovery.password.check.email"/></h4>
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="text" required class="form-control" id="login" name="activationCode" placeholder="name@example.com">
-                    <label for="login">Activation code</label>
+                    <label for="login"><fmt:message key="recovery.password.activation.code"/></label>
                 </div>
 
                 <div class="mb-2 text-center">
-                    <fmt:message key="login.button.submit" var="buttonValue" />
-                    <input id="submit-button" type="submit" name="submit" value="${buttonValue}" class="btn btn-primary"/>
+
+                    <input id="submit-button" type="submit" name="submit" value="<fmt:message key="recovery.password.button.submit"/>" class="btn btn-primary"/>
                 </div>
 
             </form>

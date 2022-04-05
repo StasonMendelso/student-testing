@@ -37,11 +37,11 @@
 
         <div class="w-50 bg-question  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-left mt-2 pb-3 text-center">
-                <span class="display-4 bold text-success">Test successfully created</span>
+                <span class="display-4 bold text-success"><fmt:message key="creating.test.successful"/></span>
                 <br>
-                <span class="display-6 ">View all tests</span>
+                <span class="display-6 "><fmt:message key="creating.test.view.all.tests"/></span>
                 <br>
-                <button class="btn btn-outline-success btn-lg mt-2" onclick="location.href='/web-application/testing/admin/showTests'"><span class="h5">Tests</span></button>
+                <button class="btn btn-outline-success btn-lg mt-2" onclick="location.href='/web-application/testing/admin/showTests'"><span class="h5"><fmt:message key="creating.test.tests"/></span></button>
             </div>
 
         </div>

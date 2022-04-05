@@ -8,6 +8,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="converter" tagdir="/WEB-INF/tags" %>
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
 
@@ -35,11 +36,11 @@
 
         <div class="w-25 bg-dark  mb-2 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 35px">
             <div class="text-left mt-2 pb-3 text-info">
-                <h1 class="text-center t-5">Student info</h1>
+                <h1 class="text-center t-5"><fmt:message key="student.info.info"/></h1>
                 <p>Login: ${sessionScope.login}</p>
-                <p>Student name: ${sessionScope.name}</p>
-                <p>Student surname: ${sessionScope.surname}</p>
-                <p class="text-center"><a class="nav-link" href="/web-application/testing/student/changePassword">Change Password</a></p>
+                <p><fmt:message key="student.info.name"/>: ${sessionScope.name}</p>
+                <p><fmt:message key="student.info.surname"/>: ${sessionScope.surname}</p>
+                <p class="text-center"><a class="nav-link" href="/web-application/testing/student/changePassword"><fmt:message key="student.info.change.password"/></a></p>
             </div>
         </div>
     </div>
@@ -51,8 +52,8 @@
             <table class="table table-bordered table-hover table-striped mt-3 rounded-top caption-top" >
                 <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                     <div class="row align-items-center">
-                        <span class="col-1" >Passed Tests</span>
-                        <span class="col-10"></span>
+                        <span class="col-3" ><fmt:message key="student.info.passed.tests"/></span>
+                        <span class="col-8"></span>
                         <span class="col-1" style="padding-right: 25px">
                         <select class="form-select" name="paginationParameter" id="pagination">
                             <option value="5" <c:if test="${requestScope.paginationParameter==5}">selected</c:if> >5</option>
@@ -72,26 +73,23 @@
 
                 <thead class="table-dark text-center" >
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Discipline</th>
-                    <th>Difficulty</th>
-                    <th>Duration (Minutes)</th>
-                    <th>Questions</th>
-                    <th>Mark</th>
+                    <th><fmt:message key="table.tests.test"/></th>
+                    <th><fmt:message key="table.tests.discipline"/></th>
+                    <th><fmt:message key="table.tests.difficulty"/></th>
+                    <th><fmt:message key="table.tests.duration"/></th>
+                    <th><fmt:message key="table.tests.number.of.questions"/></th>
+                    <th><fmt:message key="table.tests.mark"/></th>
 
                 </tr>
                 </thead>
-
                 <c:if var="result" test="${!empty tests}">
                     <tbody class="bg-light">
                     <c:forEach items="${requestScope.testList}" var="test">
 
                         <tr>
-                            <td>${test.id}</td>
                             <td>${test.name}</td>
                             <td>${test.nameOfDiscipline}</td>
-                            <td>${test.difficulty}</td>
+                            <td><converter:difficulty intDifficulty="${test.difficulty}"/></td>
                             <td>${test.timeMinutes}</td>
                             <td>${test.countOfQuestions}</td>
 
@@ -127,7 +125,7 @@
         <c:if test="${empty tests}">
             <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 45px">
                 <div class="text-left mt-2 pb-3 text-info">
-                    You haven't passed any tests yet
+                    <fmt:message key="student.info.not.passed.tests"/>
                 </div>
             </div>
         </c:if>

@@ -38,10 +38,10 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2 pb-3">
-                <h2 class="text-white-50">Registration</h2>
-                <h4 class="text-danger">You didn't registered successfully!</h4>
-                <span class="text-white-50">Please, try again later</span> <br>
-                <a class="btn-primary btn mt-2" href="/web-application/testing/registration">Register</a>
+                <h2 class="text-white-50"><fmt:message key="register.registration"/></h2>
+                <h4 class="text-danger"><fmt:message key="register.unsuccessful"/></h4>
+                <span class="text-white-50"><fmt:message key="register.try.again"/></span> <br>
+                <a class="btn-primary btn mt-2" href="/web-application/testing/registration"><fmt:message key="register.register"/></a>
             </div>
 
         </div>

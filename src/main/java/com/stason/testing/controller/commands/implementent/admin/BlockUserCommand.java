@@ -3,6 +3,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.Constants;
+import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
 import org.apache.log4j.Logger;
 
@@ -31,7 +32,7 @@ public class BlockUserCommand implements Command {
                 return Path.REDIRECT_ADMIN_USERS;
             }else{
                 setAttributes(request);
-                request.getSession().setAttribute("error", "Секретний код не співпадає");
+                request.getSession().setAttribute("error", ErrorForUser.SECRET_CODE_NOT_MATCH);
                 return Path.REDIRECT_ADMIN_USERS;
             }
         }

@@ -3,11 +3,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page pageEncoding="UTF-8" %>
-<fmt:setLocale value="${sessionScope.lang}"/> <!--Какая-то связь со всеми языками???-->
+<%@ page pageEncoding="UTF-8"%>
+<fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="messages"/>
-<%@ taglib prefix="er" tagdir="/WEB-INF/tags" %>
-
 
 
 <!DOCTYPE html>

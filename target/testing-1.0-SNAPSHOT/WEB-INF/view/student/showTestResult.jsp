@@ -7,7 +7,8 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="messages"/>
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
@@ -36,7 +37,7 @@
 
                 </div>
                 <div class="col-10">
-                    <h1 class="text-center t-5">Test result</h1>
+                    <h1 class="text-center t-5"><fmt:message key="showTestResult.test.result"/></h1>
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -46,12 +47,12 @@
 
                 <div class="col-12">
                     <c:set var="test" value="${requestScope.test}"/>
-                    <p>Назва теста: ${test.name}</p>
-                    <p>Дисципліна: ${test.nameOfDiscipline}</p>
+                    <p><fmt:message key="showTestResult.test.name"/>: ${test.name}</p>
+                    <p><fmt:message key="showTestResult.test.discipline"/>: ${test.nameOfDiscipline}</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated fw-bold fs-6" role="progressbar" aria-valuenow="${requestScope.mark}" aria-valuemin="0" aria-valuemax="100" style="width: ${requestScope.mark}%">${requestScope.mark}%</div>
                     </div>
-                    <p class="fw-bold pt-2">Correct Answer: ${requestScope.countOfRightAnswers}/${test.countOfQuestions}</p>
+                    <p class="fw-bold pt-2"><fmt:message key="showTestResult.number.correct.answers"/>: ${requestScope.countOfRightAnswers}/${test.countOfQuestions}</p>
                 </div>
             </div>
         </div>

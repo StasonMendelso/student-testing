@@ -40,7 +40,7 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
-                <h2 class="text-white-50">Create new password</h2>
+                <h2 class="text-white-50"><fmt:message key="recovery.password.create.new.password"/></h2>
             </div>
             <div  class="text-white-50">
                 <c:if var="result" test="${!empty requestScope.error}">
@@ -54,16 +54,16 @@
             <form name="loginform"  method="post" accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="password" required class="form-control" id="password" name="password" placeholder="name@example.com">
-                    <label for="password">Password</label>
+                    <label for="password"><fmt:message key="recovery.password.create.password"/></label>
                 </div>
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="password" required class="form-control" id="repeatedPassword" name="repeatedPassword" placeholder="name@example.com">
-                    <label for="repeatedPassword">Repeat password</label>
+                    <label for="repeatedPassword"><fmt:message key="recovery.password.create.repeat.password"/></label>
                 </div>
 
                 <div class="mb-2 text-center">
-                    <fmt:message key="login.button.submit" var="buttonValue" />
-                    <input id="submit-button"  type="submit" name="submit" value="${buttonValue}" class="btn btn-primary"/>
+
+                    <input id="submit-button"  type="submit" name="submit" value="<fmt:message key="recovery.password.button.submit"/>" class="btn btn-primary"/>
                 </div>
 
             </form>

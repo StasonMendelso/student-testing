@@ -39,7 +39,7 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
-                <h2 class="text-white-50">Registration</h2>
+                <h2 class="text-white-50">  <fmt:message key="register.registration"/></h2>
 
             </div>
             <div class="text-white-50 text-center">
@@ -55,23 +55,23 @@
             <form method="post" action="" accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="text" class="form-control" id="name" name="name"  placeholder="name@example.com">
-                    <label for="name">First name</label>
+                    <label for="name"><fmt:message key="register.first.name"/></label>
                 </div>
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="text" class="form-control"id="surname" name="surname"  placeholder="name@example.com">
-                    <label for="surname">Last name</label>
+                    <label for="surname"><fmt:message key="register.last.name"/></label>
                 </div>
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="email" class="form-control" id="login" name="login" placeholder="name@example.com">
-                    <label for="surname">Email</label>
+                    <label for="surname"><fmt:message key="register.email"/></label>
                 </div>
                 <div class="mb-3 justify-content-center form-floating">
                     <input type="password" class="form-control" id="password" name="password" placeholder="pass">
-                    <label for="password" >Password</label>
+                    <label for="password" ><fmt:message key="register.password"/></label>
                 </div>
                 <div class="mb-3 justify-content-center form-floating">
                     <input type="password" class="form-control" id="repeated-password" name="repeated-password" placeholder="pass">
-                    <label for="repeated-password" >Repeated Password</label>
+                    <label for="repeated-password" ><fmt:message key="register.repeated.password"/></label>
                 </div>
                 <div class="mb-2 d-flex justify-content-center">
                     <div class="g-recaptcha"

@@ -10,6 +10,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="messages"/>
+
 <c:if test="${not empty sessionScope.test}">
     <script><%@include file="../../../js/timerForNavbar.js"%></script>
     </c:if>

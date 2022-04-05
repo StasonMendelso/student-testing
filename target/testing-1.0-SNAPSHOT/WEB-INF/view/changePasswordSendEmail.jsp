@@ -40,8 +40,8 @@
                 <c:if test="${not empty requestScope.error}">
                     <h4 class="text-info"><errorlocalization:localize error="${requestScope.error}" lang="${sessionScope.lang}"/></h4>
                 </c:if>
-                <h4 class="text-success text-center">The activation link to change password was sent to your e-mail</h4>
-                <span class="text-white-50 text-center">Please, check e-mail</span> <br>
+                <h4 class="text-success text-center"><fmt:message key="change_password_send_email.activation_link_was_sent_to_email"/></h4>
+                <span class="text-white-50 text-center"><fmt:message key="change_password_send_email.check.email"/></span> <br>
             </div>
 
         </div>

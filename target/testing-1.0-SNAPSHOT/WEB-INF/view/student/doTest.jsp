@@ -7,7 +7,8 @@
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="messages"/>
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
@@ -42,12 +43,12 @@
                     <div class="col-3"></div>
                     <div class="col-6 text-center">
                         <div class=" p-2">
-                            <h1 class="t-5">Question №${question.questionNumber}</h1>
+                            <h1 class="t-5"><fmt:message key="doTest.question"/> №${question.questionNumber}</h1>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class=" text-end fs-3 me-3 p-2" >
-                          <span >Залишилося
+                          <span ><fmt:message key="doTest.remain"/>
                           <div class="timer" id="timer"></div>
                           </span>
                             <script>
@@ -81,19 +82,19 @@
                         <div class="row mt-3">
                             <div class="col-6">
                                 <c:set var="previous" value="${question.questionNumber-1}"/>
-                                <c:if test="${question.questionNumber !=1}"> <button class="btn btn-dark bg-dark bg-opacity-75 border-0 text-white w-100 fs-5"  type="submit" name="nextQuestion" value="${previous}"> Previous </button> </c:if>
+                                <c:if test="${question.questionNumber !=1}"> <button class="btn btn-dark bg-dark bg-opacity-75 border-0 text-white w-100 fs-5"  type="submit" name="nextQuestion" value="${previous}"> <fmt:message key="doTest.previous"/> </button> </c:if>
 
                             </div>
                             <div class="col-6">
                                 <c:set var="next" value="${question.questionNumber+1}"/>
-                                <c:if test="${question.questionNumber !=test.countOfQuestions}"> <button class="btn btn-dark bg-dark bg-opacity-75 border-0 text-white w-100 fs-5" type="submit" name="nextQuestion" value="${next}"> Next </button> </c:if>
+                                <c:if test="${question.questionNumber !=test.countOfQuestions}"> <button class="btn btn-dark bg-dark bg-opacity-75 border-0 text-white w-100 fs-5" type="submit" name="nextQuestion" value="${next}"> <fmt:message key="doTest.next"/> </button> </c:if>
 
                             </div>
 
                         </div>
                         <div class="row pt-2">
                             <div class="col-12">
-                                <button class="btn btn-dark w-100 fs-3" type="submit" name="finish" value="finish">Finish test</button>
+                                <button class="btn btn-dark w-100 fs-3" type="submit" name="finish" value="finish"><fmt:message key="doTest.finish"/></button>
                             </div>
 
                         </div>

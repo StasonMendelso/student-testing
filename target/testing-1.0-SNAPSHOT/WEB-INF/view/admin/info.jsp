@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="messages"/>
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
@@ -31,11 +32,11 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-left mt-2 pb-3 text-info">
-                <h1 class="text-center t-5">Admin info</h1>
+                <h1 class="text-center t-5"><fmt:message key="admin.info.info"/></h1>
                 <p>Login: ${sessionScope.login}</p>
-                <p>Admin name: ${sessionScope.name}</p>
-                <p>Admin surname: ${sessionScope.surname}</p>
-                <p class="text-center"><a class="nav-link" href="/web-application/testing/admin/changePassword">Change Password</a></p>
+                <p><fmt:message key="admin.info.name"/>: ${sessionScope.name}</p>
+                <p><fmt:message key="admin.info.surname"/>: ${sessionScope.surname}</p>
+                <p class="text-center"><a class="nav-link" href="/web-application/testing/admin/changePassword"><fmt:message key="admin.info.change.password"/></a></p>
             </div>
 
         </div>

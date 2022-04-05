@@ -8,7 +8,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="errorlocalizator" uri="errorLocalizationURI" %>
-
+<%@ taglib prefix="converter" tagdir="/WEB-INF/tags" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="messages"/>
 
 <html>
 <head>
@@ -36,7 +38,7 @@
 
                     <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                         <div class="row align-items-center">
-                            <span class="col-2" style="padding-left: 25px" >Users</span>
+                            <span class="col-2" style="padding-left: 25px" >  <fmt:message key="show_users.users"/>  </span>
                             <span class="col-8 text-center"><errorlocalizator:localize error="${error}" lang="${sessionScope.lang}"/></span>
                             <span class="col-1"></span>
                             <span class="col-1" style="padding-right: 25px">
@@ -62,11 +64,11 @@
                     <tr>
                         <th>Id</th>
                         <th>Login</th>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Role</th>
-                        <th>Blocked</th>
-                        <th colspan="4">Действия Админа</th>
+                        <th><fmt:message key="table.users.name"/></th>
+                        <th><fmt:message key="table.users.surname"/></th>
+                        <th><fmt:message key="table.users.role"/></th>
+                        <th><fmt:message key="table.users.blocked"/></th>
+                        <th colspan="4"><fmt:message key="table.users.manage"/></th>
                     </tr>
                     </thead>
                     <tbody class="bg-light ">
@@ -78,25 +80,25 @@
                                 <td>${user.name}</td>
                                 <td>${user.surname}</td>
                                 <td>${user.role}</td>
-                                <td>${user.getStringBlocked()}</td>
+                                <td><converter:blocked blockedValue="${user.blocked}"/></td>
 
-                                <td class="text-center align-middle"><button class="btn btn-primary"type="button" <c:if test="${user.role=='ADMIN'}">disabled</c:if> onclick="location.href='/web-application/testing/admin/userTests?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'">Tests</button></td>
-                                <td class="text-center align-middle"><button class="btn btn-success"type="button" onclick="location.href='/web-application/testing/admin/editUser?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'">Edit</button></td>
-                                <c:if test="${!user.blocked}"> <td class="text-center align-middle"><button class="btn btn-warning" <c:if test="${user.role=='ADMIN'}">disabled</c:if> class="button-block" data-bs-toggle="modal" data-bs-target="#blockModal${i}" type="button" >Block</button></td></c:if>
-                                <c:if test="${user.blocked}"> <td class="text-center align-middle"><button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#unblockModal${i}">UnBlock</button></td></c:if>
-                                <td class="text-center align-middle"><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal${i}">Delete</button></td>
+                                <td class="text-center align-middle"><button class="btn btn-primary"type="button" <c:if test="${user.role=='ADMIN'}">disabled</c:if> onclick="location.href='/web-application/testing/admin/userTests?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'"><fmt:message key="button.tests"/></button></td>
+                                <td class="text-center align-middle"><button class="btn btn-success"type="button" onclick="location.href='/web-application/testing/admin/editUser?id=${user.id}&pageNumber=${requestScope.pageNumber}&paginationParameter=${requestScope.paginationParameter}'"><fmt:message key="button.edit"/></button></td>
+                                <c:if test="${!user.blocked}"> <td class="text-center align-middle"><button class="btn btn-warning" <c:if test="${user.role=='ADMIN'}">disabled</c:if> class="button-block" data-bs-toggle="modal" data-bs-target="#blockModal${i}" type="button" ><fmt:message key="button.block"/></button></td></c:if>
+                                <c:if test="${user.blocked}"> <td class="text-center align-middle"><button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#unblockModal${i}"><fmt:message key="button.unblock"/></button></td></c:if>
+                                <td class="text-center align-middle"><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal${i}"><fmt:message key="button.delete"/></button></td>
 
                                 <!-- Block Modal -->
                                 <div class="modal fade" id="blockModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Block user</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="modal.block.user"/></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <form method="post" action="/web-application/testing/admin/blockUser">
                                                 <div class="modal-body">
-                                                    <label for="secretPassword" class="form-label">Уведіть ключ безпеки:</label>
+                                                    <label for="secretPassword" class="form-label"><fmt:message key="modal.enter.secret.key"/>:</label>
                                                     <input required id="secretPassword" type="password" name="secretPassword" class="form-control">
                                                     <input hidden type="text" name="pageNumber" value="${requestScope.pageNumber}">
                                                     <input hidden type="text" name="paginationParameter" value="${requestScope.paginationParameter}">
@@ -104,8 +106,8 @@
                                                 </div>
                                                 <div class="modal-footer">
 
-                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button  class="btn btn-outline-warning" >Block</button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><fmt:message key="modal.close"/></button>
+                                                    <button  class="btn btn-outline-warning" ><fmt:message key="modal.block"/></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -117,12 +119,12 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Unblock user</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="modal.unblock.user"/></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <form method="post" action="/web-application/testing/admin/unblockUser">
                                                 <div class="modal-body">
-                                                    <label for="secretPassword" class="form-label">Уведіть ключ безпеки:</label>
+                                                    <label for="secretPassword" class="form-label"><fmt:message key="modal.enter.secret.key"/>:</label>
                                                     <input required id="secretPassword" type="password" name="secretPassword" class="form-control">
                                                     <input hidden type="text" name="pageNumber" value="${requestScope.pageNumber}">
                                                     <input hidden type="text" name="paginationParameter" value="${requestScope.paginationParameter}">
@@ -130,8 +132,8 @@
                                                 </div>
                                                 <div class="modal-footer">
 
-                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button  class="btn btn-outline-info" >Unblock</button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><fmt:message key="modal.close"/></button>
+                                                    <button  class="btn btn-outline-info" ><fmt:message key="modal.unblock"/></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -143,20 +145,20 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete user</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="modal.delete.user"/></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <form method="post" action="/web-application/testing/admin/deleteUser">
                                                 <div class="modal-body">
-                                                    <label for="secretPassword" class="form-label">Уведіть ключ безпеки:</label>
+                                                    <label for="secretPassword" class="form-label"><fmt:message key="modal.enter.secret.key"/>:</label>
                                                     <input required id="secretPassword" type="password" name="secretPassword" class="form-control">
                                                     <input hidden type="text" name="pageNumber" value="${requestScope.pageNumber}">
                                                     <input hidden type="text" name="paginationParameter" value="${requestScope.paginationParameter}">
                                                     <input hidden type="text" name="id" value="${user.id}"/>
                                                 </div>
                                                 <div class="modal-footer">
-                                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button  class="btn btn-outline-danger" >Delete</button>
+                                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><fmt:message key="modal.close"/></button>
+                                                    <button  class="btn btn-outline-danger"><fmt:message key="modal.delete"/></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -191,9 +193,12 @@
             </form>
                 </c:if>
                  <c:if test="${empty userList}">
-                <div>
-                    No users have been found :(
-                </div>
+                     <div class="w-25 bg-dark  mb-5 "
+                          style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 45px">
+                         <div class="text-left mt-2 pb-3 text-info">
+                             <fmt:message key="show_users.not.found.any.user"/>
+                         </div>
+                     </div>
                 </c:if>
 
 

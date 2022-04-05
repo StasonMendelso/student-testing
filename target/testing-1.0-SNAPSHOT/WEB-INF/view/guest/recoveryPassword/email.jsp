@@ -33,7 +33,7 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
-                <h2 class="text-white-50">Recovering Password</h2>
+                <h2 class="text-white-50"><fmt:message key="recovery.password.recovery"/></h2>
             </div>
             <div  class="text-white-50">
 
@@ -48,7 +48,7 @@
             <form name="loginform" action="${pageContext.request.contextPath}/testing/recovery" method="post" accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="email" required class="form-control" id="login" name="email" placeholder="name@example.com">
-                    <label for="login">Email for recovery</label>
+                    <label for="login"><fmt:message key="recovery.password.email.for.recovery"/></label>
                 </div>
                 <!-- reCAPTCHA -->
                 <div class="mb-2 d-flex justify-content-center">
@@ -59,9 +59,8 @@
                 </div>
 
                 <div class="mb-2 text-center">
-                    <fmt:message key="login.button.submit" var="buttonValue" />
 
-                    <input id="submit-button" disabled type="submit" name="submit" value="${buttonValue}" class="btn btn-primary"/>
+                    <input id="submit-button" disabled type="submit" name="submit" value="<fmt:message key="recovery.password.button.submit"/>" class="btn btn-primary"/>
                 </div>
                 <script type="text/javascript">
                     function callback() {

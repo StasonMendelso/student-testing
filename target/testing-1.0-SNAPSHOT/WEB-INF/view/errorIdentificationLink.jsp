@@ -38,8 +38,8 @@
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2 pb-3">
                 <h2 class="text-white-50"></h2>
-                <h4 class="text-danger text-center">The activation link is not identically!</h4>
-                <span class="text-white-50 text-center">Please, check your activation link</span> <br>
+                <h4 class="text-danger text-center"><fmt:message key="error_identification_link.activation_link_not_identifically"/></h4>
+                <span class="text-white-50 text-center"><fmt:message key="error_identification_link.check_activtion_link"/></span> <br>
             </div>
 
         </div>

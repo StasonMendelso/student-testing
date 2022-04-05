@@ -5,10 +5,11 @@
   Time: 21:34
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="errorLocalization" uri="errorLocalizationURI" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="messages"/>
 <link rel="shortcut icon" href="http://surl.li/bjfgy" type="image/x-icon">
 
 <html>
@@ -39,7 +40,7 @@
                 <form method="post">
                     <table class="table table-bordered  mt-3  rounded-top caption-top">
                         <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;"><span
-                                style="padding-left: 25px">Edit Question information</span></caption>
+                                style="padding-left: 25px"><fmt:message key="edit_question_info.edit.question.info"/></span></caption>
 
 
                         <tbody class="bg-light">
@@ -47,7 +48,7 @@
                             <td colspan="2">
                                 <div class="input-group mb-1">
                                     <span class="input-group-text fs-5"
-                                          id="basic-addon1">Question ${question.questionNumber}</span>
+                                          id="basic-addon1"><fmt:message key="edit_question_info.question"/> ${question.questionNumber}</span>
                                     <textarea type="text" class="form-control" required id="questionText"
                                               name="questionText"
                                               placeholder="What...">${question.textQuestion}</textarea>
@@ -63,13 +64,13 @@
                                                    <c:if test="${answer.isRightAnswer()}">checked</c:if>>
                                         </div>
                                         <input type="text" class="form-control" name="answer${i}"
-                                               value="${answer.answer}" placeholder="Answer ${i}">
+                                               value="${answer.answer}" placeholder="<fmt:message key="edit_question_info.answer"/> ${i}">
                                     </div>
                                 </td>
                                 <td class="text-center">
                                     <button type="submit" class="btn btn-outline-danger" name="DeleteId"
                                             value="${answer.id}"
-                                            <c:if test="${question.answers.size()<=2}">disabled</c:if>>Delete
+                                            <c:if test="${question.answers.size()<=2}">disabled</c:if>><fmt:message key="button.delete"/>
                                     </button>
                                 </td>
                             </tr>
@@ -90,7 +91,7 @@
                         <tr>
                             <td class="text-center" colspan="2">
                                 <input type="submit" class="btn btn-outline-success" style="width: 25%" name="Save"
-                                       value="Save">
+                                       value="<fmt:message key="button.save"/>">
                             </td>
                         </tr>
                         </tbody>
@@ -104,7 +105,7 @@
 
                         <table class="table table-bordered  mt-3  rounded-top caption-top">
                             <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;"><span
-                                    style="padding-left: 25px">Add answer</span></caption>
+                                    style="padding-left: 25px"><fmt:message key="edit_question_info.add_answer"/></span></caption>
                             <tbody class="bg-light">
                             <tr>
                                 <td>
@@ -114,7 +115,7 @@
                                                    ->
                                         </div>
                                         <input type="text" class="form-control" id="answerText" name="answerText"
-                                               placeholder="Answer ${i}">
+                                               placeholder="<fmt:message key="edit_question_info.answer"/> ${i}">
                                     </div>
                                 </td>
                             </tr>
@@ -125,7 +126,7 @@
                                         <errorLocalization:localize error="${requestScope.errorAddedQuestion}" lang="${sessionScope.lang}"/><br>
                                     </c:if>
                                     <input type="submit" class="btn btn-outline-success" style="width: 25%"
-                                                       name="Add" value="Add">
+                                                       name="Add" value="<fmt:message key="edit_question_info.answer.add"/>"/>
                                 </td>
                             </tr>
                             </tbody>

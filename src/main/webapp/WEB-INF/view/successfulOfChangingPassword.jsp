@@ -36,8 +36,8 @@
 
         <div class="w-25 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2 pb-3">
-                <h2 class="text-white-50">Changing Password</h2>
-                <h4 class="text-success">You changed password successfully!</h4>
+                <h2 class="text-white-50"><fmt:message key="successful_of_changing_password.changing.password"/></h2>
+                <h4 class="text-success"><fmt:message key="successful_of_changing_password.you_changed_password_succesfully"/></h4>
             </div>
 
         </div>

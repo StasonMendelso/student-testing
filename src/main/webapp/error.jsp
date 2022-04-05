@@ -40,7 +40,7 @@
         <div class="w-50 bg-dark  mb-5 " style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
                 <img src="https://cdn-icons-png.flaticon.com/512/1673/1673460.png" class="w-25">
-                <h1 class="text-danger bold">Something went wrong...</h1>
+                <h1 class="text-danger bold"><fmt:message key="error.something.went.wrong"/> </h1>
 
             </div>
             <div  class="text-white-50 text-center mb-4">

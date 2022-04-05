@@ -34,7 +34,7 @@
              style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 100px">
             <div class="text-center mt-2">
 
-                <h2 class="text-white-50">Login</h2>
+                <h2 class="text-white-50"><fmt:message key="login.login"/></h2>
 
             </div>
             <div class="text-white-50 text-center">
@@ -53,14 +53,14 @@
                   accept-charset="UTF-8">
                 <div class="mb-3 mt-3 justify-content-center form-floating">
                     <input type="email" class="form-control" id="login" name="login" placeholder="name@example.com">
-                    <label for="login">Email</label>
+                    <label for="login"><fmt:message key="login.email"/></label>
                 </div>
                 <div class="mb-3 justify-content-center form-floating">
                     <input type="password" class="form-control" id="password" name="password" placeholder="pass">
-                    <label for="password">Password</label>
+                    <label for="password"><fmt:message key="login.password"/></label>
                 </div>
                 <div class="mb-1 text-center">
-                    <a class="nav-link" href="/web-application/testing/recovery">Forgot password?</a>
+                    <a class="nav-link" href="/web-application/testing/recovery"><fmt:message key="login.forgot.password"/></a>
                 </div>
                 <!-- reCAPTCHA -->
                 <div class="mb-2 d-flex justify-content-center">
@@ -71,9 +71,9 @@
                 </div>
 
                 <div class="mb-2 text-center">
-                    <fmt:message key="login.button.submit" var="buttonValue"/>
 
-                    <input id="submit-button" disabled type="submit" name="submit" value="${buttonValue}"
+
+                    <input id="submit-button" disabled type="submit" name="submit" value="<fmt:message key="login.button.submit"/>"
                            class="btn btn-primary"/>
                 </div>
                 <script type="text/javascript">

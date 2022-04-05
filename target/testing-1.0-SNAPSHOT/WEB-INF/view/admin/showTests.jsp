@@ -36,27 +36,27 @@
 
             <div class="w-50 bg-dark  mb-1" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px">
                 <div class="text-left mt-2 pb-3 text-btn-primary">
-                    <h1 class="center">Sorting Tests</h1>
+                    <h1 class="center"><fmt:message key="sorting.tests"/></h1>
                     <div class="row">
-                        <div class="col-4">
-                            <label for="orderBy">Сортувати за</label>
+                        <div class="col-3">
+                            <label for="orderBy"><fmt:message key="sorting.order.by"/></label>
                             <select id="orderBy" name="orderBy" class="form-select" >
-                                <option value="name" <c:if test="${requestScope.sortingOptions.orderBy=='name'}"> selected</c:if> >Назвою</option>
-                                <option value="difficulty" <c:if test="${requestScope.sortingOptions.orderBy=='difficulty'}"> selected</c:if> >Складністю</option>
-                                <option value="countOfQuestions" <c:if test="${requestScope.sortingOptions.orderBy=='countOfQuestions'}"> selected</c:if> >Кількістю запитань</option>
+                                <option value="name" <c:if test="${requestScope.sortingOptions.orderBy=='name'}"> selected</c:if> ><fmt:message key="sorting.order.by.name"/></option>
+                                <option value="difficulty" <c:if test="${requestScope.sortingOptions.orderBy=='difficulty'}"> selected</c:if> ><fmt:message key="sorting.order.by.difficulty"/></option>
+                                <option value="countOfQuestions" <c:if test="${requestScope.sortingOptions.orderBy=='countOfQuestions'}"> selected</c:if> ><fmt:message key="sorting.order.by.number.of.question"/></option>
                             </select>
                         </div>
-                        <div class="col-2">
-                            <label for="order">Порядок</label>
+                        <div class="col-3">
+                            <label for="order"><fmt:message key="sorting.order"/></label>
                             <select id="order" name="order" class="form-select" >
-                                <option value="ASC"<c:if test="${requestScope.sortingOptions.order=='ASC'}"> selected</c:if> >Зростання</option>
-                                <option value="DESC"<c:if test="${requestScope.sortingOptions.order=='DESC'}"> selected</c:if>  >Спадання</option>
+                                <option value="ASC"<c:if test="${requestScope.sortingOptions.order=='ASC'}"> selected</c:if> ><fmt:message key="sorting.order.ascending"/></option>
+                                <option value="DESC"<c:if test="${requestScope.sortingOptions.order=='DESC'}"> selected</c:if>  ><fmt:message key="sorting.order.descending"/></option>
                             </select>
                         </div>
                         <div class="col-4">
-                            <label for="discipline">Вибір предмета</label>
+                            <label for="discipline"><fmt:message key="sorting.choose.subject"/></label>
                             <select id="discipline" name="discipline" class="form-select" >
-                                <option value="all" selected>Усі</option>
+                                <option value="all" selected><fmt:message key="sorting.choose.subject.all"/></option>
                                 <c:forEach var="discipline" items="${requestScope.disciplinesList}">
                                     <option value="${discipline}" <c:if test="${requestScope.sortingOptions.discipline==discipline}"> selected</c:if>  >${discipline}</option>
                                 </c:forEach>
@@ -64,12 +64,12 @@
                         </div>
                         <div class="col-2 text-center">
                             <br>
-                            <button type="submit" class="btn btn-primary">Застосувати</button>
+                            <button type="submit" class="btn btn-primary"><fmt:message key="sorting.apply"/></button>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-10">
-                            <button class="btn btn-primary w-100" type="submit" name="clear" value="clear">Очистити сортування</button>
+                            <button class="btn btn-primary w-100" type="submit" name="clear" value="clear"><fmt:message key="sorting.clear"/></button>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
         <table class="table table-bordered table-hover table-striped mt-3  rounded-top caption-top">
             <caption class="bg-dark text-light p-2 fs-5" style="border-radius: 30px 30px 0px 0px;">
                 <div class="row align-items-center">
-                    <span class="col-2" style="padding-left: 25px" >Tests</span>
+                    <span class="col-2" style="padding-left: 25px" ><fmt:message key="show_tests.tests"/></span>
                     <span class="col-8 text-center">${error}</span>
                     <span class="col-1"></span>
                     <span class="col-1" style="padding-right: 25px">
@@ -110,12 +110,12 @@
 
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Discipline</th>
-                <th>Difficulty</th>
-                <th>Duration (Minutes)</th>
-                <th>Questions</th>
-                <th colspan="2">Действия Админа</th>
+                <th><fmt:message key="table.tests.test"/></th>
+                <th><fmt:message key="table.tests.discipline"/></th>
+                <th><fmt:message key="table.tests.difficulty"/></th>
+                <th><fmt:message key="table.tests.duration"/></th>
+                <th><fmt:message key="table.tests.number.of.questions"/></th>
+                <th colspan="2"><fmt:message key="table.tests.manage"/></th>
             </tr>
             </thead>
             <c:if var="result" test="${!empty tests}">
@@ -131,28 +131,28 @@
                         <td>${test.timeMinutes}</td>
                         <td>${test.countOfQuestions}</td>
 
-                        <td class="text-center"><button  class="btn btn-success" type="button" onclick="location.href='/web-application/testing/admin/editTest?id=${test.id}'">Edit</button></td>
-                        <td class="text-center"><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal${i}">Delete</button></td>
+                        <td class="text-center"><button  class="btn btn-success" type="button" onclick="location.href='/web-application/testing/admin/editTest?id=${test.id}'"><fmt:message key="button.edit"/></button></td>
+                        <td class="text-center"><button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal${i}"><fmt:message key="button.delete"/></button></td>
                     </tr>
                         <!-- Delete Modal -->
                         <div class="modal fade" id="deleteModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Delete user</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel"><fmt:message key="modal.delete.test"/></h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form method="post" action="/web-application/testing/admin/deleteTest">
                                         <div class="modal-body">
-                                            <label for="secretPassword" class="form-label">Уведіть ключ безпеки:</label>
+                                            <label for="secretPassword" class="form-label"><fmt:message key="modal.enter.secret.key"/>:</label>
                                             <input required id="secretPassword" type="password" name="secretPassword" class="form-control">
                                             <input hidden type="text" name="pageNumber" value="${requestScope.pageNumber}">
                                             <input hidden type="text" name="paginationParameter" value="${requestScope.paginationParameter}">
                                             <input hidden type="text" name="id" value="${test.id}"/>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button  class="btn btn-outline-danger" >Delete</button>
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><fmt:message key="modal.close"/></button>
+                                            <button  class="btn btn-outline-danger" ><fmt:message key="modal.delete"/></button>
                                         </div>
                                     </form>
                                 </div>
@@ -197,9 +197,12 @@
     </div>
     <c:if test="${empty tests}">
 
-       <div class="w-50 m-auto bg-dark  mt-3 d-flex align-items-center" style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 10px; height: 5%">
-           <span class="text-white ms-3  ">No tests have been found :(</span>
-       </div>
+        <div class="w-25 bg-dark  mb-5 "
+             style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 45px">
+            <div class="text-left mt-2 pb-3 text-info">
+                <fmt:message key="show_tests.not_any_tests"/>
+            </div>
+        </div>
 
 
     </c:if>
