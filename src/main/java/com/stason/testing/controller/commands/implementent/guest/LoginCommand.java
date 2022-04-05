@@ -14,18 +14,19 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
-import static com.stason.testing.controller.utils.ErrorForUser.*;
-public class LoginCommand implements Command {
-    private final  static Logger logger = Logger.getLogger(LoginCommand.class.getName());
 
+import static com.stason.testing.controller.utils.ErrorForUser.*;
+
+public class LoginCommand implements Command {
+    private final static Logger logger = Logger.getLogger(LoginCommand.class.getName());
 
     @Override
     public String execute(HttpServletRequest request) {
 
-         if(request.getParameter("login")==null){
+        if (request.getParameter("login") == null) {
             return Path.GUEST_LOGIN;
         }
-        if(request.getParameter("login")!=null) {
+        if (request.getParameter("login") != null) {
             String login = EncodingConverter.convertFromISOtoUTF8(request.getParameter("login"));
             String password = EncodingConverter.convertFromISOtoUTF8(request.getParameter("password"));
             List<ErrorForUser> errors = new ArrayList<>();
@@ -67,21 +68,21 @@ public class LoginCommand implements Command {
                         return Path.GUEST_LOGIN;
                     }
                 }
-                    //беремо з базы юзера та встановлюємо відповідні атрибути
-                    user = userService.findByLogin(login);
+                //беремо з базы юзера та встановлюємо відповідні атрибути
+                user = userService.findByLogin(login);
 
-                if(user.isBlocked()){
+                if (user.isBlocked()) {
                     errors.add(ACCOUNT_IS_BLOCKED);
 
                     request.setAttribute("errorsList", errors);
-                    return  Path.GUEST_LOGIN;
+                    return Path.GUEST_LOGIN;
                 }
                 String salt = user.getSalt();
-                if(Objects.equals(EncryptionPassword.hash(password, salt), user.getPassword())) {
+                if (Objects.equals(EncryptionPassword.hash(password, salt), user.getPassword())) {
 
                     loggedUsers.add(login);
                     request.getServletContext().setAttribute("loggedUsers", loggedUsers);
-                    logger.info("Logged users are "+ Arrays.toString(loggedUsers.toArray()));
+                    logger.info("Logged users are " + Arrays.toString(loggedUsers.toArray()));
 
                     HttpSession session = request.getSession();
                     session.setAttribute("role", user.getRole());
@@ -93,25 +94,24 @@ public class LoginCommand implements Command {
                     user.setIdPassedTestList(idPassedTestsList);
                     session.setAttribute("idOfPassedTests", user.getIdPassedTestList());
 
-
                     if (user.getRole().equals(Role.ADMIN.name())) return Path.REDIRECT_ADMIN_INFO;
                     if (user.getRole().equals(Role.STUDENT.name())) return Path.REDIRECT_STUDENT_INFO;
-                }else{
+
+                } else {
                     errors.add(ACCOUNT_NOT_FOUND);
                     request.setAttribute("errorsList", errors);
 
-                    return  Path.GUEST_LOGIN;
+                    return Path.GUEST_LOGIN;
                 }
 
-            } else {
-                errors.add(ACCOUNT_NOT_FOUND);
-                request.setAttribute("errorsList", errors);
-
-                return  Path.GUEST_LOGIN;
             }
-            return Path.REDIRECT_GUEST_LOGIN;
-        }else{
-            return  Path.GUEST_LOGIN;
+            errors.add(ACCOUNT_NOT_FOUND);
+            request.setAttribute("errorsList", errors);
+
+            return Path.GUEST_LOGIN;
+
         }
+        return Path.GUEST_LOGIN;
+
     }
 }
