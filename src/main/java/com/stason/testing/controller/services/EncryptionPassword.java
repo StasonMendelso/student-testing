@@ -13,32 +13,26 @@ public class EncryptionPassword {
     private static final int KEY_LENGTH = 512;
     private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
 
-    public static String hash(String password, String salt){
+    public static String hash(String password, String salt) {
         char[] chars = password.toCharArray();
         byte[] bytes = salt.getBytes();
-
         PBEKeySpec spec = new PBEKeySpec(chars, bytes, ITERATIONS, KEY_LENGTH);
-
         Arrays.fill(chars, Character.MIN_VALUE);
-
-        SecretKeyFactory fac = null;
         try {
-            fac = SecretKeyFactory.getInstance(ALGORITHM);
+            SecretKeyFactory fac = SecretKeyFactory.getInstance(ALGORITHM);
             byte[] securePassword = fac.generateSecret(spec).getEncoded();
             return Base64.getEncoder().encodeToString(securePassword);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             spec.clearPassword();
         }
-
-
         return null;
     }
-    public static String generateSalt(){
+    public static String generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
-        return salt.toString();
+        return Arrays.toString(salt);
     }
 }
