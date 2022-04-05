@@ -22,7 +22,7 @@ body {
     padding-right: calc(var(--bs-gutter-x) * .5);
 }
 .text-btn-primary{
-    color: #0d6efd;
+    color: #ddffea;
 }
 .bg-question{
     background: #f8f8f8;
