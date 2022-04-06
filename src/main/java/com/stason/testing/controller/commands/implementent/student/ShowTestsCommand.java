@@ -5,7 +5,6 @@ import com.stason.testing.controller.services.PaginationAndSortingService;
 import com.stason.testing.controller.services.PaginationService;
 import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.services.UserService;
-import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.Path;
 
@@ -13,7 +12,6 @@ import com.stason.testing.model.entity.Test;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,8 +38,8 @@ public class ShowTestsCommand implements Command {
 
             if(request.getParameter("clear")!=null) {
                   // скидаємо сортування
-                countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnpassedTests(userId, paginationParameter1);
-                unsurpassedTests = paginationService.paginateUnpassedTests(userId, paginationParameter1, pageNumber1);
+                countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnsurpassedTests(userId, paginationParameter1);
+                unsurpassedTests = paginationService.paginateUnsurpassedTests(userId, paginationParameter1, pageNumber1);
                 countOfPageNumberButtons2 = paginationService.countButtonsForPaginationAllTests( paginationParameter2);
                 testList = paginationService.paginateAllTests(paginationParameter2, pageNumber2);
 
@@ -79,8 +77,8 @@ public class ShowTestsCommand implements Command {
                     String discipline = EncodingConverter.convertFromISOtoUTF8(request.getParameter("discipline1")); // ALL another
                     if (orderBy.isEmpty()) {
                         // Не робимо сортування, сортування скинуте
-                        unsurpassedTests = paginationService.paginateUnpassedTests(userId, paginationParameter1, pageNumber1);
-                        countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnpassedTests(userId, paginationParameter1);
+                        unsurpassedTests = paginationService.paginateUnsurpassedTests(userId, paginationParameter1, pageNumber1);
+                        countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnsurpassedTests(userId, paginationParameter1);
                     } else {
                         //Робимо сортування
                         unsurpassedTests = paginationAndSortingService.paginateAndSortUnpassedTests(userId, paginationParameter1, pageNumber1, orderBy, order, discipline);
@@ -127,8 +125,8 @@ public class ShowTestsCommand implements Command {
                         request.getParameter("discipline2") == null &&
                         request.getParameter("paginationParameter2") == null
                 ){
-                    unsurpassedTests = paginationService.paginateUnpassedTests(userId, paginationParameter1, pageNumber1);
-                    countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnpassedTests(userId, paginationParameter1);
+                    unsurpassedTests = paginationService.paginateUnsurpassedTests(userId, paginationParameter1, pageNumber1);
+                    countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnsurpassedTests(userId, paginationParameter1);
                     testList = paginationService.paginateAllTests( paginationParameter2, pageNumber2);
                     countOfPageNumberButtons2 = paginationService.countButtonsForPaginationAllTests( paginationParameter2);
                 }
