@@ -10,22 +10,25 @@ public class UserService {
 
     private final UserDao userDao = new JDBCUserDao();
 
-    public boolean checkLogin(String login){
-        return userDao.findByLogin(login)!=null;
+    public boolean checkLogin(String login) {
+        return userDao.findByLogin(login) != null;
     }
-    public User findByLogin(String login){
+
+    public User findByLogin(String login) {
         return userDao.findByLogin(login);
     }
-    public List<Integer> findIdPassedTestsByUserId(int userId){
-        return  userDao.findIdPassedTestsByUserId(userId);
+
+    public List<Integer> findIdPassedTestsByUserId(int userId) {
+        return userDao.findIdPassedTestsByUserId(userId);
     }
-    public boolean createNewUser(User user){
+
+    public boolean createNewUser(User user) {
         return userDao.create(user);
     }
-    public void updatePassword(String login, String password){
+
+    public void updatePassword(String login, String password) {
         String salt = EncryptionPassword.generateSalt();
-        String hashedPassword = EncryptionPassword.hash(password,salt);
-        userDao.updatePassword(login,hashedPassword,salt);
+        userDao.updatePassword(login, EncryptionPassword.hash(password, salt), salt);
     }
 
     public void block(int userId) {
@@ -49,6 +52,6 @@ public class UserService {
     }
 
     public List<Integer> findIdBlockedUsers() {
-        return  userDao.findIdBlockedUsers();
+        return userDao.findIdBlockedUsers();
     }
 }
