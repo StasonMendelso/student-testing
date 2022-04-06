@@ -13,22 +13,18 @@ public abstract class ValidatorService {
     private static final String testDisciplineNamePattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,99}";
     private static final String questionTextPattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,399}";
     private static final String answerTextPattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,299}";
-    public static boolean validateEmail(String email){
-        Pattern pattern = Pattern.compile(emailPattern);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-    public static boolean validateUsername(String username){
-        Pattern pattern = Pattern.compile(usernamePattern);
-        Matcher matcher = pattern.matcher(username);
-        return matcher.matches();
-    }
-    public static boolean validateSurname(String surname){
-        Pattern pattern = Pattern.compile(surnamePattern);
-        Matcher matcher = pattern.matcher(surname);
-        return matcher.matches();
+
+    public static boolean validateEmail(String email) {
+        return email.matches(emailPattern);
     }
 
+    public static boolean validateUsername(String username) {
+        return username.matches(usernamePattern);
+    }
+
+    public static boolean validateSurname(String surname) {
+        return surname.matches(surnamePattern);
+    }
 
 
     /**
@@ -40,48 +36,41 @@ public abstract class ValidatorService {
      * (?=\\S+$) white spaces don’t allowed in the entire string.
      * .{8, 20} represents at least 8 characters and at most 20 characters.
      * $ represents the end of the string.
-     * **/
-    public static boolean validatePassword(String password){
-        Pattern pattern = Pattern.compile(passwordPattern);
-        Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
+     **/
+    public static boolean validatePassword(String password) {
+        return password.matches(passwordPattern);
     }
-    public static boolean isPasswordRepeated(String password1,String password2){
+
+    public static boolean isPasswordRepeated(String password1, String password2) {
         return password1.equals(password2);
     }
 
     public static boolean validateActivationCode(String activationCodeFromUser) {
-        Pattern pattern = Pattern.compile(activationCodePattern);
-        Matcher matcher = pattern.matcher(activationCodeFromUser);
-        return matcher.matches();
+        return activationCodeFromUser.matches(activationCodePattern);
     }
+
     //For tests
-    public static boolean validateTestName(String testName){
-        Pattern pattern = Pattern.compile(testNamePattern); //replace regex
-        Matcher matcher = pattern.matcher(testName);
-        return matcher.matches();
+    public static boolean validateTestName(String testName) {
+        return testName.matches(testNamePattern);
     }
-    public static boolean validateTestDisciplineName(String testName){
-        Pattern pattern = Pattern.compile(testDisciplineNamePattern);//replace regex
-        Matcher matcher = pattern.matcher(testName);
-        return matcher.matches();
+
+    public static boolean validateTestDisciplineName(String testName) {
+        return testName.matches(testDisciplineNamePattern);
     }
-    public static boolean validateTestDifficulty(int difficulty){
-        if(difficulty>0 && difficulty<4) return true;
-        return false;
+
+    public static boolean validateTestDifficulty(int difficulty) {
+        return difficulty > 0 && difficulty < 4;
     }
-    public static boolean validateTestTime(int minutes){
-        if(minutes>0) return true;
-        return false;
+
+    public static boolean validateTestTime(int minutes) {
+        return minutes > 0;
     }
-    public static boolean validateQuestionText(String question){
-        Pattern pattern = Pattern.compile(questionTextPattern);//replace regex
-        Matcher matcher = pattern.matcher(question);
-        return matcher.matches();
+
+    public static boolean validateQuestionText(String question) {
+        return question.matches(questionTextPattern);
     }
-    public static boolean validateAnswerText(String answer){
-        Pattern pattern = Pattern.compile(answerTextPattern);//replace regex
-        Matcher matcher = pattern.matcher(answer);
-        return matcher.matches();
+
+    public static boolean validateAnswerText(String answer) {
+        return answer.matches(answerTextPattern);
     }
 }
