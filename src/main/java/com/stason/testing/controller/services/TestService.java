@@ -12,28 +12,26 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TestService {
-
-
     private final TestDao testDao = new JDBCTestDao();
-    public void addPassedTest(int userId,int testId, double mark){
-        testDao.addPassedTest(userId,testId,mark);
+
+    public void addPassedTest(int userId, int testId, double mark) {
+        testDao.addPassedTest(userId, testId, mark);
     }
-    public Test findById(int testId){
-      return testDao.findById(testId);
+
+    public Test findById(int testId) {
+        return testDao.findById(testId);
     }
-    public void updatePassedTest(int userId, int testId,double mark){
-        testDao.updatePassedTest(userId,testId,mark);
+
+    public void updatePassedTest(int userId, int testId, double mark) {
+        testDao.updatePassedTest(userId, testId, mark);
     }
-    public List<String> findAllDisciplines(){
+
+    public List<String> findAllDisciplines() {
         return testDao.findAllDisciplines();
     }
 
     public void create(Test test) {
         testDao.create(test);
-    }
-
-    public int findIdByName(String name) {
-        return testDao.findIdByName(name);
     }
 
     public void deletePassedTestById(int testId) {
@@ -49,9 +47,10 @@ public class TestService {
     }
 
     public void deletePassedTestForUser(int testId, int userId) {
-        testDao.deletePassedTestForUser(testId,userId);
+        testDao.deletePassedTestForUser(testId, userId);
     }
-    public Test findTestWithQuestionsAndAnswers(int testId){
+
+    public Test findTestWithQuestionsAndAnswers(int testId) {
         Test test = testDao.findById(testId);
         QuestionService questionService = new QuestionService();
         AnswerService answerService = new AnswerService();
@@ -60,8 +59,7 @@ public class TestService {
         Iterator<Question> iterator = questionList.iterator();
         while (iterator.hasNext()) {
             Question question = iterator.next();
-            int questionId = question.getId();
-            List<Answer> answerList = answerService.findAllByQuestionId(questionId);
+            List<Answer> answerList = answerService.findAllByQuestionId(question.getId());
             List<Boolean> userOptions = new LinkedList<>();
             for (int i = 1; i <= answerList.size(); i++) {
                 userOptions.add(Boolean.FALSE);
@@ -74,6 +72,6 @@ public class TestService {
     }
 
     public boolean checkTestName(String testName) {
-        return testDao.findIdByName(testName)!=0;
+        return testDao.findIdByName(testName) != 0;
     }
 }

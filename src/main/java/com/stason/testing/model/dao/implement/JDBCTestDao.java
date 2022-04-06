@@ -19,8 +19,6 @@ public class JDBCTestDao implements TestDao {
     private static class Query {
         static final String deletePassedTestById = "DELETE FROM onlinetesting.passedtests WHERE test_id=?";
         static final String countTestByDiscipline = "SELECT COUNT(1) FROM onlinetesting.tests WHERE tests.nameOfDiscipline=?";
-        //        static final String findAndPaginateAndSortUnsurpassedTests = "";
-//        static final String findAndPaginateAndSortByDisciplineUnsurpassedTests = "";
         static final String updatePassedTest = "update onlinetesting.passedtests SET mark=? WHERE user_id=? AND test_id=?;";
         static final String countAllTest = "SELECT COUNT(1) FROM onlinetesting.tests";
         static final String findAndPaginateAllTests = "SELECT * FROM onlinetesting.`tests` limit ?,?;";
@@ -29,14 +27,12 @@ public class JDBCTestDao implements TestDao {
         static final String findAllDisciplines = "SELECT DISTINCT onlinetesting.tests.nameOfDiscipline FROM onlinetesting.tests;";
         static final String countUnsurpassedTestByUser = "SELECT COUNT(1) FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL;";
         static final String countPassedTestByUser = "SELECT COUNT(1) FROM onlinetesting.`passedtests` WHERE user_id=?";
-        //        static final String findAndPaginateAndSortUnsurpassedTestsByUserId = "";
         static final String findAndPaginateAndSortByDisciplineUnsurpassedTestsByUserId = "SELECT * FROM onlinetesting.`tests`, (SELECT mark, test_id FROM onlinetesting.`passedtests` WHERE user_id=?) as `passedtests` WHERE `tests`.id = `passedtests`.test_id limit ?,?;";
         static final String findAndPaginateUnsurpassedTests = " SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL limit ?,?;";
         static final String addPassedTest = "INSERT INTO onlinetesting.passedtests (user_id, test_id, mark) VALUES (?,?,?)";
         static final String findIdByName = "SELECT id FROM onlinetesting.tests where name=?";
         static final String create = "INSERT INTO onlinetesting.tests (name, nameOfDiscipline, difficulty, time_minutes, countOfQuestions) VALUES (?,?,?,?,?)";
         static final String findById = "SELECT * FROM onlinetesting.tests WHERE id=?";
-        static final String findAll = "SELECT * FROM onlinetesting.tests";
         static final String deletePassedTest = "DELETE FROM onlinetesting.passedtests WHERE test_id=?";
         static final String delete = "DELETE FROM onlinetesting.tests WHERE id=?";
 
@@ -45,7 +41,7 @@ public class JDBCTestDao implements TestDao {
     @Override
     public void deletePassedTestForUser(int testId, int userId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE test_id=? AND user_id=?;");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM onlinetesting.passedtests WHERE test_id=? AND user_id=?;")) {
             preparedStatement.setInt(1, testId);
             preparedStatement.setInt(2, userId);
             preparedStatement.executeUpdate();
@@ -399,7 +395,7 @@ public class JDBCTestDao implements TestDao {
 
 
     @Override
-    public boolean create(Test test){
+    public boolean create(Test test) {
         Connection connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement preparedStatement = null;
 
@@ -414,31 +410,31 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.execute();
             int testId = -1;
             preparedStatement = connection.prepareStatement(Query.findIdByName);
-            preparedStatement.setString(1,test.getName());
-            try(ResultSet resultSet = preparedStatement.executeQuery();){
+            preparedStatement.setString(1, test.getName());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
                     testId = resultSet.getInt("id");
                 }
             }
             //
-            int i =1;
-            for(Question question : test.getQuestions()){
+            int i = 1;
+            for (Question question : test.getQuestions()) {
                 preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)");
-                preparedStatement.setInt(1,testId);
-                preparedStatement.setInt(2,i);
-                preparedStatement.setString(3,question.getTextQuestion());
+                preparedStatement.setInt(1, testId);
+                preparedStatement.setInt(2, i);
+                preparedStatement.setString(3, question.getTextQuestion());
                 preparedStatement.execute();
-            //добавляємо до кожного вопроса відповіді в БД
+                //добавляємо до кожного вопроса відповіді в БД
                 preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=? AND questionNumber=?");
-                preparedStatement.setInt(1,testId);
-                preparedStatement.setInt(2,i++);
+                preparedStatement.setInt(1, testId);
+                preparedStatement.setInt(2, i++);
                 int questionId = -1;
-                try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if(resultSet.next()) questionId = resultSet.getInt("id");
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) questionId = resultSet.getInt("id");
                 }
-                preparedStatement =connection.prepareStatement("INSERT INTO onlinetesting.answers (answer, isRightAnswer, questions_id) VALUES (?,?,?)");
-                for(Answer answer: question.getAnswers()){
+                preparedStatement = connection.prepareStatement("INSERT INTO onlinetesting.answers (answer, isRightAnswer, questions_id) VALUES (?,?,?)");
+                for (Answer answer : question.getAnswers()) {
                     answer.setQuestionId(questionId);
                     preparedStatement.setString(1, answer.getAnswer());
                     preparedStatement.setBoolean(2, answer.isRightAnswer());
@@ -459,7 +455,7 @@ public class JDBCTestDao implements TestDao {
             }
             logger.error("Failed to add new test in DB ", e);
             throw new DataBaseException("Failed to add new test in DB =" + test.getName());
-        }finally {
+        } finally {
             if (connection != null) {
                 try {
                     connection.setAutoCommit(true);
