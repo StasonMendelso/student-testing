@@ -25,6 +25,7 @@ import javax.servlet.http.*;
 public class ControllerServlet extends HttpServlet {
     private final static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
     private Map<String, Command> commands = new HashMap<>();
+
     public void init() {
         logger.debug("Initialization " + ControllerServlet.class.getName());
         commands = CommandsHelper.getCommands();
@@ -52,7 +53,7 @@ public class ControllerServlet extends HttpServlet {
             logger.info("New URL is:" + newUrl);
             if (newUrl.contains("redirect:")) {
                 response.sendRedirect(newUrl.replaceAll("redirect:", ""));
-            }else {
+            } else {
                 request.getRequestDispatcher(newUrl).forward(request, response);
             }
         } catch (ServiceException ex) {
