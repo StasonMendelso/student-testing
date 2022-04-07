@@ -6,7 +6,6 @@ import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.services.ValidatorService;
 import com.stason.testing.controller.services.VerifyRecaptcha;
 import com.stason.testing.controller.utils.*;
-import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
 import org.apache.log4j.Logger;
 
@@ -21,11 +20,9 @@ public class RegistrationCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         if (request.getParameter("login") != null) {
-
             //1.Validate
             //2.CheckUser
             //3.Register
-
             List<ErrorForUser> errors = new ArrayList<>();
             //Convert to UTF-8
             String email = EncodingConverter.convertFromISOtoUTF8(request.getParameter("login"));

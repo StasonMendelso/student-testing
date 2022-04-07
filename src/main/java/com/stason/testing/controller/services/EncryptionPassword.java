@@ -36,6 +36,6 @@ public class EncryptionPassword {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
-        return Arrays.toString(salt);
+        return salt.toString();
     }
 }
