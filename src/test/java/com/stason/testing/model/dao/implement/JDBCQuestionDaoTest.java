@@ -101,22 +101,6 @@ class JDBCQuestionDaoTest {
     }
 
     @Test
-    void findId() throws SQLException {
-        try (MockedStatic<ConnectionPool> cp = Mockito.mockStatic(ConnectionPool.class)) {
-            cp.when(ConnectionPool::getInstance).thenReturn(connectionPool);
-            Mockito.when(connectionPool.getConnection()).thenReturn(connection);
-            Connection testConnection = ConnectionPool.getInstance().getConnection();
-            Assertions.assertNotNull(testConnection);
-
-            Mockito.when(connection.prepareStatement(anyString())).thenReturn(findId);
-            Question question = new Question(107, 1, "Question 1");
-            int id = questionDao.findId(question);
-            assertEquals(182, id);
-        }
-    }
-
-
-    @Test
     void findAllByTestId() throws SQLException {
         try (MockedStatic<ConnectionPool> cp = Mockito.mockStatic(ConnectionPool.class)) {
             cp.when(ConnectionPool::getInstance).thenReturn(connectionPool);

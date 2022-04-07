@@ -5,6 +5,7 @@ import com.stason.testing.controller.services.AnswerService;
 import com.stason.testing.controller.services.QuestionService;
 import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.services.ValidatorService;
+import com.stason.testing.controller.utils.CommandsHelper;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
@@ -22,18 +23,14 @@ import java.util.List;
 
 public class CreateQuestionCommand implements Command {
     private final TestService testService = new TestService();
-    private final QuestionService questionService = new QuestionService();
-    private final AnswerService answerService = new AnswerService();
 
     @Override
     public String execute(HttpServletRequest request) {
         if (request.getParameter("SaveTest") != null) {
-
             String url = saveQuestion(request);
             // не пройшов валідацію
             if (!url.contains("redirect")) return url;
             if (url.contains("createQuestion")) {
-
                 Test test = (Test) request.getSession().getAttribute("test");
                 // добавляємо тест в БД
                 try {
@@ -48,33 +45,25 @@ public class CreateQuestionCommand implements Command {
                 return Path.ADMIN_SUCCESSFUL_CREATING_TEST;
             }
             return url;
-
-
         }
 
         if (request.getParameter("SaveQuestion") != null) {
-            if (request.getSession().getAttribute("test") != null) {
-                return saveQuestion(request);
-            } else {
-                return Path.REDIRECT_ADMIN_CREATE_TEST;
-            }
+            if (request.getSession().getAttribute("test") != null) return saveQuestion(request);
+            return Path.REDIRECT_ADMIN_CREATE_TEST;
         }
-        if (request.getRequestURI().contains("/createQuestion")) {
-            return Path.ADMIN_CREATE_QUESTION;
-        } else {
-            return Path.REDIRECT_ADMIN_CREATE_QUESTION;
-        }
+        if (request.getRequestURI().contains("/createQuestion")) return Path.ADMIN_CREATE_QUESTION;
+        return Path.REDIRECT_ADMIN_CREATE_QUESTION;
+
     }
 
     private void deleteLastQuestion(HttpServletRequest request) {
         Test test = (Test) request.getSession().getAttribute("test");
         test.deleteLastQuestion();
-
     }
 
     private String saveQuestion(HttpServletRequest request) {
         List<ErrorForUser> errorForUserList = new ArrayList();
-        if (!isProperlyCheckboxChecked(request)) {
+        if (!CommandsHelper.isProperlyCheckboxChecked(request)) {
             //Вы выбрали ответ как пустой вариант ответа
             errorForUserList.add(ErrorForUser.EMPTY_ANSWER_OPTION);
             request.setAttribute("errorsList", errorForUserList);
@@ -86,23 +75,9 @@ public class CreateQuestionCommand implements Command {
             request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
         }
-
         String rightOptions = Arrays.toString(request.getParameterValues("opt"));
         String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
-        if (!ValidatorService.validateQuestionText(questionName)) {
-            errorForUserList.add(ErrorForUser.INVALID_QUESTION_NAME);
-        }
-        for (int i = 1; i <= 4; i++) {
-            String paramName = "answer" + i;
-            if (request.getParameter(paramName).isEmpty()) {
-                continue;
-            } else {
-                String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
-                if (!ValidatorService.validateAnswerText(answerText) && !errorForUserList.contains(ErrorForUser.INVALID_ANSWER_NAME)) {
-                    errorForUserList.add(ErrorForUser.INVALID_ANSWER_NAME);
-                }
-            }
-        }
+        CommandsHelper.validateQuestionParameters(request, errorForUserList);
         if (errorForUserList.size() != 0) {
             request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
@@ -112,39 +87,15 @@ public class CreateQuestionCommand implements Command {
 
         for (int i = 1; i <= 4; i++) {
             String paramName = "answer" + i;
-            if (request.getParameter(paramName).isEmpty()) {
-                continue;
-            } else {
-                Answer answer = new Answer();
-                String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
-                answer.setAnswer(answerText);
-                if (rightOptions.contains(String.valueOf(i))) {
-                    answer.setRightAnswer(true);
-                } else {
-                    answer.setRightAnswer(false);
-                }
-                question.addAnswer(answer);
-            }
+            if (request.getParameter(paramName).isEmpty()) continue;
+            String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
+            Answer answer = new Answer(answerText, rightOptions.contains(String.valueOf(i)), 0);
+            question.addAnswer(answer);
         }
         Test test = (Test) request.getSession().getAttribute("test");
         test.addQuestion(question);
         request.getSession().setAttribute("test", test);
         return Path.REDIRECT_ADMIN_CREATE_QUESTION;
-
-
     }
 
-    private boolean isProperlyCheckboxChecked(HttpServletRequest request) {
-        String rightOptions = Arrays.toString(request.getParameterValues("opt"));
-        // Выбран 1 вариант как правильный, но нету варианта ответа
-        if (rightOptions.contains("1") && request.getParameter("answer1").isEmpty()) return false;
-        // Выбран 2 вариант как правильный, но нету варианта ответа
-        if (rightOptions.contains("2") && request.getParameter("answer2").isEmpty()) return false;
-        // Выбран 3 вариант как правильный, но нету варианта ответа
-        if (rightOptions.contains("3") && request.getParameter("answer3").isEmpty()) return false;
-        // Выбран 4 вариант как правильный, но нету варианта ответа
-        if (rightOptions.contains("4") && request.getParameter("answer4").isEmpty()) return false;
-
-        return true;
-    }
 }

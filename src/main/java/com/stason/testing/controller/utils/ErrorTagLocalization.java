@@ -45,8 +45,7 @@ public class ErrorTagLocalization extends TagSupport {
     private ResourceBundle resourceBundle;
 
     public void setLang(String lang) {
-        Locale locale = new Locale(lang);
-        resourceBundle = ResourceBundle.getBundle("messages", locale);
+        resourceBundle = ResourceBundle.getBundle("messages", new Locale(lang));
     }
 
     public void setError(ErrorForUser error) {

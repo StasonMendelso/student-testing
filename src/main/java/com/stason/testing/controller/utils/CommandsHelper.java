@@ -14,11 +14,13 @@ import com.stason.testing.controller.commands.implementent.student.ShowTestResul
 import com.stason.testing.controller.services.ValidatorService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CommandsHelper {
-    public static String validatePasswordForPasswordCommand(HttpServletRequest request){
+    public static String validatePasswordForPasswordCommand(HttpServletRequest request) {
         String password = request.getParameter("password");
         String repeatedPassword = request.getParameter("repeatedPassword");
         //Validate
@@ -33,7 +35,8 @@ public class CommandsHelper {
         }
         return null;
     }
-    public static Map<String, Command> getCommands(){
+
+    public static Map<String, Command> getCommands() {
         final Map<String, Command> commands = new HashMap<>();
         commands.put("/", new DefaultCommand());
         commands.put("", new DefaultCommand());
@@ -66,5 +69,37 @@ public class CommandsHelper {
         commands.put("/student/test", new DoTestCommand());
         commands.put("/student/result", new ShowTestResultCommand());
         return commands;
+    }
+
+    public static boolean isProperlyCheckboxChecked(HttpServletRequest request) {
+        String rightOptions = Arrays.toString(request.getParameterValues("opt"));
+        // Выбран 1 вариант как правильный, но нету варианта ответа
+        if (rightOptions.contains("1") && request.getParameter("answer1").isEmpty()) return false;
+        // Выбран 2 вариант как правильный, но нету варианта ответа
+        if (rightOptions.contains("2") && request.getParameter("answer2").isEmpty()) return false;
+        // Выбран 3 вариант как правильный, но нету варианта ответа
+        if (rightOptions.contains("3") && request.getParameter("answer3").isEmpty()) return false;
+        // Выбран 4 вариант как правильный, но нету варианта ответа
+        if (rightOptions.contains("4") && request.getParameter("answer4").isEmpty()) return false;
+
+        return true;
+    }
+
+    public static void validateQuestionParameters(HttpServletRequest request, List<ErrorForUser> errorForUserList) {
+        String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
+        if (!ValidatorService.validateQuestionText(questionName)) {
+            errorForUserList.add(ErrorForUser.INVALID_QUESTION_NAME);
+        }
+        for (int i = 1; i <= 4; i++) {
+            String paramName = "answer" + i;
+            if (request.getParameter(paramName).isEmpty()) {
+                continue;
+            }
+            String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
+            if (!ValidatorService.validateAnswerText(answerText) && !errorForUserList.contains(ErrorForUser.INVALID_ANSWER_NAME)) {
+                errorForUserList.add(ErrorForUser.INVALID_ANSWER_NAME);
+            }
+
+        }
     }
 }

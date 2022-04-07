@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.ValidatorService;
+import com.stason.testing.controller.utils.CommandsHelper;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
@@ -36,27 +37,14 @@ public class EditQuestionCommand implements Command {
                 request.setAttribute("errorAddedQuestion", ErrorForUser.INVALID_ANSWER_NAME);
                 return Path.ADMIN_EDIT_QUESTIONS_INFO;
             }
-            Question question = null;
             try {
-                question = questionOrigin.clone();
+                Question question = questionOrigin.clone();
+                Answer answer = new Answer(question.getLastAnswer().getId() + 1, answerText, request.getParameter("opt") != null, question.getId());
+                question.addAnswer(answer);
+                request.getSession().setAttribute("editedQuestion", question);
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
-            Answer answer = new Answer();
-            answer.setAnswer(answerText);
-            if (request.getParameter("opt") != null) {
-                answer.setRightAnswer(true);
-            } else {
-                answer.setRightAnswer(false);
-            }
-            answer.setQuestionId(question.getId());
-
-            answer.setId(question.getLastAnswer().getId() + 1);
-
-            question.addAnswer(answer);
-
-            request.getSession().setAttribute("editedQuestion", question);
-
             return Path.ADMIN_EDIT_QUESTIONS_INFO;
         }
 
@@ -66,14 +54,12 @@ public class EditQuestionCommand implements Command {
                     Test test = (Test) request.getSession().getAttribute("editedTest");
                     Question question = test.getQuestionById(Integer.parseInt(request.getParameter("id")));
                     request.getSession().setAttribute("editedQuestion", question);
-
                 }
 
             } else {
                 Test test = (Test) request.getSession().getAttribute("editedTest");
                 Question question = test.getQuestionById(Integer.parseInt(request.getParameter("id")));
                 request.getSession().setAttribute("editedQuestion", question);
-
             }
         }
         if (request.getRequestURI().contains("admin/editQuestionInfo")) {
@@ -87,11 +73,11 @@ public class EditQuestionCommand implements Command {
 
     private String saveQuestion(HttpServletRequest request, List<ErrorForUser> errorForUserList) {
         String questionText = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionText"));
-        if (questionText.isEmpty()||(!ValidatorService.validateQuestionText(questionText))) {
+        if (questionText.isEmpty() || (!ValidatorService.validateQuestionText(questionText))) {
             //Невалідне запитання
             errorForUserList.add(ErrorForUser.INVALID_QUESTION_NAME);
         }
-        if (!isProperlyCheckboxChecked(request)) {
+        if (!CommandsHelper.isProperlyCheckboxChecked(request)) {
             //Вы выбрали ответ как пустой вариант ответа
             errorForUserList.add(ErrorForUser.EMPTY_ANSWER_OPTION);
         }
@@ -101,23 +87,20 @@ public class EditQuestionCommand implements Command {
         }
         for (int i = 1; i <= 4; i++) {
             String paramName = "answer" + i;
-            if (request.getParameter(paramName)==null) {
+            if (request.getParameter(paramName) == null) {
                 continue;
-            } else {
-                String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
-                if((answerText.isEmpty()||!ValidatorService.validateAnswerText(answerText)) && !errorForUserList.contains(ErrorForUser.INVALID_ANSWER_NAME)){
-                    errorForUserList.add(ErrorForUser.INVALID_ANSWER_NAME);
-                }
+            }
+            String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
+            if ((answerText.isEmpty() || !ValidatorService.validateAnswerText(answerText)) && !errorForUserList.contains(ErrorForUser.INVALID_ANSWER_NAME)) {
+                errorForUserList.add(ErrorForUser.INVALID_ANSWER_NAME);
             }
         }
-        if(errorForUserList.size()!=0){
+        if (errorForUserList.size() != 0) {
             request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_EDIT_QUESTIONS_INFO;
         }
         String rightOptions = Arrays.toString(request.getParameterValues("opt"));
-
         Test test = (Test) request.getSession().getAttribute("editedTest");
-
         Question question = (Question) request.getSession().getAttribute("editedQuestion");
         question.setTextQuestion(questionText);
         List<Answer> answerList = question.getAnswers();
@@ -129,17 +112,11 @@ public class EditQuestionCommand implements Command {
 
             if (request.getParameter(paramName) == null) {
                 continue;
-            } else {
-                String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
-                answer.setAnswer(answerText);
-                if (rightOptions.contains(String.valueOf(i))) {
-                    answer.setRightAnswer(true);
-                } else {
-                    answer.setRightAnswer(false);
-                }
-                i++;
             }
-
+            String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter(paramName));
+            answer.setAnswer(answerText);
+            answer.setRightAnswer(rightOptions.contains(String.valueOf(i)));
+            i++;
         }
 
         test.setQuestionById(question, question.getId());
@@ -148,20 +125,6 @@ public class EditQuestionCommand implements Command {
         request.getSession().setAttribute("questionNumber", question.getQuestionNumber());
         return Path.REDIRECT_ADMIN_EDIT_TEST + "?id=" + test.getId();
 
-    }
-
-    private boolean isProperlyCheckboxChecked(HttpServletRequest request) {
-        String rightOptions = Arrays.toString(request.getParameterValues("opt"));
-        // Выбран 1 вариант как правильный, но нету варианта ответа
-        if (rightOptions.contains("1") && request.getParameter("answer1").isEmpty()) return false;
-        // Выбран 2 вариант как правильный, но нету варианта ответа
-        if (rightOptions.contains("2") && request.getParameter("answer2").isEmpty()) return false;
-        // Выбран 3 вариант как правильный, но нету варианта ответа
-        if (rightOptions.contains("3") && request.getParameter("answer3").isEmpty()) return false;
-        // Выбран 4 вариант как правильный, но нету варианта ответа
-        if (rightOptions.contains("4") && request.getParameter("answer4").isEmpty()) return false;
-
-        return true;
     }
 }
 
