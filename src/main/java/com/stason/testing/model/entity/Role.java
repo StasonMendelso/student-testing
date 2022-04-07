@@ -18,6 +18,6 @@ public enum Role {
         if (this.equals(GUEST)) return "Role{Guest}";
         if (this.equals(STUDENT)) return "Role{Student}";
         if (this.equals(ADMIN)) return "Role{Admin}";
-        return null;
+        return " ";
     }
 }

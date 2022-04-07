@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCTestDao implements TestDao {
-    private final static Logger logger = Logger.getLogger(JDBCTestDao.class.getName());
+    private static final Logger logger = Logger.getLogger(JDBCTestDao.class.getName());
 
     private static class Query {
         static final String deletePassedTestById = "DELETE FROM onlinetesting.passedtests WHERE test_id=?";
@@ -585,7 +585,6 @@ public class JDBCTestDao implements TestDao {
         } finally {
             if (connection != null) {
                 try {
-
                     connection.close();
                 } catch (SQLException e) {
                     logger.error("Error close connection");

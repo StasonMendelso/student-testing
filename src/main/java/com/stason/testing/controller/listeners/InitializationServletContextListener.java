@@ -1,7 +1,6 @@
 package com.stason.testing.controller.listeners;
 
 import com.stason.testing.controller.services.UserService;
-import com.stason.testing.controller.servlets.ControllerServlet;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContextEvent;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @WebListener
 public class InitializationServletContextListener implements ServletContextListener {
-    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+    private static final Logger logger = Logger.getLogger(InitializationServletContextListener.class.getName());
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         logger.debug("Initialization of ServletContext");

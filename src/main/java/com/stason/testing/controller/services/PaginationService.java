@@ -1,6 +1,4 @@
 package com.stason.testing.controller.services;
-
-
 import com.stason.testing.model.dao.TestDao;
 import com.stason.testing.model.dao.UserDao;
 import com.stason.testing.model.dao.implement.JDBCTestDao;
@@ -20,14 +18,8 @@ public class PaginationService {
     }
 
     public int countButtonsForPaginationPassedTests(int userId, int paginationParameter) {
-        int countPassedTest = testDao.countPassedTestByUser(userId);
-        double countOfPageNumberButtons = (double) countPassedTest / paginationParameter;
-        if (countOfPageNumberButtons <= 1) {
-            countOfPageNumberButtons = 0;
-        } else {
-            countOfPageNumberButtons = Math.ceil(countOfPageNumberButtons);
-        }
-        return (int) countOfPageNumberButtons;
+        double countOfPageNumberButtons = (double) testDao.countPassedTestByUser(userId) / paginationParameter;
+        return (int) countOfPageNumberButton(countOfPageNumberButtons);
     }
 
     public List<Test> paginateUnsurpassedTests(int userId, int paginationParameter, int pageNumber) {
@@ -36,22 +28,12 @@ public class PaginationService {
 
     public int countButtonsForPaginationUnsurpassedTests(int userId, int paginationParameter) {
         double countOfPageNumberButtons = (double) testDao.countUnsurpassedTestByUser(userId) / paginationParameter;
-        if (countOfPageNumberButtons <= 1) {
-            countOfPageNumberButtons = 0;
-        } else {
-            countOfPageNumberButtons = Math.ceil(countOfPageNumberButtons);
-        }
-        return (int) countOfPageNumberButtons;
+        return (int) countOfPageNumberButton(countOfPageNumberButtons);
     }
 
     public int countButtonsForPaginationAllTests(int paginationParameter) {
         double countOfPageNumberButtons = (double) testDao.countAllTest() / paginationParameter;
-        if (countOfPageNumberButtons <= 1) {
-            countOfPageNumberButtons = 0;
-        } else {
-            countOfPageNumberButtons = Math.ceil(countOfPageNumberButtons);
-        }
-        return (int) countOfPageNumberButtons;
+        return (int) countOfPageNumberButton(countOfPageNumberButtons);
     }
 
     public List<Test> paginateAllTests(int paginationParameter, int pageNumber) {
@@ -64,12 +46,14 @@ public class PaginationService {
 
     public int countButtonsForPaginationAllUsers(int paginationParameter) {
         double countOfPageNumberButtons = (double) userDao.countAllUsers() / paginationParameter;
+        return (int) countOfPageNumberButton(countOfPageNumberButtons);
+    }
+    double countOfPageNumberButton(double countOfPageNumberButtons){
         if (countOfPageNumberButtons <= 1) {
             countOfPageNumberButtons = 0;
         } else {
             countOfPageNumberButtons = Math.ceil(countOfPageNumberButtons);
         }
-        return (int) countOfPageNumberButtons;
+        return countOfPageNumberButtons;
     }
-
 }

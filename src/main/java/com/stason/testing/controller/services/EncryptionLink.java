@@ -13,19 +13,20 @@ public class EncryptionLink {
     private static final int KEY_LENGTH = 512;
     private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
 
-    public static String hash(String login,String salt) {
+    private EncryptionLink() {
+    }
+
+    public static String hash(String login, String salt) {
         char[] chars = login.toCharArray();
         byte[] bytes = salt.getBytes();
 
         PBEKeySpec spec = new PBEKeySpec(chars, bytes, ITERATIONS, KEY_LENGTH);
-
         Arrays.fill(chars, Character.MIN_VALUE);
 
-        SecretKeyFactory fac = null;
         try {
-            fac = SecretKeyFactory.getInstance(ALGORITHM);
+            SecretKeyFactory fac = SecretKeyFactory.getInstance(ALGORITHM);
             byte[] secureLink = fac.generateSecret(spec).getEncoded();
-            return Base64.getEncoder().encodeToString(secureLink).replaceAll("\\+","A");
+            return Base64.getEncoder().encodeToString(secureLink).replace("\\+","A");
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace();
         } finally {
@@ -40,7 +41,7 @@ public class EncryptionLink {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
-        return salt.toString();
+        return Arrays.toString(salt);
     }
 }
 

@@ -1,8 +1,5 @@
 package com.stason.testing.controller.services;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public abstract class ValidatorService {
     private static final String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     private static final String usernamePattern = "^[A-ZА-ЯІЁЄ][a-zа-яіїёъє']{1,29}$";
@@ -13,6 +10,9 @@ public abstract class ValidatorService {
     private static final String testDisciplineNamePattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,99}";
     private static final String questionTextPattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,399}";
     private static final String answerTextPattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,299}";
+
+    private ValidatorService() {
+    }
 
     public static boolean validateEmail(String email) {
         return email.matches(emailPattern);

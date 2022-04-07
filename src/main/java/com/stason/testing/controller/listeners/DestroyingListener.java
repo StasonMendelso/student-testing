@@ -10,10 +10,7 @@ import java.util.HashSet;
 
 @WebListener
 public class DestroyingListener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
-    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
-
-    public DestroyingListener() {
-    }
+    private static final Logger logger = Logger.getLogger(DestroyingListener.class.getName());
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {

@@ -1,23 +1,23 @@
 package com.stason.testing.controller.exceptions;
 
 public class ServiceException extends RuntimeException{
-    private final String HttpStatusCode;
+    private final String httpStatusCode;
 
     public ServiceException(String httpStatusCode) {
-        this.HttpStatusCode = httpStatusCode;
+        this.httpStatusCode = httpStatusCode;
     }
 
-    public ServiceException(String HttpStatusCode, String message) {
+    public ServiceException(String httpStatusCode, String message) {
         super(message);
-        this.HttpStatusCode = HttpStatusCode;
+        this.httpStatusCode = httpStatusCode;
     }
 
-    public ServiceException(String HttpStatusCode, String message, Throwable cause) {
+    public ServiceException(String httpStatusCode, String message, Throwable cause) {
         super(message, cause);
-        this.HttpStatusCode = HttpStatusCode;
+        this.httpStatusCode = httpStatusCode;
     }
 
     public String getHttpStatusCode() {
-        return HttpStatusCode;
+        return httpStatusCode;
     }
 }

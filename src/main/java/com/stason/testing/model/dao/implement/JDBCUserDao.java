@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCUserDao implements UserDao {
-    private final  static Logger logger = Logger.getLogger(JDBCUserDao.class.getName());
+    private static final Logger logger = Logger.getLogger(JDBCUserDao.class.getName());
 
     private static class Query{
         static final String findIdBlockedUsers = "SELECT id FROM onlinetesting.users WHERE blocked=true";
@@ -202,7 +202,6 @@ public class JDBCUserDao implements UserDao {
                     user.setId_role(resultSet.getInt("id_role"));
                     user.setId(resultSet.getInt("id"));
                     user.setBlocked(resultSet.getBoolean("blocked"));
-                    connection.close();
                     return user;
 
                 }

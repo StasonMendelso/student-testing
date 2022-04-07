@@ -1,7 +1,5 @@
 package com.stason.testing.controller.filters;
 
-import com.stason.testing.controller.commands.implementent.student.DoTestCommand;
-import com.stason.testing.controller.utils.Constants;
 import com.stason.testing.controller.utils.Path;
 import org.apache.log4j.Logger;
 
@@ -13,12 +11,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "BackArrowForDoTestFilter")
 public class BackArrowForDoTestFilter implements Filter {
-    private final  static Logger logger = Logger.getLogger(BackArrowForDoTestFilter.class.getName());
-    public void init(FilterConfig config) throws ServletException {
-    }
-
-    public void destroy() {
-    }
+    private static final Logger logger = Logger.getLogger(BackArrowForDoTestFilter.class.getName());
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -29,7 +22,7 @@ public class BackArrowForDoTestFilter implements Filter {
         res.setHeader("Pragma","no-cache");
         res.setDateHeader("Expires",0);
         if((req.getSession().getAttribute("test")==null && req.getParameter("id")==null)){
-            res.sendRedirect(Path.REDIRECT_STUDENT_TESTS.replaceAll("redirect:",""));
+            res.sendRedirect(Path.REDIRECT_STUDENT_TESTS.replace("redirect:",""));
             return;
         }
         chain.doFilter(request, response);

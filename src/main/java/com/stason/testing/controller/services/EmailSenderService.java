@@ -9,14 +9,14 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailSenderService {
-    private final static Logger logger = Logger.getLogger(EmailSenderService.class.getName());
+    private static final Logger logger = Logger.getLogger(EmailSenderService.class.getName());
 
-    private String userName="glovastas2004@gmail.com";
-    private String password="dyhqlheeaastdurs";
+    private final String userName="glovastas2004@gmail.com";
+    private final String password="dyhqlheeaastdurs";
     // Get system properties
-    private Properties properties = System.getProperties();
+    private final Properties properties = System.getProperties();
     // Sender's email ID needs to be mentioned
-    private String from = "glovastas2004@gmail.com";
+    private final String from = "glovastas2004@gmail.com";
 
     // Assuming you are sending email from through gmails smtp
     private String host = "smtp.gmail.com";
@@ -37,11 +37,8 @@ public class EmailSenderService {
 
         // Get the Session object.// and pass username and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-
             protected PasswordAuthentication getPasswordAuthentication() {
-
                 return new PasswordAuthentication(userName, password);
-
             }
 
         });

@@ -12,14 +12,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 
 @WebFilter(filterName = "AccessingFilter")
 public class AccessingFilter implements Filter {
-    private final static Logger logger = Logger.getLogger(AccessingFilter.class.getName());
+    private static final Logger logger = Logger.getLogger(AccessingFilter.class.getName());
 
-    private final HashMap<Role, HashSet<String>> accessingURLs = new HashMap<>();
+    private final Map<Role, HashSet<String>> accessingURLs = new HashMap<>();
 
+    @Override
     public void init(FilterConfig config) throws ServletException {
         HashSet<String> accessingURLAdmin = new HashSet<>();
 
@@ -68,23 +70,20 @@ public class AccessingFilter implements Filter {
 
     }
 
-    public void destroy() {
-    }
-
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         String role = (String) req.getSession().getAttribute("role");
-        String URI = req.getRequestURI();
+        String requestURI = req.getRequestURI();
         String URL = req.getRequestURL().toString();
-        String newURI = URI.replaceAll(".*/testing","");
+        String newURI = requestURI.replaceAll(".*/testing","");
 
         //Перевірка чи не заблокували користувача під час його сесії або чи він не заблокований зовсім
-        if (role.equals(Role.STUDENT.name()) || role.equals(Role.ADMIN.name())) {
+        if (!role.equals(Role.GUEST.name())) {
             List<Integer> blockedList = (List<Integer>) req.getServletContext().getAttribute("blockedUsers");
             int userId = (int) req.getSession().getAttribute("id");
-            for (int blockedId : blockedList) {
+            for (Integer blockedId : blockedList) {
                 if (blockedId == userId) {
                     logger.info("Accessing Filter - User " + userId + " is blocked");
                     res.sendRedirect("/web-application/testing/login");
@@ -92,10 +91,10 @@ public class AccessingFilter implements Filter {
                 }
             }
             List<Integer> logoutUsersId = (List<Integer>) req.getServletContext().getAttribute("logoutUsersId");
-            for (int logoutId : logoutUsersId) {
+            for (Integer logoutId : logoutUsersId) {
                 if (logoutId == userId) {
                     logger.info("Accessing Filter - User " + userId + " must be log outed");
-                    logoutUsersId.remove((Integer) logoutId);
+                    logoutUsersId.remove(logoutId);
                     req.getServletContext().setAttribute("logoutUsersId", logoutUsersId);
                     res.sendRedirect("/web-application/testing/login");
                     return;
@@ -103,26 +102,21 @@ public class AccessingFilter implements Filter {
             }
         }
 
-        if(role.equals(Role.GUEST.name())){
-            if(accessingURLs.get(Role.GUEST).contains(newURI)){
+        if(role.equals(Role.GUEST.name()) && accessingURLs.get(Role.GUEST).contains(newURI)){
                 logger.info("Accessing Filter - Guest has access to this URL " + URL);
                 chain.doFilter(request,response);
                 return;
-            }
+
         }
-        if(role.equals(Role.STUDENT.name())){
-            if(accessingURLs.get(Role.STUDENT).contains(newURI)){
+        if(role.equals(Role.STUDENT.name()) && accessingURLs.get(Role.STUDENT).contains(newURI)){
                 logger.info("Accessing Filter - Student has access to this URL " + URL);
                 chain.doFilter(request,response);
                 return;
-            }
         }
-        if(role.equals(Role.ADMIN.name())){
-            if(accessingURLs.get(Role.ADMIN).contains(newURI)){
+        if(role.equals(Role.ADMIN.name()) && accessingURLs.get(Role.ADMIN).contains(newURI)){
                 logger.info("Accessing Filter - Admin has access to this URL " + URL);
                 chain.doFilter(request,response);
                 return;
-            }
         }
 
         accessingURLs.forEach((role1, strings) -> {

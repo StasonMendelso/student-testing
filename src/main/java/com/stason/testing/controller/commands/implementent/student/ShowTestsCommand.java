@@ -53,8 +53,8 @@ public class ShowTestsCommand implements Command {
                 String order = request.getParameter("order"); // ASC DESC
                 String discipline = EncodingConverter.convertFromISOtoUTF8(request.getParameter("discipline")); // ALL another
 
-                unsurpassedTests= paginationAndSortingService.paginateAndSortUnpassedTests(userId,paginationParameter1,pageNumber1,orderBy,order,discipline);
-                countOfPageNumberButtons1 = paginationAndSortingService.countButtonsForPaginatedAndSortedUnpassedTests(userId, paginationParameter1, discipline);
+                unsurpassedTests= paginationAndSortingService.paginateAndSortUnsurpassedTests(userId,paginationParameter1,pageNumber1,orderBy,order,discipline);
+                countOfPageNumberButtons1 = paginationAndSortingService.countButtonsForPaginatedAndSortedUnsurpassedTests(userId, paginationParameter1, discipline);
 
                 testList= paginationAndSortingService.paginateAndSortAllTests(paginationParameter2,pageNumber2,orderBy,order,discipline);
                 countOfPageNumberButtons2 = paginationAndSortingService.countButtonsForPaginatedAndSortedAllTests(paginationParameter2, discipline);
@@ -81,8 +81,8 @@ public class ShowTestsCommand implements Command {
                         countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnsurpassedTests(userId, paginationParameter1);
                     } else {
                         //Робимо сортування
-                        unsurpassedTests = paginationAndSortingService.paginateAndSortUnpassedTests(userId, paginationParameter1, pageNumber1, orderBy, order, discipline);
-                        countOfPageNumberButtons1 = paginationAndSortingService.countButtonsForPaginatedAndSortedUnpassedTests(userId, paginationParameter1, discipline);
+                        unsurpassedTests = paginationAndSortingService.paginateAndSortUnsurpassedTests(userId, paginationParameter1, pageNumber1, orderBy, order, discipline);
+                        countOfPageNumberButtons1 = paginationAndSortingService.countButtonsForPaginatedAndSortedUnsurpassedTests(userId, paginationParameter1, discipline);
                     }
                     Map<String, String> sortingOptions = new HashMap<>();
                     sortingOptions.put("orderBy", orderBy);

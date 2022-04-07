@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class JDBCQuestionDao implements QuestionDao {
-    private final static Logger logger = Logger.getLogger(JDBCQuestionDao.class.getName());
+    private static final Logger logger = Logger.getLogger(JDBCQuestionDao.class.getName());
 
     private static class Query {
         static final String create = "INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)";

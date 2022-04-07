@@ -2,7 +2,7 @@ package com.stason.testing.controller.utils;
 
 import javax.servlet.jsp.tagext.*;
 import javax.servlet.jsp.*;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -10,7 +10,7 @@ import static com.stason.testing.controller.utils.ErrorForUser.*;
 
 //take lang and error as attributes
 public class ErrorTagLocalization extends TagSupport {
-    private static final HashMap<ErrorForUser, String> keys = new HashMap<>();
+    private static final EnumMap<ErrorForUser, String> keys = new EnumMap<>(ErrorForUser.class);
 
     static {
 
@@ -52,6 +52,7 @@ public class ErrorTagLocalization extends TagSupport {
         this.error = error;
     }
 
+    @Override
     public int doStartTag() throws JspException {
         String key = keys.get(error);
         String internationalizedError;

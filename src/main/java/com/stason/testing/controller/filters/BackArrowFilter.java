@@ -1,7 +1,6 @@
 package com.stason.testing.controller.filters;
 
 import com.stason.testing.controller.commands.implementent.guest.LogoutCommand;
-import com.stason.testing.controller.servlets.ControllerServlet;
 import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
 
@@ -13,13 +12,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "BackArrowFilter")
 public class BackArrowFilter implements Filter {
-    private final  static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
-
-    public void init(FilterConfig config) throws ServletException {
-    }
-
-    public void destroy() {
-    }
+    private static final Logger logger = Logger.getLogger(BackArrowFilter.class.getName());
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -27,28 +20,20 @@ public class BackArrowFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        res.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
-        res.setHeader("Pragma","no-cache");
-        res.setDateHeader("Expires",0);
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.setHeader("Pragma", "no-cache");
+        res.setDateHeader("Expires", 0);
 
         String role = (String) req.getSession().getAttribute("role");
         String URI = req.getRequestURI();
 
-        if(role.equals(Role.STUDENT.name())){
-            if(URI.contains("student")){
-
-            }else{
-                logger.info("Do logout, because URI doesn't contain /student");
-                new LogoutCommand().execute(req);
-            }
+        if (role.equals(Role.STUDENT.name()) && !URI.contains("student")) {
+            logger.info("Do logout, because URI doesn't contain /student");
+            new LogoutCommand().execute(req);
         }
-        if(role.equals(Role.ADMIN.name())){
-            if(URI.contains("admin")){
-
-            }else{
-                logger.info("Do logout, because URI doesn't contain /admin");
-                new LogoutCommand().execute(req);
-            }
+        if (role.equals(Role.ADMIN.name()) && !URI.contains("admin")) {
+            logger.info("Do logout, because URI doesn't contain /admin");
+            new LogoutCommand().execute(req);
         }
 
         chain.doFilter(request, response);

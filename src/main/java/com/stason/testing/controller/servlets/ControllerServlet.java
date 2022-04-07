@@ -1,14 +1,7 @@
 package com.stason.testing.controller.servlets;
 
 import com.stason.testing.controller.commands.*;
-import com.stason.testing.controller.commands.implementent.ChangePasswordCommand;
 import com.stason.testing.controller.commands.implementent.DefaultCommand;
-import com.stason.testing.controller.commands.implementent.admin.DeleteTestCommand;
-import com.stason.testing.controller.commands.implementent.admin.EditTestCommand;
-import com.stason.testing.controller.commands.implementent.admin.*;
-import com.stason.testing.controller.commands.implementent.student.*;
-import com.stason.testing.controller.commands.implementent.guest.*;
-import com.stason.testing.controller.commands.implementent.student.ShowTestsCommand;
 import com.stason.testing.controller.exceptions.ServiceException;
 import com.stason.testing.controller.utils.CommandsHelper;
 import org.apache.log4j.Logger;
@@ -23,14 +16,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 public class ControllerServlet extends HttpServlet {
-    private final static Logger logger = Logger.getLogger(ControllerServlet.class.getName());
+    private static final Logger logger = Logger.getLogger(ControllerServlet.class.getName());
     private Map<String, Command> commands = new HashMap<>();
 
+    @Override
     public void init() {
         logger.debug("Initialization " + ControllerServlet.class.getName());
         commands = CommandsHelper.getCommands();
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         process(request, response);
     }
@@ -45,14 +40,13 @@ public class ControllerServlet extends HttpServlet {
         String uri = request.getRequestURI();
         logger.info("Old URI is:" + uri);
         uri = uri.replaceAll(".*/testing", "");
-        // uri = uri.replaceAll("\\?.*", "");
         Command command = commands.getOrDefault(uri, new DefaultCommand());
         logger.info("Command is:" + command);
         try {
             String newUrl = command.execute(request);
             logger.info("New URL is:" + newUrl);
             if (newUrl.contains("redirect:")) {
-                response.sendRedirect(newUrl.replaceAll("redirect:", ""));
+                response.sendRedirect(newUrl.replace("redirect:", ""));
             } else {
                 request.getRequestDispatcher(newUrl).forward(request, response);
             }

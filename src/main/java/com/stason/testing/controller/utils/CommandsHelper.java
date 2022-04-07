@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Map;
 
 public class CommandsHelper {
+    private CommandsHelper() {
+    }
+
     public static String validatePasswordForPasswordCommand(HttpServletRequest request) {
         String password = request.getParameter("password");
         String repeatedPassword = request.getParameter("repeatedPassword");

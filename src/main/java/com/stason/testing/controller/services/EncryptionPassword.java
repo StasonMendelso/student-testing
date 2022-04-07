@@ -13,6 +13,9 @@ public class EncryptionPassword {
     private static final int KEY_LENGTH = 512;
     private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
 
+    private EncryptionPassword() {
+    }
+
     public static String hash(String password, String salt) {
         char[] chars = password.toCharArray();
         byte[] bytes = salt.getBytes();
