@@ -105,7 +105,7 @@ public class ShowTestsCommand implements Command {
 
                 }
                 //загрузка сторінки вперше
-                if (checkParametersSorting1(request) && checkParametersSorting2(request)) {
+                if (!checkParametersSorting1(request) && !checkParametersSorting2(request)) {
                     unsurpassedTests = paginationService.paginateUnsurpassedTests(userId, paginationParameter1, pageNumber1);
                     countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnsurpassedTests(userId, paginationParameter1);
                     testList = paginationService.paginateAllTests(paginationParameter2, pageNumber2);
@@ -160,20 +160,20 @@ public class ShowTestsCommand implements Command {
         return paginationParameter;
     }
     private boolean checkParametersSorting(HttpServletRequest request){
-        return request.getParameter("orderBy") != null &&
+        return (request.getParameter("orderBy") != null &&
                 request.getParameter("order") != null &&
-                request.getParameter("discipline") != null;
+                request.getParameter("discipline") != null);
     }
     private boolean checkParametersSorting1(HttpServletRequest request){
-        return request.getParameter("orderBy1") != null &&
+        return (request.getParameter("orderBy1") != null &&
                 request.getParameter("order1") != null &&
                 request.getParameter("discipline1") != null &&
-                request.getParameter("paginationParameter1") != null;
+                request.getParameter("paginationParameter1") != null);
     }
     private boolean checkParametersSorting2(HttpServletRequest request){
-        return request.getParameter("orderBy2") != null &&
+        return (request.getParameter("orderBy2") != null &&
                 request.getParameter("order2") != null &&
                 request.getParameter("discipline2") != null &&
-                request.getParameter("paginationParameter2") != null;
+                request.getParameter("paginationParameter2") != null);
     }
 }
