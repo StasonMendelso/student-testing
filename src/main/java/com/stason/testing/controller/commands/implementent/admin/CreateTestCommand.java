@@ -3,6 +3,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.services.ValidatorService;
+import com.stason.testing.controller.utils.CommandsHelper;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
@@ -28,11 +29,10 @@ public class CreateTestCommand implements Command {
             int difficulty = Integer.parseInt(request.getParameter("difficulty"));
             int duration = Integer.parseInt(request.getParameter("duration"));
             //Validation
-            String url = validate(name, disciplineName, difficulty, duration);
-            if (url.contains(Path.ADMIN_CREATE_TEST)) {
-
+            validate(name,disciplineName,difficulty,duration);
+            if (!errorForUserList.isEmpty()) {
                 request.setAttribute("errorsList", errorForUserList);
-                return url;
+                return Path.ADMIN_CREATE_TEST;
             }
             //check in dao testname
             TestService testService = new TestService();
@@ -54,14 +54,12 @@ public class CreateTestCommand implements Command {
         }
     }
 
-    private String validate(String name, String disciplineName, int difficulty, int duration) {
+    private void validate(String name, String disciplineName, int difficulty, int duration) {
         if (!ValidatorService.validateTestName(name)) errorForUserList.add(ErrorForUser.INVALID_TEST_NAME);
         if (!ValidatorService.validateTestDisciplineName(disciplineName))
             errorForUserList.add(ErrorForUser.INVALID_DISCIPLINE_NAME);
         if (!ValidatorService.validateTestDifficulty(difficulty))
             errorForUserList.add(ErrorForUser.INVALID_TEST_DIFFICULTY);
         if (!ValidatorService.validateTestTime(duration)) errorForUserList.add(ErrorForUser.INVALID_TEST_DURATION);
-        if (!errorForUserList.isEmpty()) return Path.ADMIN_CREATE_TEST;
-        return "";
     }
 }

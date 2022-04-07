@@ -18,10 +18,10 @@ public class EditTestInfoCommand implements com.stason.testing.controller.comman
     public String execute(HttpServletRequest request) {
         if (checkParameters(request)) {
             errorForUserList.clear();
-            String url = validate(request);
-            if (url.contains(Path.ADMIN_EDIT_TEST_INFO)) {
+            validate(request);
+            if (!errorForUserList.isEmpty()){
                 request.setAttribute("errorsList", errorForUserList);
-                return url;
+                return Path.ADMIN_EDIT_TEST_INFO;
             }
             String testName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("testName"));
             TestService testService = new TestService();
@@ -32,7 +32,6 @@ public class EditTestInfoCommand implements com.stason.testing.controller.comman
                 return Path.ADMIN_EDIT_TEST_INFO;
             }
             saveEditedTest(request);
-
             return Path.REDIRECT_ADMIN_EDIT_TEST + "?id=" + test.getId();
         }
 
@@ -66,7 +65,7 @@ public class EditTestInfoCommand implements com.stason.testing.controller.comman
         request.getSession().setAttribute("editedTest", test);
     }
 
-    private String validate(HttpServletRequest request) {
+    private void validate(HttpServletRequest request) {
         String testName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("testName"));
         String disciplineName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("disciplineName"));
         if (!request.getParameter("duration").isEmpty()) {
@@ -80,7 +79,6 @@ public class EditTestInfoCommand implements com.stason.testing.controller.comman
             errorForUserList.add(ErrorForUser.INVALID_DISCIPLINE_NAME);
         if (!ValidatorService.validateTestDifficulty(difficulty))
             errorForUserList.add(ErrorForUser.INVALID_TEST_DIFFICULTY);
-        if (!errorForUserList.isEmpty()) return Path.ADMIN_EDIT_TEST_INFO;
-        return "";
+
     }
 }
