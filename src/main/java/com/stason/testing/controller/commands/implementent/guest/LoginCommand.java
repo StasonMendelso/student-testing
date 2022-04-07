@@ -18,7 +18,7 @@ import java.util.*;
 import static com.stason.testing.controller.utils.ErrorForUser.*;
 
 public class LoginCommand implements Command {
-    private final static Logger logger = Logger.getLogger(LoginCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(LoginCommand.class.getName());
     private final UserService userService = new UserService();
     @Override
     public String execute(HttpServletRequest request) {
@@ -38,7 +38,7 @@ public class LoginCommand implements Command {
             if (!VerifyRecaptcha.verify(gRecaptchaResponse)) {
                 errors.add(INVALID_CAPTCHA);
             }
-            if (errors.size() > 0) {
+            if (!errors.isEmpty()) {
                 request.setAttribute("errorsList", errors);
                 return Path.GUEST_LOGIN;
             }

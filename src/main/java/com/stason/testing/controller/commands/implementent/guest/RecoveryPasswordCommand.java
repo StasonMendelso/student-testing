@@ -5,8 +5,6 @@ import com.stason.testing.controller.services.*;
 import com.stason.testing.controller.utils.CommandsHelper;
 import com.stason.testing.controller.utils.ErrorForUser;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.entity.User;
-
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,12 +33,11 @@ public class RecoveryPasswordCommand implements Command {
                 request.setAttribute("error", ErrorForUser.ACCOUNT_NOT_FOUND);
                 return Path.RECOVERY_EMAIL;
             }
-            StringBuffer activationCode = new StringBuffer();
+            StringBuilder activationCode = new StringBuilder();
             for (int i = 1; i <= 8; i++) {
                 activationCode.append((int) (Math.random() * 10));
             }
-            EmailSenderService sender = new EmailSenderService();
-            sender.sendActivationCode(email, activationCode.toString());
+            new EmailSenderService().sendActivationCode(email, activationCode.toString());
             request.getSession().setAttribute("login", email);
             request.getSession().setAttribute("activationCode", activationCode.toString());
             return "redirect:/web-application/testing/recovery?activateCode=activate";

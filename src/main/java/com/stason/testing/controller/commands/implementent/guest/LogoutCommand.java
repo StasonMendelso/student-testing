@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LogoutCommand implements Command {
-    private final  static Logger logger = Logger.getLogger(LogoutCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(LogoutCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request) {
         String login = (String)request.getSession().getAttribute("login");
