@@ -1,25 +1,18 @@
 package com.stason.testing.controller.commands.implementent.student;
 
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.services.AnswerService;
-import com.stason.testing.controller.services.QuestionService;
 import com.stason.testing.controller.services.TestService;
-import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
-public class DoTestCommand implements Command {
-    private final static Logger logger = Logger.getLogger(DoTestCommand.class.getName());
+public class DoTestCommand implements Command{
+    private static final Logger logger = Logger.getLogger(DoTestCommand.class.getName());
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -37,18 +30,16 @@ public class DoTestCommand implements Command {
             Test currentTest = (Test) request.getSession().getAttribute("test");
             if (testId == currentTest.getId()) {
                 return Path.REDIRECT_STUDENT_TEST + "?question=1";
-            } else {
-                return Path.REDIRECT_STUDENT_TESTS;
             }
+            return Path.REDIRECT_STUDENT_TESTS;
+
         }
         //For initialization
         if (request.getSession().getAttribute("test") == null && request.getParameter("id") != null && request.getParameter("currentClientTime") != null) {
             //start-> занести в бд що тест пройдено на 0%, занести в сесію, що тест вже пройден.
             List<Integer> idPassedTestsList = (List<Integer>) request.getSession().getAttribute("idOfPassedTests");
             for (Integer id : idPassedTestsList) {
-                if (id == testId) {
-                    return Path.REDIRECT_STUDENT_TESTS;
-                }
+                if (id == testId) return Path.REDIRECT_STUDENT_TESTS;
             }
             int userId = (int) request.getSession().getAttribute("id");
             TestService testService = new TestService();
@@ -78,9 +69,7 @@ public class DoTestCommand implements Command {
             return new ShowTestResultCommand().execute(request);
         }
         //The user answered one question
-        if (request.getParameter("nextQuestion") != null && request.getParameter("save") != null && request.getParameter("questionNumber") != null) {
-            return saveAnswers(request);
-        }
+        if (request.getParameter("nextQuestion") != null && request.getParameter("save") != null && request.getParameter("questionNumber") != null) return saveAnswers(request);
         //For initialization
         if (request.getParameter("question") != null) {
             int questionNumber = Integer.parseInt(request.getParameter("question"));
@@ -91,9 +80,9 @@ public class DoTestCommand implements Command {
         }
         if (uri.contains("/student/test")) {
             return Path.STUDENT_TEST;
-        } else {
-            return Path.REDIRECT_STUDENT_TEST;
         }
+        return Path.REDIRECT_STUDENT_TEST;
+
 
     }
 
@@ -120,7 +109,6 @@ public class DoTestCommand implements Command {
             Test test = (Test) request.getSession().getAttribute("test");
             Question question = test.getQuestion(questionNumber);
             List<Boolean> userOptions = question.getUserOptions();
-
             for (int i = 0; i < userOptions.size(); i++) {
                 userOptions.set(i, false);
             }

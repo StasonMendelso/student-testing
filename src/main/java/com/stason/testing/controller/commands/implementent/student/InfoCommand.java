@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class InfoCommand implements Command {
-    private final  static Logger logger = Logger.getLogger(InfoCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(InfoCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request) {
         if(request.getRequestURI().contains("/student/info")){

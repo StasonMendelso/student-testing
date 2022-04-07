@@ -18,14 +18,15 @@ import java.util.List;
 import java.util.Map;
 
 public class ShowTestsCommand implements Command {
-    private final  static Logger logger = Logger.getLogger(ShowTestsCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(ShowTestsCommand.class.getName());
+
     @Override
-    public String execute(HttpServletRequest request){
+    public String execute(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        if(uri.contains("/student/tests")){
+        if (uri.contains("/student/tests")) {
             int userId = (int) request.getSession().getAttribute("id");
-            int countOfPageNumberButtons1 =0;
-            int countOfPageNumberButtons2 =0;
+            int countOfPageNumberButtons1 = 0;
+            int countOfPageNumberButtons2 = 0;
             List<Test> unsurpassedTests = new ArrayList<>();
             List<Test> testList = new ArrayList<>();
             int paginationParameter1 = getPaginationParameter(request, "paginationParameter1");
@@ -36,42 +37,34 @@ public class ShowTestsCommand implements Command {
             final PaginationService paginationService = new PaginationService();
             final PaginationAndSortingService paginationAndSortingService = new PaginationAndSortingService();
 
-            if(request.getParameter("clear")!=null) {
-                  // скидаємо сортування
+            if (request.getParameter("clear") != null) {
+                // скидаємо сортування
                 countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnsurpassedTests(userId, paginationParameter1);
                 unsurpassedTests = paginationService.paginateUnsurpassedTests(userId, paginationParameter1, pageNumber1);
-                countOfPageNumberButtons2 = paginationService.countButtonsForPaginationAllTests( paginationParameter2);
+                countOfPageNumberButtons2 = paginationService.countButtonsForPaginationAllTests(paginationParameter2);
                 testList = paginationService.paginateAllTests(paginationParameter2, pageNumber2);
 
-            }else if(request.getParameter("orderBy")!=null &&
-                    request.getParameter("order")!=null &&
-                    request.getParameter("discipline")!=null &&
-                    request.getParameter("clear")==null
-            ){
+            } else if (checkParametersSorting(request) && request.getParameter("clear") == null) {
                 //робимо сортування
                 String orderBy = request.getParameter("orderBy"); //
                 String order = request.getParameter("order"); // ASC DESC
                 String discipline = EncodingConverter.convertFromISOtoUTF8(request.getParameter("discipline")); // ALL another
 
-                unsurpassedTests= paginationAndSortingService.paginateAndSortUnsurpassedTests(userId,paginationParameter1,pageNumber1,orderBy,order,discipline);
+                unsurpassedTests = paginationAndSortingService.paginateAndSortUnsurpassedTests(userId, paginationParameter1, pageNumber1, orderBy, order, discipline);
                 countOfPageNumberButtons1 = paginationAndSortingService.countButtonsForPaginatedAndSortedUnsurpassedTests(userId, paginationParameter1, discipline);
 
-                testList= paginationAndSortingService.paginateAndSortAllTests(paginationParameter2,pageNumber2,orderBy,order,discipline);
+                testList = paginationAndSortingService.paginateAndSortAllTests(paginationParameter2, pageNumber2, orderBy, order, discipline);
                 countOfPageNumberButtons2 = paginationAndSortingService.countButtonsForPaginatedAndSortedAllTests(paginationParameter2, discipline);
 
 
-                Map<String,String> sortingOptions = new HashMap<>();
-                sortingOptions.put("orderBy",orderBy);
-                sortingOptions.put("order",order);
-                sortingOptions.put("discipline",discipline);
+                Map<String, String> sortingOptions = new HashMap<>();
+                sortingOptions.put("orderBy", orderBy);
+                sortingOptions.put("order", order);
+                sortingOptions.put("discipline", discipline);
                 request.setAttribute("sortingOptions", sortingOptions);
-            }else {
+            } else {
                 // змінилася пагінація1
-                if (request.getParameter("orderBy1") != null &&
-                        request.getParameter("order1") != null &&
-                        request.getParameter("discipline1") != null &&
-                        request.getParameter("paginationParameter1") != null
-                ) {
+                if (checkParametersSorting1(request)) {
                     String orderBy = request.getParameter("orderBy1"); //
                     String order = request.getParameter("order1"); // ASC DESC
                     String discipline = EncodingConverter.convertFromISOtoUTF8(request.getParameter("discipline1")); // ALL another
@@ -91,11 +84,7 @@ public class ShowTestsCommand implements Command {
                     request.setAttribute("sortingOptions", sortingOptions);
                 }
                 // змінилася пагінація2
-                if (request.getParameter("orderBy2") != null &&
-                        request.getParameter("order2") != null &&
-                        request.getParameter("discipline2") != null &&
-                        request.getParameter("paginationParameter2") != null
-                ) {
+                if (checkParametersSorting2(request)) {
                     String orderBy = request.getParameter("orderBy2"); //
                     String order = request.getParameter("order2"); // ASC DESC
                     String discipline = EncodingConverter.convertFromISOtoUTF8(request.getParameter("discipline2")); // ALL another
@@ -105,8 +94,8 @@ public class ShowTestsCommand implements Command {
                         countOfPageNumberButtons2 = paginationService.countButtonsForPaginationAllTests(paginationParameter2);
                     } else {
                         //Робимо сортування
-                        testList = paginationAndSortingService.paginateAndSortAllTests( paginationParameter2, pageNumber2, orderBy, order, discipline);
-                        countOfPageNumberButtons2 = paginationAndSortingService.countButtonsForPaginatedAndSortedAllTests( paginationParameter2, discipline);
+                        testList = paginationAndSortingService.paginateAndSortAllTests(paginationParameter2, pageNumber2, orderBy, order, discipline);
+                        countOfPageNumberButtons2 = paginationAndSortingService.countButtonsForPaginatedAndSortedAllTests(paginationParameter2, discipline);
                     }
                     Map<String, String> sortingOptions = new HashMap<>();
                     sortingOptions.put("orderBy", orderBy);
@@ -116,53 +105,46 @@ public class ShowTestsCommand implements Command {
 
                 }
                 //загрузка сторінки вперше
-                if (request.getParameter("orderBy1") == null &&
-                        request.getParameter("order1") == null &&
-                        request.getParameter("discipline1") == null &&
-                        request.getParameter("paginationParameter1") == null &&
-                        request.getParameter("orderBy2") == null &&
-                        request.getParameter("order2") == null &&
-                        request.getParameter("discipline2") == null &&
-                        request.getParameter("paginationParameter2") == null
-                ){
+                if (checkParametersSorting1(request) && checkParametersSorting2(request)) {
                     unsurpassedTests = paginationService.paginateUnsurpassedTests(userId, paginationParameter1, pageNumber1);
                     countOfPageNumberButtons1 = paginationService.countButtonsForPaginationUnsurpassedTests(userId, paginationParameter1);
-                    testList = paginationService.paginateAllTests( paginationParameter2, pageNumber2);
-                    countOfPageNumberButtons2 = paginationService.countButtonsForPaginationAllTests( paginationParameter2);
+                    testList = paginationService.paginateAllTests(paginationParameter2, pageNumber2);
+                    countOfPageNumberButtons2 = paginationService.countButtonsForPaginationAllTests(paginationParameter2);
                 }
             }
             TestService testService = new TestService();
             UserService userService = new UserService();
             List<String> disciplinesList = testService.findAllDisciplines();
 
-            request.getSession().setAttribute("idOfPassedTests",userService.findIdPassedTestsByUserId(userId));
+            request.getSession().setAttribute("idOfPassedTests", userService.findIdPassedTestsByUserId(userId));
             request.setAttribute("disciplinesList", disciplinesList);
 
             request.setAttribute("unsurpassedTestList", unsurpassedTests);
-            request.setAttribute("countOfPageNumberButtons1",countOfPageNumberButtons1);
-            request.setAttribute("paginationParameter1",paginationParameter1);
-            request.setAttribute("pageNumber1",pageNumber1);
+            request.setAttribute("countOfPageNumberButtons1", countOfPageNumberButtons1);
+            request.setAttribute("paginationParameter1", paginationParameter1);
+            request.setAttribute("pageNumber1", pageNumber1);
 
-            request.setAttribute("countOfPageNumberButtons2",countOfPageNumberButtons2);
-            request.setAttribute("paginationParameter2",paginationParameter2);
-            request.setAttribute("pageNumber2",pageNumber2);
+            request.setAttribute("countOfPageNumberButtons2", countOfPageNumberButtons2);
+            request.setAttribute("paginationParameter2", paginationParameter2);
+            request.setAttribute("pageNumber2", pageNumber2);
             request.setAttribute("allTestList", testList);
 
             return Path.STUDENT_TESTS;
-        }else{
+        } else {
             return Path.REDIRECT_STUDENT_TESTS;
         }
 
     }
+
     private int getPageNumber(HttpServletRequest request, String parameterName) {
         int pageNumber;
-        if(request.getParameter(parameterName)!=null){
-            if(Integer.parseInt(request.getParameter(parameterName))<=0) {
-                pageNumber=1;
-            }else{
+        if (request.getParameter(parameterName) != null) {
+            if (Integer.parseInt(request.getParameter(parameterName)) <= 0) {
+                pageNumber = 1;
+            } else {
                 pageNumber = Integer.parseInt(request.getParameter(parameterName));
             }
-        }else{
+        } else {
             pageNumber = 1;
         }
         return pageNumber;
@@ -170,11 +152,28 @@ public class ShowTestsCommand implements Command {
 
     private int getPaginationParameter(HttpServletRequest request, String parameterName) {
         int paginationParameter;
-        if(request.getParameter(parameterName)!=null){
+        if (request.getParameter(parameterName) != null) {
             paginationParameter = Integer.parseInt(request.getParameter(parameterName));
-        }else{
+        } else {
             paginationParameter = 5;
         }
         return paginationParameter;
+    }
+    private boolean checkParametersSorting(HttpServletRequest request){
+        return request.getParameter("orderBy") != null &&
+                request.getParameter("order") != null &&
+                request.getParameter("discipline") != null;
+    }
+    private boolean checkParametersSorting1(HttpServletRequest request){
+        return request.getParameter("orderBy1") != null &&
+                request.getParameter("order1") != null &&
+                request.getParameter("discipline1") != null &&
+                request.getParameter("paginationParameter1") != null;
+    }
+    private boolean checkParametersSorting2(HttpServletRequest request){
+        return request.getParameter("orderBy2") != null &&
+                request.getParameter("order2") != null &&
+                request.getParameter("discipline2") != null &&
+                request.getParameter("paginationParameter2") != null;
     }
 }

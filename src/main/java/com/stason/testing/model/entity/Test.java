@@ -2,12 +2,13 @@ package com.stason.testing.model.entity;
 
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class Test {
+public class Test implements Serializable {
     private int id;
     private String name;
     private String nameOfDiscipline;

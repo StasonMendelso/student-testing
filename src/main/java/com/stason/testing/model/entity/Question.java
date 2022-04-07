@@ -1,8 +1,9 @@
 package com.stason.testing.model.entity;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Question implements Cloneable{
+public class Question implements Cloneable, Serializable {
     private int id;
     private int testId;
     private int questionNumber;

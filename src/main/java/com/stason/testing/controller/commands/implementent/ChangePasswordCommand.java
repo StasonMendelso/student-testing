@@ -9,16 +9,17 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 public class ChangePasswordCommand implements Command {
-    private final static Logger logger = Logger.getLogger(ChangePasswordCommand.class.getName());
-private final UserService userService = new UserService();
+    private static final Logger logger = Logger.getLogger(ChangePasswordCommand.class.getName());
+    private final UserService userService = new UserService();
+
     @Override
     public String execute(HttpServletRequest request) {
         if (request.getParameterMap().isEmpty()) {
             String activationLink = Constants.ACTIVATION_LINK;
             if (request.getSession().getAttribute("role").equals(Role.ADMIN.name()))
-                activationLink = activationLink.replaceAll("role", "admin");
+                activationLink = activationLink.replace("role", "admin");
             if (request.getSession().getAttribute("role").equals(Role.STUDENT.name()))
-                activationLink = activationLink.replaceAll("role", "student");
+                activationLink = activationLink.replace("role", "student");
             String login = (String) request.getSession().getAttribute("login");
             //send message
             if (request.getSession().getAttribute("identification") == null) {
@@ -39,14 +40,16 @@ private final UserService userService = new UserService();
         if (request.getParameter("password") != null && request.getParameter("repeatedPassword") != null) {
             String password = request.getParameter("password");
             String url = CommandsHelper.validatePasswordForPasswordCommand(request);
-            if(url!=null) return url;
+            if (url != null) return url;
             String email = (String) request.getSession().getAttribute("login");
             userService.updatePassword(email, password);
 
             String link = "redirect:/web-application/testing/role/changePassword";
             logger.info("User " + email + " changed password");
-            if (request.getSession().getAttribute("role").equals(Role.ADMIN.name())) link = link.replaceAll("role", "admin");
-            if (request.getSession().getAttribute("role").equals(Role.STUDENT.name())) link = link.replaceAll("role", "student");
+            if (request.getSession().getAttribute("role").equals(Role.ADMIN.name()))
+                link = link.replace("role", "admin");
+            if (request.getSession().getAttribute("role").equals(Role.STUDENT.name()))
+                link = link.replace("role", "student");
             return link + "?success=success";
         }
         if (request.getParameter("success") != null) return Path.CHANGE_PASSWORD_SUCCESS;
