@@ -109,6 +109,31 @@ public class CommandsHelper {
         request.getSession().setAttribute("pageNumber", request.getParameter("pageNumber"));
         request.getSession().setAttribute("paginationParameter", request.getParameter("paginationParameter"));
     }
+    public static int getPageNumber(HttpServletRequest request, String parameterName) {
+        int pageNumber = getIntParameterFromRequestOrAttribute(request,parameterName);
+        if (pageNumber <= 0) {
+            pageNumber = 1;
+        }
+        return pageNumber;
+    }
 
+    public static int getPaginationParameter(HttpServletRequest request, String parameterName) {
+        int paginationParameter = getIntParameterFromRequestOrAttribute(request,parameterName);
+        if(paginationParameter<=0){
+            paginationParameter = 5;
+        }
+        return paginationParameter;
+    }
+    private static int getIntParameterFromRequestOrAttribute(HttpServletRequest request, String parameterName){
+        int result=0;
+        if (request.getSession().getAttribute(parameterName) != null) {
+            result = (Integer.parseInt((String) request.getSession().getAttribute(parameterName)));
+            request.getSession().removeAttribute(parameterName);
+        }
+        if (request.getParameter(parameterName) != null) {
+            result = Integer.parseInt(request.getParameter(parameterName));
+        }
+        return result;
+    }
 
 }

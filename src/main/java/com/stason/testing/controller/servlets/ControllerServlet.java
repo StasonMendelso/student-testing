@@ -52,6 +52,7 @@ public class ControllerServlet extends HttpServlet {
             }
         } catch (ServiceException ex) {
             logger.error("Service Exception error was catch", ex);
+            throw ex;
         } catch (RuntimeException ex) {
             logger.error("Runtime error was catch", ex);
             throw ex;

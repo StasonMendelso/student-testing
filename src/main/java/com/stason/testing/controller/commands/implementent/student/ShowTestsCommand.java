@@ -5,6 +5,7 @@ import com.stason.testing.controller.services.PaginationAndSortingService;
 import com.stason.testing.controller.services.PaginationService;
 import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.services.UserService;
+import com.stason.testing.controller.utils.CommandsHelper;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.Path;
 
@@ -29,10 +30,10 @@ public class ShowTestsCommand implements Command {
             int countOfPageNumberButtons2 = 0;
             List<Test> unsurpassedTests = new ArrayList<>();
             List<Test> testList = new ArrayList<>();
-            int paginationParameter1 = getPaginationParameter(request, "paginationParameter1");
-            int pageNumber1 = getPageNumber(request, "pageNumber1");
-            int paginationParameter2 = getPaginationParameter(request, "paginationParameter2");
-            int pageNumber2 = getPageNumber(request, "pageNumber2");
+            int paginationParameter1 = CommandsHelper.getPaginationParameter(request, "paginationParameter1");
+            int pageNumber1 = CommandsHelper.getPageNumber(request, "pageNumber1");
+            int paginationParameter2 = CommandsHelper.getPaginationParameter(request, "paginationParameter2");
+            int pageNumber2 = CommandsHelper.getPageNumber(request, "pageNumber2");
 
             final PaginationService paginationService = new PaginationService();
             final PaginationAndSortingService paginationAndSortingService = new PaginationAndSortingService();
@@ -136,29 +137,6 @@ public class ShowTestsCommand implements Command {
 
     }
 
-    private int getPageNumber(HttpServletRequest request, String parameterName) {
-        int pageNumber;
-        if (request.getParameter(parameterName) != null) {
-            if (Integer.parseInt(request.getParameter(parameterName)) <= 0) {
-                pageNumber = 1;
-            } else {
-                pageNumber = Integer.parseInt(request.getParameter(parameterName));
-            }
-        } else {
-            pageNumber = 1;
-        }
-        return pageNumber;
-    }
-
-    private int getPaginationParameter(HttpServletRequest request, String parameterName) {
-        int paginationParameter;
-        if (request.getParameter(parameterName) != null) {
-            paginationParameter = Integer.parseInt(request.getParameter(parameterName));
-        } else {
-            paginationParameter = 5;
-        }
-        return paginationParameter;
-    }
     private boolean checkParametersSorting(HttpServletRequest request){
         return (request.getParameter("orderBy") != null &&
                 request.getParameter("order") != null &&

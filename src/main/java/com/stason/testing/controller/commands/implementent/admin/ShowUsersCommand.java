@@ -2,6 +2,7 @@ package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
 import com.stason.testing.controller.services.PaginationService;
+import com.stason.testing.controller.utils.CommandsHelper;
 import com.stason.testing.controller.utils.Path;
 
 import com.stason.testing.model.entity.User;
@@ -18,8 +19,8 @@ public class ShowUsersCommand implements Command {
     public String execute(HttpServletRequest request) {
         if (request.getRequestURI().contains("admin/showUser")) {
 
-            int paginationParameter = getPaginationParameter(request, "paginationParameter");
-            int pageNumber = getPageNumber(request, "pageNumber");
+            int paginationParameter = CommandsHelper.getPaginationParameter(request, "paginationParameter");
+            int pageNumber = CommandsHelper.getPageNumber(request, "pageNumber");
 
             List<User> list = paginationService.paginateAllUsers(paginationParameter, pageNumber);
             int countOfPageNumberButtons = paginationService.countButtonsForPaginationAllUsers(paginationParameter);
@@ -45,39 +46,4 @@ public class ShowUsersCommand implements Command {
         }
     }
 
-    private int getPageNumber(HttpServletRequest request, String parameterName) {
-        int pageNumber;
-        if (request.getSession().getAttribute(parameterName) != null) {
-            pageNumber = Integer.parseInt((String) request.getSession().getAttribute(parameterName));
-            request.getSession().removeAttribute(parameterName);
-            return pageNumber;
-
-        }
-        if (request.getParameter(parameterName) != null) {
-            if (Integer.parseInt(request.getParameter(parameterName)) <= 0) {
-                pageNumber = 1;
-            } else {
-                pageNumber = Integer.parseInt(request.getParameter(parameterName));
-            }
-        } else {
-            pageNumber = 1;
-        }
-        return pageNumber;
-    }
-
-    private int getPaginationParameter(HttpServletRequest request, String parameterName) {
-        int paginationParameter;
-        if (request.getSession().getAttribute(parameterName) != null) {
-            paginationParameter = Integer.parseInt((String) request.getSession().getAttribute(parameterName));
-            request.getSession().removeAttribute(parameterName);
-            return paginationParameter;
-
-        }
-        if (request.getParameter(parameterName) != null) {
-            paginationParameter = Integer.parseInt(request.getParameter(parameterName));
-        } else {
-            paginationParameter = 5;
-        }
-        return paginationParameter;
-    }
 }

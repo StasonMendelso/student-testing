@@ -600,6 +600,7 @@ public class JDBCTestDao implements TestDao {
         Connection connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement preparedStatement = null;
         try {
+            connection.setAutoCommit(false);
             //DELETE ANSWERS FOR EVERY QUESTION IN THIS TEST
             preparedStatement = connection.prepareStatement("SELECT id FROM onlinetesting.questions WHERE tests_id=?");
             preparedStatement.setInt(1, id);
@@ -630,9 +631,6 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.executeUpdate();
 
             connection.commit();
-            connection.setAutoCommit(true);
-            preparedStatement.close();
-            connection.close();
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -643,9 +641,6 @@ public class JDBCTestDao implements TestDao {
             throw new DataBaseException("Can't delete test id=" + id);
         } finally {
             try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
                 if (connection != null) {
                     connection.close();
                 }
