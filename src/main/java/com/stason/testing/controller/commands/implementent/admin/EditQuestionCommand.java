@@ -20,16 +20,11 @@ public class EditQuestionCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         Question questionOrigin = (Question) request.getSession().getAttribute("editedQuestion");
-        List<ErrorForUser> errorForUserList = new ArrayList();
-
+        List<ErrorForUser> errorForUserList = new ArrayList<>();
         //Сохранити питання
-        if (request.getParameter("Save") != null) {
-            return saveQuestion(request, errorForUserList);
-        }
+        if (request.getParameter("Save") != null) return saveQuestion(request, errorForUserList);
         //Видалити відповідь
-        if (request.getParameter("DeleteId") != null) {
-            new DeleteAnswerCommand().execute(request);
-        }
+        if (request.getParameter("DeleteId") != null) new DeleteAnswerCommand().execute(request);
         // Додати нову відповідь
         if (request.getParameter("Add") != null && request.getParameter("id") != null) {
             String answerText = request.getParameter("answerText");
@@ -55,28 +50,20 @@ public class EditQuestionCommand implements Command {
                     Question question = test.getQuestionById(Integer.parseInt(request.getParameter("id")));
                     request.getSession().setAttribute("editedQuestion", question);
                 }
-
             } else {
                 Test test = (Test) request.getSession().getAttribute("editedTest");
                 Question question = test.getQuestionById(Integer.parseInt(request.getParameter("id")));
                 request.getSession().setAttribute("editedQuestion", question);
             }
         }
-        if (request.getRequestURI().contains("admin/editQuestionInfo")) {
-            return Path.ADMIN_EDIT_QUESTIONS_INFO;
-        } else {
-            return Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO;
-        }
-
-
+        if (request.getRequestURI().contains("admin/editQuestionInfo")) return Path.ADMIN_EDIT_QUESTIONS_INFO;
+        return Path.REDIRECT_ADMIN_EDIT_QUESTIONS_INFO;
     }
 
     private String saveQuestion(HttpServletRequest request, List<ErrorForUser> errorForUserList) {
         String questionText = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionText"));
-        if (questionText.isEmpty() || (!ValidatorService.validateQuestionText(questionText))) {
-            //Невалідне запитання
+        if (questionText.isEmpty() || (!ValidatorService.validateQuestionText(questionText)))
             errorForUserList.add(ErrorForUser.INVALID_QUESTION_NAME);
-        }
         if (!CommandsHelper.isProperlyCheckboxChecked(request)) {
             //Вы выбрали ответ как пустой вариант ответа
             errorForUserList.add(ErrorForUser.EMPTY_ANSWER_OPTION);
@@ -95,7 +82,7 @@ public class EditQuestionCommand implements Command {
                 errorForUserList.add(ErrorForUser.INVALID_ANSWER_NAME);
             }
         }
-        if (errorForUserList.size() != 0) {
+        if (!errorForUserList.isEmpty()) {
             request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_EDIT_QUESTIONS_INFO;
         }

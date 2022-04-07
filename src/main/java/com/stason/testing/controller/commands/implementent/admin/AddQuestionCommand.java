@@ -1,7 +1,6 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.services.ValidatorService;
 import com.stason.testing.controller.utils.CommandsHelper;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.ErrorForUser;
@@ -9,7 +8,6 @@ import com.stason.testing.controller.utils.Path;
 import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -17,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AddQuestionCommand implements Command {
-    private final static Logger logger = Logger.getLogger(AddQuestionCommand.class.getName());
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -28,8 +25,9 @@ public class AddQuestionCommand implements Command {
         if (request.getRequestURI().contains("/admin/addQuestion")) return Path.ADMIN_ADD_QUESTIONS;
         return Path.REDIRECT_ADMIN_ADD_QUESTIONS;
     }
+
     private String saveQuestion(HttpServletRequest request) {
-        List<ErrorForUser> errorForUserList = new ArrayList();
+        List<ErrorForUser> errorForUserList = new ArrayList<>();
         if (!CommandsHelper.isProperlyCheckboxChecked(request)) {
             //Вы выбрали ответ как пустой вариант ответа
             errorForUserList.add(ErrorForUser.EMPTY_ANSWER_OPTION);
@@ -47,7 +45,7 @@ public class AddQuestionCommand implements Command {
         String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
         CommandsHelper.validateQuestionParameters(request, errorForUserList);
 
-        if (errorForUserList.size() != 0) {
+        if (!errorForUserList.isEmpty()) {
             request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_ADD_QUESTIONS;
         }

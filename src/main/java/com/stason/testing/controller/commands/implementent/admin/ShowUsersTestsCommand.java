@@ -12,53 +12,55 @@ import java.util.List;
 
 public class ShowUsersTestsCommand implements Command {
     private final PaginationService paginationService = new PaginationService();
+
     @Override
-    public String execute(HttpServletRequest request){
-        int userId =-1;
-        int thisPaginationParameter =getPaginationParameter(request,"thisPaginationParameter");
-        int thisPageNumber = getPageNumber(request,"thisPageNumber");
+    public String execute(HttpServletRequest request) {
+        int userId = -1;
+        int thisPaginationParameter = getPaginationParameter(request, "thisPaginationParameter");
+        int thisPageNumber = getPageNumber(request, "thisPageNumber");
         int countOfPageNumberButtons;
-        if(request.getParameter("id")!=null) {
+        if (request.getParameter("id") != null) {
             userId = Integer.parseInt(request.getParameter("id"));
         }
 
-        List<Test> testList = paginationService.paginatePassedTests(userId,thisPaginationParameter,thisPageNumber);
-        if(testList.isEmpty() && thisPageNumber>1){
+        List<Test> testList = paginationService.paginatePassedTests(userId, thisPaginationParameter, thisPageNumber);
+        if (testList.isEmpty() && thisPageNumber > 1) {
             thisPageNumber--;
-            testList = paginationService.paginatePassedTests(userId,thisPaginationParameter,thisPageNumber);
+            testList = paginationService.paginatePassedTests(userId, thisPaginationParameter, thisPageNumber);
         }
-        countOfPageNumberButtons = paginationService.countButtonsForPaginationPassedTests(userId,thisPaginationParameter);
+        countOfPageNumberButtons = paginationService.countButtonsForPaginationPassedTests(userId, thisPaginationParameter);
 
-        request.setAttribute("thisPaginationParameter",thisPaginationParameter);
-        request.setAttribute("thisPageNumber",thisPageNumber);
-        request.setAttribute("countOfPageNumberButtons",countOfPageNumberButtons);
+        request.setAttribute("thisPaginationParameter", thisPaginationParameter);
+        request.setAttribute("thisPageNumber", thisPageNumber);
+        request.setAttribute("countOfPageNumberButtons", countOfPageNumberButtons);
 
-        request.setAttribute("userId",userId);
-        request.setAttribute("testList",testList);
-        if(request.getSession().getAttribute("error")!=null){
-            request.setAttribute("error",request.getSession().getAttribute("error"));
+        request.setAttribute("userId", userId);
+        request.setAttribute("testList", testList);
+        if (request.getSession().getAttribute("error") != null) {
+            request.setAttribute("error", request.getSession().getAttribute("error"));
             request.getSession().removeAttribute("error");
         }
-        if(request.getRequestURI().contains("/admin/userTests")){
-            return Path.ADMIN_USER_TESTS ;
+        if (request.getRequestURI().contains("/admin/userTests")) {
+            return Path.ADMIN_USER_TESTS;
         }
         return Path.REDIRECT_ADMIN_USER_TESTS;
     }
+
     private int getPageNumber(HttpServletRequest request, String parameterName) {
         int pageNumber;
-        if(request.getSession().getAttribute(parameterName)!=null){
+        if (request.getSession().getAttribute(parameterName) != null) {
             pageNumber = Integer.parseInt((String) request.getSession().getAttribute(parameterName));
             request.getSession().removeAttribute(parameterName);
             return pageNumber;
 
         }
-        if(request.getParameter(parameterName)!=null){
-            if(Integer.parseInt(request.getParameter(parameterName))<=0) {
-                pageNumber=1;
-            }else{
+        if (request.getParameter(parameterName) != null) {
+            if (Integer.parseInt(request.getParameter(parameterName)) <= 0) {
+                pageNumber = 1;
+            } else {
                 pageNumber = Integer.parseInt(request.getParameter(parameterName));
             }
-        }else{
+        } else {
             pageNumber = 1;
         }
         return pageNumber;
@@ -66,15 +68,15 @@ public class ShowUsersTestsCommand implements Command {
 
     private int getPaginationParameter(HttpServletRequest request, String parameterName) {
         int paginationParameter;
-        if(request.getSession().getAttribute(parameterName)!=null){
+        if (request.getSession().getAttribute(parameterName) != null) {
             paginationParameter = Integer.parseInt((String) request.getSession().getAttribute(parameterName));
             request.getSession().removeAttribute(parameterName);
             return paginationParameter;
 
         }
-        if(request.getParameter(parameterName)!=null){
+        if (request.getParameter(parameterName) != null) {
             paginationParameter = Integer.parseInt(request.getParameter(parameterName));
-        }else{
+        } else {
             paginationParameter = 5;
         }
         return paginationParameter;

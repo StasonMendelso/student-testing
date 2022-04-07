@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class AdminInfoCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request){
+    public String execute(HttpServletRequest request) {
         return Path.ADMIN_INFO;
     }
 }

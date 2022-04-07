@@ -1,7 +1,6 @@
 package com.stason.testing.model.entity;
 
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,27 +18,39 @@ public class Test implements Serializable {
     private double mark;
     private List<Question> questions = new ArrayList<>();
 
-    public Question getQuestion(int questionNumber){
-        for(Question question:questions){
-            if(question.getQuestionNumber()==questionNumber) return question;
+    public Test() {
+    }
+
+    public Test(String name, String nameOfDiscipline, int difficulty, int timeMinutes) {
+        this.name = name;
+        this.nameOfDiscipline = nameOfDiscipline;
+        this.difficulty = difficulty;
+        this.timeMinutes = timeMinutes;
+    }
+
+    public Question getQuestion(int questionNumber) {
+        for (Question question : questions) {
+            if (question.getQuestionNumber() == questionNumber) return question;
         }
         return null;
     }
-    public void setQuestion(Question question, int questionNumber){
+
+    public void setQuestion(Question question, int questionNumber) {
         Iterator<Question> iterator = questions.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             Question oldQuestion = iterator.next();
-            if(oldQuestion.getQuestionNumber()==questionNumber){
+            if (oldQuestion.getQuestionNumber() == questionNumber) {
                 oldQuestion = question;
                 return;
             }
         }
     }
 
-    public void addQuestion(Question question){
+    public void addQuestion(Question question) {
         questions.add(question);
         this.setCountOfQuestions(questions.size());
     }
+
     @Override
     public String toString() {
         return "Test{" +
@@ -99,7 +110,7 @@ public class Test implements Serializable {
 
     public void setTimeMinutes(int timeMinutes) {
         this.timeMinutes = timeMinutes;
-        this.timeSeconds = timeMinutes*60;
+        this.timeSeconds = timeMinutes * 60;
     }
 
     public int getCountOfQuestions() {
@@ -122,21 +133,21 @@ public class Test implements Serializable {
         this.mark = mark;
     }
 
-    public void deleteQuestion(int id){
+    public void deleteQuestion(int id) {
 
         boolean flag = false;
 
-        for(int i=0;i<questions.size();i++){
-            if(flag){
+        for (int i = 0; i < questions.size(); i++) {
+            if (flag) {
                 Question question = questions.get(i);
-                question.setQuestionNumber(i+1);
-                questions.set(i,question);
+                question.setQuestionNumber(i + 1);
+                questions.set(i, question);
 
             }
-            if(questions.get(i).getId()==id){
+            if (questions.get(i).getId() == id) {
                 questions.remove(i);
                 countOfQuestions--;
-                flag=true;
+                flag = true;
                 i--;
 
             }
@@ -149,30 +160,32 @@ public class Test implements Serializable {
         this.questions = questions;
         this.countOfQuestions = questions.size();
     }
-    public Question getQuestionById(int id){
-        for(Question question:questions){
-            if(question.getId()==id) return question;
+
+    public Question getQuestionById(int id) {
+        for (Question question : questions) {
+            if (question.getId() == id) return question;
         }
         return null;
     }
-    public void setQuestionById(Question newQuestion,int id){
+
+    public void setQuestionById(Question newQuestion, int id) {
         Iterator<Question> iterator = questions.iterator();
-        int i=0;
-        while(iterator.hasNext()){
+        int i = 0;
+        while (iterator.hasNext()) {
             Question question = iterator.next();
-            if(question.getId()==id){
+            if (question.getId() == id) {
                 questions.remove(i);
-                questions.add(i,newQuestion);
+                questions.add(i, newQuestion);
                 return;
             }
             i++;
         }
-        throw new RuntimeException("There is not question with id="+id);
+        throw new RuntimeException("There is not question with id=" + id);
 
     }
 
     public void deleteLastQuestion() {
-        questions.remove(questions.size()-1);
+        questions.remove(questions.size() - 1);
         countOfQuestions--;
     }
 

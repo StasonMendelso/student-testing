@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditTestInfoCommand implements com.stason.testing.controller.commands.Command {
-    private List<ErrorForUser> errorForUserList = new ArrayList();
+    private List<ErrorForUser> errorForUserList = new ArrayList<>();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -26,7 +26,7 @@ public class EditTestInfoCommand implements com.stason.testing.controller.comman
             String testName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("testName"));
             TestService testService = new TestService();
             Test test = (Test) request.getSession().getAttribute("editedTest");
-            if(testService.checkTestName(testName)) {
+            if (testService.checkTestName(testName)) {
                 errorForUserList.add(ErrorForUser.SUCH_TEST_NAME_ALREADY_EXISTS);
                 request.setAttribute("errorsList", errorForUserList);
                 return Path.ADMIN_EDIT_TEST_INFO;
@@ -80,7 +80,7 @@ public class EditTestInfoCommand implements com.stason.testing.controller.comman
             errorForUserList.add(ErrorForUser.INVALID_DISCIPLINE_NAME);
         if (!ValidatorService.validateTestDifficulty(difficulty))
             errorForUserList.add(ErrorForUser.INVALID_TEST_DIFFICULTY);
-        if (errorForUserList.size() != 0) return Path.ADMIN_EDIT_TEST_INFO;
+        if (!errorForUserList.isEmpty()) return Path.ADMIN_EDIT_TEST_INFO;
         return "";
     }
 }

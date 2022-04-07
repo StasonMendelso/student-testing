@@ -15,8 +15,8 @@ import java.util.List;
 
 
 public class CreateTestCommand implements Command {
-    private final static Logger logger = Logger.getLogger(CreateTestCommand.class.getName());
-    private List<ErrorForUser> errorForUserList = new ArrayList();
+    private static final Logger logger = Logger.getLogger(CreateTestCommand.class.getName());
+    private List<ErrorForUser> errorForUserList = new ArrayList<>();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -41,12 +41,7 @@ public class CreateTestCommand implements Command {
                 request.setAttribute("errorsList", errorForUserList);
                 return Path.ADMIN_CREATE_TEST;
             }
-            //todo constructors?
-            Test test = new Test();
-            test.setName(name);
-            test.setNameOfDiscipline(disciplineName);
-            test.setDifficulty(difficulty);
-            test.setTimeMinutes(duration);
+            Test test = new Test(name, disciplineName, difficulty, duration);
             request.getSession().setAttribute("test", test);
             logger.info("Admin creates new test");
             return Path.REDIRECT_ADMIN_CREATE_QUESTION;
@@ -66,7 +61,7 @@ public class CreateTestCommand implements Command {
         if (!ValidatorService.validateTestDifficulty(difficulty))
             errorForUserList.add(ErrorForUser.INVALID_TEST_DIFFICULTY);
         if (!ValidatorService.validateTestTime(duration)) errorForUserList.add(ErrorForUser.INVALID_TEST_DURATION);
-        if (errorForUserList.size() != 0) return Path.ADMIN_CREATE_TEST;
+        if (!errorForUserList.isEmpty()) return Path.ADMIN_CREATE_TEST;
         return "";
     }
 }

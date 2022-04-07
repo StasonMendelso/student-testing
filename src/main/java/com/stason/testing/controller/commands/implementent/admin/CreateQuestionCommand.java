@@ -1,10 +1,7 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
 import com.stason.testing.controller.commands.Command;
-import com.stason.testing.controller.services.AnswerService;
-import com.stason.testing.controller.services.QuestionService;
 import com.stason.testing.controller.services.TestService;
-import com.stason.testing.controller.services.ValidatorService;
 import com.stason.testing.controller.utils.CommandsHelper;
 import com.stason.testing.controller.utils.EncodingConverter;
 import com.stason.testing.controller.utils.ErrorForUser;
@@ -15,10 +12,8 @@ import com.stason.testing.model.entity.Question;
 import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.List;
 
 public class CreateQuestionCommand implements Command {
@@ -62,7 +57,7 @@ public class CreateQuestionCommand implements Command {
     }
 
     private String saveQuestion(HttpServletRequest request) {
-        List<ErrorForUser> errorForUserList = new ArrayList();
+        List<ErrorForUser> errorForUserList = new ArrayList<>();
         if (!CommandsHelper.isProperlyCheckboxChecked(request)) {
             //Вы выбрали ответ как пустой вариант ответа
             errorForUserList.add(ErrorForUser.EMPTY_ANSWER_OPTION);
@@ -78,7 +73,7 @@ public class CreateQuestionCommand implements Command {
         String rightOptions = Arrays.toString(request.getParameterValues("opt"));
         String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
         CommandsHelper.validateQuestionParameters(request, errorForUserList);
-        if (errorForUserList.size() != 0) {
+        if (!errorForUserList.isEmpty()) {
             request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
         }

@@ -1,20 +1,15 @@
 package com.stason.testing.controller.commands.implementent.admin;
 
-import com.stason.testing.controller.services.AnswerService;
-import com.stason.testing.controller.services.QuestionService;
 import com.stason.testing.controller.services.TestService;
 import com.stason.testing.controller.utils.Constants;
 import com.stason.testing.controller.utils.Path;
-import com.stason.testing.model.entity.Answer;
-import com.stason.testing.model.entity.Question;
+
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.util.List;
-
 public class DeleteTestCommand implements com.stason.testing.controller.commands.Command {
-    private final static Logger logger = Logger.getLogger(DeleteTestCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(DeleteTestCommand.class.getName());
     private final TestService testService = new TestService();
 
     @Override
@@ -30,7 +25,7 @@ public class DeleteTestCommand implements com.stason.testing.controller.commands
                 }
                 testService.delete(id);
                 logger.info("Admin deleted test[" + id + "]");
-               setAttributes(request);
+                setAttributes(request);
             } else {
                 setAttributes(request);
                 request.getSession().setAttribute("error", "Секретний код не співпадає");
@@ -39,7 +34,8 @@ public class DeleteTestCommand implements com.stason.testing.controller.commands
         }
         return Path.REDIRECT_ADMIN_TESTS;
     }
-    private void setAttributes(HttpServletRequest request){
+
+    private void setAttributes(HttpServletRequest request) {
         request.getSession().setAttribute("pageNumber", request.getParameter("pageNumber"));
         request.getSession().setAttribute("paginationParameter", request.getParameter("paginationParameter"));
         request.getSession().setAttribute("orderBy", request.getParameter("orderBy"));

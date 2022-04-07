@@ -105,4 +105,8 @@ public class CommandsHelper {
 
         }
     }
+    public static void setAttributesInSessionForPagination(HttpServletRequest request) {
+        request.getSession().setAttribute("pageNumber", request.getParameter("pageNumber"));
+        request.getSession().setAttribute("paginationParameter", request.getParameter("paginationParameter"));
+    }
 }

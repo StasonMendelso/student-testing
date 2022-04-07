@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditUserCommand implements Command {
-    private final static Logger logger = Logger.getLogger(EditUserCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(EditUserCommand.class.getName());
     private final UserService userService = new UserService();
 
     @Override
@@ -38,7 +38,7 @@ public class EditUserCommand implements Command {
             if(!name.isEmpty() &&!ValidatorService.validateUsername(name)){
                 errors.add(ErrorForUser.INVALID_NAME);
             }
-            if(errors.size()!=0){
+            if(!errors.isEmpty()){
                 request.setAttribute("errorsList",errors);
                 request.setAttribute("user", user);
                 return Path.ADMIN_EDIT_USER_INFO;
