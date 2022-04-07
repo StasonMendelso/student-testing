@@ -46,11 +46,10 @@ public class JDBCAnswerDao implements AnswerDao {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    Answer answer = new Answer();
-                    answer.setId(resultSet.getInt("id"));
-                    answer.setQuestionId(resultSet.getInt("questions_id"));
-                    answer.setAnswer(resultSet.getString("answer"));
-                    answer.setRightAnswer(resultSet.getBoolean("isRightAnswer"));
+                    Answer answer = new Answer(resultSet.getInt("id"),
+                            resultSet.getString("answer"),
+                            resultSet.getBoolean("isRightAnswer"),
+                            resultSet.getInt("questions_id"));
                     answerList.add(answer);
                 }
             }

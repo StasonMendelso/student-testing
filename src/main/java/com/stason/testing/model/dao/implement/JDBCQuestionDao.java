@@ -47,12 +47,7 @@ public class JDBCQuestionDao implements QuestionDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 List<Question> list = new LinkedList<>();
                 while (resultSet.next()) {
-
-                    Question question = new Question();
-                    question.setId(resultSet.getInt("id"));
-                    question.setTestId(resultSet.getInt("tests_id"));
-                    question.setTextQuestion(resultSet.getString("question"));
-                    question.setQuestionNumber(resultSet.getInt("questionNumber"));
+                    Question question = new Question(resultSet.getInt("id"),resultSet.getInt("tests_id"),resultSet.getInt("questionNumber"),resultSet.getString("question"));
                     list.add(question);
                 }
                 return list;
@@ -70,12 +65,7 @@ public class JDBCQuestionDao implements QuestionDao {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    Question question = new Question();
-                    question.setId(resultSet.getInt("id"));
-                    question.setTestId(resultSet.getInt("tests_id"));
-                    question.setTextQuestion(resultSet.getString("question"));
-                    question.setQuestionNumber(resultSet.getInt("questionNumber"));
-                    return question;
+                    return new Question(resultSet.getInt("id"),resultSet.getInt("tests_id"),resultSet.getInt("questionNumber"),resultSet.getString("question"));
                 }
             }
         } catch (SQLException e) {

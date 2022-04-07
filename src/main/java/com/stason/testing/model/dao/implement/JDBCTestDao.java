@@ -400,8 +400,8 @@ public class JDBCTestDao implements TestDao {
         PreparedStatement preparedStatement = null;
 
         try {
-            preparedStatement = connection.prepareStatement(Query.create);
             connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(Query.create);
             preparedStatement.setString(1, test.getName());
             preparedStatement.setString(2, test.getNameOfDiscipline());
             preparedStatement.setInt(3, test.getDifficulty());
@@ -442,10 +442,7 @@ public class JDBCTestDao implements TestDao {
                     preparedStatement.execute();
                 }
             }
-
-            preparedStatement.close();
             connection.commit();
-            connection.setAutoCommit(true);
             connection.close();
         } catch (SQLException e) {
             try {
@@ -458,18 +455,9 @@ public class JDBCTestDao implements TestDao {
         } finally {
             if (connection != null) {
                 try {
-                    connection.setAutoCommit(true);
                     connection.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-            }
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                    logger.error("Failed to close connection ", e);
                 }
             }
         }
@@ -483,7 +471,6 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-
                 return builtTest(resultSet);
             }
         } catch (SQLException e) {
@@ -495,16 +482,8 @@ public class JDBCTestDao implements TestDao {
     }
 
     private Test builtTest(ResultSet resultSet) throws SQLException {
-        Test test = new Test();
-        test.setId(resultSet.getInt("id"));
-        test.setName(resultSet.getString("name"));
-        test.setNameOfDiscipline(resultSet.getString("nameOfDiscipline"));
-        test.setDifficulty(resultSet.getInt("difficulty"));
-        test.setTimeMinutes(resultSet.getInt("time_minutes"));
-        test.setCountOfQuestions(resultSet.getInt("countOfQuestions"));
-        return test;
+        return new Test(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getString("nameOfDiscipline"),resultSet.getInt("difficulty"),resultSet.getInt("time_minutes"),resultSet.getInt("countOfQuestions"));
     }
-
 
     @Override
     public boolean update(Test test) {
@@ -576,7 +555,6 @@ public class JDBCTestDao implements TestDao {
         } catch (SQLException e) {
             try {
                 connection.rollback();
-
             } catch (SQLException ex) {
                 logger.error("Can't rollback in update()");
             }

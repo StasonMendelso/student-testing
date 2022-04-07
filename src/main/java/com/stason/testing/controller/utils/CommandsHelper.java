@@ -102,7 +102,6 @@ public class CommandsHelper {
             if (!ValidatorService.validateAnswerText(answerText) && !errorForUserList.contains(ErrorForUser.INVALID_ANSWER_NAME)) {
                 errorForUserList.add(ErrorForUser.INVALID_ANSWER_NAME);
             }
-
         }
     }
     public static void setAttributesInSessionForPagination(HttpServletRequest request) {

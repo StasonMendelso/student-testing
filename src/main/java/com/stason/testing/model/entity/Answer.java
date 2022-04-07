@@ -11,18 +11,14 @@ public class Answer implements Serializable {
 
     public Answer() {
     }
-
-    public Answer(int id, String answer, boolean isRightAnswer, int questionId) {
-        this.id = id;
-        this.answer = answer;
-        this.isRightAnswer = isRightAnswer;
-        this.questionId = questionId;
-    }
-
     public Answer(String answer, boolean isRightAnswer, int questionId) {
         this.answer = answer;
         this.isRightAnswer = isRightAnswer;
         this.questionId = questionId;
+    }
+    public Answer(int id, String answer, boolean isRightAnswer, int questionId) {
+        this(answer,isRightAnswer,questionId);
+        this.id = id;
     }
 
     @Override

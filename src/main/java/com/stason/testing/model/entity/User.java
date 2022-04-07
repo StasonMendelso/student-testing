@@ -23,6 +23,15 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(int id, String login, String name, String surname, int id_role, boolean blocked) {
+        this.id = id;
+        this.login = login;
+        this.name = name;
+        this.surname = surname;
+        this.id_role = id_role;
+        this.blocked = blocked;
+    }
+
     public User(String login, String password, String salt, String name, String surname, int id_role, boolean blocked) {
         this.login = login;
         this.password = password;
@@ -31,6 +40,12 @@ public class User implements Serializable {
         this.surname = surname;
         this.id_role = id_role;
         this.blocked = blocked;
+    }
+
+    public User(int id, String login, String password, String salt, String name, String surname, int id_role, boolean blocked) {
+        this(id,login,name,surname,id_role,blocked);
+        this.password = password;
+        this.salt = salt;
     }
 
     public User(String login) {

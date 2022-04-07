@@ -78,13 +78,12 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setInt(2,paginationParameter);
             try(ResultSet resultSet = preparedStatement.executeQuery()){
                 while(resultSet.next()){
-                    User user = new User();
-                    user.setLogin(resultSet.getString("login"));
-                    user.setName(resultSet.getString("name"));
-                    user.setSurname(resultSet.getString("surname"));
-                    user.setId_role(resultSet.getInt("id_role"));
-                    user.setId(resultSet.getInt("id"));
-                    user.setBlocked(resultSet.getBoolean("blocked"));
+                    User user = new User(resultSet.getInt("id"),
+                            resultSet.getString("login"),
+                            resultSet.getString("name"),
+                            resultSet.getString("surname"),
+                            resultSet.getInt("id_role"),
+                            resultSet.getBoolean("blocked"));
                     list.add(user);
                 }
             }
@@ -121,16 +120,15 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setString(1, login);
             try(  ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    User user = new User();
-                    user.setLogin(resultSet.getString("login"));
-                    user.setName(resultSet.getString("name"));
-                    user.setSurname(resultSet.getString("surname"));
-                    user.setId_role(resultSet.getInt("id_role"));
-                    user.setId(resultSet.getInt("id"));
-                    user.setBlocked(resultSet.getBoolean("blocked"));
-                    user.setPassword(resultSet.getString("password"));
-                    user.setSalt(resultSet.getString("salt"));
-                    return user;
+
+                    return new User(resultSet.getInt("id"),
+                            resultSet.getString("login"),
+                            resultSet.getString("password"),
+                            resultSet.getString("salt"),
+                            resultSet.getString("name"),
+                            resultSet.getString("surname"),
+                            resultSet.getInt("id_role"),
+                            resultSet.getBoolean("blocked"));
                 }
             }
 
@@ -195,14 +193,12 @@ public class JDBCUserDao implements UserDao {
             try(ResultSet resultSet = preparedStatement.executeQuery()){
 
                 if(resultSet.next()){
-                    User user = new User();
-                    user.setLogin(resultSet.getString("login"));
-                    user.setName(resultSet.getString("name"));
-                    user.setSurname(resultSet.getString("surname"));
-                    user.setId_role(resultSet.getInt("id_role"));
-                    user.setId(resultSet.getInt("id"));
-                    user.setBlocked(resultSet.getBoolean("blocked"));
-                    return user;
+                    return new User(resultSet.getInt("id"),
+                            resultSet.getString("login"),
+                            resultSet.getString("name"),
+                            resultSet.getString("surname"),
+                            resultSet.getInt("id_role"),
+                            resultSet.getBoolean("blocked"));
 
                 }
             }
@@ -258,7 +254,6 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
             connection.commit();
-            connection.setAutoCommit(true);
             connection.close();
         } catch (SQLException e) {
             try {
@@ -268,7 +263,6 @@ public class JDBCUserDao implements UserDao {
             }
             logger.error("Can't delete, user's id="+id+", because", e);
             throw new DataBaseException("Can't delete, user's id="+id);
-
         }finally {
             if(connection!=null){
                 try {

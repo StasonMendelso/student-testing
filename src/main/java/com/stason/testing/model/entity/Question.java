@@ -23,6 +23,11 @@ public class Question implements Cloneable, Serializable {
         this.textQuestion = textQuestion;
     }
 
+    public Question(int id, int testId, int questionNumber, String textQuestion) {
+       this(testId,questionNumber,textQuestion);
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Question{" +

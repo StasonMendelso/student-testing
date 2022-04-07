@@ -28,6 +28,12 @@ public class Test implements Serializable {
         this.timeMinutes = timeMinutes;
     }
 
+    public Test(int id, String name, String nameOfDiscipline, int difficulty, int timeMinutes, int countOfQuestions) {
+        this(name,nameOfDiscipline,difficulty,timeMinutes);
+        this.id = id;
+        this.countOfQuestions = countOfQuestions;
+    }
+
     public Question getQuestion(int questionNumber) {
         for (Question question : questions) {
             if (question.getQuestionNumber() == questionNumber) return question;
