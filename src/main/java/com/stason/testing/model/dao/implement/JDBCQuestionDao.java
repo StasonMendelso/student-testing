@@ -17,16 +17,16 @@ public class JDBCQuestionDao implements QuestionDao {
     private static final Logger logger = Logger.getLogger(JDBCQuestionDao.class.getName());
 
     private static class Query {
-        static final String create = "INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)";
-        static final String findAllByTestId = "SELECT * FROM onlinetesting.questions WHERE tests_id=?";
-        static final String findById = "SELECT * FROM onlinetesting.questions WHERE id=?";
-        static final String delete = "DELETE FROM onlinetesting.questions WHERE id=?";
+        static final String CREATE = "INSERT INTO onlinetesting.questions (tests_id, questionNumber, question) VALUES (?,?,?)";
+        static final String FIND_ALL_BY_TEST_ID = "SELECT * FROM onlinetesting.questions WHERE tests_id=?";
+        static final String FIND_BY_ID = "SELECT * FROM onlinetesting.questions WHERE id=?";
+        static final String DELETE = "DELETE FROM onlinetesting.questions WHERE id=?";
     }
 
     @Override
     public boolean create(Question question) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.create)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.CREATE)) {
             preparedStatement.setInt(1, question.getTestId());
             preparedStatement.setInt(2, question.getQuestionNumber());
             preparedStatement.setString(3, question.getTextQuestion());
@@ -42,7 +42,7 @@ public class JDBCQuestionDao implements QuestionDao {
     public List<Question> findAllByTestId(int id) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAllByTestId)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.FIND_ALL_BY_TEST_ID)) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 List<Question> list = new LinkedList<>();
@@ -61,7 +61,7 @@ public class JDBCQuestionDao implements QuestionDao {
     @Override
     public Question findById(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findById)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.FIND_BY_ID)) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -85,7 +85,7 @@ public class JDBCQuestionDao implements QuestionDao {
     @Override
     public boolean delete(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.delete)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

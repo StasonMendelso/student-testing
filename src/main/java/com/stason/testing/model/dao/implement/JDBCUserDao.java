@@ -14,20 +14,19 @@ public class JDBCUserDao implements UserDao {
     private static final Logger logger = Logger.getLogger(JDBCUserDao.class.getName());
 
     private static class Query{
-        static final String findIdBlockedUsers = "SELECT id FROM onlinetesting.users WHERE blocked=true";
-        static final String deletePassedTestsByUserId = "DELETE FROM onlinetesting.passedtests WHERE user_id=?";
-        static final String findIdPassedTestsByUserId = "SELECT onlinetesting.passedtests.test_id FROM onlinetesting.passedtests WHERE user_id=?;";
-        static final String findAndPaginateAllUsers = "SELECT * FROM onlinetesting.users limit ?,?";
-        static final String countAllUsers = "SELECT COUNT(1) FROM onlinetesting.users";
-        static final String checkLogin = "SELECT * FROM onlinetesting.users WHERE login=?;";
-        static final String findByLogin = "SELECT * FROM onlinetesting.users WHERE login=?;";
-        static final String create = "INSERT INTO onlinetesting.users (login,password,salt,name,surname,id_role,blocked)values(?,?,?,?,?,?,?);";
-        static final String block = "UPDATE onlinetesting.users set blocked=1 WHERE id=?";
-        static final String unblock = "UPDATE onlinetesting.users set blocked=0 WHERE id=?";
-        static final String findById = "SELECT * FROM onlinetesting.users WHERE id=?";
-        static final String update = "UPDATE onlinetesting.users SET name=?, surname=? WHERE id=?";
-        static final String updatePassword = "UPDATE onlinetesting.users SET password=?, salt=? WHERE login=?";
-        static final String delete = "DELETE FROM onlinetesting.users WHERE id=?";
+        static final String FIND_ID_BLOCKED_USERS = "SELECT id FROM onlinetesting.users WHERE blocked=true";
+        static final String DELETE_PASSED_TESTS_BY_USER_ID = "DELETE FROM onlinetesting.passedtests WHERE user_id=?";
+        static final String FIND_ID_PASSED_TESTS_BY_USER_ID = "SELECT onlinetesting.passedtests.test_id FROM onlinetesting.passedtests WHERE user_id=?;";
+        static final String FIND_AND_PAGINATE_ALL_USERS = "SELECT * FROM onlinetesting.users limit ?,?";
+        static final String COUNT_ALL_USERS = "SELECT COUNT(1) FROM onlinetesting.users";
+        static final String FIND_BY_LOGIN = "SELECT * FROM onlinetesting.users WHERE login=?;";
+        static final String CREATE = "INSERT INTO onlinetesting.users (login,password,salt,name,surname,id_role,blocked)values(?,?,?,?,?,?,?);";
+        static final String BLOCK = "UPDATE onlinetesting.users set blocked=1 WHERE id=?";
+        static final String UNBLOCK = "UPDATE onlinetesting.users set blocked=0 WHERE id=?";
+        static final String FIND_BY_ID = "SELECT * FROM onlinetesting.users WHERE id=?";
+        static final String UPDATE = "UPDATE onlinetesting.users SET name=?, surname=? WHERE id=?";
+        static final String UPDATE_PASSWORD = "UPDATE onlinetesting.users SET password=?, salt=? WHERE login=?";
+        static final String DELETE = "DELETE FROM onlinetesting.users WHERE id=?";
 
     }
     @Override
@@ -35,7 +34,7 @@ public class JDBCUserDao implements UserDao {
         List<Integer> list = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(Query.findIdBlockedUsers)){
+             ResultSet resultSet = statement.executeQuery(Query.FIND_ID_BLOCKED_USERS)){
 
             while(resultSet.next()){
                 list.add(resultSet.getInt("id"));
@@ -53,7 +52,7 @@ public class JDBCUserDao implements UserDao {
         List<Integer> list = new ArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findIdPassedTestsByUserId)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.FIND_ID_PASSED_TESTS_BY_USER_ID)){
             preparedStatement.setInt(1,id);
             try( ResultSet resultSet = preparedStatement.executeQuery()){
                 while(resultSet.next()){
@@ -72,7 +71,7 @@ public class JDBCUserDao implements UserDao {
     public List<User> findAndPaginateAllUsers(int index, int paginationParameter) {
         List<User> list = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findAndPaginateAllUsers)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.FIND_AND_PAGINATE_ALL_USERS)){
 
             preparedStatement.setInt(1,index);
             preparedStatement.setInt(2,paginationParameter);
@@ -98,7 +97,7 @@ public class JDBCUserDao implements UserDao {
     public int countAllUsers() {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(Query.countAllUsers)){
+             ResultSet resultSet = statement.executeQuery(Query.COUNT_ALL_USERS)){
 
             if(resultSet.next()){
                 return resultSet.getInt("COUNT(1)");
@@ -116,7 +115,7 @@ public class JDBCUserDao implements UserDao {
     public User findByLogin(String login) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findByLogin)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.FIND_BY_LOGIN)){
             preparedStatement.setString(1, login);
             try(  ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -144,7 +143,7 @@ public class JDBCUserDao implements UserDao {
     public boolean create(User user) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.create)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.CREATE)){
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getSalt());
@@ -163,7 +162,7 @@ public class JDBCUserDao implements UserDao {
     @Override
     public boolean block(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.block)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.BLOCK)){
             preparedStatement.setInt(1,id);
             return preparedStatement.execute();
         } catch (SQLException e) {
@@ -174,7 +173,7 @@ public class JDBCUserDao implements UserDao {
     @Override
     public boolean unblock(int id) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.unblock)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.UNBLOCK)){
             preparedStatement.setInt(1,id);
             return preparedStatement.execute();
         } catch (SQLException e) {
@@ -188,7 +187,7 @@ public class JDBCUserDao implements UserDao {
     public User findById(int id) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.findById)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.FIND_BY_ID)){
             preparedStatement.setInt(1,id);
             try(ResultSet resultSet = preparedStatement.executeQuery()){
 
@@ -214,7 +213,7 @@ public class JDBCUserDao implements UserDao {
     public boolean update(User user) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement  preparedStatement = connection.prepareStatement(Query.update)){
+             PreparedStatement  preparedStatement = connection.prepareStatement(Query.UPDATE)){
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
             preparedStatement.setInt(3, user.getId());
@@ -230,7 +229,7 @@ public class JDBCUserDao implements UserDao {
     public boolean updatePassword(String login, String password, String salt) {
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.updatePassword)){
+             PreparedStatement preparedStatement = connection.prepareStatement(Query.UPDATE_PASSWORD)){
             preparedStatement.setString(1,password);
             preparedStatement.setString(2, salt);
             preparedStatement.setString(3, login);
@@ -247,10 +246,10 @@ public class JDBCUserDao implements UserDao {
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTestsByUserId);
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE_PASSED_TESTS_BY_USER_ID);
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
-            preparedStatement = connection.prepareStatement(Query.delete);
+            preparedStatement = connection.prepareStatement(Query.DELETE);
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
             connection.commit();
