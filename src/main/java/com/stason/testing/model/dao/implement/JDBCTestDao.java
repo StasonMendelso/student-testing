@@ -52,19 +52,6 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public boolean deletePassedTestById(int testId) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(Query.deletePassedTestById)) {
-            preparedStatement.setInt(1, testId);
-            return preparedStatement.executeUpdate() != 0;
-        } catch (SQLException e) {
-            logger.error("Can't create new user" + testId + ", because", e);
-            throw new DataBaseException("Can't create new user");
-        }
-
-    }
-
-    @Override
     public int countTestByDiscipline(String discipline) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.countTestByDiscipline)) {
@@ -83,7 +70,7 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public List<Test> findAndPaginateAndSortUnsurpassedTests(int index, int paginationParameter, String orderBy, String order) {
+    public List<Test> findAndPaginateAndSortAllTests(int index, int paginationParameter, String orderBy, String order) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
@@ -103,7 +90,7 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public List<Test> findAndPaginateAndSortUnsurpassedTests(int index, int paginationParameter, String orderBy, String order, String discipline) {
+    public List<Test> findAndPaginateAndSortAllTests(int index, int paginationParameter, String orderBy, String order, String discipline) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests WHERE tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
@@ -233,7 +220,7 @@ public class JDBCTestDao implements TestDao {
     }
 
     @Override
-    public int countUnsurpassedTestByUser(int userId) {
+    public int countUnsurpassedTestsByUser(int userId) {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.countUnsurpassedTestByUser)) {
             preparedStatement.setInt(1, userId);

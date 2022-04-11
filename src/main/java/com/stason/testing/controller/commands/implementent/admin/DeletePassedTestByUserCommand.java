@@ -21,7 +21,7 @@ public class DeletePassedTestByUserCommand implements Command {
 
             int testId = Integer.parseInt(request.getParameter("testId"));
 
-            testService.deletePassedTestById(testId);
+            testService.deletePassedTestByUser(testId,userId);
             logger.info("Admin deleted passed test[" + testId + "] in user [" + userId + "]");
         } else {
             request.getSession().setAttribute("error", ErrorForUser.SECRET_CODE_NOT_MATCH);

@@ -33,9 +33,9 @@ private final TestDao testDao = new JDBCTestDao();
     public  List<Test> paginateAndSortAllTests( int paginationParameter, int pageNumber, String orderBy, String order, String discipline) {
         int index = paginationParameter*(pageNumber-1);
         if(discipline.equals("all")){
-            return testDao.findAndPaginateAndSortUnsurpassedTests(index,paginationParameter,orderBy,order);
+            return testDao.findAndPaginateAndSortAllTests(index,paginationParameter,orderBy,order);
         }else{
-            return testDao.findAndPaginateAndSortUnsurpassedTests(index,paginationParameter,orderBy,order,discipline);
+            return testDao.findAndPaginateAndSortAllTests(index,paginationParameter,orderBy,order,discipline);
         }
     }
 

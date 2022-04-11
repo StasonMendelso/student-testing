@@ -34,8 +34,8 @@ public class TestService {
         testDao.create(test);
     }
 
-    public void deletePassedTestById(int testId) {
-        testDao.deletePassedTestById(testId);
+    public void deletePassedTestByUser(int testId, int userId) {
+        testDao.deletePassedTestForUser(testId,userId);
     }
 
     public void delete(int id) {

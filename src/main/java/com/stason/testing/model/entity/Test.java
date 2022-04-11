@@ -26,6 +26,7 @@ public class Test implements Serializable {
         this.nameOfDiscipline = nameOfDiscipline;
         this.difficulty = difficulty;
         this.timeMinutes = timeMinutes;
+        this.timeSeconds = timeMinutes * 60;
     }
 
     public Test(int id, String name, String nameOfDiscipline, int difficulty, int timeMinutes, int countOfQuestions) {

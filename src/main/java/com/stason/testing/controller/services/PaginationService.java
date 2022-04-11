@@ -27,7 +27,7 @@ public class PaginationService {
     }
 
     public int countButtonsForPaginationUnsurpassedTests(int userId, int paginationParameter) {
-        double countOfPageNumberButtons = (double) testDao.countUnsurpassedTestByUser(userId) / paginationParameter;
+        double countOfPageNumberButtons = (double) testDao.countUnsurpassedTestsByUser(userId) / paginationParameter;
         return (int) countOfPageNumberButton(countOfPageNumberButtons);
     }
 
