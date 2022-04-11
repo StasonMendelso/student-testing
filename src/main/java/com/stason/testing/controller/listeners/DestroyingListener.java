@@ -7,7 +7,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.util.HashSet;
-
+/**
+ * It is an destroying servlet listener
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 @WebListener
 public class DestroyingListener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
     private static final Logger logger = Logger.getLogger(DestroyingListener.class.getName());
@@ -27,6 +31,10 @@ public class DestroyingListener implements ServletContextListener, HttpSessionLi
         /* Session is created. */
     }
 
+    /**
+     * When session is destroying, the method deletes a user from logged List
+     * @param se HttpSessionEvent
+     */
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         /* Session is destroyed. */

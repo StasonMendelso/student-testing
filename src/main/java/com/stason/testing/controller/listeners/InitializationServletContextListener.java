@@ -9,10 +9,19 @@ import javax.servlet.annotation.WebListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * It is an initialization servlet context listener
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 @WebListener
 public class InitializationServletContextListener implements ServletContextListener {
     private static final Logger logger = Logger.getLogger(InitializationServletContextListener.class.getName());
+
+    /**
+     * Initialized ServletContext with blocked users and an empty List of logouted id, which can be uses in further
+     * @param sce a ServletContextEvent
+     */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         logger.debug("Initialization of ServletContext");
