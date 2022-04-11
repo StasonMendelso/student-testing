@@ -6,7 +6,11 @@ import com.stason.testing.model.dao.implement.JDBCQuestionDao;
 import com.stason.testing.model.entity.Question;
 
 import java.util.List;
-
+/**
+ * It is a question-service class
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class QuestionService {
     private final QuestionDao questionDao = new JDBCQuestionDao();
 

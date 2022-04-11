@@ -7,7 +7,11 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
-
+/**
+ * It is an email-sender class, which sends email to user's login
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class EmailSenderService {
     private static final Logger logger = Logger.getLogger(EmailSenderService.class.getName());
 
@@ -29,6 +33,11 @@ public class EmailSenderService {
 
     }
 
+    /**
+     * Sends an activation code to user's login
+     * @param to a user's e-mail
+     * @param activationCode an activation code
+     */
     public void sendActivationCode(String to, String activationCode) {
 
         // Recipient's email ID needs to be mentioned.
@@ -75,6 +84,11 @@ public class EmailSenderService {
             throw new EmailException("Sorry, can't send letter to email", mex);
         }
     }
+    /**
+     * Sends an activation link e to user's login
+     * @param to a user's e-mail
+     * @param activationLink an activation limk
+     */
     public void sendActivationPasswordLink(String to, String activationLink) {
 
         // Recipient's email ID needs to be mentioned.

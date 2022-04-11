@@ -7,7 +7,11 @@ import com.stason.testing.model.entity.Test;
 import com.stason.testing.model.entity.User;
 
 import java.util.List;
-
+/**
+ * It is a pagination-service class
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class PaginationService {
 
     private final TestDao testDao = new JDBCTestDao();

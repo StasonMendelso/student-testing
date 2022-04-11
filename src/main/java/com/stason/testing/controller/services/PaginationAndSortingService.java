@@ -5,7 +5,11 @@ import com.stason.testing.model.entity.Test;
 
 
 import java.util.List;
-
+/**
+ * It is a pagination- and sorting-service class
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class PaginationAndSortingService extends PaginationService{
 
 private final TestDao testDao = new JDBCTestDao();

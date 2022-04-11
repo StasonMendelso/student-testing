@@ -7,7 +7,11 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Base64;
-
+/**
+ * It is an encryption class, which hashes links
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class EncryptionLink {
     private static final int ITERATIONS = 600;
     private static final int KEY_LENGTH = 512;
@@ -16,6 +20,12 @@ public class EncryptionLink {
     private EncryptionLink() {
     }
 
+    /**
+     * Hashes login with a given salt
+     * @param login a user's login
+     * @param salt a salt
+     * @return return hashed login
+     */
     public static String hash(String login, String salt) {
         char[] chars = login.toCharArray();
         byte[] bytes = salt.getBytes();
@@ -36,7 +46,10 @@ public class EncryptionLink {
 
         return null;
     }
-
+    /**
+     * Generates a salt for hashing
+     * @return return a salt
+     */
     public static String generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];

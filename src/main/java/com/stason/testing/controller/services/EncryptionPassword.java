@@ -7,7 +7,11 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Base64;
-
+/**
+ * It is an encryption class, which hashes password
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class EncryptionPassword {
     private static final int ITERATIONS = 65536;
     private static final int KEY_LENGTH = 512;
@@ -16,6 +20,12 @@ public class EncryptionPassword {
     private EncryptionPassword() {
     }
 
+    /**
+     * Hashes password with a given salt
+     * @param password a password
+     * @param salt a salt
+     * @return return hashed password
+     */
     public static String hash(String password, String salt) {
         char[] chars = password.toCharArray();
         byte[] bytes = salt.getBytes();
@@ -32,6 +42,11 @@ public class EncryptionPassword {
         }
         return null;
     }
+
+    /**
+     * Generates a salt for hashing
+     * @return return a salt
+     */
     public static String generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];

@@ -5,7 +5,11 @@ import com.stason.testing.model.dao.implement.JDBCUserDao;
 import com.stason.testing.model.entity.User;
 
 import java.util.List;
-
+/**
+ * It is a user-service class
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class UserService {
     private final UserDao userDao = new JDBCUserDao();
 

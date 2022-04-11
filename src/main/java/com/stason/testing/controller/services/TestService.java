@@ -10,7 +10,11 @@ import com.stason.testing.model.entity.Test;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * It is a test-service class
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class TestService {
     private final TestDao testDao = new JDBCTestDao();
 
@@ -50,6 +54,11 @@ public class TestService {
         testDao.deletePassedTestForUser(testId, userId);
     }
 
+    /**
+     * Finds test with question and answers
+     * @param testId a test's id
+     * @return return a test with correct answers
+     */
     public Test findTestWithQuestionsAndAnswers(int testId) {
         Test test = testDao.findById(testId);
         QuestionService questionService = new QuestionService();
