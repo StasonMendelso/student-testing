@@ -8,7 +8,11 @@ import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+/**
+ * It is a Command, which edits test
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class EditTestCommand implements com.stason.testing.controller.commands.Command {
     private final TestService testService = new TestService();
 

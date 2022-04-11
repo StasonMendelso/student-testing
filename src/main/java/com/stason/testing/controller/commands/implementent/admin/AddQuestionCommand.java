@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * It is a Command, which adds a new question to the current test
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class AddQuestionCommand implements Command {
 
     @Override

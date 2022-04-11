@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * It is a Command, which creates a new test
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class CreateTestCommand implements Command {
     private static final Logger logger = Logger.getLogger(CreateTestCommand.class.getName());
     private List<ErrorForUser> errorForUserList = new ArrayList<>();

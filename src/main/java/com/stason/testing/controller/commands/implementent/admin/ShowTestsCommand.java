@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * It is a Command, which shows tests for admin
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class ShowTestsCommand implements Command {
     private final PaginationService paginationService = new PaginationService();
 

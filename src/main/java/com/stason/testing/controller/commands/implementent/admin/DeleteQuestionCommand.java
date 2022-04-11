@@ -7,7 +7,11 @@ import com.stason.testing.model.entity.Test;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+/**
+ * It is a Command, which deletes an question
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class DeleteQuestionCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {

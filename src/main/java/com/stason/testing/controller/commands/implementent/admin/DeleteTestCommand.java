@@ -7,7 +7,11 @@ import com.stason.testing.controller.utils.Path;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-
+/**
+ * It is a Command, which deletes a test
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class DeleteTestCommand implements com.stason.testing.controller.commands.Command {
     private static final Logger logger = Logger.getLogger(DeleteTestCommand.class.getName());
     private final TestService testService = new TestService();

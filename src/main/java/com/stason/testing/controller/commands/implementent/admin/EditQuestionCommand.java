@@ -16,6 +16,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * It is a Command, which edit question in the current test
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class EditQuestionCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {

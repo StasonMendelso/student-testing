@@ -10,7 +10,11 @@ import com.stason.testing.model.entity.Test;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.List;
-
+/**
+ * It is a Command, which shows user's passed tests for admin
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class ShowUsersTestsCommand implements Command {
     private final PaginationService paginationService = new PaginationService();
 

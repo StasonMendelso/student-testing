@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import java.util.List;
-
+/**
+ * It is a Command, which shows users for admin
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class ShowUsersCommand implements Command {
     final PaginationService paginationService = new PaginationService();
 

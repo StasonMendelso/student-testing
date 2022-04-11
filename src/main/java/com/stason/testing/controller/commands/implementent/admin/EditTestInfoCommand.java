@@ -10,7 +10,11 @@ import com.stason.testing.model.entity.Test;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * It is a Command, which edits test's information
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class EditTestInfoCommand implements com.stason.testing.controller.commands.Command {
     private List<ErrorForUser> errorForUserList = new ArrayList<>();
 

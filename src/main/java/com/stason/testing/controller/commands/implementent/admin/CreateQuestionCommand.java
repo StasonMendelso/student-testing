@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * It is a Command, which creates a new question
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class CreateQuestionCommand implements Command {
     private final TestService testService = new TestService();
 

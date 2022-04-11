@@ -8,7 +8,11 @@ import org.apache.log4j.Logger;
 
 
 import javax.servlet.http.HttpServletRequest;
-
+/**
+ * It is a Command, which deletes user's passed test
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class DeletePassedTestByUserCommand implements Command {
     private static final Logger logger = Logger.getLogger(DeletePassedTestByUserCommand.class.getName());
     private final TestService testService = new TestService();
