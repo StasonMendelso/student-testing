@@ -1,5 +1,10 @@
 package com.stason.testing.controller.exceptions;
-
+/**
+ * Customized runtime exceptions which appeared when web-site is working
+ * @author Stanislav Hlova
+ * @version 1.0
+ * @see RuntimeException
+ */
 public class ServiceException extends RuntimeException{
     private final String httpStatusCode;
 

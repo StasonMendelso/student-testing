@@ -14,7 +14,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * It is a filter, which check if the user's role has the permission to this URLs
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 @WebFilter(filterName = "AccessingFilter")
 public class AccessingFilter implements Filter {
     private static final Logger logger = Logger.getLogger(AccessingFilter.class.getName());

@@ -9,7 +9,12 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * It is a filter, which clean the cache of web-browser and when the user click on back arrow in his browser,
+ * this forces browser to access the server again (for login for example).
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 @WebFilter(filterName = "BackArrowFilter")
 public class BackArrowFilter implements Filter {
     private static final Logger logger = Logger.getLogger(BackArrowFilter.class.getName());
