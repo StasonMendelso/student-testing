@@ -1135,3 +1135,685 @@ com.stason.testing.controller.exceptions.DataBaseException: Can't delete test id
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+[DEBUG]-[2022-04-07 16:42:15,708]-[listeners.InitializationServletContextListener:contextInitialized:18]-Initialization of ServletContext
+[INFO]-[2022-04-07 16:42:15,935]-[listeners.InitializationServletContextListener:contextInitialized:24]-Blocked users (id:[38]) were added to ServletContext
+[DEBUG]-[2022-04-07 16:42:17,383]-[servlets.ControllerServlet:init:24]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-07 16:42:17,417]-[filters.LocaleFilter:doFilter:19]-Filters time:1
+[INFO]-[2022-04-07 16:42:17,418]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:17,418]-[filters.LocaleFilter:doFilter:27]-Set Lang by default "UA"
+[INFO]-[2022-04-07 16:42:17,418]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:17,418]-[filters.RoleFilter:doFilter:21]-Set role as GUEST
+[WARN]-[2022-04-07 16:42:17,419]-[filters.AccessingFilter:lambda$doFilter$0:124]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:18,897]-[filters.LocaleFilter:doFilter:19]-Filters time:2
+[INFO]-[2022-04-07 16:42:18,897]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:18,897]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:18,897]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 16:42:18,897]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 16:42:18,897]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:18,898]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 16:42:18,898]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3f682716
+[INFO]-[2022-04-07 16:42:18,898]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-07 16:42:20,656]-[filters.LocaleFilter:doFilter:19]-Filters time:3
+[INFO]-[2022-04-07 16:42:20,656]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:20,656]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:20,656]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 16:42:20,656]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 16:42:20,657]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:20,657]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 16:42:20,657]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3f682716
+[INFO]-[2022-04-07 16:42:20,867]-[guest.LoginCommand:execute:65]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-07 16:42:20,868]-[servlets.ControllerServlet:process:47]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-07 16:42:20,871]-[filters.LocaleFilter:doFilter:19]-Filters time:4
+[INFO]-[2022-04-07 16:42:20,871]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:20,872]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:20,872]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:20,872]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-07 16:42:20,872]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:20,872]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-07 16:42:20,872]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@1b633bc8
+[INFO]-[2022-04-07 16:42:20,872]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-07 16:42:22,041]-[filters.LocaleFilter:doFilter:19]-Filters time:5
+[INFO]-[2022-04-07 16:42:22,041]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:22,041]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:22,041]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:22,041]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:22,041]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:22,041]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:22,041]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@e9a5d19
+[INFO]-[2022-04-07 16:42:22,046]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-07 16:42:23,817]-[filters.LocaleFilter:doFilter:19]-Filters time:6
+[INFO]-[2022-04-07 16:42:23,817]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:23,817]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:23,817]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:23,817]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:23,818]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:23,818]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:23,818]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@e9a5d19
+[INFO]-[2022-04-07 16:42:23,822]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-07 16:42:28,732]-[filters.LocaleFilter:doFilter:19]-Filters time:7
+[INFO]-[2022-04-07 16:42:28,732]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:28,732]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:28,733]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:28,733]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:28,733]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:28,733]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:28,733]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@e9a5d19
+[INFO]-[2022-04-07 16:42:28,736]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-07 16:42:30,025]-[filters.LocaleFilter:doFilter:19]-Filters time:8
+[INFO]-[2022-04-07 16:42:30,025]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:30,025]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:30,025]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:30,025]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:30,025]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:30,025]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:30,026]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@e9a5d19
+[INFO]-[2022-04-07 16:42:30,029]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-07 16:42:36,832]-[filters.LocaleFilter:doFilter:19]-Filters time:9
+[INFO]-[2022-04-07 16:42:36,832]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:36,833]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:36,833]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:36,833]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/deleteTest
+[INFO]-[2022-04-07 16:42:36,833]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:36,833]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/deleteTest
+[INFO]-[2022-04-07 16:42:36,833]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.DeleteTestCommand@33dd9957
+[INFO]-[2022-04-07 16:42:36,849]-[admin.DeleteTestCommand:execute:27]-Admin deleted test[114]
+[INFO]-[2022-04-07 16:42:36,849]-[servlets.ControllerServlet:process:47]-New URL is:redirect:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:36,852]-[filters.LocaleFilter:doFilter:19]-Filters time:10
+[INFO]-[2022-04-07 16:42:36,852]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:36,852]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:36,852]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:36,853]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:36,853]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:36,853]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:36,853]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@e9a5d19
+[INFO]-[2022-04-07 16:42:36,856]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-07 16:42:47,858]-[filters.LocaleFilter:doFilter:19]-Filters time:11
+[INFO]-[2022-04-07 16:42:47,858]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:47,858]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:47,858]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:47,858]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/deleteTest
+[INFO]-[2022-04-07 16:42:47,858]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:47,859]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/deleteTest
+[INFO]-[2022-04-07 16:42:47,859]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.DeleteTestCommand@33dd9957
+[INFO]-[2022-04-07 16:42:47,862]-[admin.DeleteTestCommand:execute:27]-Admin deleted test[114]
+[INFO]-[2022-04-07 16:42:47,862]-[servlets.ControllerServlet:process:47]-New URL is:redirect:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:47,866]-[filters.LocaleFilter:doFilter:19]-Filters time:12
+[INFO]-[2022-04-07 16:42:47,866]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 16:42:47,866]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 16:42:47,866]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 16:42:47,866]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:47,866]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 16:42:47,866]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 16:42:47,866]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@e9a5d19
+[INFO]-[2022-04-07 16:42:47,869]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-07 17:13:14,899]-[listeners.DestroyingListener:sessionDestroyed:38]-The user with login admin@gmail.com has removed from loggedUsers
+[INFO]-[2022-04-07 17:14:33,006]-[filters.LocaleFilter:doFilter:19]-Filters time:13
+[INFO]-[2022-04-07 17:14:33,006]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:33,007]-[filters.LocaleFilter:doFilter:27]-Set Lang by default "UA"
+[INFO]-[2022-04-07 17:14:33,007]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:33,007]-[filters.RoleFilter:doFilter:21]-Set role as GUEST
+[WARN]-[2022-04-07 17:14:33,007]-[filters.AccessingFilter:lambda$doFilter$0:124]-Accessing Filter - ACCESS DENIED FOR GUEST for URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:14:34,559]-[filters.LocaleFilter:doFilter:19]-Filters time:14
+[INFO]-[2022-04-07 17:14:34,559]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:34,559]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:34,559]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 17:14:34,560]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 17:14:34,560]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:34,560]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 17:14:34,560]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3f682716
+[INFO]-[2022-04-07 17:14:34,560]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-07 17:14:36,144]-[filters.LocaleFilter:doFilter:19]-Filters time:15
+[INFO]-[2022-04-07 17:14:36,145]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:36,145]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:36,145]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 17:14:36,145]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 17:14:36,145]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:36,145]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 17:14:36,145]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3f682716
+[INFO]-[2022-04-07 17:14:36,330]-[guest.LoginCommand:execute:65]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-07 17:14:36,331]-[servlets.ControllerServlet:process:47]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-07 17:14:36,334]-[filters.LocaleFilter:doFilter:19]-Filters time:16
+[INFO]-[2022-04-07 17:14:36,334]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:36,334]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:36,334]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:14:36,334]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-07 17:14:36,334]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:36,334]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-07 17:14:36,334]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@1b633bc8
+[INFO]-[2022-04-07 17:14:36,334]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-07 17:14:37,191]-[filters.LocaleFilter:doFilter:19]-Filters time:17
+[INFO]-[2022-04-07 17:14:37,191]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:37,191]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:37,191]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:14:37,191]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:14:37,191]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:37,191]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:14:37,191]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@6480bc24
+[INFO]-[2022-04-07 17:14:37,194]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-07 17:14:39,313]-[filters.LocaleFilter:doFilter:19]-Filters time:18
+[INFO]-[2022-04-07 17:14:39,313]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:39,313]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:39,313]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:14:39,314]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:14:39,314]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:39,314]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:14:39,314]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@6480bc24
+[INFO]-[2022-04-07 17:14:39,317]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-07 17:14:40,535]-[filters.LocaleFilter:doFilter:19]-Filters time:19
+[INFO]-[2022-04-07 17:14:40,535]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:40,535]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:40,535]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:14:40,536]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/logout
+[INFO]-[2022-04-07 17:14:40,536]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:40,536]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/logout
+[INFO]-[2022-04-07 17:14:40,536]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LogoutCommand@136ceccd
+[INFO]-[2022-04-07 17:14:40,536]-[guest.LogoutCommand:execute:18]-LoggedUsers before logouting are [admin@gmail.com]
+[INFO]-[2022-04-07 17:14:40,536]-[guest.LogoutCommand:execute:21]-LoggedUsers after logouting are []
+[INFO]-[2022-04-07 17:14:40,536]-[listeners.DestroyingListener:sessionDestroyed:38]-The user with login admin@gmail.com has removed from loggedUsers
+[INFO]-[2022-04-07 17:14:40,536]-[servlets.ControllerServlet:process:47]-New URL is:redirect:/web-application/testing/login
+[INFO]-[2022-04-07 17:14:40,540]-[filters.LocaleFilter:doFilter:19]-Filters time:20
+[INFO]-[2022-04-07 17:14:40,540]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:40,540]-[filters.LocaleFilter:doFilter:27]-Set Lang by default "UA"
+[INFO]-[2022-04-07 17:14:40,540]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:40,540]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 17:14:40,540]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 17:14:40,540]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:40,540]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 17:14:40,540]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3f682716
+[INFO]-[2022-04-07 17:14:40,540]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-07 17:14:41,295]-[filters.LocaleFilter:doFilter:19]-Filters time:21
+[INFO]-[2022-04-07 17:14:41,295]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:41,295]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:41,295]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 17:14:41,295]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/registration
+[INFO]-[2022-04-07 17:14:41,295]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:41,295]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/registration
+[INFO]-[2022-04-07 17:14:41,295]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.RegistrationCommand@489ad1d0
+[INFO]-[2022-04-07 17:14:41,295]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/guest/register.jsp
+[INFO]-[2022-04-07 17:14:48,896]-[filters.LocaleFilter:doFilter:19]-Filters time:22
+[INFO]-[2022-04-07 17:14:48,896]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:14:48,896]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:14:48,896]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 17:14:48,896]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/registration
+[INFO]-[2022-04-07 17:14:48,897]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:14:48,897]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/registration
+[INFO]-[2022-04-07 17:14:48,897]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.RegistrationCommand@489ad1d0
+[INFO]-[2022-04-07 17:14:48,897]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/guest/register.jsp
+[INFO]-[2022-04-07 17:19:37,711]-[filters.LocaleFilter:doFilter:19]-Filters time:23
+[INFO]-[2022-04-07 17:19:37,711]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:19:37,713]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:19:37,713]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 17:19:37,713]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/registration
+[INFO]-[2022-04-07 17:19:37,713]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:19:37,713]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/registration
+[INFO]-[2022-04-07 17:19:37,713]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.RegistrationCommand@489ad1d0
+[INFO]-[2022-04-07 17:19:37,904]-[guest.RegistrationCommand:execute:71]-Registered new user: Hlova Stanislav staso2n@gmail.com
+[INFO]-[2022-04-07 17:19:37,904]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/guest/successful_registration.jsp
+[INFO]-[2022-04-07 17:19:40,358]-[filters.LocaleFilter:doFilter:19]-Filters time:24
+[INFO]-[2022-04-07 17:19:40,358]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:19:40,358]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:19:40,358]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 17:19:40,358]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 17:19:40,358]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:19:40,358]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 17:19:40,358]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3f682716
+[INFO]-[2022-04-07 17:19:40,358]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-07 17:19:49,359]-[filters.LocaleFilter:doFilter:19]-Filters time:25
+[INFO]-[2022-04-07 17:19:49,359]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:19:49,360]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:19:49,360]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 17:19:49,360]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 17:19:49,360]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:19:49,360]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 17:19:49,360]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@3f682716
+[INFO]-[2022-04-07 17:19:49,534]-[guest.LoginCommand:execute:65]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-07 17:19:49,535]-[servlets.ControllerServlet:process:47]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-07 17:19:49,538]-[filters.LocaleFilter:doFilter:19]-Filters time:26
+[INFO]-[2022-04-07 17:19:49,538]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:19:49,538]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:19:49,538]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:19:49,538]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-07 17:19:49,538]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:19:49,538]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-07 17:19:49,538]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@1b633bc8
+[INFO]-[2022-04-07 17:19:49,538]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-07 17:19:50,966]-[filters.LocaleFilter:doFilter:19]-Filters time:27
+[INFO]-[2022-04-07 17:19:50,966]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:19:50,966]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:19:50,966]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:19:50,966]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:19:50,966]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:19:50,966]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:19:50,966]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@6480bc24
+[INFO]-[2022-04-07 17:19:50,968]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-07 17:19:53,573]-[filters.LocaleFilter:doFilter:19]-Filters time:28
+[INFO]-[2022-04-07 17:19:53,573]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:19:53,573]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:19:53,573]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:19:53,573]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:19:53,573]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:19:53,573]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:19:53,574]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@6480bc24
+[INFO]-[2022-04-07 17:19:53,576]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-07 17:19:55,919]-[filters.LocaleFilter:doFilter:19]-Filters time:29
+[INFO]-[2022-04-07 17:19:55,919]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:19:55,919]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:19:55,919]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:19:55,919]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/editUser
+[INFO]-[2022-04-07 17:19:55,919]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:19:55,919]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/editUser
+[INFO]-[2022-04-07 17:19:55,919]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.EditUserCommand@399eea01
+[INFO]-[2022-04-07 17:19:55,921]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/editUserInfo.jsp
+[INFO]-[2022-04-07 17:19:58,146]-[filters.LocaleFilter:doFilter:19]-Filters time:30
+[INFO]-[2022-04-07 17:19:58,146]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:19:58,146]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:19:58,146]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:19:58,146]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 17:19:58,146]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:19:58,146]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 17:19:58,146]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@e9a5d19
+[INFO]-[2022-04-07 17:19:58,149]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-07 17:20:12,379]-[filters.LocaleFilter:doFilter:19]-Filters time:31
+[INFO]-[2022-04-07 17:20:12,379]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:20:12,379]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:20:12,379]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:20:12,379]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:20:12,379]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:20:12,379]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 17:20:12,379]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@6480bc24
+[INFO]-[2022-04-07 17:20:12,382]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-07 17:20:13,826]-[filters.LocaleFilter:doFilter:19]-Filters time:32
+[INFO]-[2022-04-07 17:20:13,826]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 17:20:13,827]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 17:20:13,827]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 17:20:13,827]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/editUser
+[INFO]-[2022-04-07 17:20:13,827]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 17:20:13,827]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/editUser
+[INFO]-[2022-04-07 17:20:13,827]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.EditUserCommand@399eea01
+[INFO]-[2022-04-07 17:20:13,828]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/editUserInfo.jsp
+[ERROR]-[2022-04-07 17:21:46,769]-[implement.JDBCUserDao:create:160]-Can't create new usertestlogin, because
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'testlogin' for key 'users.login_UNIQUE'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at com.stason.testing.model.dao.implement.JDBCUserDao.create(JDBCUserDao.java:157)
+	at com.stason.testing.model.dao.implement.JDBCUserDao.create(JDBCUserDao.java:13)
+	at dao.TestDAO.testCreateUser(TestDAO.java:56)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:214)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:210)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:71)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
+[ERROR]-[2022-04-07 17:22:10,337]-[implement.JDBCUserDao:create:160]-Can't create new usertestlogin, because
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'testlogin' for key 'users.login_UNIQUE'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at com.stason.testing.model.dao.implement.JDBCUserDao.create(JDBCUserDao.java:157)
+	at com.stason.testing.model.dao.implement.JDBCUserDao.create(JDBCUserDao.java:13)
+	at dao.TestDAO.testCreateUser(TestDAO.java:56)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:214)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:210)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:71)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
+[ERROR]-[2022-04-07 17:54:41,387]-[implement.JDBCUserDao:create:158]-Can't create new usertestlogin, because
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'testlogin' for key 'users.login_UNIQUE'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at com.stason.testing.model.dao.implement.JDBCUserDao.create(JDBCUserDao.java:155)
+	at com.stason.testing.model.dao.implement.JDBCUserDao.create(JDBCUserDao.java:13)
+	at dao.TestDAO.testCreateUser(TestDAO.java:56)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:214)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:210)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:135)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:71)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
+[DEBUG]-[2022-04-07 18:04:46,608]-[listeners.InitializationServletContextListener:contextInitialized:18]-Initialization of ServletContext
+[INFO]-[2022-04-07 18:04:46,993]-[listeners.InitializationServletContextListener:contextInitialized:24]-Blocked users (id:[38]) were added to ServletContext
+[DEBUG]-[2022-04-07 18:04:47,170]-[servlets.ControllerServlet:init:24]-Initialization com.stason.testing.controller.servlets.ControllerServlet
+[INFO]-[2022-04-07 18:04:47,211]-[filters.LocaleFilter:doFilter:19]-Filters time:1
+[INFO]-[2022-04-07 18:04:47,211]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:04:47,215]-[filters.LocaleFilter:doFilter:27]-Set Lang by default "UA"
+[INFO]-[2022-04-07 18:04:47,215]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:04:47,216]-[filters.RoleFilter:doFilter:21]-Set role as GUEST
+[INFO]-[2022-04-07 18:04:47,216]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing
+[INFO]-[2022-04-07 18:04:47,216]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:04:47,217]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing
+[INFO]-[2022-04-07 18:04:47,217]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@43b7ebcc
+[INFO]-[2022-04-07 18:04:47,217]-[servlets.ControllerServlet:process:47]-New URL is:/index.jsp
+[INFO]-[2022-04-07 18:04:48,304]-[filters.LocaleFilter:doFilter:19]-Filters time:2
+[INFO]-[2022-04-07 18:04:48,304]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:04:48,305]-[filters.LocaleFilter:doFilter:27]-Set Lang by default "UA"
+[INFO]-[2022-04-07 18:04:48,306]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:04:48,306]-[filters.RoleFilter:doFilter:21]-Set role as GUEST
+[INFO]-[2022-04-07 18:04:48,307]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing
+[INFO]-[2022-04-07 18:04:48,307]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:04:48,307]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing
+[INFO]-[2022-04-07 18:04:48,307]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.DefaultCommand@43b7ebcc
+[INFO]-[2022-04-07 18:04:48,307]-[servlets.ControllerServlet:process:47]-New URL is:/index.jsp
+[INFO]-[2022-04-07 18:05:29,337]-[filters.LocaleFilter:doFilter:19]-Filters time:3
+[INFO]-[2022-04-07 18:05:29,337]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:05:29,337]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:05:29,337]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 18:05:29,338]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 18:05:29,338]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:05:29,338]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 18:05:29,338]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@1b48ed85
+[INFO]-[2022-04-07 18:05:29,338]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/guest/login.jsp
+[INFO]-[2022-04-07 18:05:33,270]-[filters.LocaleFilter:doFilter:19]-Filters time:4
+[INFO]-[2022-04-07 18:05:33,271]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:05:33,271]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:05:33,271]-[filters.RoleFilter:doFilter:25]-Role is GUEST
+[INFO]-[2022-04-07 18:05:33,271]-[filters.AccessingFilter:doFilter:106]-Accessing Filter - Guest has access to this URL http://localhost:8080/web-application/testing/login
+[INFO]-[2022-04-07 18:05:33,272]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:05:33,272]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/login
+[INFO]-[2022-04-07 18:05:33,272]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.guest.LoginCommand@1b48ed85
+[INFO]-[2022-04-07 18:05:33,581]-[guest.LoginCommand:execute:65]-Logged users are [admin@gmail.com]
+[INFO]-[2022-04-07 18:05:33,583]-[servlets.ControllerServlet:process:47]-New URL is:redirect:/web-application/testing/admin/info
+[INFO]-[2022-04-07 18:05:33,587]-[filters.LocaleFilter:doFilter:19]-Filters time:5
+[INFO]-[2022-04-07 18:05:33,587]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:05:33,587]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:05:33,587]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 18:05:33,587]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/info
+[INFO]-[2022-04-07 18:05:33,587]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:05:33,588]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/info
+[INFO]-[2022-04-07 18:05:33,588]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.AdminInfoCommand@1fcd91bd
+[INFO]-[2022-04-07 18:05:33,588]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/info.jsp
+[INFO]-[2022-04-07 18:05:35,422]-[filters.LocaleFilter:doFilter:19]-Filters time:6
+[INFO]-[2022-04-07 18:05:35,422]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:05:35,422]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:05:35,422]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 18:05:35,423]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 18:05:35,423]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:05:35,423]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showUsers
+[INFO]-[2022-04-07 18:05:35,423]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowUsersCommand@e9aee6e
+[INFO]-[2022-04-07 18:05:35,427]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showUsers.jsp
+[INFO]-[2022-04-07 18:05:37,808]-[filters.LocaleFilter:doFilter:19]-Filters time:7
+[INFO]-[2022-04-07 18:05:37,808]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:05:37,808]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:05:37,809]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 18:05:37,809]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 18:05:37,809]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:05:37,809]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/showTests
+[INFO]-[2022-04-07 18:05:37,809]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.ShowTestsCommand@1974085
+[INFO]-[2022-04-07 18:05:37,815]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/showTests.jsp
+[INFO]-[2022-04-07 18:05:41,001]-[filters.LocaleFilter:doFilter:19]-Filters time:8
+[INFO]-[2022-04-07 18:05:41,002]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:05:41,002]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:05:41,002]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 18:05:41,002]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/editTest
+[INFO]-[2022-04-07 18:05:41,002]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:05:41,002]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/editTest
+[INFO]-[2022-04-07 18:05:41,002]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.EditTestCommand@755f676b
+[INFO]-[2022-04-07 18:05:41,014]-[servlets.ControllerServlet:process:47]-New URL is:/WEB-INF/view/admin/editTest.jsp
+[INFO]-[2022-04-07 18:05:47,729]-[filters.LocaleFilter:doFilter:19]-Filters time:9
+[INFO]-[2022-04-07 18:05:47,729]-[filters.LocaleFilter:doFilter:20]-Locale Filter
+[INFO]-[2022-04-07 18:05:47,729]-[filters.EncodingFilter:doFilter:16]-Encoding Filter
+[INFO]-[2022-04-07 18:05:47,729]-[filters.RoleFilter:doFilter:25]-Role is ADMIN
+[INFO]-[2022-04-07 18:05:47,729]-[filters.AccessingFilter:doFilter:117]-Accessing Filter - Admin has access to this URL http://localhost:8080/web-application/testing/admin/editTest
+[INFO]-[2022-04-07 18:05:47,729]-[servlets.ControllerServlet:process:39]-Servlet
+[INFO]-[2022-04-07 18:05:47,730]-[servlets.ControllerServlet:process:41]-Old URI is:/web-application/testing/admin/editTest
+[INFO]-[2022-04-07 18:05:47,730]-[servlets.ControllerServlet:process:44]-Command is:com.stason.testing.controller.commands.implementent.admin.EditTestCommand@755f676b
+[ERROR]-[2022-04-07 18:05:47,762]-[implement.JDBCTestDao:update:561]-Error update()
+[ERROR]-[2022-04-07 18:05:47,763]-[servlets.ControllerServlet:process:54]-Service Exception error was catch
+com.stason.testing.controller.exceptions.DataBaseException: Error update()
+	at com.stason.testing.model.dao.implement.JDBCTestDao.update(JDBCTestDao.java:562)
+	at com.stason.testing.model.dao.implement.JDBCTestDao.update(JDBCTestDao.java:16)
+	at com.stason.testing.controller.services.TestService.update(TestService.java:46)
+	at com.stason.testing.controller.commands.implementent.admin.EditTestCommand.execute(EditTestCommand.java:25)
+	at com.stason.testing.controller.servlets.ControllerServlet.process(ControllerServlet.java:46)
+	at com.stason.testing.controller.servlets.ControllerServlet.doPost(ControllerServlet.java:35)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.AccessingFilter.doFilter(AccessingFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.RoleFilter.doFilter(RoleFilter.java:26)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.EncodingFilter.doFilter(EncodingFilter.java:25)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at com.stason.testing.controller.filters.LocaleFilter.doFilter(LocaleFilter.java:30)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:359)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:889)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1735)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`onlinetestingfortest`.`answers`, CONSTRAINT `fk_answers_questions1` FOREIGN KEY (`questions_id`) REFERENCES `onlinetesting`.`questions` (`id`))
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1098)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1046)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1371)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1031)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:135)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:135)
+	at com.stason.testing.model.dao.implement.JDBCTestDao.update(JDBCTestDao.java:522)
+	... 41 more

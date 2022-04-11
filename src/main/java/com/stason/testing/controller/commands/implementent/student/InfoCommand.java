@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class InfoCommand implements Command {
-    private static final Logger logger = Logger.getLogger(InfoCommand.class.getName());
     @Override
     public String execute(HttpServletRequest request) {
         if(request.getRequestURI().contains("/student/info")){
@@ -31,30 +30,21 @@ public class InfoCommand implements Command {
 
             return Path.STUDENT_INFO;
         }
-
         return Path.REDIRECT_STUDENT_INFO;
     }
 
     private int getPageNumber(HttpServletRequest request) {
-        int pageNumber;
-        if(request.getParameter("pageNumber")!=null){
-            if(Integer.parseInt(request.getParameter("pageNumber"))<=0) {
-                pageNumber=1;
-            }else{
+        int pageNumber = 1;
+        if(request.getParameter("pageNumber")!=null && Integer.parseInt(request.getParameter("pageNumber")) > 0){
                 pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-            }
-        }else{
-            pageNumber = 1;
         }
         return pageNumber;
     }
 
     private int getPaginationParameter(HttpServletRequest request) {
-        int paginationParameter;
+        int paginationParameter = 5;
         if(request.getParameter("paginationParameter")!=null){
             paginationParameter = Integer.parseInt(request.getParameter("paginationParameter"));
-        }else{
-            paginationParameter = 5;
         }
         return paginationParameter;
     }
