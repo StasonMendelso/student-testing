@@ -8,7 +8,11 @@ import com.stason.testing.controller.utils.Path;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+/**
+ * It is a Command for recovery the password if the guest forgotten his password
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class RecoveryPasswordCommand implements Command {
     private final UserService userService = new UserService();
 

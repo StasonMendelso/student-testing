@@ -16,7 +16,11 @@ import javax.servlet.http.HttpSession;
 import java.util.*;
 
 import static com.stason.testing.controller.utils.ErrorForUser.*;
-
+/**
+ * It is a Command, which login in the user
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class LoginCommand implements Command {
     private static final Logger logger = Logger.getLogger(LoginCommand.class.getName());
     private final UserService userService = new UserService();

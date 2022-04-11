@@ -6,6 +6,7 @@ import com.stason.testing.controller.services.UserService;
 import com.stason.testing.controller.services.ValidatorService;
 import com.stason.testing.controller.services.VerifyRecaptcha;
 import com.stason.testing.controller.utils.*;
+import com.stason.testing.model.entity.Role;
 import com.stason.testing.model.entity.User;
 import org.apache.log4j.Logger;
 
@@ -13,7 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * It is a Command for registration a new user
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class RegistrationCommand implements Command {
     private static final Logger logger = Logger.getLogger(RegistrationCommand.class.getName());
 
@@ -63,7 +68,7 @@ public class RegistrationCommand implements Command {
             String salt = EncryptionPassword.generateSalt();
             String hashedPassword = EncryptionPassword.hash(password, salt);
             //Создаем юзера
-            User user = new User(email, hashedPassword, salt, username, surname, 2, false);
+            User user = new User(email, hashedPassword, salt, username, surname, Role.STUDENT.getId(), false);
 
             //заносим юзера в базу
             if (!userService.createNewUser(user)) return Path.GUEST_UNSUCCESSFUL_REGISTER;

@@ -17,7 +17,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * It is a Command, which shows test for student
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class ShowTestsCommand implements Command {
     private static final Logger logger = Logger.getLogger(ShowTestsCommand.class.getName());
 

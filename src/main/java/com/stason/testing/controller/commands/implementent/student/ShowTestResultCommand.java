@@ -9,7 +9,11 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
+/**
+ * It is a Command which show result of passed test for student.
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class ShowTestResultCommand implements com.stason.testing.controller.commands.Command {
     private static final Logger logger = Logger.getLogger(ShowTestResultCommand.class.getName());
 

@@ -7,7 +7,11 @@ import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-
+/**
+ * It is a Command, which changes  user's password
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class ChangePasswordCommand implements Command {
     private static final Logger logger = Logger.getLogger(ChangePasswordCommand.class.getName());
     private final UserService userService = new UserService();

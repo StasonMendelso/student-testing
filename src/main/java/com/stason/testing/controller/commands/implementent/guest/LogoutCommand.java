@@ -8,7 +8,11 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * It is a Command, which log out the user
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class LogoutCommand implements Command {
     private static final Logger logger = Logger.getLogger(LogoutCommand.class.getName());
     @Override
