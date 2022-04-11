@@ -1,5 +1,10 @@
 package com.stason.testing.model.entity;
 
+/**
+ * It is an enumeration with user's roles
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public enum Role {
     GUEST(1),
     STUDENT(2),

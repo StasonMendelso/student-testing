@@ -149,7 +149,7 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.setString(3, user.getSalt());
             preparedStatement.setString(4, user.getName());
             preparedStatement.setString(5, user.getSurname());
-            preparedStatement.setInt(6, user.getId_role());
+            preparedStatement.setInt(6, user.getIdRole());
             preparedStatement.setString(7, user.getStringIntBlocked());
             return preparedStatement.executeUpdate()!=0;
 

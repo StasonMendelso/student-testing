@@ -2,7 +2,11 @@ package com.stason.testing.model.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+/**
+ * It is a class-model from database table ANSWER
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class Answer implements Serializable {
     private int id;
     private String answer;

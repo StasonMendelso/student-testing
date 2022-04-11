@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * It is a class-model from database table USER
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class User implements Serializable {
     private int id;
     private String login;
@@ -12,38 +17,38 @@ public class User implements Serializable {
     private String name;
     private String surname;
 
-    public int getId_role() {
-        return id_role;
+    public int getIdRole() {
+        return idRole;
     }
 
-    public void setId_role(int id_role) {
-        this.id_role = id_role;
+    public void setIdRole(int idRole) {
+        this.idRole = idRole;
     }
 
     public User() {
     }
 
-    public User(int id, String login, String name, String surname, int id_role, boolean blocked) {
+    public User(int id, String login, String name, String surname, int idRole, boolean blocked) {
         this.id = id;
         this.login = login;
         this.name = name;
         this.surname = surname;
-        this.id_role = id_role;
+        this.idRole = idRole;
         this.blocked = blocked;
     }
 
-    public User(String login, String password, String salt, String name, String surname, int id_role, boolean blocked) {
+    public User(String login, String password, String salt, String name, String surname, int idRole, boolean blocked) {
         this.login = login;
         this.password = password;
         this.salt = salt;
         this.name = name;
         this.surname = surname;
-        this.id_role = id_role;
+        this.idRole = idRole;
         this.blocked = blocked;
     }
 
-    public User(int id, String login, String password, String salt, String name, String surname, int id_role, boolean blocked) {
-        this(id,login,name,surname,id_role,blocked);
+    public User(int id, String login, String password, String salt, String name, String surname, int idRole, boolean blocked) {
+        this(id,login,name,surname, idRole,blocked);
         this.password = password;
         this.salt = salt;
     }
@@ -60,7 +65,7 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
-    private int id_role;
+    private int idRole;
     private boolean blocked;
     private List<Integer> idPassedTestList;
     @Override
@@ -71,7 +76,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", role='" + id_role + '\'' +
+                ", role='" + idRole + '\'' +
                 ", blocked=" + blocked +
                 '}';
     }
@@ -116,15 +121,24 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
+    /**
+     * Get role of the user
+     * @return return a converted role from idRole to Enum.Role
+     * @see Role
+     */
     public String getRole() {
         for(Role role:Role.values()){
-            if(role.getId()==this.id_role) return role.name();
+            if(role.getId()==this.idRole) return role.name();
         }
         return "GUEST";
     }
-
+    /**
+     * Set role for the user
+     * @param role an Enum.Role constant
+     * @see Role
+     */
     public void setRole(Role role) {
-        setId_role(role.getId());
+        setIdRole(role.getId());
     }
 
     public boolean isBlocked() {
@@ -133,7 +147,6 @@ public class User implements Serializable {
     public String getStringIntBlocked(){
         return blocked ? "1":"0";
     }
-    public String getStringBlocked(){return blocked? "Так":"Ні";}
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
@@ -159,11 +172,11 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && id_role == user.id_role && blocked == user.blocked && login.equals(user.login) && Objects.equals(password, user.password) && Objects.equals(salt, user.salt) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(idPassedTestList, user.idPassedTestList);
+        return id == user.id && idRole == user.idRole && blocked == user.blocked && login.equals(user.login) && Objects.equals(password, user.password) && Objects.equals(salt, user.salt) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(idPassedTestList, user.idPassedTestList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, salt, name, surname, id_role, blocked, idPassedTestList);
+        return Objects.hash(id, login, password, salt, name, surname, idRole, blocked, idPassedTestList);
     }
 }

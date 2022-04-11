@@ -1,9 +1,7 @@
 package com.stason.testing.model.dao.implement;
 
-import com.stason.testing.model.dao.AnswerDao;
 import com.stason.testing.model.dao.ConnectionPool;
 import com.stason.testing.model.dao.UserDao;
-import com.stason.testing.model.entity.Answer;
 import com.stason.testing.model.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,7 +12,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,7 +54,7 @@ class JDBCUserDaoTest {
 
             User user = new User("login","password","salt","name","surname");
             user.setBlocked(false);
-            user.setId_role(1);
+            user.setIdRole(1);
 
             Mockito.when(connection.prepareStatement(anyString())).thenReturn(create);
             userDao.create(user);
@@ -72,7 +69,7 @@ class JDBCUserDaoTest {
                         resultSet.getString("salt"),
                         resultSet.getString("name"),
                         resultSet.getString("surname"));
-                userFromDB.setId_role(resultSet.getInt("id_role"));
+                userFromDB.setIdRole(resultSet.getInt("id_role"));
                 userFromDB.setBlocked(resultSet.getBoolean("blocked"));
             }else{
                 fail();
@@ -100,7 +97,7 @@ class JDBCUserDaoTest {
                         resultSet.getString("salt"),
                         resultSet.getString("name"),
                         resultSet.getString("surname"));
-                userFromDB.setId_role(resultSet.getInt("id_role"));
+                userFromDB.setIdRole(resultSet.getInt("id_role"));
                 userFromDB.setBlocked(resultSet.getBoolean("blocked"));
                 userFromDB.setId(resultSet.getInt("id"));
             }else{

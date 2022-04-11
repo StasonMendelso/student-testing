@@ -2,7 +2,11 @@ package com.stason.testing.model.entity;
 
 import java.io.Serializable;
 import java.util.*;
-
+/**
+ * It is a class-model from database table QUESTION
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class Question implements Cloneable, Serializable {
     private int id;
     private int testId;
@@ -90,6 +94,11 @@ public class Question implements Cloneable, Serializable {
     public Answer getLastAnswer(){
         return answers.get(answers.size()-1);
     }
+
+    /**
+     * Delete answer for this question by its id
+     * @param id an answer's id
+     */
     public void deleteAnswerById(int id){
         Iterator<Answer> iterator = answers.iterator();
         while(iterator.hasNext()){
@@ -100,7 +109,13 @@ public class Question implements Cloneable, Serializable {
             }
         }
     }
+//Prototype?
 
+    /**
+     * Create a clone of this question
+     * @return return a clone of this question
+     * @throws CloneNotSupportedException
+     */
     @Override
     public Question clone() throws CloneNotSupportedException {
         Question question = new Question();

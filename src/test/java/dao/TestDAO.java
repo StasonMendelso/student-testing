@@ -45,7 +45,7 @@ public class TestDAO {
 
             UserDao userDao = new JDBCUserDao();
             User user = new User();
-            user.setId_role(1);
+            user.setIdRole(1);
             user.setLogin("testlogin");
             user.setPassword("1234");
             user.setSalt("salt");

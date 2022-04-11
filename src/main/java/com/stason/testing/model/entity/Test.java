@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-
+/**
+ * It is a class-model from database table TEST
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class Test implements Serializable {
     private int id;
     private String name;
@@ -42,6 +46,12 @@ public class Test implements Serializable {
         return null;
     }
 
+    /**
+     * Sets replace old question on new one
+     * @param question a new Question
+     * @param questionNumber a question number
+     * @see Question
+     */
     public void setQuestion(Question question, int questionNumber) {
         Iterator<Question> iterator = questions.iterator();
         while (iterator.hasNext()) {
@@ -156,11 +166,8 @@ public class Test implements Serializable {
                 countOfQuestions--;
                 flag = true;
                 i--;
-
             }
-
         }
-
     }
 
     public void setQuestions(List<Question> questions) {
@@ -175,6 +182,12 @@ public class Test implements Serializable {
         return null;
     }
 
+    /**
+     * Replaces old question on new by question's id
+     * @param newQuestion a new Question
+     * @param id a old question's id
+     * @see Question
+     */
     public void setQuestionById(Question newQuestion, int id) {
         Iterator<Question> iterator = questions.iterator();
         int i = 0;
