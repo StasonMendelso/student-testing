@@ -6,15 +6,17 @@ import com.stason.testing.controller.exceptions.ServiceException;
 import com.stason.testing.controller.utils.CommandsHelper;
 import org.apache.log4j.Logger;
 
-
 import java.io.*;
-
 
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
+/**
+ * It is a main Servlet, which controls all user's actions.
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class ControllerServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(ControllerServlet.class.getName());
     private Map<String, Command> commands = new HashMap<>();
@@ -40,6 +42,7 @@ public class ControllerServlet extends HttpServlet {
         String uri = request.getRequestURI();
         logger.info("Old URI is:" + uri);
         uri = uri.replaceAll(".*/testing", "");
+        /* find the appropriate command and execute it*/
         Command command = commands.getOrDefault(uri, new DefaultCommand());
         logger.info("Command is:" + command);
         try {
