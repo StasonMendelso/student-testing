@@ -1,5 +1,9 @@
 package com.stason.testing.controller.utils;
-
+/**
+ * It is a class with constants
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class Constants {
     private Constants() {
     }

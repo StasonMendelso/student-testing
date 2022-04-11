@@ -1,6 +1,11 @@
 package com.stason.testing.controller.utils;
-
+/**
+ * It is an enumeration with error for user. Every value has a match of the information in the Resource Bundle "messages"
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public enum ErrorForUser {
+
     //VALIDATIONS
     INVALID_LOGIN,
     INVALID_PASSWORD,

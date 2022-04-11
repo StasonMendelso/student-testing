@@ -18,7 +18,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * It is a class with methods, which are repeated in different classes, which implemented Command interface.
+ * @author Stanislav Hlova
+ * @version 1.0
+ * @see Command
+ */
 public class CommandsHelper {
     private CommandsHelper() {
     }

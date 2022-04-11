@@ -8,7 +8,11 @@ import java.util.ResourceBundle;
 
 import static com.stason.testing.controller.utils.ErrorForUser.*;
 
-//take lang and error as attributes
+
+/**It is class for tag, which localize errors on jsp-pages
+ * @author Stanislav Hlova
+ * @version 1.0
+ */
 public class ErrorTagLocalization extends TagSupport {
     private static final EnumMap<ErrorForUser, String> keys = new EnumMap<>(ErrorForUser.class);
 
@@ -44,14 +48,21 @@ public class ErrorTagLocalization extends TagSupport {
     private ErrorForUser error;
     private ResourceBundle resourceBundle;
 
+    /**
+     * Sets a language
+     * @param lang a language, which tag received from tag's attributes as required
+     */
     public void setLang(String lang) {
         resourceBundle = ResourceBundle.getBundle("messages", new Locale(lang));
     }
-
+    /**
+     * Sets an error
+     * @param error an error, which tag received from tag's attributes as required
+     */
     public void setError(ErrorForUser error) {
         this.error = error;
     }
-
+    /*It is a tag handler, which take an Error from map and localize it with ResourceBundle*/
     @Override
     public int doStartTag() throws JspException {
         String key = keys.get(error);
