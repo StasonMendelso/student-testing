@@ -54,7 +54,7 @@ public class JDBCQuestionDao implements QuestionDao {
             }
         } catch (SQLException e) {
             logger.error("Can't all question for test with id=" + id + ",because", e);
-            throw new DataBaseException("Can't all question for test");
+            throw new DataBaseException("Can't all find question for test");
         }
     }
 
@@ -87,13 +87,11 @@ public class JDBCQuestionDao implements QuestionDao {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query.DELETE)) {
             preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
+            return preparedStatement.executeUpdate()!=0;
         } catch (SQLException e) {
             logger.error("Can't delete question for id=" + id + ",because", e);
             throw new DataBaseException("Can't delete question for id=" + id);
         }
-        return false;
-
     }
 
     @Override
