@@ -80,7 +80,7 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginateAndSortAllTests(int index, int paginationParameter, String orderBy, String order) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.tests ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
             preparedStatement.setInt(1, index);
             preparedStatement.setInt(2, paginationParameter);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -100,7 +100,7 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginateAndSortAllTests(int index, int paginationParameter, String orderBy, String order, String discipline) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests WHERE tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.tests WHERE tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
             preparedStatement.setString(1, discipline);
             preparedStatement.setInt(2, index);
             preparedStatement.setInt(3, paginationParameter);
@@ -126,13 +126,11 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setDouble(1, mark);
             preparedStatement.setInt(2, userId);
             preparedStatement.setInt(3, testId);
-            preparedStatement.execute();
+            return preparedStatement.executeUpdate()!=0;
         } catch (SQLException e) {
-            logger.error("Can't update passed test" + testId + " for user" + userId + " with mark" + mark + ", because", e);
+            logger.error("Can't update passed test " + testId + " for user " + userId + " with mark " + mark + ", because", e);
             throw new DataBaseException("Can't update passed test");
         }
-        return false;
-
     }
 
     @Override
@@ -205,7 +203,7 @@ public class JDBCTestDao implements TestDao {
 
         } catch (SQLException e) {
             logger.error("Can't count for unsurpassed tests (sorted by discipline=" + discipline + "), because", e);
-            throw new DataBaseException("Can't count for unsurpassed tests (sorted by discipline=" + discipline);
+            throw new DataBaseException("Can't count for unsurpassed tests (sorted by discipline=" + discipline+")");
         }
         return 0;
     }
@@ -266,7 +264,7 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginateAndSortUnsurpassedTests(int userId, int index, int paginationParameter, String orderBy, String order) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id IS NULL ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
 
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, index);
@@ -290,7 +288,7 @@ public class JDBCTestDao implements TestDao {
     public List<Test> findAndPaginateAndSortUnsurpassedTests(int userId, int index, int paginationParameter, String orderBy, String order, String discipline) {
         List<Test> list = new LinkedList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(" SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id  IS NULL AND tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM onlinetesting.tests LEFT JOIN onlinetesting.passedtests ON tests.id=passedtests.test_id && passedtests.user_id=? WHERE passedtests.test_id  IS NULL AND tests.nameOfDiscipline=? ORDER BY " + orderBy + " " + order + " limit ?,?;")) {
 
             preparedStatement.setInt(1, userId);
             preparedStatement.setString(2, discipline);
@@ -360,13 +358,11 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, testId);
             preparedStatement.setDouble(3, mark);
-            preparedStatement.execute();
+            return preparedStatement.execute();
         } catch (SQLException e) {
             logger.error("Can't add passed test=" + testId + " for user=" + userId + ", because", e);
             throw new DataBaseException("Can't add paginate passed test=" + testId + " for user=" + userId);
         }
-        return false;
-
     }
 
     @Override
@@ -469,12 +465,7 @@ public class JDBCTestDao implements TestDao {
             logger.error("Can't find test by id=" + id, e);
             throw new DataBaseException("Can't find test by id=" + id);
         }
-
         return null;
-    }
-
-    private Test builtTest(ResultSet resultSet) throws SQLException {
-        return new Test(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getString("nameOfDiscipline"),resultSet.getInt("difficulty"),resultSet.getInt("time_minutes"),resultSet.getInt("countOfQuestions"));
     }
 
     @Override
@@ -551,7 +542,7 @@ public class JDBCTestDao implements TestDao {
                 logger.error("Can't rollback in update()");
             }
             logger.error("Error update()");
-            throw new DataBaseException("Error update()", e);
+            throw new DataBaseException("Can't update the Test", e);
         } finally {
             if (connection != null) {
                 try {
@@ -619,6 +610,10 @@ public class JDBCTestDao implements TestDao {
         }
         return false;
 
+    }
+
+    private Test builtTest(ResultSet resultSet) throws SQLException {
+        return new Test(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getString("nameOfDiscipline"),resultSet.getInt("difficulty"),resultSet.getInt("time_minutes"),resultSet.getInt("countOfQuestions"));
     }
 
     @Override
