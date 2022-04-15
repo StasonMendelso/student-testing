@@ -432,11 +432,12 @@ public class JDBCTestDao implements TestDao {
             }
             connection.commit();
             connection.close();
+            return true;
         } catch (SQLException e) {
             try {
                 connection.rollback();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                logger.error("Failed to rollback", e);
             }
             logger.error("Failed to add new test in DB ", e);
             throw new DataBaseException("Failed to add new test in DB =" + test.getName());
@@ -449,7 +450,6 @@ public class JDBCTestDao implements TestDao {
                 }
             }
         }
-        return false;
     }
 
     @Override
@@ -521,8 +521,8 @@ public class JDBCTestDao implements TestDao {
                     questionId = resultSet.getInt("id");
                 }
                 List<Answer> answerList = question.getAnswers();
+                preparedStatement = connection.prepareStatement(Query.CREATE_ANSWER);
                 for (Answer answer : answerList) {
-                    preparedStatement = connection.prepareStatement(Query.CREATE_ANSWER);
                     preparedStatement.setString(1, answer.getAnswer());
                     preparedStatement.setBoolean(2, answer.isRightAnswer());
                     preparedStatement.setInt(3, questionId);
@@ -534,7 +534,7 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setInt(1, test.getId());
             preparedStatement.executeUpdate();
             connection.commit();
-
+            return true;
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -552,7 +552,6 @@ public class JDBCTestDao implements TestDao {
                 }
             }
         }
-        return false;
     }
 
 
@@ -581,7 +580,7 @@ public class JDBCTestDao implements TestDao {
             preparedStatement = connection.prepareStatement(Query.DELETE_QUESTIONS);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-            //DELETE PASSED TEST FOR EVERY USER, BECAUSE TEST WAS EDITED
+            //DELETE PASSED TEST FOR EVERY USER
             preparedStatement = connection.prepareStatement(Query.DELETE_PASSED_TEST);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
@@ -591,6 +590,7 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.executeUpdate();
 
             connection.commit();
+            return true;
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -608,7 +608,6 @@ public class JDBCTestDao implements TestDao {
                 logger.error("Can't close connection or preparedStatement in delete()", e);
             }
         }
-        return false;
 
     }
 
