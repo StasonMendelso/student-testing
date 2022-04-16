@@ -139,8 +139,4 @@ public class Question implements Cloneable, Serializable {
         return id == question.id && testId == question.testId && questionNumber == question.questionNumber && textQuestion.equals(question.textQuestion) && Objects.equals(answers, question.answers) && Objects.equals(userOptions, question.userOptions);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, testId, questionNumber, textQuestion, answers, userOptions);
-    }
 }

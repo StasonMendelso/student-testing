@@ -75,8 +75,4 @@ public class Answer implements Serializable {
         return id == answer1.id && isRightAnswer == answer1.isRightAnswer && questionId == answer1.questionId && answer.equals(answer1.answer);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, answer, isRightAnswer, questionId);
-    }
 }

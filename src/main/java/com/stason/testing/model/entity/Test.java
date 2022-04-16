@@ -217,8 +217,5 @@ public class Test implements Serializable {
         return id == test.id && difficulty == test.difficulty && timeMinutes == test.timeMinutes && timeSeconds == test.timeSeconds && countOfQuestions == test.countOfQuestions && Double.compare(test.mark, mark) == 0 && name.equals(test.name) && Objects.equals(nameOfDiscipline, test.nameOfDiscipline) && Objects.equals(questions, test.questions);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, nameOfDiscipline, difficulty, timeMinutes, timeSeconds, countOfQuestions, mark, questions);
-    }
+
 }

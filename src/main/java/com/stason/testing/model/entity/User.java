@@ -175,8 +175,4 @@ public class User implements Serializable {
         return id == user.id && idRole == user.idRole && blocked == user.blocked && login.equals(user.login) && Objects.equals(password, user.password) && Objects.equals(salt, user.salt) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(idPassedTestList, user.idPassedTestList);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, login, password, salt, name, surname, idRole, blocked, idPassedTestList);
-    }
 }

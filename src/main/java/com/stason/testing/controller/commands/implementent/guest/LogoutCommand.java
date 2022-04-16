@@ -21,7 +21,7 @@ public class LogoutCommand implements Command {
         Set<String> loggedUsers = (HashSet<String>) request.getServletContext().getAttribute("loggedUsers");
         logger.info("LoggedUsers before logouting are "+loggedUsers);
         loggedUsers.remove(login);
-        request.getSession().getServletContext().setAttribute("loggedUsers",loggedUsers);
+        request.getServletContext().setAttribute("loggedUsers",loggedUsers);
         logger.info("LoggedUsers after logouting are "+loggedUsers);
         //Сохраняем язык чтобы не сменился когда сессия станет невалидной.
         request.getSession().invalidate();
