@@ -16,7 +16,6 @@ import java.io.IOException;
  */
 @WebFilter(filterName = "BackArrowForDoTestFilter")
 public class BackArrowForDoTestFilter implements Filter {
-    private static final Logger logger = Logger.getLogger(BackArrowForDoTestFilter.class.getName());
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {

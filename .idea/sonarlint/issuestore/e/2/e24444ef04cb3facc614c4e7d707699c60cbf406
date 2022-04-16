@@ -1,0 +1,7 @@
+
+I
+java:S1128"4Remove this unused import 'org.apache.log4j.Logger'.(ρθ½
+f
+java:S1192"KDefine a constant instead of duplicating this literal "pageNumber" 4 times.(Σ¬­Ιϊÿÿÿÿ
+o
+java:S1192"TDefine a constant instead of duplicating this literal "paginationParameter" 3 times.(‘σÒωÿÿÿÿ

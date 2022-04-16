@@ -31,7 +31,6 @@ public class JDBCAnswerDaoTest {
 
     @BeforeEach
     public void setUp() throws SQLException {
-        System.out.println("Open");
         cp = mockStatic(ConnectionPool.class);
         cp.when(ConnectionPool::getInstance).thenReturn(connectionPool);
         when(connectionPool.getConnection()).thenReturn(mockConnection);
@@ -40,17 +39,16 @@ public class JDBCAnswerDaoTest {
         Connection testConnection = ConnectionPool.getInstance().getConnection();
         Assertions.assertNotNull(testConnection);
     }
-
+    @AfterEach
+    public void tearDown() {
+        cp.close();
+    }
     private static class Query {
         static final String CREATE = "INSERT INTO onlinetesting.answers (answer, isRightAnswer, questions_id) VALUES (?,?,?)";
         static final String FIND_ALL_BY_QUESTION_ID = "SELECT * FROM onlinetesting.answers WHERE questions_id=?";
         static final String DELETE = "DELETE FROM onlinetesting.answers WHERE id=?";
     }
-    @AfterEach
-    public void tearDown() {
-        System.out.println("Close");
-        cp.close();
-    }
+
     @Test
     public void testCreate() throws SQLException {
         Answer answer = new Answer("right answer", true, 12);

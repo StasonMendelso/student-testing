@@ -40,7 +40,6 @@ class JDBCQuestionDaoTest {
 
     @BeforeEach
     public void setUp() throws SQLException {
-        System.out.println("Open");
         cp = mockStatic(ConnectionPool.class);
         cp.when(ConnectionPool::getInstance).thenReturn(connectionPool);
         when(connectionPool.getConnection()).thenReturn(mockConnection);
@@ -51,7 +50,6 @@ class JDBCQuestionDaoTest {
     }
     @AfterEach
     public void tearDown() {
-        System.out.println("Close");
         cp.close();
     }
     private static class Query {

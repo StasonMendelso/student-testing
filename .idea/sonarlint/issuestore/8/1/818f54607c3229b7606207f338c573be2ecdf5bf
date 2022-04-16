@@ -1,0 +1,11 @@
+
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ÜÏ´×8ÍÖºÃ0
+j
+java:S1192H"MDefine a constant instead of duplicating this literal "nextQuestion" 3 times.(±¾Ã¸8ÜÖºÃ0
+f
+java:S1192J"IDefine a constant instead of duplicating this literal "question" 3 times.(Ò•úÓ8ÜÖºÃ0
+l
+java:S1192B"ODefine a constant instead of duplicating this literal "questionNumber" 3 times.(ÂÚ…È8ÜÖºÃ0
+o
+java:S1192&"RDefine a constant instead of duplicating this literal "currentClientTime" 3 times.(É¥”ñ8ÜÖºÃ0

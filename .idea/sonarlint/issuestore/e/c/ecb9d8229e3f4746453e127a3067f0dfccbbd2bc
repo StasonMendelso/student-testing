@@ -1,0 +1,19 @@
+
+—
+java:S1186–"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©éÑr
+h
+java:S1192Q"FDefine a constant instead of duplicating this literal "login" 3 times.(ßÂéşÿÿÿÿ8—ÒÓÀ0
+e
+java:S1192U"HDefine a constant instead of duplicating this literal "blocked" 3 times.(ùÓá¨8—ÒÓÀ0
+e
+java:S1192S"HDefine a constant instead of duplicating this literal "surname" 3 times.( —•Ò8—ÒÓÀ0
+g
+java:S1192@"JDefine a constant instead of duplicating this literal ", because" 8 times.(•öŒ8—ÒÓÀ0
+e
+java:S1192T"HDefine a constant instead of duplicating this literal "id_role" 3 times.(Æ‹„í8˜ÒÓÀ0
+r
+java:S2095ü"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¬ÔšÌøÿÿÿÿ8€ÓÓÀ0
+m
+java:S2095ù"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ºËÊ«8€ÓÓÀ0
+N
+java:S2589Š"7Remove this expression which always evaluates to "true"(¤òª£
