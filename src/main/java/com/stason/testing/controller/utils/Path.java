@@ -6,7 +6,7 @@ import javax.servlet.jsp.PageContext;
  * @author Stanislav Hlova
  * @version 1.0
  */
-public class Path {
+public abstract class Path {
     //jsp (forward)
     public static final String INDEX = "/index.jsp";
     public static final String CHANGE_PASSWORD = "/WEB-INF/view/changePasswordSendEmail.jsp";
