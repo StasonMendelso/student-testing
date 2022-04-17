@@ -27,8 +27,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({AccessingFilter.class})
+
 @ExtendWith(MockitoExtension.class)
 class AccessingFilterTest {
     AccessingFilter accessingFilter = new AccessingFilter();
