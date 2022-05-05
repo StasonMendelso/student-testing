@@ -21,11 +21,18 @@ public class ConnectionPool{
     /**
      * @return return a single instance of ConnectionPool
      */
-    public static synchronized ConnectionPool getInstance(){
-        if(instance==null){
-            instance = new ConnectionPool();
+    public static ConnectionPool getInstance(){
+        // DCL
+        ConnectionPool result = instance;
+        if(result!=null){
+            return result;
         }
-        return instance;
+        synchronized (ConnectionPool.class) {
+            if (instance == null) {
+                instance = new ConnectionPool();
+            }
+            return instance;
+        }
     }
 
     /**

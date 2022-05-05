@@ -24,9 +24,10 @@ public class LogoutCommand implements Command {
         request.getServletContext().setAttribute("loggedUsers",loggedUsers);
         logger.info("LoggedUsers after logouting are "+loggedUsers);
         //Сохраняем язык чтобы не сменился когда сессия станет невалидной.
+        String lang = (String) request.getSession().getAttribute("lang");
         request.getSession().invalidate();
         request.getSession().setAttribute("role", Role.GUEST.name());
-        request.getSession().setAttribute("lang", request.getSession().getAttribute("lang"));
+        request.getSession().setAttribute("lang", lang);
         return Path.REDIRECT_GUEST_LOGOUT;
     }
 }

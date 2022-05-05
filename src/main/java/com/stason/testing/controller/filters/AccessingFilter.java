@@ -1,5 +1,6 @@
 package com.stason.testing.controller.filters;
 
+import com.stason.testing.controller.commands.implementent.guest.LogoutCommand;
 import com.stason.testing.controller.exceptions.ForbiddenException;
 import com.stason.testing.model.entity.Role;
 import org.apache.log4j.Logger;
@@ -90,6 +91,7 @@ public class AccessingFilter implements Filter {
             for (Integer blockedId : blockedList) {
                 if (blockedId == userId) {
                     logger.info("Accessing Filter - User " + userId + " is blocked");
+                    new LogoutCommand().execute(req);
                     res.sendRedirect("/web-application/testing/login");
                     return;
                 }
@@ -100,6 +102,7 @@ public class AccessingFilter implements Filter {
                     logger.info("Accessing Filter - User " + userId + " must be log outed");
                     logoutUsersId.remove(logoutId);
                     req.getServletContext().setAttribute("logoutUsersId", logoutUsersId);
+                    new LogoutCommand().execute(req);
                     res.sendRedirect("/web-application/testing/login");
                     return;
                 }
