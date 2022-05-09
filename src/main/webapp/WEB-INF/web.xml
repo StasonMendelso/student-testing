@@ -3,4 +3,111 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <error-page>
+        <exception-type>com.stason.testing.controller.exceptions.ServiceException</exception-type >
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <location>/generalError.jsp</location>
+    </error-page>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>controller</servlet-name>
+        <servlet-class>com.stason.testing.controller.servlets.ControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>/testing/*</url-pattern>
+    </servlet-mapping>
+
+
+  
+<!--FILTERS-->
+
+    <filter>
+        <filter-name>LocaleFilter</filter-name>
+        <filter-class>com.stason.testing.controller.filters.LocaleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LocaleFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>com.stason.testing.controller.filters.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>RoleFilter</filter-name>
+        <filter-class>com.stason.testing.controller.filters.RoleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RoleFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>BackArrowFilter</filter-name>
+        <filter-class>com.stason.testing.controller.filters.BackArrowFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BackArrowFilter</filter-name>
+        <url-pattern>/testing/login</url-pattern>
+
+        <url-pattern>/testing/student/info</url-pattern>
+        <url-pattern>/testing/admin/info</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>AccessingFilter</filter-name>
+        <filter-class>com.stason.testing.controller.filters.AccessingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>BackArrowDoTestFilter</filter-name>
+        <filter-class>com.stason.testing.controller.filters.BackArrowForDoTestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>BackArrowDoTestFilter</filter-name>
+        <url-pattern>/testing/student/test</url-pattern>
+        <url-pattern>/testing/student/result</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>com.stason.testing.controller.listeners.DestroyingListener</listener-class>
+    </listener>
+
+
+    <jsp-config>
+
+        <jsp-property-group>
+
+            <url-pattern>*.jsp</url-pattern>
+
+            <url-pattern>*.jspx</url-pattern>
+
+            <page-encoding>UTF-8</page-encoding>
+
+            <default-content-type>text/html; charset=UTF-8</default-content-type>
+
+        </jsp-property-group>
+
+    </jsp-config>
+    <resource-ref>
+        <res-ref-name>jdbc/MyPool</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
 </web-app>
