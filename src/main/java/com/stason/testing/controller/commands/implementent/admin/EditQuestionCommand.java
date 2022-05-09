@@ -32,7 +32,7 @@ public class EditQuestionCommand implements Command {
         if (request.getParameter("DeleteId") != null) new DeleteAnswerCommand().execute(request);
         // Додати нову відповідь
         if (request.getParameter("Add") != null && request.getParameter("id") != null) {
-            String answerText = request.getParameter("answerText");
+            String answerText = EncodingConverter.convertFromISOtoUTF8(request.getParameter("answerText"));
             if (!ValidatorService.validateAnswerText(answerText)) {
                 request.setAttribute("errorAddedQuestion", ErrorForUser.INVALID_ANSWER_NAME);
                 return Path.ADMIN_EDIT_QUESTIONS_INFO;
