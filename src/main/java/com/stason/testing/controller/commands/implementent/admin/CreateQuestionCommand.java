@@ -74,6 +74,12 @@ public class CreateQuestionCommand implements Command {
             request.setAttribute("errorsList", errorForUserList);
             return Path.ADMIN_CREATE_QUESTION;
         }
+        if (!CommandsHelper.isCreatedTwoAnswer(request)){
+            //Меньше чем два варианта ответа
+            errorForUserList.add(ErrorForUser.NOT_ENOUGH_ANSWER_OPTIONS);
+            request.setAttribute("errorsList", errorForUserList);
+            return Path.ADMIN_CREATE_QUESTION;
+        }
         String rightOptions = Arrays.toString(request.getParameterValues("opt"));
         String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
         CommandsHelper.validateQuestionParameters(request, errorForUserList);

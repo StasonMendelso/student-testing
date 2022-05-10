@@ -27,6 +27,7 @@ public class ErrorTagLocalization extends TagSupport {
 
         keys.put(EMPTY_ANSWER_OPTION, "error.answer.empty_option");
         keys.put(EMPTY_RIGHT_ANSWER_OPTION, "error.answer.empty_right_option");
+        keys.put(NOT_ENOUGH_ANSWER_OPTIONS, "error.answer.not_enough_options");
         keys.put(INVALID_ANSWER_NAME, "error.invalid.answer_name");
         keys.put(INVALID_DISCIPLINE_NAME, "error.invalid.discipline_name");
         keys.put(INVALID_QUESTION_NAME, "error.invalid.question_name");

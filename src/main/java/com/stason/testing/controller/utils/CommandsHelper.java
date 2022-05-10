@@ -93,6 +93,16 @@ public class CommandsHelper {
         return true;
     }
 
+    public static boolean isCreatedTwoAnswer(HttpServletRequest request) {
+        int count = 0;
+        // Выбран 1 вариант как правильный, но нету варианта ответа
+        if (!request.getParameter("answer1").isEmpty()) count++;
+        if (!request.getParameter("answer2").isEmpty()) count++;
+        if (!request.getParameter("answer3").isEmpty()) count++;
+        if (!request.getParameter("answer4").isEmpty()) count++;
+
+        return count >= 2;
+    }
     public static void validateQuestionParameters(HttpServletRequest request, List<ErrorForUser> errorForUserList) {
         String questionName = EncodingConverter.convertFromISOtoUTF8(request.getParameter("questionName"));
         if (!ValidatorService.validateQuestionText(questionName)) {
