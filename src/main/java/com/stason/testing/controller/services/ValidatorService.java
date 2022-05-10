@@ -22,8 +22,8 @@ public abstract class ValidatorService {
     private static final String activationCodePattern = "^[0-9]{8}$";
     private static final String testNamePattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,99}";
     private static final String testDisciplineNamePattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,99}";
-    private static final String questionTextPattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,399}";
-    private static final String answerTextPattern = "^[A-ZА-ЯІЇЄ][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,299}";
+    private static final String questionTextPattern = "^[A-ZА-ЯІЇЄ0-9.][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,399}";
+    private static final String answerTextPattern = "^[A-ZА-ЯІЇЄ0-9.][A-zА-яїіІЇЄє0-9.,;:?!\\-+=–/*\"'|&<>\\[\\]@№%^() {}]{1,299}";
 
     private ValidatorService() {
     }
