@@ -199,7 +199,7 @@
 
         <div class="w-25 bg-dark  mb-5 "
              style="border-radius: 30px 30px 30px 30px;box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5); margin-top: 45px">
-            <div class="text-left mt-2 pb-3 text-info">
+            <div class="text-left ms-3 mt-3 pb-3 text-info">
                 <fmt:message key="show_tests.not_any_tests"/>
             </div>
         </div>

@@ -162,10 +162,8 @@ class ValidatorServiceTest {
 
         assertFalse(ValidatorService.validateQuestionText("    "));
         assertFalse(ValidatorService.validateQuestionText(""));
-        assertFalse(ValidatorService.validateQuestionText("21sdfsd"));
         assertFalse(ValidatorService.validateQuestionText("asdsa"));
         assertFalse(ValidatorService.validateQuestionText("фівфі"));
-        assertFalse(ValidatorService.validateQuestionText("12фів"));
         assertFalse(ValidatorService.validateQuestionText("№іфвЖ:;"));
     }
 
@@ -181,10 +179,8 @@ class ValidatorServiceTest {
 
         assertFalse(ValidatorService.validateAnswerText("    "));
         assertFalse(ValidatorService.validateAnswerText(""));
-        assertFalse(ValidatorService.validateAnswerText("21sdfsd"));
         assertFalse(ValidatorService.validateAnswerText("asdsa"));
         assertFalse(ValidatorService.validateAnswerText("фівфі"));
-        assertFalse(ValidatorService.validateAnswerText("12фів"));
         assertFalse(ValidatorService.validateAnswerText("№іфвЖ:;"));
     }
 }

@@ -68,6 +68,10 @@
     <filter>
         <filter-name>AccessingFilter</filter-name>
         <filter-class>com.stason.testing.controller.filters.AccessingFilter</filter-class>
+<!--        <init-param>-->
+<!--            <param-name>admin</param-name>-->
+<!--            <param-value></param-value>-->
+<!--        </init-param>-->
     </filter>
     <filter-mapping>
         <filter-name>AccessingFilter</filter-name>

@@ -17,7 +17,8 @@ public class JDBCUserDao implements UserDao {
         static final String FIND_ID_BLOCKED_USERS = "SELECT id FROM onlinetesting.users WHERE blocked=true";
         static final String DELETE_PASSED_TESTS_BY_USER_ID = "DELETE FROM onlinetesting.passedtests WHERE user_id=?";
         static final String FIND_ID_PASSED_TESTS_BY_USER_ID = "SELECT onlinetesting.passedtests.test_id FROM onlinetesting.passedtests WHERE user_id=?;";
-        static final String FIND_AND_PAGINATE_ALL_USERS = "SELECT * FROM onlinetesting.users limit ?,?";
+   //     static final String FIND_AND_PAGINATE_ALL_USERS = "SELECT * FROM onlinetesting.users limit ?,?";
+        static final String FIND_AND_PAGINATE_ALL_USERS = "SELECT * FROM onlinetesting.users WHERE id_role!=3 limit ?,?";
         static final String COUNT_ALL_USERS = "SELECT COUNT(1) FROM onlinetesting.users";
         static final String FIND_BY_LOGIN = "SELECT * FROM onlinetesting.users WHERE login=?;";
         static final String CREATE = "INSERT INTO onlinetesting.users (login,password,salt,name,surname,id_role,blocked)values(?,?,?,?,?,?,?);";

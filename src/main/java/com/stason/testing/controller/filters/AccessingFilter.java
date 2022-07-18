@@ -29,7 +29,7 @@ public class AccessingFilter implements Filter {
     @Override
     public void init(FilterConfig config) throws ServletException {
         HashSet<String> accessingURLAdmin = new HashSet<>();
-
+        //config.getInitParameter();
         accessingURLAdmin.add("/");
         accessingURLAdmin.add("");
         accessingURLAdmin.add("/logout");

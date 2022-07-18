@@ -389,7 +389,8 @@ public class JDBCTestDao implements TestDao {
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement(Query.CREATE);
+            // ADDING GENERATED_KEYS
+            PreparedStatement preparedStatement = connection.prepareStatement(Query.CREATE, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, test.getName());
             preparedStatement.setString(2, test.getNameOfDiscipline());
             preparedStatement.setInt(3, test.getDifficulty());
@@ -397,38 +398,52 @@ public class JDBCTestDao implements TestDao {
             preparedStatement.setInt(5, test.getCountOfQuestions());
             preparedStatement.execute();
             int testId = -1;
-            preparedStatement = connection.prepareStatement(Query.FIND_ID_BY_NAME);
-            preparedStatement.setString(1, test.getName());
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-
+//            preparedStatement = connection.prepareStatement(Query.FIND_ID_BY_NAME);
+//            preparedStatement.setString(1, test.getName());
+//            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+//
+//                if (resultSet.next()) {
+//                    testId = resultSet.getInt("id");
+//                }
+//            }
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
-                    testId = resultSet.getInt("id");
+                    testId = (int) resultSet.getLong(1);
                 }
             }
             //
             int i = 1;
             for (Question question : test.getQuestions()) {
-                preparedStatement = connection.prepareStatement(Query.CREATE_QUESTION);
+                preparedStatement = connection.prepareStatement(Query.CREATE_QUESTION,Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setInt(1, testId);
                 preparedStatement.setInt(2, i);
                 preparedStatement.setString(3, question.getTextQuestion());
                 preparedStatement.execute();
                 //добавляємо до кожного вопроса відповіді в БД
-                preparedStatement = connection.prepareStatement(Query.FIND_QUESTION_ID);
-                preparedStatement.setInt(1, testId);
-                preparedStatement.setInt(2, i++);
+//                preparedStatement = connection.prepareStatement(Query.FIND_QUESTION_ID);
+//                preparedStatement.setInt(1, testId);
+//                preparedStatement.setInt(2, i++);
                 int questionId = -1;
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) questionId = resultSet.getInt("id");
+                try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+                    if (resultSet.next()) questionId = (int) resultSet.getLong(1);
                 }
                 preparedStatement = connection.prepareStatement(Query.CREATE_ANSWER);
+//                for (Answer answer : question.getAnswers()) {
+//                    answer.setQuestionId(questionId);
+//                    preparedStatement.setString(1, answer.getAnswer());
+//                    preparedStatement.setBoolean(2, answer.isRightAnswer());
+//                    preparedStatement.setInt(3, answer.getQuestionId());
+//                    preparedStatement.execute();
+//
+//                }
                 for (Answer answer : question.getAnswers()) {
                     answer.setQuestionId(questionId);
                     preparedStatement.setString(1, answer.getAnswer());
                     preparedStatement.setBoolean(2, answer.isRightAnswer());
                     preparedStatement.setInt(3, answer.getQuestionId());
-                    preparedStatement.execute();
+                    preparedStatement.addBatch();  //<-----BATCH----->
                 }
+                preparedStatement.executeBatch(); //<-----BATCH----->
             }
             connection.commit();
             connection.close();
